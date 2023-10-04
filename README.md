@@ -8,3 +8,8 @@ Web design and visualisation by Giovani Profeta - [repo](https://github.com/giov
 Work group: Federico Benvenuti, Valerio Iannucci, Luca Martinelli, Paolo Fichera
 Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
 
+How to make a local install (in your computer) of Wikicurrícula Boilerplate. 
+Fork github resipotory
+clone resipotory to local computer 
+Open wikicurricula-boilerplate folder in an IDE
+With in its folder, open the visualization folder and open index.html file on browser to see Wikicurrícula Boilerplate page.
