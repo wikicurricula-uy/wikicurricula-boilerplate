@@ -33,13 +33,13 @@ Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
 
 
 
-# Documentation on How to feed the visualization with data from a new curriculum
+# Documentation on how to feed the visualization with data from a new curriculum
 
 This is a detailed step-by-step guide on how to feed the visualization with data from a new curriculum.
 Before going into that, you'll need to learn how to build and run the Wikidata query.
 
 
-## Building and Running the Ghana Curriculum Wikidata Query
+## Building and running the Ghana curriculum wikidata query
 
 - Obtain the wikidata query. This has already been provided [here](https://w.wiki/7Zge).
 
