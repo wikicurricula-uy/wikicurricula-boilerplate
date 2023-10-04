@@ -16,6 +16,8 @@ import string
 
 import json
 
+import re
+
 from datetime import datetime
 
 
@@ -42,7 +44,7 @@ discussione = "Discusión:"
 discussioneURL = urllib.parse.quote(discussione)
 
 #de momento, el conteo de avisos no funciona para la wikipedia en español
-configAvvisi = 0
+configAvvisi = 1  # To enable template counting
 
 paginaCommons = 1
 
@@ -245,68 +247,47 @@ def primoEdit(voce):
 
 
 
-
 def avvisi(t):
+    t_tmp = t
+    t = t.replace("\n", "")
+    t = t.replace(" ", "")
+    t = t.lower()
 
-   t_tmp =t
+    # Definire i modelli da cercare nella Wikipedia in spagnolo
+    modelli_spagnoli = [
+        '{{c|',
+        '{{c}}',
+        '{{a|',
+        '{{corregir',
+        '{{curiosidad',
+        '{{dividir',
+        '{{f|',
+        '{{l|',
+        '{{p|',
+        '{{nn|',
+        '{{reciente',
+        '{{estilo',
+        '{{traducido',
+        '{{wikificar',
+        '{{s|',
+        '{{stubseccion',
+        '{{controlcopy',
+        '{{sinreferencias',
+        '{{citarequerida',
+        '{{chiarire',
+    ]
 
-   t = t.replace("\n","")
+    # Contare le occorrenze dei modelli definiti nel testo
+    conteggio_modelli = [t.count(modello) for modello in modelli_spagnoli]
 
-   t = t.replace(" ","")
+    # Calcolare la somma di tutti i conteggi dei modelli
+    totale_modelli = sum(conteggio_modelli)
 
-   t = t.lower()
-
-    
-
-   tmpcotrollare = t.count('{{c|') + t.count('{{c}}')
-
-   tmpsinottico = t.count('{{tmp|')  + t.count('{{tmp}}')
-
-   tmpaiutare = t.count('{{a|')
-
-   tmpcorreggere = t.count('{{correggere')
-
-   tmpcuriosita = t.count('{{curiosit')
-
-   tmpdividere = t.count('{{d|') + t.count('{{d}')
-
-   tmpfonti = t.count('{{f|')  + t.count('{{f}}')
-
-   tmplocalismo = t.count('{{l|')  + t.count('{{l}}')
-
-   tmpPOV = t.count('{{p|')  + t.count('{{p}}')
-
-   tmpNN = t.count('{{nn|')  + t.count('{{nn}}')
-
-   tmprecentismo = t.count('{{recentismo')
-
-   tmpmanualisitco = t.count('{{stilemanualistico')
-
-   tmptraduzione = t.count('{{t|')  + t.count('{{t}}')
-
-   tmpwikificare = t.count('{{w|')  + t.count('{{w}}')
-
-   tmpstub = t.count('{{s|')  + t.count('{{s}}')
-
-   tmpstubsezione = t.count('{{stubsezione')
-
-   tmpcontrolcopi = t.count('{{controlcopy')
+    # Restituire il conteggio totale dei modelli come una stringa
+    return str(totale_modelli)
 
 
 
-   sommaavvisi = tmpcotrollare + tmpsinottico + tmpaiutare + tmpcorreggere + tmpcuriosita + tmpdividere + tmpfonti + tmplocalismo + tmpPOV
-
-   sommaavvisi = sommaavvisi + tmpNN + tmprecentismo + tmpmanualisitco + tmptraduzione + tmpwikificare + tmpstub + tmpstubsezione + tmpcontrolcopi
-
-
-
-   tmpsenzafonti = t.count('{{senzafonte') + t.count('{{citazionenecessaria') + t.count('{{senzafonte}}') + t.count('{{citazionenecessaria}}')
-
-   tmpchiarire = t.count('{{chiarire') + t.count('{{chiarire}}')
-
-
-
-   return str(sommaavvisi), str(tmpsenzafonti), str(tmpchiarire)
 
 
 
