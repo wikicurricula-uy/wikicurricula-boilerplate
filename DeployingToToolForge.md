@@ -78,7 +78,7 @@ Now that you have the two(2) required accounts, follow the steps to deploy"
     
     `<shell-username>@tools-sgebastion-10:~$`
 
-- From the command line, use the become command to switch to the tool account for the tool you want to work on:
+- From the command line, use the `become` command to switch to the tool account for the tool you want to work on:
     ```
     $ become <toolname>
     ```
@@ -104,4 +104,3 @@ Now that you have the two(2) required accounts, follow the steps to deploy"
     In the case of the Wikicurrícula Boilerplate, you can find it at <https://tools-static.wmflabs.org/wikicurricula-uy/wikicurricula-boilerplate/visualization/index.html>.
 
 
-    
