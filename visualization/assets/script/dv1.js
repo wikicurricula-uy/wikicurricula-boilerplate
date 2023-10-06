@@ -297,6 +297,14 @@ function dv1(year,the_subject,sort) {
 
                 content += "<tr><td class='label'>publicación</td><td class='value'>" + format_date(d.first_edit) + "</td><td></td></tr>"
 
+				content +=
+				"<p style='font-weight: normal bold; margin: 0 0 10px 3px;'>" +
+				"Subject:       " +  
+				d.subject +
+				"</p><table>";
+
+				
+
                 // avg daily visits
                 content += "<tr><td class='label'>visitas diarias</td><td class='value'>" + d.avg_pv.toLocaleString()
             	if (d.avg_pv_prev !== "-"){
