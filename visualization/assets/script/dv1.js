@@ -295,6 +295,7 @@ function dv1(year,the_subject,sort) {
 			.html(function(d,i) {
                 let content = "<p style='font-weight: bold; margin: 0 0 10px 3px;'>" + d.article +"</p><table>";
 
+				content +="<p style='font-weight: normal; margin: 0 0 10px 3px;'>" + "Subject: " + d.subject +"</p><table>"
                 content += "<tr><td class='label'>publicación</td><td class='value'>" + format_date(d.first_edit) + "</td><td></td></tr>"
 
                 // avg daily visits
