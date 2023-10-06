@@ -45,7 +45,7 @@ git commit -m  "add feature: describe the feature or fix"
 10.**Push Your Changes**: Push your changes to your forked repository on GitHub:
 
 ```bash
-git push origin my-feature-branch
+git push --set-upstream origin (your branch)
 ```
 
 11.**Create a Pull Request (PR)**: Once your changes are committed and pushed, go to the original project repository on GitHub and click the "Compare & pull request" button. Describe your changes and submit the PR. Be sure to reference the issue you're addressing.
