@@ -35,7 +35,7 @@ Before being able to install and start the folder, you must have the necessary d
 
 1. First you have to go to the Wikicurricula [github repository](https://github.com/wikicurricula-uy/wikicurricula-boilerplate).
 
-2. Fork the repository into your github
+2. Fork the repository into your github.
 
 3. Clone your fork of the repository into your local machine.
   NB: Make sure not to clone the direct repository from wikicurricula as this would throw up errors in the future. The URL for cloning
@@ -54,7 +54,7 @@ Before being able to install and start the folder, you must have the necessary d
  A much easier and time saving way is to use the VSCode Liver server extension. To do this:
    - Install the `Live Server` in the extesnions marketplace.
    - Open the HTML file
-   - Right click on the file
+   - Right click on the file.
    - Among the options click on `Open with Live Server`.
     This will automatically run the file on your browser using a default local host port. Now you can view the UI of Wikicurricula's boilerplate!
 
