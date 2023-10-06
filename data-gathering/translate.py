@@ -47,7 +47,8 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
         'VdQ',
         'galleria_su_Commons',
         'pagina_su_commons',
-        'pagina_su_wikisource'
+        'pagina_su_wikisource',
+        'grade'
     ]
     
     reader = csv.DictReader(input_file, fieldnames=input_header, delimiter='\t')
@@ -88,7 +89,8 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
             'vetrina': row['vetrina'],
             'galleria_su_Commons': row['galleria_su_Commons'],
             'pagina_su_commons': row['pagina_su_commons'],
-            'pagina_su_wikisource': row['pagina_su_wikisource']
+            'pagina_su_wikisource': row['pagina_su_wikisource'],
+            'grade': row['grade']
         }
         rows.append(new_row)
 
