@@ -20,7 +20,7 @@ from datetime import datetime
 
 
 #language subdomain, to be used for API calls
-language = "es"
+language = "en"
 
 idwikidata = 1
 
