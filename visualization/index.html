@@ -68,62 +68,62 @@
 				</ul>
 			</nav>
 		</div>-->
-	<main>
-		<section id="dataviz">
-			<div id="select_section_1">
-				<div id="filter_button">
-					<div class="filter">
-						<div class=container>
-							Filtros
+		<main>
+			<section id="dataviz">
+				<div id="select_section_1">
+					<div id="filter_button">
+						<div class="filter">
+							<div class=container>
+								Filtros
+							</div>
+						</div>
+						<div id="mobile_filter_icon"></div>
+					</div>
+					<div class="select_box" id="select_box">
+						<div id="select_year" class="selector">
+							<p class="key noselect">Año</p>
+							<select name="subjects" id="year" class="select value noselect">
+								<option value="2023">2023</option>
+							</select>
+						</div>
+						<div id="select_subject" class="selector">
+							<p class="key noselect">Materia</p>
+							<select name="subjects" id="subjects" class="select value noselect">
+								<option value="all">Todas las asignaturas</option>
+								<option value="Biología">Biología</option>
+								<option value="Ciencias de la computación">Ciencias de la computación</option>
+								<option value="Ciencias físico-químicas">Ciencias físico-químicas</option>
+								<option value="Comunicación visual">Comunicación visual</option>
+								<option value="Comunicación y sociedad">Comunicación y sociedad</option>
+								<option value="Diseño">Diseño</option>
+								<option value="Educación física y recreación">Educación física y recreación</option>
+								<option value="Educación musical">Educación musical</option>
+								<option value="Física">Física</option>
+								<option value="Formación para la ciudadanía">Formación para la ciudadanía</option>
+								<option value="Geografía">Geografía</option>
+								<option value="Historia">Historia</option>
+								<option value="Lengua española">Lengua española</option>
+								<option value="Literatura">Literatura</option>
+								<option value="Matemática">Matemática</option>
+								<option value="Química">Química</option>
+								<option value="Salud y sexualidad">Salud y sexualidad</option>
+								<option value="Tecnologías">Tecnologías</option>
+							</select>
+						</div>
+						<div class="selector">
+							<p class="key noselect">Ordenar por</p>
+							<select name="sort" id="sort" class="select value noselect">
+								<option name="article" value="1">nombre del artículo</option>
+								<option name="publication" value="2">fecha de publicación</option>
+								<option name="size" value="3">tamaño del artículo</option>
+								<option name="discussion" value="4">tamaño de la página de discusión</option>
+								<option name="incipit" value="5">tamaño de la introducción</option>
+								<!--<option name="issue" value="6">numero di avvisi</option>-->
+								<option name="images" value="7">número de imágenes</option>
+							</select>
 						</div>
 					</div>
-					<div id="mobile_filter_icon"></div>
 				</div>
-				<div class="select_box" id="select_box">
-					<div id="select_year" class="selector">
-						<p class="key noselect">Año</p>
-						<select name="subjects" id="year" class="select value noselect">
-							<option value="2023">2023</option>
-						</select>
-					</div>
-					<div id="select_subject" class="selector">
-						<p class="key noselect">Materia</p>
-						<select name="subjects" id="subjects" class="select value noselect">
-							<option value="all">Todas las asignaturas</option>
-							<option value="Biología">Biología</option>
-							<option value="Ciencias de la computación">Ciencias de la computación</option>
-							<option value="Ciencias físico-químicas">Ciencias físico-químicas</option>
-							<option value="Comunicación visual">Comunicación visual</option>
-							<option value="Comunicación y sociedad">Comunicación y sociedad</option>
-							<option value="Diseño">Diseño</option>
-							<option value="Educación física y recreación">Educación física y recreación</option>
-							<option value="Educación musical">Educación musical</option>
-							<option value="Física">Física</option>
-							<option value="Formación para la ciudadanía">Formación para la ciudadanía</option>
-							<option value="Geografía">Geografía</option>
-							<option value="Historia">Historia</option>
-							<option value="Lengua española">Lengua española</option>
-							<option value="Literatura">Literatura</option>
-							<option value="Matemática">Matemática</option>
-							<option value="Química">Química</option>
-							<option value="Salud y sexualidad">Salud y sexualidad</option>
-							<option value="Tecnologías">Tecnologías</option>
-						</select>
-					</div>
-					<div class="selector">
-						<p class="key noselect">Ordenar por</p>
-						<select name="sort" id="sort" class="select value noselect">
-							<option name="article" value="1">nombre del artículo</option>
-							<option name="publication" value="2">fecha de publicación</option>
-							<option name="size" value="3">tamaño del artículo</option>
-							<option name="discussion" value="4">tamaño de la página de discusión</option>
-							<option name="incipit" value="5">tamaño de la introducción</option>
-							<!--<option name="issue" value="6">numero di avvisi</option>-->
-							<option name="images" value="7">número de imágenes</option>
-						</select>
-					</div>
-				</div>
-			</div>
 
 			<div id="dv1" class="dataviz"></div>
 		</section>

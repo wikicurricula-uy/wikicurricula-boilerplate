@@ -230,6 +230,14 @@ function dv1(year,the_subject,sort) {
 				return d.images;
 			})
 		}
+		else if (sort == 8){
+			min = d3.min(filtered_data, function(d) { 
+				return d.notes;
+			})
+			max = d3.max(filtered_data, function(d) { 
+				return d.notes;
+			})
+		}
        	
        	x = d3.scaleLinear()
 			.domain([min,max])
@@ -1159,6 +1167,14 @@ function dv1(year,the_subject,sort) {
 					return d.images;
 				})
 			}
+			else if (the_sort == 8){
+				min = d3.min(filtered_data, function(d) { 
+					return d.notes;
+				})
+				max = d3.max(filtered_data, function(d) { 
+					return d.notes;
+				})
+			}
 
 			x = d3.scaleLinear()
 				.domain([min,max])
@@ -1193,6 +1209,9 @@ function dv1(year,the_subject,sort) {
 					}
 					else if (the_sort == 7){
 						return "translate(" + (x(d.images)+50) + "," + 0 + ")"
+					}
+					else if (the_sort == 8){ 
+						return "translate(" + (x(d.notes)+50) + "," + 0 + ")"
 					}
 				})
 		}
