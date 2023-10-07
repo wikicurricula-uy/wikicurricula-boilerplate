@@ -98,9 +98,9 @@ Now that you have the two(2) required accounts, follow the steps to deploy"
     ```
          mkdir -p $HOME/www/static
          cd $HOME/www/static
-         git clone https://github.com/wikicurricula-uy/wikicurricula-boilerplate.git
+         git clone https://github.com/wikicurricula-uy/wikicurricula-uy.github.io.git
     ```
 
-    In the case of the Wikicurrícula Boilerplate, you can find it at <https://tools-static.wmflabs.org/wikicurricula-uy/wikicurricula-boilerplate/visualization/index.html>.
+    In the case of the Wikicurrícula Boilerplate, you can find it at <https://tools-static.wmflabs.org/wikicurricula-uy/wikicurricula-uy.github.io/index.html>.
 
 
