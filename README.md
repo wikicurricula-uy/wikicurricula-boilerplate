@@ -23,7 +23,7 @@ Before being able to install and start the folder, you must have the necessary d
    -If you don't already have one, you can do so here [Github.com](github.com)
    
   - A code editor
-   - To enable you open and view the content of the folder, you need a code editor. Visual Studio code is one of the 
+    - To enable you open and view the content of the folder, you need a code editor. Visual Studio code is one of the 
      most popular code editors around. You can install one here [VSCode.com](https://code.visualstudio.com/download)
   
   - A strong internet connection
