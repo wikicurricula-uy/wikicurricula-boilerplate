@@ -137,7 +137,6 @@ function dv1(year,the_subject,sort) {
 			d.incipit_size = +d.incipit_size
 			d.issues = +d.issues
 			d.images = +d.images
-			d.refrences = +d.refrences
 
 			d.days = +d.days
 			d.avg_pv = +d.avg_pv
@@ -173,11 +172,6 @@ function dv1(year,the_subject,sort) {
 			return +d.avg_pv;
 		})
 
-		// let x_max = d3.max(filtered_data, function(d){
-		// 	return +d.refrences
-		// })
-		// console.log("x_max"+ x_max)
-
 		let r_max = d3.max(filtered_data, function(d) { 
 			return Math.sqrt(+d.size/3.14);
 		})
@@ -185,10 +179,6 @@ function dv1(year,the_subject,sort) {
 		let y = d3.scaleLinear()
 			.domain([0,y_max+(y_max/100*10)]) 
 			.range([height-margin.top,0])
-
-		let x_Scale = d3.scaleLinear()
-		                .domain([0, 10])
-						.range([0, window_w])	
 
 		if (sort == 1) {
 			max = total	
@@ -293,47 +283,6 @@ function dv1(year,the_subject,sort) {
 			.text("visitas diarias (promedio)")
 			.attr("y",-6)
 			.attr("font-size",font_size)
-
-
-		let xAxisGenerator = d3.axisBottom(x_Scale);
-
-		let xAxis = plot.append("g")
-			.call(xAxisGenerator)
-			.attr("transform",`translate(${0},${height})`)
-
-
-		// let tooltipforNotes = d3
-		// 	.tip()
-		// 	.attr("class", "tooltip")
-		// 	.attr("id", "tooltip_dv1")
-		// 	.direction(function (d, i) {
-		// 	  return "n"; // n denoting north , above th data
-		// 		})
-		// 	.offset([-10, 0])
-		// 	.html(function (d, i) {
-		// 		let content =
-		// 		  "<p style='font-weight: bold; margin: 0 0 10px 3px;'>" +
-		// 			  "Notes: " + d.refrences +
-		// 		  "</p>";
-		// 		return content;
-		// 	})
-		// 	plot.call(tooltipforNotes)
-
-		let dots = plot.append("g")
-			.selectAll("dot").data(filtered_data);
-	        dots.enter().append("circle")
-			.attr("cx", function(d){
-				return x_Scale(d.refrences);
-			})
-			.attr("cy", function(d){
-				return y(d.avg_pv);
-			})	
-			.attr("r", 5)
-			.style("fill" , "green")
-			// .on("mouseover" , tooltipforNotes.show)
-            //  .on("mouseout", tooltipforNotes.hide)
-
-
 
 		// let the_sort;
 		let tooltip = d3.tip()
