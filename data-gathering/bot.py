@@ -144,37 +144,43 @@ def get_first_edit(voce, language):
 
 
 # Function to count warnings
-def count_warnings(text):
-    t_tmp = text
-    t = t.replace("\n", "")
-    t = t.replace(" ", "")
-    t = t.lower()
+def count_warnings(t, language):
+   t_tmp = t
+   t = t.replace("\n", "")
+   t = t.replace(" ", "")
+   t = t.lower()
    # tmp  == template
-    tmp_to_check = t.count('{{c|') + t.count('{{c}}')
-    tmp_synoptic = t.count('{{tmp|') + t.count('{{tmp}}')
-    tmp_to_help = t.count('{{a|')
-    tmp_to_correct = t.count('{{correggere')
-    tmp_curiosity = t.count('{{curiosit')
-    tmp_to_divide = t.count('{{d|') + t.count('{{d}')
-    tmp_sources = t.count('{{f|') + t.count('{{f}}')
-    tmp_localism = t.count('{{l|') + t.count('{{l}}')
-    tmp_pov = t.count('{{p|') + t.count('{{p}}')
-    tmp_nn = t.count('{{nn|') + t.count('{{nn}}')
-    tmp_precentism = t.count('{{recentismo')
-    tmp_manual_style = t.count('{{stilemanualistico')
-    tmp_translation = t.count('{{t|') + t.count('{{t}}')
-    tmp_wikificare = t.count('{{w|') + t.count('{{w}}')
-    tmp_stub = t.count('{{s|') + t.count('{{s}}')
-    tmp_stub_section = t.count('{{stubsezione')
-    tmp_copy_control = t.count('{{controlcopy')
 
-    sum_of_warnings = tmp_to_check + tmp_synoptic + tmp_to_help + tmp_to_correct + tmp_curiosity + tmp_to_divide + tmp_sources + tmp_localism + tmp_pov
-    sum_of_warnings += tmp_nn + tmp_precentism + tmp_manual_style + tmp_translation + tmp_wikificare + tmp_stub + tmp_stub_section + tmp_copy_control
+   with open("language_templates.json", "r") as config_file:
+      language_templates = json.load(config_file)
 
-    tmp_without_sources = t.count('{{senzafonte') + t.count('{{citazionenecessaria') + t.count('{{senzafonte}}') + t.count('{{citazionenecessaria}}')
-    tmp_to_clarify = t.count('{{chiarire') + t.count('{{chiarire}}')
 
-    return str(sum_of_warnings), str(tmp_without_sources), str(tmp_to_clarify)
+   tmp_to_check = sum(t.count(template) for template in language_templates["to_check"])
+   tmp_synoptic = sum(t.count(template) for template in language_templates["synoptic"])
+   tmp_help = sum(t.count(template) for template in language_templates["help"])
+   tmp_correct = sum(t.count(template) for template in language_templates["correct"])
+   tmp_curiosity = sum(t.count(template) for template in language_templates["curiosity"])
+   tmp_divide = sum(t.count(template) for template in language_templates["divide"]) 
+   tmp_sources = sum(t.count(template) for template in language_templates["sources"])
+   tmp_localism = sum(t.count(template) for template in language_templates["localism"])
+   tmp_pov = sum(t.count(template) for template in language_templates["pov"])
+   tmp_nn = sum(t.count(template) for template in language_templates["nn"])
+   tmp_recentism = sum(t.count(template) for template in language_templates["recentism"])
+   tmp_manual_style = sum(t.count(template) for template in language_templates["manual_style"])
+   tmp_translation = sum(t.count(template) for template in language_templates["translation"])
+   tmp_wikificare = sum(t.count(template) for template in language_templates["wikificare"]) 
+   tmp_stub = sum(t.count(template) for template in language_templates["stub"])
+   tmp_stub_section = sum(t.count(template) for template in language_templates["stub_control"])
+   tmp_copy_control = sum(t.count(template) for template in language_templates["copy_control"])
+
+   sum_of_warnings = tmp_to_check + tmp_synoptic + tmp_help + tmp_correct + tmp_curiosity + tmp_divide + tmp_sources + tmp_localism + tmp_pov
+   sum_of_warnings += tmp_nn + tmp_recentism + tmp_manual_style + tmp_translation + tmp_wikificare + tmp_stub + tmp_stub_section + tmp_copy_control
+
+
+   tmp_without_sources = sum(t.count(template) for template in language_templates["without_sources"])
+   tmp_to_clarify = sum(t.count(template) for template in language_templates["clarify"])
+
+   return str(sum_of_warnings), str(tmp_without_sources), str(tmp_to_clarify)
 
 
 # Function to find template
@@ -257,9 +263,10 @@ def is_featured_article(text, featured_template):
 
     
 # Main analysis function
-def analysis(language, discussionURL, first_edit, dimension, immages, note, featured, 
-             warnings_config, discussion_size, views, incipit_size, common_gallery,
-             common_pages, itwikisource,wikiversity, wikibooks, quality, review, biblography, coordinate):
+def analysis(language, dimension, first_edit, note, images, views, incipit_size,
+            discussion_size, discussionURL, warnings_config, common_pages, common_gallery, 
+            itwikisource, featured, coordinate):
+                        
    f = open('query.csv', "r")
    lines = f.readlines()   
     
@@ -332,7 +339,7 @@ def analysis(language, discussionURL, first_edit, dimension, immages, note, feat
 
       except:
 
-        result = ris + line +"\t" +"Voce inesistente"
+        result = result + line +"\t" +"Voce inesistente"
 
        
 
@@ -344,16 +351,16 @@ def analysis(language, discussionURL, first_edit, dimension, immages, note, feat
         if dimension:
            result = result + dimension(wikitext) + "\t"
 
-        if immages:
-           result = result + immages(wikitext) + "\t"
+        if images:
+           result = result + images(wikitext) + "\t"
 
         if note:
            result = result + note(wikitext) + "\t"
 
         if warnings_config:
            for i in count_warnings(wikitext):
-              print("some avisi")
-              ris = ris + i + "\t"   
+              print("some alerts")
+              result = result + i + "\t"   
 
         if discussion_size:
            result = result + dimension(wikitext_discussione) + "\t"
@@ -400,13 +407,13 @@ def analysis(language, discussionURL, first_edit, dimension, immages, note, feat
 
            try:
 
-              ris = ris + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["latitude"] + "\t"
+              result = result + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["latitude"] + "\t"
 
-              ris = ris + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["longitude"] + "\t"
+              result = result + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["longitude"] + "\t"
 
            except:
 
-              ris = ris + "\t" + "\t"
+              result = result + "\t" + "\t"
 
       results.write(result + "\n")  # aggiungere un salto di linea dopo ogni risultato
       results.close()  # chiudere il file
@@ -414,69 +421,74 @@ def analysis(language, discussionURL, first_edit, dimension, immages, note, feat
 
 
 
-# Function to get configuration based on the Wikipedia language
-def get_wikipedia_config(language):
-    return wikipedia_config.get(language, {})   
+# Open and read the JSON configuration file
+with open("wikipedia_config.json", "r") as config_file:
+   wikipedia_config = json.load(config_file)
+
+#Now, you can access the configuration data as a dictionary
+
 
 def main():
-    # Specify the Wikipedia language
-    wikipedia_language = "es"  # Change this to the desired Wikipedia language
+   # Specify the Wikipedia language
+   wikipedia_language = "es"  # Change this to the desired Wikipedia language
 
-    # Get the Wikipedia-specific configuration
-    wikipedia_specific_config = get_wikipedia_config(wikipedia_language)
+   if wikipedia_language in wikipedia_config:
+      language_config = wikipedia_config[wikipedia_language]
+   else:
+      print(f"Configuration not found for language '{wikipedia_language}'.") # Handle this case appropriately (e.g, exit the script).
 
-    # Access configuration variables based on the language
-    language = wikipedia_specific_config.get("language")
-
-    dimension_option = wikipedia_specific_config.get("dimension")
-    first_edit_option = wikipedia_specific_config.get("first_edit") 
-    note_option = wikipedia_specific_config.get("note")
-    images_option = wikipedia_specific_config.get("images")
-    views_option = wikipedia_specific_config.get("views")
-    incipit_size_option = wikipedia_specific_config.get("incipit_size")
-    discussion_size_option = wikipedia_specific_config.get("discussion_size")
-    discussionURL = wikipedia_specific_config.get("discussionURL")
-    wikidata_option = wikipedia_specific_config("wikidata")
     
-    warnings_config = wikipedia_specific_config.get("warnings_config")
-    common_pages_option = wikipedia_specific_config.get("common_pages")
-    common_gallery_option = wikipedia_specific_config.get("common_gallery")
-    itwikisource_option = wikipedia_specific_config.get("itwikisource")
-    wikiversity_option = wikipedia_specific_config.get("wikiversity")
-    wikibooks_option = wikipedia_specific_config.get("wikibooks")
-    feature_option = wikipedia_language("featured")
-    quality_option = wikipedia_specific_config.get("quality")
-    review_option = wikipedia_specific_config.get("review")
-    bibliography_option = wikipedia_specific_config.get("bibliography")
-    coordinate_option = wikipedia_specific_config.get("coordinate")
-    featured_template = wikipedia_specific_config.get("featured_template")
-    dispay_window_template = wikipedia_specific_config.get("dispay_window_template")
+   # Access configuration variables based on the language
+   language = language_config.get("language")
+   id_wikidata = language_config.get("id_wikidata")
+   dimension_option = language_config.get("dimension")
+   first_edit_option = language_config.get("first_edit") 
+   note_option = language_config.get("note")
+   images_option = language_config.get("images")
+   views_option = language_config.get("views")
+   incipit_size_option = language_config.get("incipit_size")
+   discussion_size_option = language_config.get("discussion_size")
+   discussionURL = language_config.get("discussionURL")
+   warnings_config = language_config.get("warnings_config")
+   common_pages_option = language_config.get("common_pages")
+   common_gallery_option = language_config.get("common_gallery")
+   itwikisource_option = language_config.get("itwikisource")
+   wikiversity_option = language_config.get("wikiversity")
+   wikibooks_option = language_config.get("wikibooks")
+   feature_option = wikipedia_language("featured")
+   quality_option = language_config.get("quality")
+   review_option = language_config.get("review")
+   bibliography_option = language_config.get("bibliography")
+   coordinate_option = language_config.get("coordinate")
+   featured_template = language_config.get("featured_template")
+   dispay_window_template = language_config.get("dispay_window_template")
 
-    # Call your analysis function or other code logic here, passing the parameters
-    analysis(
-        language=language,
-        discussionURL=discussionURL,
-        first_edit=first_edit_option,
-        dimension=dimension_option,
-        images=images_option,
-        note=note_option,
-        featured=quality_option, 
-        warnings_config=warnings_config,
-        discussion_size=discussion_size_option,
-        views=views_option,
-        incipit_size=incipit_size_option,
-        common_gallery=common_gallery_option,
-        common_pages=common_pages_option,
-        itwikisource=itwikisource_option,
-        wikiversity=wikiversity_option,
-        wikibooks=wikibooks_option,
-        quality=quality_option,
-        review=review_option,
-        bibliography=bibliography_option,
-        coordinate=coordinate_option,
-        featured_template=featured_template,
-        dispay_window_template=dispay_window_template,
-    )
+   # Call your analysis function or other code logic here, passing the parameters
+   analysis(
+      language = language,
+      id_wikidata = id_wikidata,
+      dimension = dimension_option,
+      first_edit = first_edit_option,
+      note = note_option,
+      images = images_option,
+      views = views_option,
+      incipit_size = incipit_size_option,
+      discussion_size = discussion_size_option,
+      discussionURL = discussionURL,
+      warnings_config = warnings_config,
+      common_pages = common_pages_option,
+      common_gallery = common_gallery_option,
+      itwikisource = itwikisource_option,
+      wikiversity = wikiversity_option,
+      wikibooks = wikibooks_option,
+      featured = feature_option, 
+      quality = quality_option,
+      review = review_option,
+      bibliography = bibliography_option,
+      coordinate = coordinate_option,
+      featured_template = featured_template,
+      dispay_window_template = dispay_window_template,
+   )
 
 if __name__ == "__main__":
     main()

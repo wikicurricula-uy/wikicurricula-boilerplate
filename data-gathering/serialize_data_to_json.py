@@ -82,14 +82,109 @@ wikipedia_config = {
       # Add configurations for other Wikipedia languages as needed
 }
 
+language_template_config = {
+  "en": {
+    "to_check": ["{{c|", "{{c}}"],
+    "synoptic": ["{{tmp|", "{{tmp}}"],
+    "help": ["{{help|"],
+    "correct": ["correct"],
+    "curiosity": ["{{curiosity"],
+    "divide": ["{{divide|", "{{divide}}"],
+    "sources": ["{{sources|", "{{sources}}"],
+    "localism": ["{{localism|", "{{localism}}"],
+    "pov": ["{{pov|", "{{pov}}"],
+    "nn": ["{{nn|", "{{nn}}"],
+    "recentism": ["{{recentism"],
+    "manual_style": ["{{manual style"],
+    "translation": ["{{translation"],
+    "wikificare": ["{{wikificare|", "{{wikificarw}}"],
+    "stub": ["{{stub|", "{{stub}}"],
+    "stub_section": ["{{stub section"],
+    "copy_control": ["{{control copy"],
+    "without_sources": ["{{without sources", "{{citatiton required","{{citation required}}"],
+    "clarify": ["{{clarify", "{{clarify}}"]
+    
+  },
+  "es": {
+    "to_check": ["{{c|", "{{c}}"],
+    "synoptic": ["{{tmp|", "{{tmp}}"],
+    "help": ["{{a|"],
+    "correct": ["corregir"],
+    "curiosity": ["{{curiosidad"],
+    "divide": ["{{dividir|", "{{dividir}}"],
+    "sources": ["{{f|", "{{f}}"],
+    "localism": ["{{l|", "{{l}}"],
+    "pov": ["{{p|", "{{p}}"],
+    "nn": ["{{nn|", "{{nn}}"],
+    "recentism": ["{{recienteismo"],
+    "manual_style": ["{{estilo"],
+    "translation": ["{{traducio"],
+    "wikificare": ["{{wikificar|", "{{wikificar}}"],
+    "stub": ["{{s|", "{{s}}"],
+    "stub_section": ["{{stubseccion"],
+    "copy_control": ["{{controlcopy"],
+    "without_sources": ["{{sinreferencias", "{{citarequerida","{{citarequerida}}"],
+    "clarify": ["{{aclarar", "{{aclarar}}"]
+  },
+  "it":{
+    "to_check": ["{{c|", "{{c}}"],
+    "synoptic": ["{{tmp|", "{{tmp}}"],
+    "help": ["{{a|"],
+    "correct": ["correggere"],
+    "curiosity": ["{{curiosit"],
+    "divide": ["{{d|", "{{d}"],
+    "sources": ["{{f|", "{{f}}"],
+    "localism": ["{{l|", "{{f}}"],
+    "pov": ["{{p|", "{{p}}}"],
+    "nn": ["{{nn|", "{{nn}}"],
+    "recentism": ["{{recentismo"],
+    "manual_style": ["{{stilemanualistico"],
+    "translation": ["{{stilemanualistico"],
+    "wikificare": ["{{w|", "{{w}}"],
+    "stub": ["{{s|", "{{s}}"],
+    "stub_section": ["{{stubsezione"],
+    "copy_control": ["{{controlcopy"],
+    "without_sources": ["{{senzafonte", "{{citazionenecessaria","{{citazionenecessaria}}"],
+    "clarify": ["{{chiarire", "{{chiarire}}"]
+  },
+    # Add more languages as required
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Serialize the data to JSON
 json_data = json.dumps(wikipedia_config, indent=4, ensure_ascii=False)
-
+language_json_data = json.dumps(language_template_config, indent=4, ensure_ascii=False)
 # Write the JSON data to a file
 with open("wikipedia_config.json", "w", encoding='utf-8') as json_file:
     json_file.write(json_data)
+with open("language_template_config.json", "w", encoding='utf-8') as json_file:
+    json_file.write(language_json_data)
 
 
 # This code will create a JSON file named "wikipedia_config.json" with the provided data. 
