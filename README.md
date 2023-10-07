@@ -23,12 +23,16 @@ Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
 
 - Do a `cd wikicurricula-boilerplate` to navigate to the boilerplate on your terminal
 - To contribute to the project or work on any task, you'll need to create a new branch. Use the `git checkout -b branch-name` command to create and switch to the newly created branch. Replace 'branch-name' with the name of your branch.
+- Now you'll need to open up the local instance of the visualization on your web browser. To do this, open the index.html located in the 'visualization' folder of the project in your IDE, right-click on any part of the interface, and choose the 'Open in Default Browser' option or the 'Open with Live Server' option. This will open up the visualization in your web browser and will display a page like this:
+![Local instance of the visualization on a web browser](wikicurricula-visualization.png) 
+- To open up the other visualizations in your web browser, go to the folder titled 'autori' and locate the index.html file and use the above step to view it in your web browser. Do the same for the 'avvisi' folder.
 - After working on any task and you're ready to send it in for review, do a `git add .`.
 - Next, run the `git commit -m 'commit message"` to commit the changes.
 - Push the changes from your branch by using the `git push -u origin branch-name` command.
 - Now if you go to your forked repo on your GitHub, you'll see the branch that was pushed with the changes you worked on.
-- Now make a pull request. 
-- The project maintainer will review your work and merge it to the main branch of the project repo if it's satisfactory.
+- Click the "Compare and pull request" button. The next page that opens up, click on the "Create pull request" button.
+- Now you've succesfully created a pull request. 
+- The project maintainers will review your work and merge it to the main branch of the project repo if it's satisfactory or give you feedback where necessary.
 
 
 
