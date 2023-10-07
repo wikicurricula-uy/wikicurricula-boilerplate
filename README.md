@@ -38,6 +38,13 @@ Use the cd command to move into the directory that was created by the git clone 
     cd wikicurricula-boilerplate
 ```
 
+- Check the visuals:
+    - You can go to your file explorer and under the directory you've just created by cloning the wikicurricula-boilerplate repository, descend into the "visualization", you will find an `index.html` file. Open this file with any browser of you choice
+
+    - If you are using a code editor like Visual Studio Code install the "live server" extension. After installation, right click on the `index.html` file in the visualization folder and select "open with Live erver" option. This will start a server port : 5500 and a new browser window should automatically open, displaying your index.html file. The Live Server extension will serve your HTML file on a local development server with live reloading, allowing you to see changes in real-time as you edit the HTML, CSS, or JavaScript files associated with your project.
+
+    This steps works for other visualization in the project.
+
 # 💡 How to contribute to this project(make a Pull Request (PR) to this GitHub repository)
 
 - Create a GitHub Account:
@@ -187,10 +194,11 @@ Now that you have the two(2) required accounts, follow the steps to deploy"
     ```
          mkdir -p $HOME/www/static
          cd $HOME/www/static
-         git clone https://github.com/wikicurricula-uy/wikicurricula-uy.github.io.git
+         git clone https://github.com/wikicurricula-uy/wikicurricula-boilerplate.git
     ```
 
-    In the case of the Wikicurrícula Boilerplate, you can find it at <https://tools-static.wmflabs.org/wikicurricula-uy/wikicurricula-uy.github.io/index.html>.
+
+A practice on migrating Uruguay's Wikicurricula from it's current hosting (Github Pages) to Toolforge was doen and can be found at: <https://tools-static.wmflabs.org/wikicurricula-uy/wikicurricula-uy.github.io/index.html>
 
 
 
