@@ -15,7 +15,7 @@ wikipedia_config = {
          "incipit_size": 1,
          "discussion_size": 1,
          "discussionURL": urllib.parse.quote("discusión:"),  # Discussion Page Prefix
-         "warnings_config": 0,
+         "warnings_config": 1,
          "common_pages": 1,
          "common_gallery": 1,
          "itwikisource": 1,
@@ -40,7 +40,7 @@ wikipedia_config = {
          "incipit_size": 1,
          "discussion_size": 1,
          "discussionURL": urllib.parse.quote("discussione:"),  # Discussion Page Prefix
-         "warnings_config": 0,
+         "warnings_config": 1,
          "common_pages": 1,
          "common_gallery": 1,
          "itwikisource": 1,
@@ -65,7 +65,7 @@ wikipedia_config = {
          "incipit_size": 1,
          "discussion_size": 1,
          "discussionURL": urllib.parse.quote("discussion:"),  # Discussion Page Prefix
-         "warnings_config": 0,
+         "warnings_config": 1,
          "common_pages": 1,
          "common_gallery": 1,
          "itwikisource": 1,

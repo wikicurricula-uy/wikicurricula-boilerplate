@@ -271,7 +271,7 @@ def analysis(language, dimension, first_edit, note, images, views, incipit_size,
    lines = f.readlines()   
     
    #delete the contents of the file before starting
-   results = open('resultati.txt',"w")
+   results = open('resultati.txt',"w") #replace with txt file to be worked on
    results.truncate(0)
    results.close()
 
