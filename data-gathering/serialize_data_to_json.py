@@ -16,7 +16,7 @@ wikipedia_config = {
          "discussion_size": 1,
          "discussionURL": urllib.parse.quote("discusión:"),  # Discussion Page Prefix
          "warnings_config": 1,
-         "common_pages": 1,
+         "c": 1,
          "common_gallery": 1,
          "itwikisource": 1,
          "wikiversity": 1,

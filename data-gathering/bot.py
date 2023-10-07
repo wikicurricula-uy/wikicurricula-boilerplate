@@ -105,22 +105,25 @@ def visits(article, language, review=0):
 
 
 
-# Function to convert name to QID
-def name_to_qid(item):
+# Function to return ID of an item
+def return_id(item):
    return item.getID()
 
 
 # Function to count notes
+
+#Thhis function counst the number of times the substring "</ref>" appears within the input string "text".
+#It converts the count (which is an integer) into a string and returns the result as a string representing the count of occurrences of "</ref>" within the input string.
 def count_notes(text):
     return str(text.count('</ref>'))
 
 
-# Function to calculate size/dimension
+# Function to calculate and return the length of a given string as a string.
 def calculate_size(text):
     return str(len(text))
 
 
-# Function to count images
+# this function counts the occurrences of specific image file extensions within a given string and returns that count as a string.
 def count_images(text):
     t = text.lower()
     img = str(
@@ -129,7 +132,9 @@ def count_images(text):
     return img
 
 
-# Function to get the first edit date
+# function relies on external web scraping 
+# it reads the HTML content of the page and converts it's content to a string and then extracts a specific portion of the HTML using string manipulation. 
+#Specifically, it looks for the substring "created_at" and extracts the following 10 characters, which should represent the creation date of the Wikipedia article.
 def get_first_edit(voce, language):
     try:
         url = f"https://xtools.wmflabs.org/api/page/articleinfo/{language}.wikipedia.org/{voce.replace(" ","_")}"
@@ -143,7 +148,7 @@ def get_first_edit(voce, language):
 
 
 
-# Function to count warnings
+# # This function analyzes and count specific types of tags within a given text. The results are returned as strings, making them suitable for further processing.
 def count_warnings(t, language):
    t_tmp = t
    t = t.replace("\n", "")
@@ -183,7 +188,7 @@ def count_warnings(t, language):
    return str(sum_of_warnings), str(tmp_without_sources), str(tmp_to_clarify)
 
 
-# Function to find template
+#  this function parses and extracts templates from a larger text, allowing further analysis of the template content. 
 def find_template(text):
     tmp = text[2:]
     tmp2 = text[2:]
