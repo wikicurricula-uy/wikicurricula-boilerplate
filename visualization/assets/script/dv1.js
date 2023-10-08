@@ -296,7 +296,8 @@ function dv1(year,the_subject,sort) {
                 let content = "<p style='font-weight: bold; margin: 0 0 10px 3px;'>" + d.article +"</p><table>";
 
                 content += "<tr><td class='label'>publicación</td><td class='value'>" + format_date(d.first_edit) + "</td><td></td></tr>"
-
+				content += "<tr><td class='label'>materia</td><td class='value'>" + d.subject.toLocaleString()
+				content += "<tr><td class='label'>grado</td><td class='value'>" + d.grade.toLocaleString()
                 // avg daily visits
                 content += "<tr><td class='label'>visitas diarias</td><td class='value'>" + d.avg_pv.toLocaleString()
             	if (d.avg_pv_prev !== "-"){
