@@ -22,24 +22,22 @@ from datetime import datetime
 #language subdomain, to be used for API calls
 language = "en"
 
-idwikidata = 1
+id_wikidata = 1
+size = 1
+first_edit = 1
 
-dimension = 1
-
-firstEdit = 1
-
-note         =  1
+notes  =  1
 
 images  = 1
 
 display = 1
 
-dimensionIncipit  = 1
+incipit_size  = 1
 
-discussionDimension = 1
+discussion_size = 1
 
 #discussion page prefix
-discussion = "Discusión:"
+discussion = "Discussion:"
 discussionURL = urllib.parse.quote(discussion)
 
 #currently, the notice count does not work for the Spanish Wikipedia
@@ -150,7 +148,7 @@ def visits(article):
 
   try:
 
-    url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+lingua+".wikipedia/all-access/user/"+article+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
+    url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+article+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
 
     html = urlopen(url).read()
 
@@ -209,7 +207,7 @@ def name2Q(item):
 
 
 # count the number of times '</ref>' appears in a given text and then return the count as a string.
-def note(text):
+def notes(text):
 
   return str(text.count('</ref>'))
 
@@ -588,7 +586,7 @@ def analysis():
 
 
 
-        if dimension:
+        if size:
 
            ris = ris + dimension(wikitext) + "\t"
 
@@ -600,9 +598,9 @@ def analysis():
 
 
 
-        if note:
+        if notes:
 
-           ris = ris + note(wikitext) + "\t"
+           ris = ris + notes(wikitext) + "\t"
 
            
 
@@ -614,13 +612,13 @@ def analysis():
 
                
 
-        if discussionDimension:
+        if discussion_size:
 
            ris = ris + dimension(wikitext_discussion) + "\t"
 
 
 
-        if dimensionIncipit:
+        if incipit_size:
 
            ris = ris + lengthIncipit(wikitext) + "\t"
 
