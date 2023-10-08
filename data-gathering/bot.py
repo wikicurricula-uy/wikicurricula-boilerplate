@@ -66,7 +66,7 @@ sifter = 1
 
 bibliography = 1
 
-coordinate = 1
+coordinate = 1 
 
 
 def get_avg_pageviews(voice, start, end):
