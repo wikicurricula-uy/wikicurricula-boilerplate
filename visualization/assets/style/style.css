@@ -33,6 +33,32 @@ p {
 img {
   max-width: 100%; }
 
+  /* beginning of fixes */
+
+  #title{
+    transition: 0.5s ease;
+  }
+
+  #title:hover,
+  #title:active{
+    text-shadow: 2px 2px 6px #000000;
+  }
+
+  .hover,
+  #alerts{
+    transition: 0.5s ease;
+  }
+
+  .hover:hover,
+  .hover:active{
+    text-shadow: 2px 2px 6px #000000;
+  }
+
+  #alerts:hover,
+  #alerts:active{
+    text-shadow: 2px 2px 6px #ccc;
+  }
+
 .noselect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
