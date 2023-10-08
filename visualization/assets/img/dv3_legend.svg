@@ -10,9 +10,9 @@
 	.st4{fill:#F7CD7A;}
 	text{font-family:Arial,Helvetica,sans-serif;}
 </style>
-<text transform="matrix(1 0 0 1 9.1996 18.3234)" class="st0 st1">opera in italiano su Wikisource</text>
-<text transform="matrix(1 0 0 1 9.1996 30.1773)" class="st0 st1">opera in latino su Vicifons</text>
-<text transform="matrix(1 0 0 1 9.1996 6.5058)" class="st0 st1">opera su Wikipedia</text>
+<text transform="matrix(1 0 0 1 9.1996 18.3234)" class="st0 st1">works in Italian on Wikisource</text>
+<text transform="matrix(1 0 0 1 9.1996 30.1773)" class="st0 st1">works in Latin on Vicifons</text>
+<text transform="matrix(1 0 0 1 9.1996 6.5058)" class="st0 st1">works on Wikipedia</text>
 <circle class="st2" cx="3.8" cy="5.2" r="2.2"/>
 <circle class="st3" cx="3.8" cy="17" r="2.2"/>
 <circle class="st4" cx="3.8" cy="29" r="2.2"/>
