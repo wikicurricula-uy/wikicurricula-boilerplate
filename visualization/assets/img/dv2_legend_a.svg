@@ -12,15 +12,15 @@
 	.st6{fill:#EC4C4E;}
 	.st7{fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:10;stroke-dasharray:1,1;}
 </style>
-<text transform="matrix(1 0 0 1 19.6001 24.3234)" class="st0 st1">riferimenti bibliografici (stima)</text>
+<text transform="matrix(1 0 0 1 19.6001 24.3234)" class="st0 st1">bibliographical references (estimate)</text>
 <rect x="2.8" y="17.1" class="st2" width="11.9" height="11.9"/>
 <text transform="matrix(1 0 0 1 19.6001 39.1773)" class="st0 st1">note</text>
 <rect x="2.8" y="31.9" class="st3" width="11.9" height="11.9"/>
-<text transform="matrix(1 0 0 1 19.6001 54.0915)" class="st0 st1">immagini</text>
+<text transform="matrix(1 0 0 1 19.6001 54.0915)" class="st0 st1">images</text>
 <rect x="2.8" y="46.8" class="st4" width="11.9" height="11.9"/>
-<text transform="matrix(1 0 0 1 19.6001 9.5058)" class="st0 st1">avvisi</text>
-<text transform="matrix(1 0 0 1 19.6001 76.2262)" class="st0 st1">numero di avvisi e numero totale  </text>
-<text transform="matrix(1 0 0 1 19.6001 82.2262)" class="st5"><tspan x="0" y="0" class="st0 st1">di riferimenti, note e immagini  </tspan><tspan x="0" y="6" class="st0 st1">l’anno precedente</tspan></text>
+<text transform="matrix(1 0 0 1 19.6001 9.5058)" class="st0 st1">alerts</text>
+<text transform="matrix(1 0 0 1 19.6001 76.2262)" class="st0 st1">number of alerts and total number  </text>
+<text transform="matrix(1 0 0 1 19.6001 82.2262)" class="st5"><tspan x="0" y="0" class="st0 st1">of references, notes and images  </tspan><tspan x="0" y="6" class="st0 st1">in the previous year</tspan></text>
 <rect x="2.8" y="2.3" class="st6" width="11.9" height="11.9"/>
 <line class="st7" x1="2.8" y1="75" x2="14.7" y2="75"/>
 </svg>
