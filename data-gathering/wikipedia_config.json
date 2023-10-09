@@ -79,5 +79,32 @@
         "coordinate": 1,
         "featured_template": "{{featured article",
         "display_window_template": "{{good article"
+    },
+    "tw": {
+        "language": "en",
+        "file_to_be_analysed": "extracts.csv",
+        "utf_required": "utf-8",
+        "id_wikidata": 1,
+        "dimension": 1,
+        "first_edit": 1,
+        "note": 1,
+        "images": 1,
+        "views": 1,
+        "incipit_size": 1,
+        "discussion_size": 1,
+        "discussionURL": "discussion%3A",
+        "warnings_config": 0,
+        "common_pages": 1,
+        "common_gallery": 1,
+        "itwikisource": 1,
+        "wikiversity": 1,
+        "wikibooks": 1,
+        "featured_in": 1,
+        "quality": 1,
+        "review": 1,
+        "bibliography": 1,
+        "coordinate": 1,
+        "featured_template": "{{featured article",
+        "display_window_template": "{{good article"
     }
 }

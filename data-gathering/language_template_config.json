@@ -67,6 +67,74 @@
             "{{clarify}}"
         ]
     },
+    "tw": {
+        "to_check": [
+            "{{cleanup}}"
+        ],
+        "synoptic": [
+            "{{tmp|",
+            "{{tmp}}"
+        ],
+        "help": [
+            "{{a|"
+        ],
+        "correct": [
+            "{{correct}}"
+        ],
+        "curiosity": [
+            "{{curiosity}}"
+        ],
+        "divide": [
+            "{{divide|",
+            "{{divide}}"
+        ],
+        "sources": [
+            "{{sources|",
+            "{{sources}}"
+        ],
+        "localism": [
+            "{{localism|",
+            "{{localism}}"
+        ],
+        "pov": [
+            "{{pov|",
+            "{{pov}}"
+        ],
+        "nn": [
+            "{{nn|",
+            "{{nn}}"
+        ],
+        "recentism": [
+            "{{recentism}}"
+        ],
+        "manual_style": [
+            "{{manual style}}"
+        ],
+        "translation": [
+            "{{translation}}"
+        ],
+        "wikificare": [
+            "{{wikificare|",
+            "{{wikificarw}}"
+        ],
+        "stub": [
+            "{{stub|",
+            "{{stub}}"
+        ],
+        "stub_section": [
+            "{{stub section}}"
+        ],
+        "copy_control": [
+            "{{control copy}}"
+        ],
+        "without_sources": [
+            "{{unreferenced}}",
+            "{{citation needed}}"
+        ],
+        "clarify": [
+            "{{clarify}}"
+        ]
+    },
     "es": {
         "to_check": [
             "{{c|",

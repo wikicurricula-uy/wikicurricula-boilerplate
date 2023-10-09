@@ -1,4 +1,7 @@
-
+'''
+This script is for producing the configuration files; "language_template_config.json"
+and "wikipwdia_config.js" for parameterization.
+'''
 
 
 
@@ -8,8 +11,7 @@ import urllib.parse
 # Define a dictionary or configuration file for each Wikipedia language
 discussion = "Discusión:"
 wikipedia_config = {
-    "es": {
-        "file_to_be_analysed": "query.csv",
+    "es": {  #for spanish
          "language": "es",
          "utf_required": "utf-8",
          "id_wikidata": 1,
@@ -35,8 +37,7 @@ wikipedia_config = {
          "featured_template": "{{artículo destacado",  # display_window Template
          "display_window_template": "{{artículo bueno",  # Quality Template
       },
-    "it": {
-        "file_to_be_analysed": "query.csv", #change to italian csv later
+    "it": {   #for italian
          "language": "it",
          "utf_required": "utf-8",
          "id_wikidata": 1,
@@ -62,9 +63,35 @@ wikipedia_config = {
          "featured_template": "{{voce in vetrina",  # display_window Template (Italian)
          "display_window_template": "{{voce buona",  # Quality Template (Italian)
       },
-    "en": {
+    "en": { #for english
         "language": "en",
-        "file_to_be_analysed": "default.csv",
+         "utf_required": "utf-8",
+         "id_wikidata": 1,
+         "dimension": 1,
+         "first_edit": 1,
+         "note": 1,
+         "images": 1,
+         "views": 1,
+         "incipit_size": 1,
+         "discussion_size": 1,
+         "discussionURL": urllib.parse.quote("discussion:"),  # Discussion Page Prefix
+         "warnings_config": 0,
+         "common_pages": 1,
+         "common_gallery": 1,
+         "itwikisource": 1,
+         "wikiversity": 1,
+         "wikibooks": 1,
+         "featured_in": 1,
+         "quality": 1,
+         "review": 1,
+         "bibliography": 1,
+         "coordinate": 1,
+         "featured_template": "{{featured article",  # display_window Template (English)
+         "display_window_template": "{{good article",  # Quality Template (English)
+      },
+
+      "tw": {  #for Twi, a ghanian language
+        "language": "en",
          "utf_required": "utf-8",
          "id_wikidata": 1,
          "dimension": 1,
@@ -93,7 +120,29 @@ wikipedia_config = {
 }
 
 language_template_config = {
- "en": {
+    "en": {
+    "to_check": ["{{cleanup}}"],
+     "synoptic": ["{{tmp|", "{{tmp}}"],
+    "help": ["{{a|"],
+    "correct": ["{{correct}}"],
+    "curiosity": ["{{curiosity}}"],
+    "divide": ["{{divide|", "{{divide}}"],
+    "sources": ["{{sources|", "{{sources}}"],
+    "localism": ["{{localism|", "{{localism}}"],
+    "pov": ["{{pov|", "{{pov}}"],
+    "nn": ["{{nn|", "{{nn}}"],
+    "recentism": ["{{recentism}}"],
+    "manual_style": ["{{manual style}}"],
+    "translation": ["{{translation}}"],
+    "wikificare": ["{{wikificare|", "{{wikificarw}}"],
+    "stub": ["{{stub|", "{{stub}}"],
+    "stub_section": ["{{stub section}}"],
+    "copy_control": ["{{control copy}}"],
+    "without_sources": ["{{unreferenced}}", "{{citation needed}}"],
+    "clarify": ["{{clarify}}"]
+    },
+
+ "tw": {
     "to_check": ["{{cleanup}}"],
      "synoptic": ["{{tmp|", "{{tmp}}"],
     "help": ["{{a|"],

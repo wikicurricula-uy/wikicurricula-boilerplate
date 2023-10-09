@@ -1,4 +1,7 @@
 
+
+
+
 '''
 Python script for performing various analyses on Wikipedia articles. 
 This script appears to collect data from Wikipedia and Wikidata, 
@@ -6,7 +9,6 @@ process it, and save the results to a file named "resuls.txt".
 '''
 
 import urllib
-import sys
 import calendar
 import json
 import datetime
@@ -14,6 +16,40 @@ from urllib.request import urlopen
 import urllib.parse
 import string
 from datetime import datetime
+import sys  # Import the sys module to access command-line arguments
+import subprocess
+
+
+# Check if the language code is provided as a command-line argument
+if len(sys.argv) > 1:
+    WIKIPEDIA_LANGUAGE  = sys.argv[1]
+else:
+    WIKIPEDIA_LANGUAGE = "en"  # Default to "en" if no argument is provided
+
+# or exit the process
+# if len(sys.argv) < 2:
+#     print("Please provide the language code as a command-line argument (e.g., 'en' for English).")
+#     sys.exit(1)
+
+
+
+
+# # Define the path to the external script (bot.py)
+# external_script_path = "query.py"
+
+# try:
+#     # Run the external script using subprocess
+#     subprocess.run(["python", external_script_path, WIKIPEDIA_LANGUAGE])
+
+#     print("External script (bot.py) executed successfully.")
+
+# except subprocess.CalledProcessError as e:
+#     print(f"Error running the external script: {e}")
+# except FileNotFoundError as e:
+#     print(f"External script not found at path: {external_script_path}")
+# except Exception as e:
+#     print(f"An unexpected error occurred: {str(e)}")
+
 
 
 # Open and read the JSON configuration file and access the configuration data as a dictionary
@@ -21,11 +57,6 @@ with open("wikipedia_config.json", "r") as config_file:
    wikipedia_config = json.load(config_file)
 
 
-# Accept 
-if len(sys.argv) > 1:
-    WIKIPEDIA_LANGUAGE  = sys.argv[1]
-else:
-    WIKIPEDIA_LANGUAGE = "en"  # Default to "es" if no argument is provided
 
 
 
@@ -64,7 +95,7 @@ def main():
    display_window_template = language_config.get("display_window_template")
 
 
-   analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
+   analysis(language, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
       incipit_size, common_gallery,common_pages, itwikisource, coordinate, featured_template)
    
 
@@ -341,11 +372,11 @@ def featured_in(text, featured_template):
 
     
 # Main analysis function
-def analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
+def analysis(language, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
       incipit_size, common_gallery,common_pages, itwikisource, coordinate, featured_template):
    
    # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
-   f = open(file_to_be_analysed, 'r', encoding= utf_required )  #change this to file to read as an option from users
+   f = open("default.csv", 'r', encoding= utf_required )  #change this to extracts.csv. Currently using default.csv for testng.
 
    articles = f.readlines()   
     
