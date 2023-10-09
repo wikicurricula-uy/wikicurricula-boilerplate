@@ -287,3 +287,53 @@ Before proceeding, understand these:
 1. Use this guide to deploy the curricula to Toolforge. https://github.com/wikicurricula-uy/wikicurricula-boilerplate#how-to-deploy-wikicurr%C3%ADcula-boilerplate-in-toolforge
 
 Here is [Ghana's national curricula](https://tools-static.wmflabs.org/ghana-national-curriculum/GhanaWikiCurricula/visualization/) on Toolforge.
+
+# 📜How to fetch the list of articles from Wikidata API
+
+This guide uses python to fetch the list of articles.
+
+1. Run:
+
+```
+    pip install requests
+```
+
+2. Go to the curriculm topics query. for example https://w.wiki/7Zge
+
+3. Copy the query
+
+4. Move to data-gathering folder and create a query.py file.
+
+5. Import csv and requests.
+
+6. Store the query in a variable.
+
+7. Inside a function, store wikidata endpoint https://query.wikidata.org/sparql in a variable.
+
+8. Set up a header for the request.
+
+9. Set the params for the request:
+
+```
+    params = {
+        "query": sparql_query,
+        "format": "json",
+    }
+```
+
+8. Make HTTP request to Wikidata API
+
+    ```
+    response = requests.get(wikidata_endpoint, headers=headers, params=params)
+    ```
+
+9. Extract and return results if status is Ok.
+    ```
+        results = data.get("results", {}).get("bindings", [])
+    ```
+10. Define another function which receives these results.
+    - open query.csv file in append mode
+    - iterate through the results.
+    - for each result, get the nombreDelArticulo value and write it in the file
+
+Adjust the logic to whichever programming language you use.
