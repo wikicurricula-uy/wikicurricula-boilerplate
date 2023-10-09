@@ -580,6 +580,8 @@ function dv1(year,the_subject,sort) {
 				return r(Math.sqrt(d.discussion_size/3.14))
 			})
 
+			
+
 		// improvements
 		let improvements_box = article_circles.append("g")
 			.attr("class","improvements")
@@ -736,7 +738,7 @@ function dv1(year,the_subject,sort) {
 				d.incipit_size = +d.incipit_size
 				d.issues = +d.issues
 				d.images = +d.images
-
+				d.notes = +d.notes
 				d.days = +d.days
 				d.avg_pv = +d.avg_pv
 
@@ -885,6 +887,11 @@ function dv1(year,the_subject,sort) {
 					else if (the_sort == 7){ // "images"
 						return "translate(" + (x(+d.images)+50) + "," + 0 + ")"
 					}
+					else if (the_sort == 8){ // "refrences"
+						return "translate(" + (x(+d.notes)+50) + "," + 0 + ")"
+					}
+					
+					
 				})
 				.on("mouseover", tooltip.show)
 				.on("mouseout", tooltip.hide)
@@ -1079,7 +1086,7 @@ function dv1(year,the_subject,sort) {
 		}
 
 		function update_sort(the_subject,the_sort){
-
+      
 			//load data
 			total = 0;
 
@@ -1123,7 +1130,7 @@ function dv1(year,the_subject,sort) {
 				d.article = d.article.replace(/_/g," ")
 				d.size = +d.size
 				d.images = +d.images
-
+				d.notes = +d.notes
 				d.days = +d.days
 				d.avg_pv = +d.avg_pv
 				d.avg_pv_prev = +d.avg_pv_prev
@@ -1140,7 +1147,9 @@ function dv1(year,the_subject,sort) {
 				"discussion",	// 4
 				"incipit",		// 5
 				"issue",		// 6
-				"images"		// 7
+				"images",		// 7
+				"refrences"		
+				
 			]
 
 			if (the_sort == 1) {
