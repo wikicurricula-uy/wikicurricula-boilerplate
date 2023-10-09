@@ -11,6 +11,7 @@ wikipedia_config = {
     "es": {
         "file_to_be_analysed": "query.csv",
          "language": "es",
+         "utf_required": "utf-8",
          "id_wikidata": 1,
          "dimension": 1,
          "first_edit": 1,
@@ -37,6 +38,7 @@ wikipedia_config = {
     "it": {
         "file_to_be_analysed": "query.csv", #change to italian csv later
          "language": "it",
+         "utf_required": "utf-8",
          "id_wikidata": 1,
          "dimension": 1,
          "first_edit": 1,
