@@ -202,3 +202,144 @@ A practice on migrating Uruguay's Wikicurricula from it's current hosting (Githu
 
 
 
+# 🧱 How to fetch the list of articles from Wikidata API 
+To fetch a list of articles from the Wikidata API, you can use the Wikidata Query Service (WDQS) or make direct API requests to Wikidata's REST API. Learn more about Wikidata [here](https://www.wikidata.org/wiki/Wikidata:Introduction)
+
+- ## Using the Wikidata Query Service (WDQS): 
+    This is method is quite a convenient way to query Wikidata for structured data.
+    - Open your web browser and go to the Wikidata Query Service website: <https://query.wikidata.org/>.
+
+    - You can use SPARQL (SPARQL Protocol and RDF Query Language, pronounce as 'sparkle') to query Wikidata. Just like SQL allows users to retrieve and modify data in a relational database, SPARQL provides the same functionality for NoSQL graph databases. Here's a simple example of a SPARQL query to fetch a list of articles (items) from Wikidata:
+    ```
+        SELECT ?child ?childLabel
+        WHERE{
+            ?child wdt:P22 wd:Q1339;
+                wdt:P25 wd:Q57487;
+                wdt:P106 wd:Q36834;
+                wdt:P106 wd:Q486748.
+            SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE]". }
+        }
+
+    ```
+    NB: For simple WDQS triples, items should be prefixed with wd:, and properties with wdt.
+    Learn more about SPARQL [here](https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial)
+
+    - Click the "Run" button to execute the query. You'll see the list of articles displayed in the query results.
+
+    - You can also export the results in different formats like JSON, CSV, or RDF by clicking on the "Download" button.
+
+
+- ## Using the Wikidata API directly:
+    If you want to fetch data programmatically, you can make direct HTTP requests to the Wikidata API. Here's a simplified example using Python's requests library:
+
+    ```
+        import requests # Install this library using this command: "pip install requests"
+
+        # Define the API endpoint
+        wikidata_endpoint = "https://www.wikidata.org/w/api.php"
+
+        # Define query parameters
+        params = {
+            "action": "wbsearchentities",
+            "format": "json",
+            "language": "en",
+            "type": "item",
+            "props": "info|labels",
+            "limit": 100,
+            "search": "haswbstatement:P31=Q13442814"  # Filter items that are articles,
+        }
+
+        # Make the API request
+        response = requests.get(api_url, params=params)
+        data = response.json()
+
+        # Extract and print the list of articles
+        articles = data.get("search", [])
+        for article in articles:
+            print(article["id"], article["label"])
+            
+    ```
+
+    In this Python script, we're using the wbsearchentities action to search for Wikidata entities (items). You can adjust the parameters to filter results based on your specific criteria. Additionally, you can refer to the Wikidata API documentation for more details on available endpoints and query options: <https://www.wikidata.org/w/api.php>
+
+
+    
+    Another example:
+
+    ```
+        import requests
+        import csv
+        import json
+
+
+
+        # Define your SPARQL query
+        sparql_query = f"""
+        SELECT DISTINCT (STRAFTER(STR(?item), "http://www.wikidata.org/entity/") AS ?qid) ?item ?itemLabel ?articleName ?programLabel
+        WHERE {{
+            ?substrand wdt:P31 wd:Q600134.
+            ?substrand wdt:P921 ?item.
+            ?substrand wdt:P17 wd:Q77. #Uruguay
+            
+            OPTIONAL {{ ?substrand wdt:P361 ?program. }}
+            OPTIONAL {{ ?articulo schema:about ?item;
+                schema:isPartOf <https://{language_code}.wikipedia.org/>. 
+                ?articulo schema:name ?articleName.
+            }}
+            
+            SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{language_code}". }}
+        }}
+        """
+
+        # Define the Wikidata Query Service endpoint URL
+        wikidata_endpoint = "https://query.wikidata.org/sparql"
+
+        # Define headers for the HTTP request
+        headers = {
+            "User-Agent": "Python SPARQL Client",
+            "Accept": "application/sparql-results+json",
+        }
+
+        # Define the query parameters
+        params = {
+            "query": sparql_query,
+            "format": "json",
+        }
+
+        try:
+            # Send a GET request to the Wikidata Query Service endpoint
+            response = requests.get(wikidata_endpoint, headers=headers, params=params)
+
+            if response.status_code == 200:
+                data = json.loads(response.text)
+
+                if "results" in data:
+                    # Extract and save the results to a CSV file
+                    with open("query_result.csv", mode="w", newline="", encoding="utf-8") as csv_file:
+                        csv_writer = csv.writer(csv_file)
+
+
+                        csv_writer.writerow(["qid", "item", "itemLabel", "articleName", "programLabel"])
+
+                        
+                        for item in data["results"]["bindings"]:
+                            qid = item.get("qid", {}).get("value", "")  # Handle missing qid
+                            item_uri = item.get("item", {}).get("value", "")
+                            item_label = item.get("itemLabel", {}).get("value", "")
+                            article_name = item.get("articleName", {}).get("value", "")
+                            program_label = item.get("programLabel", {}).get("value", "")
+                            csv_writer.writerow([qid, item_uri, item_label, article_name, program_label])
+
+                    print("Results saved to query_result.csv")
+                else:
+                    print("No results found for the query.")
+
+            else:
+                print(f"Request failed with status code {response.status_code}")
+
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {str(e)}")
+        except Exception as e:
+            print(f"An unexpected error occurred: {str(e)}")
+
+    ```
