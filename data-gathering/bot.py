@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import urllib
 
 import sys
@@ -435,14 +436,14 @@ def analisi():
    f = open('query.csv', "r")
 
    vox = f.readlines()   
-    
+
    # eliminare il contenuto del file prima di iniziare
    resultati = open('resultati.txt',"w")
    resultati.truncate(0)
    resultati.close()
 
    for voce in vox:
-      
+
       resultati = open('resultati.txt', 'a')  # aprire il file in modalità di aggiunta
 
       flag = 1
@@ -450,7 +451,7 @@ def analisi():
       voce = voce[:-1]
 
       voce = voce.replace(" ","_")
-
+     
       ris = ""
 
       wikitext = ""
@@ -469,9 +470,8 @@ def analisi():
         json_url = urlopen(url)
 
         data = json.loads(json_url.read())
-
+        print(data)
         wikitext = data["parse"]["wikitext"]
-
         if "#RINVIA"  in wikitext:
 
      #   print (wikitext)

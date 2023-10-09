@@ -54,7 +54,38 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
 
     # Create a list to store the rows
     rows = []
-
+    fieldnames = [
+                  'id_wikidata',
+            	  'article',
+                  'subject',
+                  'avg_pv',
+                  'avg_pv_prev',
+                  'size',
+                  'size_prev',
+                  'notes',
+                  'notes_prev',
+                  'images',
+                  'images_prev',
+                  'references',
+                  'references_prev',
+                  'incipit_size',
+                  'incipit_on_size',
+                  'incipit_prev',
+                  'issues',
+                  'issues_prev',
+                  'issue_sourceNeeded',
+                  'issue_clarify',
+                  'discussion_size',
+                  'discussion_prev',
+                  'first_edit',
+                  'days',
+                  'all_visits',
+                  'VdQ',
+                  'vetrina',
+                  'galleria_su_Commons',
+                  'pagina_su_commons',
+                  'pagina_su_wikisource'
+                  ]
     # Iterate over the rows in the input file
     for row in reader:
         # Reorder the columns and replace missing values with zeros
@@ -94,6 +125,6 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
 
 # Open the output file and write the reordered rows
 with open('voci_2023.tsv', 'w', encoding='utf-8', newline='') as output_file:
-    writer = csv.DictWriter(output_file, fieldnames=new_row.keys(), delimiter='\t')
+    writer = csv.DictWriter(output_file, fieldnames=fieldnames, delimiter='\t')
     writer.writeheader()
     writer.writerows(rows)
