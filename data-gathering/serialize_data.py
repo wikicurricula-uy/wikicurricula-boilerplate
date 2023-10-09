@@ -61,8 +61,9 @@ wikipedia_config = {
          "display_window_template": "{{voce buona",  # Quality Template (Italian)
       },
     "en": {
+        "language": "en",
         "file_to_be_analysed": "default.csv",
-         "language": "en",
+         "utf_required": "utf-8",
          "id_wikidata": 1,
          "dimension": 1,
          "first_edit": 1,

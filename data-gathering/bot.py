@@ -20,8 +20,12 @@ from datetime import datetime
 with open("wikipedia_config.json", "r") as config_file:
    wikipedia_config = json.load(config_file)
 
-# Specify the Wikipedia language
-WIKIPEDIA_LANGUAGE = "it"  # Change this to the desired Wikipedia language, this for English
+
+# Accept 
+if len(sys.argv) > 1:
+    WIKIPEDIA_LANGUAGE  = sys.argv[1]
+else:
+    WIKIPEDIA_LANGUAGE = "en"  # Default to "es" if no argument is provided
 
 
 
@@ -35,6 +39,7 @@ def main():
    # Access configuration variables based on the language
    file_to_be_analysed = language_config.get("file_to_be_analysed")
    language = language_config.get("language")
+   utf_required = language_config.get("utf_required")
    id_wikidata = language_config.get("id_wikidata")
    dimension = language_config.get("dimension")
    first_edit = language_config.get("first_edit") 
@@ -59,11 +64,9 @@ def main():
    display_window_template = language_config.get("display_window_template")
 
 
-   analysis(language, file_to_be_analysed, display_window_template, discussionURL,warnings_config, discussion_size, 
+   analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
       incipit_size, common_gallery,common_pages, itwikisource, coordinate, featured_template)
-
-
-
+   
 
 
 # Function to get average page views: returns visits since the beginning of time, average dayly visits since the begininning of time, average daily visits in the specified year
@@ -338,11 +341,11 @@ def featured_in(text, featured_template):
 
     
 # Main analysis function
-def analysis(language, file_to_be_analysed, display_window_template, discussionURL,warnings_config, discussion_size, 
-             incipit_size, common_gallery,common_pages, itwikisource, coordinate, featured_template):
+def analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
+      incipit_size, common_gallery,common_pages, itwikisource, coordinate, featured_template):
    
    # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
-   f = open(file_to_be_analysed, 'r', encoding= "utf-8" )  #change this to file to read as an option from users
+   f = open(file_to_be_analysed, 'r', encoding= utf_required )  #change this to file to read as an option from users
 
    articles = f.readlines()   
     

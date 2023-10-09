@@ -1,42 +1,10 @@
-A_la_deriva_(cuento)	 article non-existent
-Abstracción_(informática)	 article non-existent
-Acampada	 article non-existent
-Accesibilidad	 article non-existent
-Acento_diacrítico	 article non-existent
-Acento_léxico	 article non-existent
-Acentuación_(música)	 article non-existent
-Acentuación_del_idioma_español	 article non-existent
-Ácido_fuerte	 article non-existent
-Ácido_sulfúrico	 article non-existent
-Acoso_escolar	 article non-existent
-Acrobacia	 article non-existent
-Acrobacia_aérea	 article non-existent
-Actividad_física	 article non-existent
-Actuador	 article non-existent
-Acuífero_Guaraní	 article non-existent
-Aculturación	 article non-existent
-Adaptación_biológica	 article non-existent
-Adicción	 article non-existent
-Adición_(matemática)	 article non-existent
-Adjetivo	 article non-existent
-Adolescencia	 article non-existent
-Adverbio	 article non-existent
-Aerogenerador	 article non-existent
-Afectividad	 article non-existent
-África	 article non-existent
-Agencia_de_Gobierno_electrónico_y_Sociedad_de_la_Información_y_del_Conocimiento	 article non-existent
-Agricultura	 article non-existent
-Agricultura_ecológica	 article non-existent
-Agricultura_extensiva	 article non-existent
-Agricultura_familiar	 article non-existent
-Agricultura_incaica	 article non-existent
-Agricultura_intensiva	 article non-existent
-Agroecología	 article non-existent
-Agroindustria	 article non-existent
-Agroquímico	 article non-existent
-Agrupación_musical	 article non-existent
-Agua	 article non-existent
-Agua_potable	 article non-existent
-Agua_subterránea	 article non-existent
-Aguas_continentales	 article non-existent
-Agujero_de_la_capa_de_ozono	 article non-existent
+Body_language	Q477298	2003-11-14	60482	5	73	0	2116	2977874	998	766	667	0	0	Body language					
+Essential	Q443536	2006-10-25	2159	0	0	0	53	77923	26	19	18	0	0						
+Center_of_gravity	Q114084	2012-01-13	63	0	0	0	55	262990	88	44	44	0	0	Center of gravity					
+kinetics	Q298391	2001-03-21	3183	0	0	0	66	12	0	0	0	0	0						
+Robotics	Q170978	2002-03-30	147585	28	197	0	2697	4246609	1423	1144	1079	0	0	Robotics					
+Read	Q418416	2006-10-26	2136	0	0	0	2	103353	35	22	37	0	0	Read					
+king	Q12097	2007-04-27	16424	6	5	0	4515	247	0	0	0	0	0	Kings					
+Fancy	Q441355	2005-07-20	1919	0	0	0	28	103181	35	25	23	0	0						
+Wendy	Q4018995	2004-09-29	10206	1	9	0	1184	483475	162	131	126	0	0	Wendy (given name)					
+Respiratory_system	Q7891	2002-08-01	96162	22	73	0	2477	6537910	2191	1524	1239	0	0	Respiratory system					

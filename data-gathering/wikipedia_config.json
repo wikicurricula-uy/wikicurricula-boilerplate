@@ -52,8 +52,9 @@
         "display_window_template": "{{voce buona"
     },
     "en": {
-        "file_to_be_analysed": "default.csv",
         "language": "en",
+        "file_to_be_analysed": "default.csv",
+        "utf_required": "utf-8",
         "id_wikidata": 1,
         "dimension": 1,
         "first_edit": 1,
