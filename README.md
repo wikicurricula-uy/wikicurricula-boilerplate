@@ -290,6 +290,7 @@ Here is [Ghana's national curricula](https://tools-static.wmflabs.org/ghana-nati
 
 # 📜How to fetch the list of articles from Wikidata API
 
+<<<<<<< HEAD
 ### DEMO - fetching articles related to Ghana's curriculum
 
 ```
@@ -384,6 +385,8 @@ if __name__ == "__main__":
 
 ```
 
+=======
+>>>>>>> 4f19468 (added documentation on how to dynamically read articles)
 This guide uses python to fetch the list of articles.
 
 1. Run:
