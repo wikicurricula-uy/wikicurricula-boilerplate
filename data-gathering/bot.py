@@ -461,27 +461,34 @@ def showcase(text):
     
 # analyze articles
 def analysis():
+
+   # Open the "query.csv" file in read mode
    f = open('query.csv', "r")
 
+# Read all lines from the file into a list
    vox = f.readlines()   
     
    # delete the contents of the file before starting
    
    results = open('results.txt',"w")
    
+   # Truncate the "results.txt" file to remove existing content
    results.truncate(0)
    
    results.close()
 
+# Iterate through each article in the list of articles
    for article in vox:
       
-      
+      # Open the "results.txt" file in append mode
       results = open('results.txt', 'a')  # open the file in append mode
 
       flag = 1
 
+      # Remove the newline character at the end of the article
       article = article[:-1]
 
+      # Replace spaces in the article title with underscores
       article = article.replace(" ","_")
 
       ris = ""
@@ -489,22 +496,25 @@ def analysis():
       wikitext = ""
 
 
-
+      # Replace spaces in the article title with underscores and quote the article
       article2 = urllib.parse.quote(article)
-
       article = article.replace(" ","_")
 
 
       try:
 
+         # Construct the Wikipedia API URL for parsing wikitext
         url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
-
+      
+      # Open the URL and load JSON data
         json_url = urlopen(url)
 
         data = json.loads(json_url.read())
-
+      
+      # Extract wikitext from the JSON response
         wikitext = data["parse"]["wikitext"]
 
+      # If the article is a redirect, update the article title
         if "#REDIRECT"  in wikitext:
 
      #   print (wikitext)
@@ -527,14 +537,17 @@ def analysis():
 
         article = article.replace(" ","_")
 
+      # Construct the Wikipedia API URL for querying page properties
         url = "https://"+language+".wikipedia.org/w/api.php?action=query&titles=" + article2 +"&prop=pageprops&format=json&formatversion=2"
 
         json_url = urlopen(url)
 
         data = json.loads(json_url.read())
 
+         # Extract Wikidata ID from the JSON response
         wikidataid = data["query"]["pages"][0]["pageprops"]["wikibase_item"]
 
+      # Construct the Wikidata API URL for retrieving entity data
         url ="https://www.wikidata.org/wiki/Special:EntityData/"+wikidataid+".json"
 
         json_url = urlopen(url)
@@ -542,7 +555,7 @@ def analysis():
         wikidata = json.loads(json_url.read())
 
 
-
+      # Construct the Wikipedia API URL for parsing wikitext again
         url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
 
         json_url = urlopen(url)
@@ -569,7 +582,8 @@ def analysis():
 
 
         ris = ris + article + "\t"
-
+        
+      # Append article and Wikidata ID to the 'ris' string
         ris = ris + wikidataid + "\t"
 
       except:
