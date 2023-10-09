@@ -221,15 +221,15 @@ A practice on migrating Uruguay's Wikicurricula from it's current hosting (Githu
 
 One of goals of Wikimedia is to enhance the educational experience of students by making sure that the information available on platforms like Wikicurricula corresponds to what students are studying in their classrooms, fostering a harmonious and supportive learning environment. To do so, Wikimedia stores schools' curricula data in a large database called Wikidata and then allows students, editors,teachers to interact with the data through an interface known as Wikicurricula.
 
-Indeed the project was successful in Ghana and replicated in Uruguay. However, Wikicurricula's user interface isn't friendly to use. Therefore, Wikimedia allows developers to create tools such as apps, websites, bots, search functionalities, etc, in order to improve user experience. This documentation details steps taken to create a tool which allows a user to search for Ghana's national curriculum. So, If you want to create any tool, use this as a guide but adjust according to your tool's requirements.
+Indeed the project was successful in Ghana and replicated in Uruguay. However, Wikicurricula's user interface isn't friendly to use. Therefore, Wikimedia allows developers to create tools such as apps, websites, bots, search functionalities, etc, in order to improve user experience. This documentation details steps taken to implement and deploy Ghana's national curriculum to Toolforge. You can adjust it to any curricula but adjust according to your curricula.
 
 ### Required Skills
 
 Before proceeding, understand these:
 
--   [Wikidata] (https://www.wikidata.org/wiki/Wikidata:Introduction)
--   [SPARQL] (https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial)
--   [Toolforge] (https://github.com/wikicurricula-uy/wikicurricula-boilerplate#%EF%B8%8Faccounts-needed)
+-   [Wikidata](https://www.wikidata.org/wiki/Wikidata:Introduction)
+-   [SPARQL](https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial)
+-   [Toolforge](https://github.com/wikicurricula-uy/wikicurricula-boilerplate#%EF%B8%8Faccounts-needed)
 
 1. Visit the Wikidata Query Service
    Go to https://query.wikidata.org/
@@ -250,65 +250,38 @@ Before proceeding, understand these:
 
 6. Code Setup
 
--   Create a new repository for your Wikicurricula project on Github.
--   Clone the repository.
--   Open the repo in your text editor. Install dependencies such as flask - used in the backend, and requests - used for API calls. Create a www folder, inside the folder, create a python folder. Inside python folder, create src folder and then a templates folder inside src. Inside templates folder, create an index.html file and write code to send a request to the backend, to manipulate and display results from a backend server.
+-   Create a new repository for your Wikicurricula project.
 
-Inside the src folder, create an app.py folder and write code for fetching data from the Wikidata API. The code can be found [here](https://github.com/GonzaFP/GhanaWikiCurricula)
+-   Run:
 
-7. Test Your Tool
-   Before making your tool publicly accessible, test it thoroughly to ensure it works as expected. For example, in vscode, you can run python app.py and open the URL generated.
+```
+         git clone https://github.com/wikicurricula-uy/wikicurricula-boilerplate.git
+```
+
+-   Open the repo in your text editor.
+-   In your command line, move to the data-gathering folder and run the query.py script.
+
+```
+    python query.py
+    python bot.py
+```
+
+-   Change translate.py so that it can work with results.txt instead of resultati.txt
+-   Change translate.py so that it can work with 'visualization/assets/data/voci_2023.tsv' instead of 'data-gathering/voci_2023.tsv'
+-   Move to the visualization folder.
+    -   Move to the script folder and change dv1.js from https://es.wikipedia.org/wiki/ to "https://en.wikipedia.org/wiki/"
+    *   Change subjects variable in utilities.js to the subjects in subjects.csv
+
+7. Test the curricula
+   Before making the curricula publicly accessible, test it thoroughly to ensure it works as expected.
 
 8. Push your code to Github
 
-9. Make Your Tool Public
+9. Make the curricula public
    Once you're confident in your tool's functionality, you can make it public on Toolforge.
 
-### Deploy the tool on Toolforge
+### Deploy the curricula on Toolforge
 
-1. Ensure that you have a Toolforge account before proceeding. Follow this [guide] (https://github.com/wikicurricula-uy/wikicurricula-boilerplate#%EF%B8%8Faccounts-needed)
+1. Use this guide to deploy the curricula to Toolforge. https://github.com/wikicurricula-uy/wikicurricula-boilerplate#how-to-deploy-wikicurr%C3%ADcula-boilerplate-in-toolforge
 
-2. Create a new tool account
-
--   Follow the [Toolforge quickstart](https://wikitech.wikimedia.org/wiki/Help:Toolforge/Quickstart) guide to create a Toolforge tool and SSH into Toolforge. While creating the tool account, ensure to add a link to the github repo where the tool's source code exists.
--   Run $ become <TOOL NAME> to change to the tool user.
-
-3. Create the $HOME/www/python/src directory for your application
-
-    - Run $ mkdir -p $HOME/www/python/src
-
-4. Create a Python virtual environment for the application's external library dependencies
-
-    - Run these commands:
-        - $ webservice --backend=kubernetes python3.11 shell
-        - $ python3 -m venv $HOME/www/python/venv
-        - $ source $HOME/www/python/venv/bin/activate
-        - $ pip install --upgrade pip
-
-5. Add Flask to the virtual environment
-
-    - Run these commands:
-
-    * pip freeze > requirements.txt
-    * $ cat > $HOME/www/python/src/requirements.txt << EOF
-      flask
-      EOF
-    * pip install -r $HOME/www/python/src/requirements.txt
-    * pip install requests
-    * pip install flask
-      The initial virtual environment is now set-up. Run $ exit
-
-6. Create application files
-
-    - Run cd $HOME/www/python/src
-    - Create app.py in your text editor - such as vim,emacs or nano. for example nano app.py will create a new file named app.py. Copy and paste code from your local app.py to the virtual app.py.
-    - In the same directory, create a templates folder, cd into it and then create an index.html folder in which you will paste code from your local index.html
-
-7. Start the webservice
-
-    - Run cd ~ and then run webservice --backend=kubernetes python3.11 start
-    - Once the webservice is started, navigate to https://<TOOL NAME>.toolforge.org/ in your web browse and see the results of your code. The tool in this example can be found [here] (https://ghanawikicurricula.toolforge.org/)
-
-### Troubleshooting
-
--   If there is an error when the webservice is started, run $ tail -n 50 $HOME/uwsgi.log for an explanation.
+Here is [Ghana's national curricula](https://tools-static.wmflabs.org/ghana-national-curriculum/GhanaWikiCurricula/visualization/) on Toolforge.
