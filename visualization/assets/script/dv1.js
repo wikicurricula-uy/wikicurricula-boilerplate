@@ -13,7 +13,7 @@ const container = "#dv1";
 const font_size = 10;
 const filter_item = 120; // 120
 const shiftx_article = 30;
-const wiki_link = "https://en.wikipedia.org/wiki/";
+const wiki_link = "https://es.wikipedia.org/wiki/";
 const variation_line_opacity = 0.7;
 
 const stroke_dash = "3,3";
@@ -82,7 +82,7 @@ let improv_delay = 1800;
 
 let random_subject = null;
 let random_subject_index = null;
-let forbidden_subjects = ["Communication and society"];
+let forbidden_subjects = ["Comunicación y sociedad"];
 
 function dv1(year, the_subject, sort) {
 	d3.tsv("assets/data/voci_" + year + ".tsv").then(loaded);
@@ -176,27 +176,28 @@ function dv1(year, the_subject, sort) {
 		let y_max = d3.max(filtered_data, function (d) {
 			return +d.avg_pv;
 		});
-		let x_max = d3.max(filtered_data, function(d){
-			return +d.first_edit
-		 })
+		let x_max = d3.max(filtered_data, function (d) {
+			return +d.first_edit;
+		});
 		// console.log("x_max"+ x_max)
 
-		let r_max = d3.max(filtered_data, function(d) { 
-			return Math.sqrt(+d.size/3.14);
-		})
+		let r_max = d3.max(filtered_data, function (d) {
+			return Math.sqrt(+d.size / 3.14);
+		});
 
 		let y = d3
 			.scaleLinear()
 			.domain([0, y_max + (y_max / 100) * 10])
 			.range([height - margin.top, 0]);
 
-		
-		let x_ScaleTime = d3.scaleTime()
-			.domain(d3.extent(filtered_data, function(d) { 
-				return new Date(d.first_edit); 
-			  }))
-			.range([0, width])			
-	
+		let x_ScaleTime = d3
+			.scaleTime()
+			.domain(
+				d3.extent(filtered_data, function (d) {
+					return new Date(d.first_edit);
+				})
+			)
+			.range([0, width]);
 
 		if (sort == 1) {
 			max = total;
@@ -307,18 +308,18 @@ function dv1(year, the_subject, sort) {
 			.attr("y", -6)
 			.attr("font-size", font_size);
 
+		//========== X axis ======
 
-		 //========== X axis ======	
-		
-		 let xAxisGenerator = d3.axisBottom(x_ScaleTime).tickFormat(d3.timeFormat("%Y-%m-%d"))
+		let xAxisGenerator = d3
+			.axisBottom(x_ScaleTime)
+			.tickFormat(d3.timeFormat("%Y-%m-%d"));
 
-		 let xAxis = plot.append("g")
-			 .call(xAxisGenerator)
-			 .attr("transform",`translate(${0},${height})`)
-		 
- 
-		 //========  X axis =======
+		let xAxis = plot
+			.append("g")
+			.call(xAxisGenerator)
+			.attr("transform", `translate(${0},${height})`);
 
+		//========  X axis =======
 
 		// let the_sort;
 		let tooltip = d3

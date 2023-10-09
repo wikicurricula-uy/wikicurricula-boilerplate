@@ -32,7 +32,7 @@ def create_subject_mapping(file_path):
 subject_map = create_subject_mapping("subjects.csv");
 
 # Open the input file
-with open('results.txt', 'r', encoding='utf-8') as input_file:
+with open('resultati.txt', 'r', encoding='utf-8') as input_file:
 
     input_header = [
         'article',
@@ -97,7 +97,7 @@ with open('results.txt', 'r', encoding='utf-8') as input_file:
         rows.append(new_row)
         
 # Open the output file and write the reordered rows
-    with open('../visualization/assets/data/voci_2023.tsv', 'a', encoding='utf-8', newline='') as output_file:
+    with open('voci_2023.tsv', 'a', encoding='utf-8', newline='') as output_file:
             writer = csv.DictWriter(output_file, fieldnames=new_row.keys(), delimiter='\t')
             writer.writeheader()
             writer.writerows(rows)

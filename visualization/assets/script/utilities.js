@@ -1,18 +1,39 @@
 function apply_color(subject) {
 	let color;
-	//Social studies
-	if (subject == "Social Studies") {
+	//Ciencias sociales y humanidades
+	if (
+		subject == "Historia" ||
+		subject == "Formación para la ciudadanía" ||
+		subject == "Geografía"
+	) {
 		color = "#ef95c4"; //"#eeb4ee";
 	}
-	//English
-	else if (subject == "English Language") {
+	//Técnico-tecnológico
+	else if (
+		subject == "Ciencias de la computación" ||
+		subject == "Tecnologías"
+	) {
+		color = "#3a34e0"; // "blue";
+	}
+	//Comunicación y Arte
+	else if (
+		subject == "Comunicación visual" ||
+		subject == "Comunicación y sociedad" ||
+		subject == "Diseño" ||
+		subject == "Educación musical" ||
+		subject == "Lengua española" ||
+		subject == "Literatura"
+	) {
 		color = "#00b2ff";
 	}
-	//Science
-	else if (subject == "Science") {
+	//Espacio de desarrollo personal y conciencia corporal y espacio de autonomía curricular
+	else if (
+		subject == "Educación física y recreación" ||
+		subject == "Salud y sexualidad"
+	) {
 		color = "#f4d365";
 	}
-	//Mathematics
+	//Espacio científico matemático
 	else {
 		color = "green";
 	}
@@ -54,11 +75,24 @@ function variation_perc(now, prev, parameter) {
 
 const subjects = [
 	"all",
-	"Social Studies",
-	"Computing",
-	"English Language",
-	"Science",
-	"Mathematics",
+	"Biología",
+	"Ciencias de la computación",
+	"Ciencias físico-químicas",
+	"Comunicación visual",
+	"Comunicación y sociedad",
+	"Diseño",
+	"Educación física y recreación",
+	"Educación musical",
+	"Física",
+	"Formación para la ciudadanía",
+	"Geografía",
+	"Historia",
+	"Lengua española",
+	"Literatura",
+	"Matemática",
+	"Química",
+	"Salud y sexualidad",
+	"Tecnologías",
 ];
 
 const starting_year = 2023;

@@ -271,6 +271,8 @@ Before proceeding, understand these:
 -   Move to the visualization folder.
     -   Move to the script folder and change dv1.js from https://es.wikipedia.org/wiki/ to "https://en.wikipedia.org/wiki/"
     *   Change subjects variable in utilities.js to the subjects in subjects.csv
+    *   Change the legends colour and labels in utilities.js
+    *   Change the legends in img folder
 
 7. Test the curricula
    Before making the curricula publicly accessible, test it thoroughly to ensure it works as expected.
