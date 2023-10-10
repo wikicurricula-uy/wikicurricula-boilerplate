@@ -93,7 +93,7 @@ def get_id_and_subjects(results):
 
         for result in results:
             id_wikidata = result.get("qid", {}).get("value", "")
-            material = result.get("programLabel", {}).get("value", "")
+            material = result.get("programLabel", {}).get("value", "").split("Curriculum")
             
             if "Science" in material:
                 material = "Science"
