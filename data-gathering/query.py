@@ -18,7 +18,7 @@ if len(sys.argv) < 2:
 # Get the language code from the command-line argument
 language_code = sys.argv[1]
 
-# make a request to wikidata API to fetch Ghana's curriculum
+# make a request to wikidata API to fetch Ghana's curriculum by passing the language code as an argument
 def fetch_data(language_code):
     sparql_query = f"""
     SELECT DISTINCT (STRAFTER(STR(?item), "http://www.wikidata.org/entity/") AS ?qid) ?item ?itemLabel ?articleName ?programLabel
@@ -51,12 +51,11 @@ def fetch_data(language_code):
         "format": "json",
     }
 
-    # Make the HTTP request to the Wikidata endpoint
-    response = requests.get(wikidata_endpoint, headers=headers, params=params)
+    # HTTP request to the Wikidata endpoint
+    response = requests.get(wikidata_endpoint, headers=headers, params=params) # HTTP request to the Wikidata endpoint
 
-    # Check if the request was successful (status code 200)
+    # Check if the request was successful i.e it has status code 200
     if response.status_code == 200:
-        # Parse the JSON response
         data = response.json()
 
         # Extract and print the results
@@ -88,7 +87,6 @@ def get_id_and_subjects(results):
         fields = ["id_wikidata", "material"]
         writer = csv.DictWriter(file, fieldnames=fields, lineterminator='\n')
 
-        # Write the header outside the loop
         writer.writeheader()
 
         for result in results:
