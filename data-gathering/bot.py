@@ -1,7 +1,3 @@
-
-
-
-
 '''
 Python script for performing various analyses on Wikipedia articles. 
 This script appears to collect data from Wikipedia and Wikidata, 
@@ -17,7 +13,6 @@ import urllib.parse
 import string
 from datetime import datetime
 import sys  # Import the sys module to access command-line arguments
-import subprocess
 
 
 # Check if the language code is provided as a command-line argument
@@ -32,32 +27,9 @@ else:
 #     sys.exit(1)
 
 
-
-
-# # Define the path to the external script (bot.py)
-# external_script_path = "query.py"
-
-# try:
-#     # Run the external script using subprocess
-#     subprocess.run(["python", external_script_path, WIKIPEDIA_LANGUAGE])
-
-#     print("External script (bot.py) executed successfully.")
-
-# except subprocess.CalledProcessError as e:
-#     print(f"Error running the external script: {e}")
-# except FileNotFoundError as e:
-#     print(f"External script not found at path: {external_script_path}")
-# except Exception as e:
-#     print(f"An unexpected error occurred: {str(e)}")
-
-
-
 # Open and read the JSON configuration file and access the configuration data as a dictionary
 with open("wikipedia_config.json", "r") as config_file:
    wikipedia_config = json.load(config_file)
-
-
-
 
 
 def main():
@@ -376,7 +348,7 @@ def analysis(language, utf_required, display_window_template, discussionURL,warn
       incipit_size, common_gallery,common_pages, itwikisource, coordinate, featured_template):
    
    # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
-   f = open("default.csv", 'r', encoding= utf_required )  #change this to extracts.csv. Currently using default.csv for testng.
+   f = open("article_name.csv", 'r', encoding= utf_required )  
 
    articles = f.readlines()   
     

@@ -1,16 +1,16 @@
-#this script translates resultati.txt into a file that is readable by wikicurricula or wikiscuola visualization tool
+#this script translates results.txt into a file that is readable by wikicurricula or wikiscuola visualization tool
 import csv
 from datetime import datetime
 
 def get_days_between(start_date_str, end_date_str):
-    if (not start_date_str or start_date_str =="ERRORE" or end_date_str =="ERRORE"): return 0
+    if (not start_date_str or start_date_str =="ERROR" or end_date_str =="ERROR"): return 0
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
     days_between = (end_date - start_date).days
     return days_between
 
 def get_incipit_on_size(incipit_size,size):
-    if (not incipit_size or not size): return 0;
+    if (not incipit_size or not size): return 0; 
     return round((int(incipit_size) / int(size))*100,2)
 
 def create_subject_mapping(file_path):
@@ -25,10 +25,11 @@ def create_subject_mapping(file_path):
 
     return id_subject_map
 
-subject_map = create_subject_mapping("subjects.csv");
+subject_map = create_subject_mapping("subjects.csv"); 
 
 # Open the input file
-with open('resultati.txt', 'r', encoding='utf-8') as input_file:
+# with open('resultati.txt', 'r', encoding='utf-8') as input_file: 
+with open('results.txt', 'r', encoding='utf-8') as input_file: 
 
     input_header = [
         'article',
@@ -94,6 +95,8 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
 
 # Open the output file and write the reordered rows
 with open('voci_2023.tsv', 'w', encoding='utf-8', newline='') as output_file:
+    pass  # This line clears the content of the file
+
     writer = csv.DictWriter(output_file, fieldnames=new_row.keys(), delimiter='\t')
     writer.writeheader()
     writer.writerows(rows)

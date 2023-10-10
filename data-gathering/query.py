@@ -1,3 +1,10 @@
+'''
+This script makes a call to the wikidata API by taking in the language_code, e.g "en" as an argument.
+The result(data) of this query is then processed to get the artcle name, id and material of the articles into "article_name.csv" and "subjects.csv" files. 
+The two(2) csv files produced canbe further used for analysis by the bot.py and for visualization.
+'''
+
+
 import requests
 import csv
 import json
@@ -11,73 +18,89 @@ if len(sys.argv) < 2:
 # Get the language code from the command-line argument
 language_code = sys.argv[1]
 
-# Define your SPARQL query
-sparql_query = f"""
-SELECT DISTINCT (STRAFTER(STR(?item), "http://www.wikidata.org/entity/") AS ?qid) ?item ?itemLabel ?articleName ?programLabel
-WHERE {{
-  ?substrand wdt:P31 wd:Q600134.
-  ?substrand wdt:P921 ?item.
-  ?substrand wdt:P17 wd:Q77. #Uruguay
-  
-  OPTIONAL {{ ?substrand wdt:P361 ?program. }}
-  OPTIONAL {{ ?articulo schema:about ?item;
-    schema:isPartOf <https://{language_code}.wikipedia.org/>. 
-    ?articulo schema:name ?articleName.
-  }}
-  
-  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{language_code}". }}
-}}
-"""
+# make a request to wikidata API to fetch Ghana's curriculum
+def fetch_data(language_code):
+    sparql_query = f"""
+    SELECT DISTINCT (STRAFTER(STR(?item), "http://www.wikidata.org/entity/") AS ?qid) ?item ?itemLabel ?articleName ?programLabel
+    WHERE {{
+        ?substrand wdt:P31 wd:Q600134.
+        ?substrand wdt:P921 ?item.
+        ?substrand wdt:P17 wd:Q117. #Uruguay
 
-# Define the Wikidata Query Service endpoint URL
-wikidata_endpoint = "https://query.wikidata.org/sparql"
+        OPTIONAL {{ ?substrand wdt:P361 ?program. }}
+        OPTIONAL {{ ?articulo schema:about ?item;
+            schema:isPartOf <https://{language_code}.wikipedia.org/>. 
+            ?articulo schema:name ?articleName.
+        }}
 
-# Define headers for the HTTP request
-headers = {
-    "User-Agent": "Python SPARQL Client",
-    "Accept": "application/sparql-results+json",
-}
+        SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{language_code}". }}
+    }}
+    """
+   # Define the Wikidata Query Service endpoint URL
+    wikidata_endpoint = "https://query.wikidata.org/sparql"
 
-# Define the query parameters
-params = {
-    "query": sparql_query,
-    "format": "json",
-}
+   # Define headers for the HTTP request
+    headers = {
+        "User-Agent": "Python SPARQL Client",
+        "Accept": "application/sparql-results+json",
+    }
 
-try:
-    # Send a GET request to the Wikidata Query Service endpoint
+    # Set up parameters for the HTTP request
+    params = {
+        "query": sparql_query,
+        "format": "json",
+    }
+
+    # Make the HTTP request to the Wikidata endpoint
     response = requests.get(wikidata_endpoint, headers=headers, params=params)
 
-    # Check if the request was successful (HTTP status code 200)
+    # Check if the request was successful (status code 200)
     if response.status_code == 200:
-        data = json.loads(response.text)
+        # Parse the JSON response
+        data = response.json()
 
-        # Check if there are results in the response
-        if "results" in data:
-            # Extract and save the results to a CSV file
-            with open("query_result.csv", mode="w", newline="", encoding="utf-8") as csv_file:
-                csv_writer = csv.writer(csv_file)
-
-                # Write header row
-                csv_writer.writerow(["qid", "item", "itemLabel", "articleName", "programLabel"])
-
-                # Write data rows
-                for item in data["results"]["bindings"]:
-                    qid = item.get("qid", {}).get("value", "")  # Handle missing qid
-                    item_uri = item.get("item", {}).get("value", "")
-                    item_label = item.get("itemLabel", {}).get("value", "")
-                    article_name = item.get("articleName", {}).get("value", "")
-                    program_label = item.get("programLabel", {}).get("value", "")
-                    csv_writer.writerow([qid, item_uri, item_label, article_name, program_label])
-
-            print("Results saved to query_result.csv")
-        else:
-            print("No results found for the query.")
+        # Extract and print the results
+        results = data.get("results", {}).get("bindings", [])
+        return results
 
     else:
-        print(f"Request failed with status code {response.status_code}")
+        print(f"Error: Unable to fetch data. Status Code: {response.status_code}")
 
-except requests.exceptions.RequestException as e:
-    print(f"An error occurred: {str(e)}")
-except Exception as e:
-    print(f"An unexpected error occurred: {str(e)}")
+
+# save article name in article_name.csv
+def get_articles(results):
+    # Open the file in write mode to clear its contents
+    with open("article_name.csv", "w") as file:
+        pass  # This line clears the content of the file
+
+    # Open the file in append mode and write data for each result
+    with open("article_name.csv", "a") as file:
+        for result in results:
+            article_name = result.get("articleName", {}).get("value", "")
+            if article_name != "":
+                file.write(f"{article_name}\n")
+
+
+# save subject and id of articles in subjects.csv
+def get_id_and_subjects(results):
+    with open("subjects.csv", "w") as file:
+        pass  # This line clears the content of the file
+        fields = ["id_wikidata", "material"]
+        writer = csv.DictWriter(file, fieldnames=fields, lineterminator='\n')
+
+        # Write the header outside the loop
+        writer.writeheader()
+
+        for result in results:
+            id_wikidata = result.get("qid", {}).get("value", "")
+            material = result.get("programLabel", {}).get("value", "")
+            
+            if "Science" in material:
+                material = "Science"
+            
+            writer.writerow({"id_wikidata": id_wikidata, "material": material})
+
+if __name__ == "__main__":
+    query_result = fetch_data(language_code)
+    get_articles(query_result)
+    get_id_and_subjects(query_result)

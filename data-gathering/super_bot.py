@@ -25,13 +25,12 @@ if __name__ == "__main__":
     # List of commands to run in parallel
     commands = [
         f"python query.py {WIKIPEDIA_LANGUAGE}",
-        "python extract_article_name.py query_result.csv",
         f"python bot.py {WIKIPEDIA_LANGUAGE}",
         "python translate.py",
     ]
 
-    # creates a multiprocessing pool with a specified number of processes (in this case, 4).
-    num_processes = 4  
+    # creates a multiprocessing pool with a specified number of processes (in this case, 3).
+    num_processes = 3
     pool = multiprocessing.Pool(processes=num_processes)
 
     # Use the pool to run the commands concurrently
