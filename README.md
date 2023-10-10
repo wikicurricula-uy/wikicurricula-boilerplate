@@ -267,6 +267,7 @@ Before proceeding, understand these:
 ```
 
 -   Change translate.py so that it can work with results.txt instead of resultati.txt
+-   Change bot.py so that it can work with results.txt instead of resultati.txt
 -   Change translate.py so that it can work with 'visualization/assets/data/voci_2023.tsv' instead of 'data-gathering/voci_2023.tsv'
 -   Move to the visualization folder.
     -   Move to the script folder and change dv1.js from https://es.wikipedia.org/wiki/ to "https://en.wikipedia.org/wiki/"
@@ -291,10 +292,11 @@ Here is [Ghana's national curricula](https://tools-static.wmflabs.org/ghana-nati
 # 📜How to fetch the list of articles from Wikidata API
 
 <<<<<<< HEAD
+
 ### DEMO - fetching articles related to Ghana's curriculum
 
 ```
-    import csv
+import csv
 import requests
 
 
@@ -352,42 +354,31 @@ def fetch_wikidata_info():
 
 # store article name in query.csv
 def store_articles(results):
+
+    # delete the contents of the file before starting
+     results = open('query.csv',"w")
+
+   # Truncate the "results.txt" file to remove existing content
+     results.truncate(0)
+
+     results.close()
+
      with open("query.csv","a") as file:
         for result in results:
             article_name = result.get("nombreDelArticulo", {}).get("value", "")
             if article_name != "":
               file.write(f"{article_name}\n")
 
-# store subject and id in subjects.csv
-def store_subjects(results):
-    # Open the file outside the loop to write the header only once
-    with open("subjects.csv", "a", newline='') as file:
-        fieldnames = ["id_wikidata", "material"]
-        writer = csv.DictWriter(file, fieldnames=fieldnames, lineterminator='\n')
-
-        # Write the header outside the loop
-        writer.writeheader()
-
-        for result in results:
-            id_wikidata = result.get("qid", {}).get("value", "")
-            material, _ = result.get("programaLabel", {}).get("value", "").split("Curriculum")
-
-            if "Science" in material:
-                material = "Science"
-            # Write the row for each result
-            writer.writerow({"id_wikidata": id_wikidata, "material": material})
-
 if __name__ == "__main__":
     query_results = fetch_wikidata_info()
     store_articles(query_results)
-    store_subjects(query_results)
-
 
 ```
 
 =======
->>>>>>> 4f19468 (added documentation on how to dynamically read articles)
-This guide uses python to fetch the list of articles.
+
+> > > > > > > 4f19468 (added documentation on how to dynamically read articles)
+> > > > > > > This guide uses python to fetch the list of articles.
 
 1. Run:
 
@@ -429,6 +420,8 @@ This guide uses python to fetch the list of articles.
         results = data.get("results", {}).get("bindings", [])
     ```
 10. Define another function which receives these results.
+    - Open query.csv in write mode
+    - Delete the previous content in query.csv
     - open query.csv file in append mode
     - iterate through the results.
     - for each result, get the nombreDelArticulo value and write it in the file
