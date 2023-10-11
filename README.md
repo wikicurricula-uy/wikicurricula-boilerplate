@@ -357,30 +357,9 @@ def store_articles(results):
             if article_name != "":
               file.write(f"{article_name}\n")
 
-# store subject and id in subjects.csv
-def store_subjects(results):
-    # Open the file outside the loop to write the header only once
-    with open("subjects.csv", "a", newline='') as file:
-        fieldnames = ["id_wikidata", "material"]
-        writer = csv.DictWriter(file, fieldnames=fieldnames, lineterminator='\n')
-
-        # Write the header outside the loop
-        writer.writeheader()
-
-        for result in results:
-            id_wikidata = result.get("qid", {}).get("value", "")
-            material, _ = result.get("programaLabel", {}).get("value", "").split("Curriculum")
-
-            if "Science" in material:
-                material = "Science"
-            # Write the row for each result
-            writer.writerow({"id_wikidata": id_wikidata, "material": material})
-
 if __name__ == "__main__":
     query_results = fetch_wikidata_info()
     store_articles(query_results)
-    store_subjects(query_results)
-
 
 ```
 

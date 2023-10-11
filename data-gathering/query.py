@@ -11,18 +11,19 @@ def fetch_wikidata_info():
     sparql_query = """
     SELECT DISTINCT (STRAFTER(STR(?item), "http://www.wikidata.org/entity/") AS ?qid) ?item ?itemLabel ?nombreDelArticulo ?programaLabel
     WHERE {
-      ?substrand wdt:P31 wd:Q600134.
-      ?substrand wdt:P921 ?item.
-      ?substrand wdt:P17 wd:Q117. #Uruguay
-
-      OPTIONAL { ?substrand wdt:P361 ?programa. }
-      OPTIONAL { ?articulo schema:about ?item;
-        schema:isPartOf <https://en.wikipedia.org/>. 
+        ?substrand wdt:P31 wd:Q600134.
+        ?substrand wdt:P921 ?item.
+        ?substrand wdt:P17 wd:Q77. #Uruguay
+  
+        OPTIONAL { ?substrand wdt:P361 ?programa. }
+        OPTIONAL { ?articulo schema:about ?item;
+        schema:isPartOf <https://es.wikipedia.org/>. 
         ?articulo schema:name ?nombreDelArticulo.
-      }
-
-      SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-    }
+  }
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "es". }
+ 
+}
     """
 
     # Set up headers for the HTTP request
@@ -56,6 +57,15 @@ def fetch_wikidata_info():
 
 # store article name in query.csv
 def store_articles(results):
+   
+    # delete the contents of the file before starting
+     query = open('query.csv',"w")
+   
+   # Truncate the "results.txt" file to remove existing content
+     query.truncate(0)
+   
+     query.close()
+
      with open("query.csv","a") as file:
         for result in results:
             article_name = result.get("nombreDelArticulo", {}).get("value", "")
@@ -64,6 +74,14 @@ def store_articles(results):
 
 # store subject and id in subjects.csv
 def store_subjects(results):
+
+    # delete the contents of the file before starting
+    results = open('subjects.csv',"w")
+   
+   # Truncate the "results.txt" file to remove existing content
+    results.truncate(0)
+    results.close()
+
     # Open the file outside the loop to write the header only once
     with open("subjects.csv", "a", newline='') as file:
         fieldnames = ["id_wikidata", "material"]

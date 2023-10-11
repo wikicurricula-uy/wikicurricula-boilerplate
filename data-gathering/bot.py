@@ -707,7 +707,8 @@ def analysis():
               ris = ris + "\t" + "\t"
 
       
-      results.write(ris + "\n")  # add a line break after each result
+      results.write(ris.encode('utf-8', 'ignore').decode('utf-8') + "\n")
+  # add a line break after each result
       
       results.close()  # close the file
       print (ris)
