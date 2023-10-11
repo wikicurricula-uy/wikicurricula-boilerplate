@@ -20,7 +20,7 @@ from datetime import datetime
 
 
 #language subdomain, to be used for API calls
-language = "en"
+language = "es"
 
 id_wikidata = 1
 size = 1
@@ -37,11 +37,11 @@ incipit_size  = 1
 discussion_size = 1
 
 #discussion page prefix
-discussion = "Discussion:"
+discussion = "Discusión:"
 discussionURL = urllib.parse.quote(discussion)
 
 #currently, the notice count does not work for the Spanish Wikipedia
-configAlerts = 0
+configAlerts = 1
 
 commonsPage = 1
 
@@ -56,15 +56,15 @@ wikibooks = 1
 showcase = 1
 
 #template display
-showcaseTemplate ="{{featured article"
+showcaseTemplate ="{{artículo destacado"
 
 quality = 1
 
 #"Quality article template
 
-qualityArticleTemplate="{{good article"
+qualityArticleTemplate="{{artículo bueno"
 
-review = 1
+visits = 1
 
 bibliography = 1
 
@@ -116,12 +116,12 @@ def get_avg_pageviews(article, start, end):
       # If an error occurs (e.g., network issues or problems with the API call), catch the exception and set ris to the string "ERROR
    except:
 
-      ris = "ERROR"
+      ris = "ERRORE"
    return ris
 
 
 # returns visits since the beginning of time, average daily visits since the begininning of time, average daily visits in the specified year
-def visits(article):
+def visits(voce):
 
   #YYYYMMGG
   START_ALL_TIME = "20150701"; 
@@ -140,15 +140,15 @@ def visits(article):
 
   d2 = datetime.strptime(END_CURRENT_YEAR, "%Y%m%d")
 
-  days = (abs((d2 - d1).days)+1)
+  day = (abs((d2 - d1).days)+1)
 
-  article = article.replace(" ","_")
+  VOCE = voce.replace(" ","_")
 
   SUM = 0
 
   try:
 
-    url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+article+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
+    url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+VOCE+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
 
     html = urlopen(url).read()
 
@@ -178,19 +178,19 @@ def visits(article):
 
       ris1 = str(SUM)
 
-      ris2 = str(int(round((SUM/days),0)))
+      ris2 = str(int(round((SUM/day),0)))
 
   except:
 
-    ris1 = "ERROR"
+    ris1 = "ERRO"
 
-    ris2 = "ERROR"
+    ris2 = "ERRO"
 
   #calculate ris3, average pageviews from previous year
-  ris3 = get_avg_pageviews(article, START_PREV_YEAR, END_PREV_YEAR)
+  ris3 = get_avg_pageviews(VOCE, START_PREV_YEAR, END_PREV_YEAR)
 
   #calculate ris4, average pageviews from current year
-  ris4 = get_avg_pageviews(article, START_CURRENT_YEAR, END_CURRENT_YEAR)
+  ris4 = get_avg_pageviews(VOCE, START_CURRENT_YEAR, END_CURRENT_YEAR)
 
    
   return str(ris1), str(ris2), str(ris3), str(ris4)
@@ -254,7 +254,7 @@ def firstEdit(article):
 # Incase of an error (e.g., a network issue, or the article is not found), the code within this block will execute
   except:
 
-    html= "ERROR"
+    html= "ERRORE"
 
   return html
 
@@ -281,9 +281,9 @@ def alerts(t):
 
    tmpHelp = t.count('{{a|')
 
-   tmpCorrect = t.count('{{correct')
+   tmpCorrect = t.count('{{correcto')
 
-   tmpCuriosity = t.count('{{curiosity')
+   tmpCuriosity = t.count('{{curiosidad')
 
    tmpDivide = t.count('{{d|') + t.count('{{d}')
 
@@ -295,9 +295,9 @@ def alerts(t):
 
    tmpNN = t.count('{{nn|')  + t.count('{{nn}}')
 
-   tmpRecentism = t.count('{{recentism')
+   tmpRecentism = t.count('{{recienteismo')
 
-   tmpManual = t.count('{{manualstyle')
+   tmpManual = t.count('{{estilomanualístico')
 
    tmpTranslation = t.count('{{t|')  + t.count('{{t}}')
 
@@ -305,11 +305,11 @@ def alerts(t):
 
    tmpStub = t.count('{{s|')  + t.count('{{s}}')
 
-   tmpsectionStub = t.count('{{sectionstub')
+   tmpsectionStub = t.count('{{seccióncorta')
 
    tmpControlCopi = t.count('{{controlcopy')
 
-
+   tmpStub = t.count('{{s|')  + t.count('{{s}}')
 
    sumAlerts = tmpCheck + tmpSummary + tmpHelp + tmpCorrect + tmpCuriosity + tmpDivide + tmpSources + tmpLocalism + tmpPOV
 
@@ -317,9 +317,9 @@ def alerts(t):
 
 
 
-   tmpWithoutSources= t.count('{{withoutsource') + t.count('{{citationrequired') + t.count('{{withoutsource}}') + t.count('{{citationrequired}}')
+   tmpWithoutSources= t.count('{{sinfuente') + t.count('{{citarequerida') + t.count('{{sinfuente}}') + t.count('{{citarequerida}}')
 
-   tmpClarify = t.count('{{clarify') + t.count('{{clarify}}')
+   tmpClarify = t.count('{{aclaraciónrequerida') + t.count('{{[aclaraciónrequerida}}')
 
 
    # return the total count of alerts, the count of instances without sources, and the count of instances needing clarification
@@ -458,19 +458,19 @@ def showcase(text):
 
 
 
-    
+
 # analyze articles
 def analysis():
 
    # Open the "query.csv" file in read mode
-   f = open('query.csv', "r")
+   f = open('query.csv', "r", encoding='utf-8')
 
 # Read all lines from the file into a list
    vox = f.readlines()   
     
    # delete the contents of the file before starting
    
-   results = open('results.txt',"w")
+   results = open('resultati.txt',"w")
    
    # Truncate the "results.txt" file to remove existing content
    results.truncate(0)
@@ -481,7 +481,7 @@ def analysis():
    for article in vox:
       
       # Open the "results.txt" file in append mode
-      results = open('results.txt', 'a')  # open the file in append mode
+      results = open('resultati.txt', 'a')  # open the file in append mode
 
       flag = 1
 
@@ -621,7 +621,7 @@ def analysis():
         if configAlerts:
 
            for i in alerts(wikitext):
-              print("some avisi")
+              # print("some avisi")
               ris = ris + i + "\t"
 
                
