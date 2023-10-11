@@ -119,7 +119,6 @@ def get_avg_pageviews(article, start, end):
       ris = "ERROR"
    return ris
 
-
 # returns visits since the beginning of time, average daily visits since the begininning of time, average daily visits in the specified year
 def visits(article):
 
@@ -133,7 +132,6 @@ def visits(article):
   END_CURRENT_YEAR   = "20230831";  
 
   DATE = []
-
 
   #calculate ris1, total pageviews since the beginning of time, and ris2, average pageviews since de beginning of time
   d1 = datetime.strptime(START_ALL_TIME, "%Y%m%d")
