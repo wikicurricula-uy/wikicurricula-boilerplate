@@ -343,3 +343,43 @@ To fetch a list of articles from the Wikidata API, you can use the Wikidata Quer
             print(f"An unexpected error occurred: {str(e)}")
 
     ```
+
+
+
+
+
+# ⚡️ Implement - and deploy at Toolforge - Wikicurricula for Ghana's national curriculum, with reference to the English Wikipedia.
+
+Wikicurricula-boilerplate aims at supporting the implementations of wikicurricula in several countries and languages. This is a guide on how to do this for Ghana's national Curriculum.
+
+This version of the boilerplate now has a super_bot.py script under the "data-gathering" folder. It is a script that automates running the following processess in parallel:
+
+- Making Api call to fetch data from wikidata (query.py)
+- Running analysis on articles fetched (bot.py)
+- Generating voci_2023.tsv directly into the visualization/assests/data directory.(translate.py)
+
+To run the super_bot.py script, a command line argument is required like this:
+
+```
+python super_bot.py en
+
+#or
+python3 super_bot.py
+
+```
+where "en" is the langauage-code required to be referenced e.g, wikicurricula makes references to Spanish Wikipedia (es) while for ghana, we'll make reference to English Wikipedia. This argument will automatically be used also for running "bot.py" as parameterizing has been implemented to enable the script work with different Wikipedias.
+
+`But before running this command, navigate to the query.py script in the data-gathering folder and ensure you have the right query. Changes can be made to the right SPARQL query.`
+
+On running the super_bot.py script, the required voci_2023.tsv is generated along with the subject.csv file. The voci_2023.tsv  file is used for the visualization at index.html(in this case: ghana.html). Further changes should be made at the following files for a different interface for the new curricula:
+
+1. Index.html (or create a new .html file for visualization)
+2. visualization/assets/scripts/utilities.js 
+    Changes to be made here are:
+    - list of subjects for the new curricula
+    - color application if needed.
+
+3. visualization/assets/scripts/dv1.js
+    - if needed, change the forbidden subject
+4. visualization/assets/img/dv1_legend_b.svg
+    - if subject and color application was changed in (2) above
