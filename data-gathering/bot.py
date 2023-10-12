@@ -182,9 +182,9 @@ def visits(voce):
 
   except:
 
-    ris1 = "ERRO"
+    ris1 = "ERRORE"
 
-    ris2 = "ERRO"
+    ris2 = "ERRORE"
 
   #calculate ris3, average pageviews from previous year
   ris3 = get_avg_pageviews(VOCE, START_PREV_YEAR, END_PREV_YEAR)
