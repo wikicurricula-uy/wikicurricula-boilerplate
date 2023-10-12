@@ -19,98 +19,109 @@ import json
 from datetime import datetime
 
 
-#sottodominio di lingua, da utilizzare per le chiamate API
-lingua = "es"
+#language subdomain, to be used for API calls
+language = "es"
 
-idwikidata = 1
+id_wikidata = 1
+size = 1
+first_edit = 1
 
-dimensione = 1
+notes  =  1
 
-primoEdit = 1
+images  = 1
 
-note         =  1
+display = 1
 
-immagini  = 1
+incipit_size  = 1
 
-visualizzazioni = 1
+discussion_size = 1
 
-dimensioneIncipit = 1
+#discussion page prefix
+discussion = "Discusión:"
+discussionURL = urllib.parse.quote(discussion)
 
-dimensioneDiscussione = 1
-#prefisso della pagina di discussione
-discussione = "Discusión:"
-discussioneURL = urllib.parse.quote(discussione)
+#currently, the notice count does not work for the Spanish Wikipedia
+configAlerts = 1
 
-#de momento, el conteo de avisos no funciona para la wikipedia en español
-configAvvisi = 0
+commonsPage = 1
 
-paginaCommons = 1
-
-galleriaCommons = 1
+commonsGallery = 1
 
 itwikisource = 1
 
-wikiversita = 1
+wikiversity = 1
 
 wikibooks = 1
 
-vetrina = 1
-#vetrina template
-vetrinaTemplate="{{artículo destacado"
+showcase = 1
 
-qualita = 1
-#voce di qualita template
-vdqTemplate="{{artículo bueno"
+#template display
+showcaseTemplate ="{{artículo destacado"
 
-vaglio = 1
+quality = 1
 
-bibliografia = 1
+#"Quality article template
 
-coordinate = 1
+qualityArticleTemplate="{{artículo bueno"
 
+visits = 1
 
-def get_avg_pageviews(voce, start, end):
-  SOMMA = 0;
+bibliography = 1
 
-  try:
+coordinates = 1
 
-    url = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+lingua+".wikipedia/all-access/user/"+voce+"/daily/"+start+"/"+end
+# function fetches the pageviews of an article within a given date range and then calculates the average daily pageviews for that period.
+# Returns either the calculated average daily pageviews as a string or "ERROR" if an exception occurs.
+
+def get_avg_pageviews(article, start, end):
+
+   #params: article: article title, start: start date of the period, end: end date of the period
+   SUM = 0
+
+   try:
+
+      #  query the Wikimedia REST API for pageviews data.
+      url = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+article+"/daily/"+start+"/"+end
    
-    html = urlopen(url).read()
+      html = urlopen(url).read()
 
 
 
-    html = str(html);
+      html = str(html)
 
-    html = html.replace('{"items":[',"")
+      html = html.replace('{"items":[',"")
 
-    html = html.replace(']}',"")
+      html = html.replace(']}',"")
 
-    n = html.count("}")
+      n = html.count("}")
 
 
+      # Calculate the sum of daily pageviews
+      for i in range(n):
 
-    for i in range(n):
+         txt = html[:html.find("}")+1]
 
-       txt = html[:html.find("}")+1]
+         SUM += int(txt[txt.find('"views":')+len('"views":'):-1])
 
-       SOMMA += int(txt[txt.find('"views":')+len('"views":'):-1])
+         html =html.replace(txt,"",1)
 
-       html =html.replace(txt,"",1)
-    
-    d1 = datetime.strptime(start, "%Y%m%d")
-    d2 = datetime.strptime(end, "%Y%m%d")
-    giorni = (abs((d2 - d1).days)+1)
-    ris = str(int(round((SOMMA/giorni),0)))
+      # Determine the number of days in the specified date range.
+      d1 = datetime.strptime(start, "%Y%m%d")
+      d2 = datetime.strptime(end, "%Y%m%d")
+      days = (abs((d2 - d1).days)+1)
+      
+      # average daily pageviews is sum divided number of days
+      ris = str(int(round((SUM/days),0)))
 
-  except:
+      # If an error occurs (e.g., network issues or problems with the API call), catch the exception and set ris to the string "ERROR
+   except:
 
-    ris = "ERRORE"
-  
-  return ris
+      ris = "ERRORE"
+   return ris
 
-# returns visits since the beginning of time, average dayly visits since the begininning of time, average daily visits in the specified year
-def visite(voce):
+
+# returns visits since the beginning of time, average daily visits since the begininning of time, average daily visits in the specified year
+def visits(voce):
 
   #YYYYMMGG
   START_ALL_TIME = "20150701"; 
@@ -129,19 +140,19 @@ def visite(voce):
 
   d2 = datetime.strptime(END_CURRENT_YEAR, "%Y%m%d")
 
-  giorni = (abs((d2 - d1).days)+1)
+  day = (abs((d2 - d1).days)+1)
 
   VOCE = voce.replace(" ","_")
 
-  SOMMA = 0
+  SUM = 0
 
   try:
 
-    url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+lingua+".wikipedia/all-access/user/"+VOCE+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
+    url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+VOCE+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
 
     html = urlopen(url).read()
 
-    ecc = 0 # da cambiare
+    ecc = 0 # to change
 
     if ecc == 0:
 
@@ -159,15 +170,15 @@ def visite(voce):
 
          txt = html[:html.find("}")+1]
 
-         SOMMA += int(txt[txt.find('"views":')+len('"views":'):-1])
+         SUM += int(txt[txt.find('"views":')+len('"views":'):-1])
 
          html =html.replace(txt,"",1)
 
 
 
-      ris1 = str(SOMMA)
+      ris1 = str(SUM)
 
-      ris2 = str(int(round((SOMMA/giorni),0)))
+      ris2 = str(int(round((SUM/day),0)))
 
   except:
 
@@ -187,31 +198,31 @@ def visite(voce):
 
 
 
-
-def nome2Q(item):
+# return the id of an item.
+def name2Q(item):
 
   return item.getID()
 
 
 
 
-
-def note(text):
+# count the number of times '</ref>' appears in a given text and then return the count as a string.
+def notes(text):
 
   return str(text.count('</ref>'))
 
 
 
 
-
-def dimensione(text):
+# determine the length of a text and then return it as a string.
+def dimension(text):
   return str(len(text))
 
 
 
 
-
-def immagini(text):
+# calculates the sum of occurrences of various image file extensions in the lowercase text and then returns the sum as a string.
+def images(text):
 
   t = text.lower()
 
@@ -222,20 +233,25 @@ def immagini(text):
 
 
 
-
-def primoEdit(voce):
+# retrieve the date of the first edit made to a specified article.
+def firstEdit(article):
 
   try:
 
-    url ="https://xtools.wmflabs.org/api/page/articleinfo/"+lingua+".wikipedia.org/"+voce.replace(" ","_")
+   # query the XTools API for information about the specified article.
+    url ="https://xtools.wmflabs.org/api/page/articleinfo/"+language+".wikipedia.org/"+article.replace(" ","_")
+    # 
     html = urlopen(url).read()
 
     html = str(html)
+
+   # extract the creation date of the article and extract the subsequent characters.
 
     html = html[html.find("created_at")+len("created_at")+3:]
 
     html = html[:10]
 
+# Incase of an error (e.g., a network issue, or the article is not found), the code within this block will execute
   except:
 
     html= "ERRORE"
@@ -245,10 +261,11 @@ def primoEdit(voce):
 
 
 
+# The function counts the occurrences of different types of tags and returns the counts.
+def alerts(t):
 
-def avvisi(t):
-
-   t_tmp =t
+# A temporary copy of the original text is created
+   t_tmp = t
 
    t = t.replace("\n","")
 
@@ -257,79 +274,85 @@ def avvisi(t):
    t = t.lower()
 
     
+   #  count the occurrences of various templates or tags related to potential issues or improvement areas
+   tmpCheck = t.count('{{c|') + t.count('{{c}}')
 
-   tmpcotrollare = t.count('{{c|') + t.count('{{c}}')
+   tmpSummary = t.count('{{tmp|')  + t.count('{{tmp}}')
 
-   tmpsinottico = t.count('{{tmp|')  + t.count('{{tmp}}')
+   tmpHelp = t.count('{{a|')
 
-   tmpaiutare = t.count('{{a|')
+   tmpCorrect = t.count('{{correcto')
 
-   tmpcorreggere = t.count('{{correggere')
+   tmpCuriosity = t.count('{{curiosidad')
 
-   tmpcuriosita = t.count('{{curiosit')
+   tmpDivide = t.count('{{d|') + t.count('{{d}')
 
-   tmpdividere = t.count('{{d|') + t.count('{{d}')
+   tmpSources = t.count('{{f|')  + t.count('{{f}}')
 
-   tmpfonti = t.count('{{f|')  + t.count('{{f}}')
-
-   tmplocalismo = t.count('{{l|')  + t.count('{{l}}')
+   tmpLocalism = t.count('{{l|')  + t.count('{{l}}')
 
    tmpPOV = t.count('{{p|')  + t.count('{{p}}')
 
    tmpNN = t.count('{{nn|')  + t.count('{{nn}}')
 
-   tmprecentismo = t.count('{{recentismo')
+   tmpRecentism = t.count('{{recienteismo')
 
-   tmpmanualisitco = t.count('{{stilemanualistico')
+   tmpManual = t.count('{{estilomanualístico')
 
-   tmptraduzione = t.count('{{t|')  + t.count('{{t}}')
+   tmpTranslation = t.count('{{t|')  + t.count('{{t}}')
 
-   tmpwikificare = t.count('{{w|')  + t.count('{{w}}')
+   tmpWikify = t.count('{{w|')  + t.count('{{w}}')
 
-   tmpstub = t.count('{{s|')  + t.count('{{s}}')
+   tmpStub = t.count('{{s|')  + t.count('{{s}}')
 
-   tmpstubsezione = t.count('{{stubsezione')
+   tmpsectionStub = t.count('{{seccióncorta')
 
-   tmpcontrolcopi = t.count('{{controlcopy')
+   tmpControlCopi = t.count('{{controlcopy')
 
+   tmpStub = t.count('{{s|')  + t.count('{{s}}')
 
+   sumAlerts = tmpCheck + tmpSummary + tmpHelp + tmpCorrect + tmpCuriosity + tmpDivide + tmpSources + tmpLocalism + tmpPOV
 
-   sommaavvisi = tmpcotrollare + tmpsinottico + tmpaiutare + tmpcorreggere + tmpcuriosita + tmpdividere + tmpfonti + tmplocalismo + tmpPOV
-
-   sommaavvisi = sommaavvisi + tmpNN + tmprecentismo + tmpmanualisitco + tmptraduzione + tmpwikificare + tmpstub + tmpstubsezione + tmpcontrolcopi
-
-
-
-   tmpsenzafonti = t.count('{{senzafonte') + t.count('{{citazionenecessaria') + t.count('{{senzafonte}}') + t.count('{{citazionenecessaria}}')
-
-   tmpchiarire = t.count('{{chiarire') + t.count('{{chiarire}}')
+   sumAlerts = sumAlerts + tmpNN + tmpRecentism + tmpManual + tmpTranslation + tmpWikify + tmpStub + tmpsectionStub + tmpControlCopi
 
 
 
-   return str(sommaavvisi), str(tmpsenzafonti), str(tmpchiarire)
+   tmpWithoutSources= t.count('{{sinfuente') + t.count('{{citarequerida') + t.count('{{sinfuente}}') + t.count('{{citarequerida}}')
+
+   tmpClarify = t.count('{{aclaraciónrequerida') + t.count('{{[aclaraciónrequerida}}')
+
+
+   # return the total count of alerts, the count of instances without sources, and the count of instances needing clarification
+   return str(sumAlerts), str(tmpWithoutSources), str(tmpClarify)
 
 
 
 
+# extract a specific template from a given text. returns either the modified text (if a template is found) or the original text
+def findtemplate(text):
 
-def trovatemplate(text):
-
+      #  copies of the input text with the first two characters removed.
       tmp = text[2:]
 
       tmp2 = text[2:]
 
+      # include only the portion of text from the beginning to the first occurrence of "}}" plus two characters.
       tmp = tmp[:tmp.find("}}")+2]
 
       if "{{" in tmp:
 
+         # substring of tmp starting from the first occurrence of "{{" to the end.
           tmp3 = tmp[tmp.find("{{"):]
 
+         # replace tmp3 with a placeholder string 
           tmp2 = tmp2.replace(tmp3,"$$$$$$$$$$$$$$")
 
 
+         # include only the portion up to the first occurrence of "}}" plus two characters
 
           tmp2 = tmp2[:tmp2.find("}}")+2]
-
+         
+         # placeholder is replaced back with the original template (tmp3)
           tmp2 = tmp2.replace("$$$$$$$$$$$$$$",tmp3)
 
           return tmp2
@@ -339,17 +362,20 @@ def trovatemplate(text):
 
 
 
-
-def lunghezzaIncipit(text):
+# calculate the length of an introductory part of a text while handling various text manipulations.
+def lengthIncipit(text):
 
    incipit = text
 
+   #  extract the part of the text up to the first occurrence of "\n==" using incipit = incipit[:incipit.find("\n==")].
+
    incipit = incipit[:incipit.find("\n==")]
 
-   ntemplate  =incipit.count('{{')
+   ntemplate  = incipit.count('{{')
 
    incipitclear = incipit
 
+   # Handling '{{formatnum:' Templates:
    fn = incipit.count("{{formatnum:")
 
    for i in range(fn):
@@ -365,23 +391,25 @@ def lunghezzaIncipit(text):
       incipit = incipit.replace(tmp, tmp2)
 
 
-
+   # Handling Other '{{' Templates:
    ntemplate = incipit.count("{{")
 
    for i in range(ntemplate):
 
       text = incipit[incipit.find("{{"):]
 
-      template = trovatemplate(text)
+      template = findtemplate(text)
 
       text = text.replace("{{"+template,"")
 
       incipit = incipit.replace("{{"+template,"")
 
+   # Removing '<ref>' Tags
    incipit = incipit.replace("</ref>","")
 
    n = incipit.count("<ref")
 
+   # Removing '[[' and ']]' Tags, and '|':
    for i in range(n):
 
       tmp = incipit[incipit.find("<ref"):]
@@ -396,16 +424,29 @@ def lunghezzaIncipit(text):
 
    incipit = incipit.replace("|","")
 
+   # Calculating Length:
    lunincipit = len(incipit)
    return str(lunincipit)
 
 
 
 
+#  check whether "qualityArticleTemplate" is present in the provided text
+def qualityArticle(text):
 
-def vdq(text):
+   if qualityArticleTemplate in text.lower():
 
-   if vdqTemplate in text.lower():
+      return "1"
+
+   else:
+
+      return "0"
+
+
+# check whether "showcaseTemplate" is present in the provided text
+def showcase(text):
+
+   if showcaseTemplate in text.lower():
 
       return "1"
 
@@ -415,74 +456,76 @@ def vdq(text):
 
 
 
-def vetrina(text):
-
-   if vetrinaTemplate in text.lower():
-
-      return "1"
-
-   else:
-
-      return "0"
 
 
 
+# analyze articles
+def analysis():
 
+   # Open the "query.csv" file in read mode
+   f = open('query.csv', "r", encoding='utf-8')
 
-    
-
-def analisi():
-   f = open('query.csv', "r")
-
+# Read all lines from the file into a list
    vox = f.readlines()   
     
-   # eliminare il contenuto del file prima di iniziare
-   resultati = open('resultati.txt',"w")
-   resultati.truncate(0)
-   resultati.close()
+   # delete the contents of the file before starting
+   
+   results = open('resultati.txt',"w")
+   
+   # Truncate the "results.txt" file to remove existing content
+   results.truncate(0)
+   
+   results.close()
 
-   for voce in vox:
+# Iterate through each article in the list of articles
+   for article in vox:
       
-      resultati = open('resultati.txt', 'a')  # aprire il file in modalità di aggiunta
+      # Open the "results.txt" file in append mode
+      results = open('resultati.txt', 'a')  # open the file in append mode
 
       flag = 1
 
-      voce = voce[:-1]
+      # Remove the newline character at the end of the article
+      article = article[:-1]
 
-      voce = voce.replace(" ","_")
+      # Replace spaces in the article title with underscores
+      article = article.replace(" ","_")
 
       ris = ""
 
       wikitext = ""
 
 
-
-      voce2 = urllib.parse.quote(voce)
-
-      voce = voce.replace(" ","_")
+      # Replace spaces in the article title with underscores and quote the article
+      article2 = urllib.parse.quote(article)
+      article = article.replace(" ","_")
 
 
       try:
 
-        url = "https://"+lingua+".wikipedia.org/w/api.php?action=parse&page=" + voce2 + "&prop=wikitext&formatversion=2&format=json"
-
+         # Construct the Wikipedia API URL for parsing wikitext
+        url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
+      
+      # Open the URL and load JSON data
         json_url = urlopen(url)
 
         data = json.loads(json_url.read())
-
+      
+      # Extract wikitext from the JSON response
         wikitext = data["parse"]["wikitext"]
 
-        if "#RINVIA"  in wikitext:
+      # If the article is a redirect, update the article title
+        if "#REDIRECT"  in wikitext:
 
      #   print (wikitext)
 
-          voce2 = wikitext[wikitext.find("[[")+2:]
+          article2 = wikitext[wikitext.find("[[")+2:]
 
-          voce2 = voce2[:voce2.find("]]")]
+          article2 = article2[:article2.find("]]")]
 
-          voce = voce2
+          article = article2
 
-          voce2 = voce2.replace("_"," ")
+          article2 = article2.replace("_"," ")
 
       except:
 
@@ -490,18 +533,21 @@ def analisi():
 
       try:
 
-        voce2 = urllib.parse.quote(voce)
+        article2 = urllib.parse.quote(article)
 
-        voce = voce.replace(" ","_")
+        article = article.replace(" ","_")
 
-        url = "https://"+lingua+".wikipedia.org/w/api.php?action=query&titles=" + voce2 +"&prop=pageprops&format=json&formatversion=2"
+      # Construct the Wikipedia API URL for querying page properties
+        url = "https://"+language+".wikipedia.org/w/api.php?action=query&titles=" + article2 +"&prop=pageprops&format=json&formatversion=2"
 
         json_url = urlopen(url)
 
         data = json.loads(json_url.read())
 
+         # Extract Wikidata ID from the JSON response
         wikidataid = data["query"]["pages"][0]["pageprops"]["wikibase_item"]
 
+      # Construct the Wikidata API URL for retrieving entity data
         url ="https://www.wikidata.org/wiki/Special:EntityData/"+wikidataid+".json"
 
         json_url = urlopen(url)
@@ -509,8 +555,8 @@ def analisi():
         wikidata = json.loads(json_url.read())
 
 
-
-        url = "https://"+lingua+".wikipedia.org/w/api.php?action=parse&page=" + voce2 + "&prop=wikitext&formatversion=2&format=json"
+      # Construct the Wikipedia API URL for parsing wikitext again
+        url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
 
         json_url = urlopen(url)
 
@@ -522,96 +568,97 @@ def analisi():
 
         try:
 
-          url = "https://"+lingua+".wikipedia.org/w/api.php?action=parse&page=" + discussioneURL + voce2 + "&prop=wikitext&formatversion=2&format=json"
+          url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + discussionURL + article2 + "&prop=wikitext&formatversion=2&format=json"
           json_url = urlopen(url)
 
           data = json.loads(json_url.read())
 
-          wikitext_discussione = data["parse"]["wikitext"]
+          wikitext_discussion = data["parse"]["wikitext"]
 
         except:
 
-          wikitext_discussione = ""
+          wikitext_discussion = ""
 
 
 
-        ris = ris + voce + "\t"
-
+        ris = ris + article + "\t"
+        
+      # Append article and Wikidata ID to the 'ris' string
         ris = ris + wikidataid + "\t"
 
       except:
 
-        ris = ris + voce +"\t" +"Voce inesistente"
+        ris = ris + article +"\t" +"non-existent article"
 
        
 
       else:
 
-        if primoEdit:
+        if firstEdit:
 
-           ris = ris + primoEdit(voce2) + "\t"
-
-
-
-        if dimensione:
-
-           ris = ris + dimensione(wikitext) + "\t"
+           ris = ris + firstEdit(article2) + "\t"
 
 
 
-        if immagini:
+        if size:
 
-           ris = ris + immagini(wikitext) + "\t"
+           ris = ris + dimension(wikitext) + "\t"
 
 
 
-        if note:
+        if images:
 
-           ris = ris + note(wikitext) + "\t"
+           ris = ris + images(wikitext) + "\t"
+
+
+
+        if notes:
+
+           ris = ris + notes(wikitext) + "\t"
 
            
 
-        if configAvvisi:
+        if configAlerts:
 
-           for i in avvisi(wikitext):
-              print("some avisi")
+           for i in alerts(wikitext):
+              # print("some avisi")
               ris = ris + i + "\t"
 
                
 
-        if dimensioneDiscussione:
+        if discussion_size:
 
-           ris = ris + dimensione(wikitext_discussione) + "\t"
+           ris = ris + dimension(wikitext_discussion) + "\t"
 
 
 
-        if dimensioneIncipit:
+        if incipit_size:
 
-           ris = ris + lunghezzaIncipit(wikitext) + "\t"
+           ris = ris + lengthIncipit(wikitext) + "\t"
 
            
 
-        if visite:
+        if visits:
 
-           for i in visite(voce2):
+         for i in visits(article2):
 
               ris = ris + i + "\t"
 
 
 
-        if vdq:
+        if qualityArticle:
 
-           ris = ris + vdq(wikitext) + "\t"
-
-
-
-        if vetrina:
-
-           ris = ris + vetrina(wikitext) + "\t"
+           ris = ris + qualityArticle(wikitext) + "\t"
 
 
 
-        if galleriaCommons:
+        if showcase:
+
+           ris = ris + showcase(wikitext) + "\t"
+
+
+
+        if commonsGallery:
 
            try:
 
@@ -623,7 +670,7 @@ def analisi():
 
 
 
-        if paginaCommons:
+        if  commonsPage:
 
            try:
 
@@ -647,7 +694,7 @@ def analisi():
 
 
 
-        if coordinate:
+        if coordinates:
 
            try:
 
@@ -659,15 +706,18 @@ def analisi():
 
               ris = ris + "\t" + "\t"
 
-      resultati.write(ris + "\n")  # aggiungere un salto di linea dopo ogni risultato
-      resultati.close()  # chiudere il file
+      
+      results.write(ris.encode('utf-8', 'ignore').decode('utf-8') + "\n")
+  # add a line break after each result
+      
+      results.close()  # close the file
       print (ris)
 
      
 
 def main():
 
-   analisi()
+   analysis()
 
 
 
