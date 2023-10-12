@@ -217,6 +217,53 @@ Now that you have the two(2) required accounts, follow the steps to deploy"
 
 A practice on migrating Uruguay's Wikicurricula from it's current hosting (Github Pages) to Toolforge was done and can be found at: <https://tools-static.wmflabs.org/wikicurricula-uy/wikicurricula-uy.github.io/index.html>
 
+## Make a Local Installation of the Wikicurricula Boilerplate on your Computer
+
+-   Go to the Wikicurricula Boilerplate GitHub repository
+-   Fork the repository
+-   Open up your terminal or command prompt
+-   Navigate to the directory where you want to store the project.
+-   Run the following command to clone the repository to your computer: `git clone repository-url`
+-   Wait for it to clone the repository and when it is done, you'll see wikicurricula bolierplate folders on your system.
+
+## Start Contributing
+
+-   Do a `cd wikicurricula-boilerplate` to navigate to the boilerplate on your terminal
+-   To contribute to the project or work on any task, you'll need to create a new branch. Use the `git checkout -b branch-name` command to create and switch to the newly created branch. Replace 'branch-name' with the name of your branch.
+-   Now you'll need to open up the local instance of the visualization on your web browser. To do this, open the index.html located in the 'visualization' folder of the project in your IDE, right-click on any part of the interface, and choose the 'Open in Default Browser' option or the 'Open with Live Server' option. This will open up the visualization in your web browser and will display a page like this:
+    ![Local instance of the visualization on a web browser](wikicurricula-visualization.png)
+-   To open up the other visualizations in your web browser, go to the folder titled 'autori' and locate the index.html file and use the above step to view it in your web browser. Do the same for the 'avvisi' folder.
+-   After working on any task and you're ready to send it in for review, do a `git add .`.
+-   Next, run the `git commit -m 'commit message"` to commit the changes.
+-   Push the changes from your branch by using the `git push -u origin branch-name` command.
+-   Now if you go to your forked repo on your GitHub, you'll see the branch that was pushed with the changes you worked on.
+-   Click the "Compare and pull request" button. The next page that opens up, click on the "Create pull request" button.
+-   Now you've succesfully created a pull request.
+-   The project maintainers will review your work and merge it to the main branch of the project repo if it's satisfactory or give you feedback where necessary.
+
+# Documentation on how to feed the visualization with data from a new curriculum
+
+This is a detailed step-by-step guide on how to feed the visualization with data from a new curriculum.
+Before going into that, you'll need to learn how to build and run the Wikidata query.
+
+## Building and running the Ghana curriculum wikidata query
+
+-   Obtain the wikidata query. This has already been provided [here](https://w.wiki/7Zge).
+
+-   When it opens up, you'll see a page as shown in the image below:
+    ![Ghana Curriculum Wikidata Query](Wikidata-Query.png)
+    This wikidata curriculum provides the SPARQL to extract structured data and the Wikidata Query needed to retrieve the specific curriculum data has already been provided. Now, you'll need to execute the query.
+
+-   To execute the query, click on the 'run' button/icon on the left-hand sidebar of the page. This will retrieve and display the curriculum data in tabular format at the bottom of the page, like so:
+    ![Execute Ghana Curriculum Wikidata Query](Execute-Wikidata-Query.png)
+    NB: Tabular format is the default format for displaying the data but it can also be displayed in other formats like Graph builder, Line chart, Bar chart, Area chart, tree map, and so on. To change the display form, click on the "Table" dropdown located at the header of the terminal the data is being displayed in. Select the format you want it displayed in.
+
+-   After executing the query and retriveing the data, you can download or export the results in vaious formats like JSON, CSV, TSV, or HTML. Click on the "Download" dropdown located at the header of the table format where the curriculum data is being displayed. Select the "CSV file" option and wait for it to download.
+
+-   Rename it if you must and then import it into the 'data-gathering' folder of wikicurricula-boilerplate project in your editor.
+
+## Feeding the Visualization with Data from the New Curriculum
+
 # 📜How to Implement - and deploy at Toolforge - Wikicurricula for Ghana's national curriculum, with reference to the English Wikipedia
 
 One of goals of Wikimedia is to enhance the educational experience of students by making sure that the information available on platforms like Wikicurricula corresponds to what students are studying in their classrooms, fostering a harmonious and supportive learning environment. To do so, Wikimedia stores schools' curricula data in a large database called Wikidata and then allows students, editors,teachers to interact with the data through an interface known as Wikicurricula.
