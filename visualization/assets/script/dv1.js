@@ -88,6 +88,7 @@ function dv1(year, the_subject, sort) {
 	d3.tsv("assets/data/voci_" + year + ".tsv").then(loaded);
 
 	function loaded(data) {
+		console.log("dara", data);
 		// load data
 		let total = 0;
 		let subject_articles = [];
@@ -126,6 +127,7 @@ function dv1(year, the_subject, sort) {
 		});
 
 		filtered_data.forEach(function (d, i) {
+			console.log("d", d);
 			total += 1;
 			d.article = d.article.replace(/_/g, " ");
 			d.size = +d.size;
@@ -140,6 +142,9 @@ function dv1(year, the_subject, sort) {
 			d.issues_prev = +d.issues_prev;
 			d.images_prev = +d.images_prev;
 			d.incipit_prev = +d.incipit_prev;
+			d.issue_sourceNeeded = +d.issue_sourceNeeded;
+			d.issues = +d.issues;
+			d.issue_clarify = +d.issue_clarify;
 
 			if (d.avg_pv_prev !== "-") {
 				d.avg_pv_prev = +d.avg_pv_prev;
@@ -166,7 +171,10 @@ function dv1(year, the_subject, sort) {
 					d.images,
 					d.images_prev,
 					d.incipit_size,
-					d.incipit_prev
+					d.incipit_prev,
+					d.issue_clarify,
+					d.issue_sourceNeeded,
+					d.issues
 				);
 			}
 		});
@@ -337,13 +345,12 @@ function dv1(year, the_subject, sort) {
 					"</p><table>";
 
 				content +=
-					"<tr><td class='label'>publication</td><td class='value'>" +
+					"<tr><td class='label'>publicación</td><td class='value'>" +
 					format_date(d.first_edit) +
 					"</td><td></td></tr>";
-
 				// avg daily visits
 				content +=
-					"<tr><td class='label'>daily visits</td><td class='value'>" +
+					"<tr><td class='label'>visitas diarias</td><td class='value'>" +
 					d.avg_pv.toLocaleString();
 				if (d.avg_pv_prev !== "-") {
 					let diff_pv = d.avg_pv - d.avg_pv_prev;
@@ -373,7 +380,7 @@ function dv1(year, the_subject, sort) {
 
 				//size
 				content +=
-					"<tr><td class='label'>size</td><td class='value'>" +
+					"<tr><td class='label'>tamaño</td><td class='value'>" +
 					d.size.toLocaleString();
 				if (year != starting_year) {
 					let diff_size = d.size - d.size_prev;
@@ -400,7 +407,7 @@ function dv1(year, the_subject, sort) {
 
 				// discussion
 				content +=
-					"<tr><td class='label'>discussion</td><td class='value'>" +
+					"<tr><td class='label'>discusión</td><td class='value'>" +
 					d.discussion_size.toLocaleString();
 				if (year != starting_year) {
 					let diff_discussion = d.discussion_size - d.discussion_prev;
@@ -427,7 +434,7 @@ function dv1(year, the_subject, sort) {
 
 				// incipit
 				content +=
-					"<tr><td class='label'>introduction</td><td class='value'>" +
+					"<tr><td class='label'>introducción</td><td class='value'>" +
 					d.incipit_size.toLocaleString();
 				if (year != starting_year) {
 					let diff_incipit = d.incipit_size - d.incipit_prev;
@@ -454,7 +461,7 @@ function dv1(year, the_subject, sort) {
 
 				// referencias
 				content +=
-					"<tr><td class='label'>references</td><td class='value'>" +
+					"<tr><td class='label'>referencias</td><td class='value'>" +
 					d.notes.toLocaleString();
 				if (year != starting_year) {
 					let diff_notes = d.notes - d.notes_prev;
@@ -479,9 +486,48 @@ function dv1(year, the_subject, sort) {
 					}
 				}
 
+				// issues
+				content +=
+					"<tr><td class='label'>asuntos</td><td class='value'>" +
+					d.issues.toLocaleString();
+				if (year != starting_year) {
+					let diff_issues = d.issues - d.issues_prev;
+					if (diff_issues > 0) {
+						content +=
+							"<td class='value decrease'>(" +
+							/* d.issues_prev + " " + */ variation_perc(
+								d.issues,
+								d.issues_prev,
+								"issues"
+							) +
+							")</td></tr>";
+					} else {
+						content +=
+							"<td class='value increase'>(" +
+							/* d.issues_prev + " " + */ variation_perc(
+								d.issues,
+								d.issues_prev,
+								"issues"
+							) +
+							")</td></tr>";
+					}
+				}
+
+				// source needed
+				content +=
+					"<tr><td class='label'>cita requerida</td><td class='value'>" +
+					d.issue_sourceNeeded;
+				+"</td><td></td></tr>";
+
+				// need clarification
+				content +=
+					"<tr><td class='label'>aclaración necesaria</td><td class='value'>" +
+					d.issue_clarify;
+				+"</td><td></td></tr>";
+
 				// images
 				content +=
-					"<tr><td class='label'>images</td><td class='value'>" +
+					"<tr><td class='label'>imágenes</td><td class='value'>" +
 					d.images.toLocaleString();
 				if (year != starting_year) {
 					let diff_images = d.images - d.images_prev;
@@ -850,6 +896,8 @@ function dv1(year, the_subject, sort) {
 				d.incipit_size = +d.incipit_size;
 				d.issues = +d.issues;
 				d.images = +d.images;
+				d.issue_clarify = +d.issue_clarify;
+				d.issue_sourceNeeded = +d.issue_sourceNeeded;
 
 				d.days = +d.days;
 				d.avg_pv = +d.avg_pv;
@@ -1268,7 +1316,8 @@ function dv1(year, the_subject, sort) {
 				d.article = d.article.replace(/_/g, " ");
 				d.size = +d.size;
 				d.images = +d.images;
-
+				d.issue_clarify = +d.issue_clarify;
+				d.issue_sourceNeeded = +d.issue_sourceNeeded;
 				d.days = +d.days;
 				d.avg_pv = +d.avg_pv;
 				d.avg_pv_prev = +d.avg_pv_prev;

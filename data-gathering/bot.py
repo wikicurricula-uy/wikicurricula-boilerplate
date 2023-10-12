@@ -41,7 +41,7 @@ discussion = "Discusión:"
 discussionURL = urllib.parse.quote(discussion)
 
 #currently, the notice count does not work for the Spanish Wikipedia
-configAlerts = 0
+configAlerts = 1
 
 commonsPage = 1
 
@@ -458,7 +458,7 @@ def showcase(text):
 
 
 
-    
+
 # analyze articles
 def analysis():
 
@@ -707,7 +707,8 @@ def analysis():
               ris = ris + "\t" + "\t"
 
       
-      results.write(ris + "\n")  # add a line break after each result
+      results.write(ris.encode('utf-8', 'ignore').decode('utf-8') + "\n")
+  # add a line break after each result
       
       results.close()  # close the file
       print (ris)

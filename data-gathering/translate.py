@@ -32,7 +32,7 @@ def create_subject_mapping(file_path):
 subject_map = create_subject_mapping("subjects.csv");
 
 # Open the input file
-with open('resultati.txt', 'r', encoding='utf-8') as input_file:
+with open('resultati.txt', 'r', encoding='latin-1') as input_file:
 
     input_header = [
         'article',
@@ -41,6 +41,9 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
         'size',
         'images',
         'notes',
+        'issues',
+        'issue_sourceNeeded',
+        'issue_clarify',
         'discussion_size',
         'incipit_size',
         'all_visits',
@@ -79,10 +82,10 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
             'incipit_size': row['incipit_size'],
             'incipit_on_size': get_incipit_on_size(row['incipit_size'],row['size']),
             'incipit_prev': '-',
-            'issues': '0',
+            'issues': row['issues'],
             'issues_prev': '-',
-            'issue_sourceNeeded': '0',
-            'issue_clarify': '0',
+            'issue_sourceNeeded': row['issue_sourceNeeded'],
+            'issue_clarify': row['issue_clarify'],
             'discussion_size': row['discussion_size'],
             'discussion_prev': '-',
             'first_edit': row['first_edit'],
@@ -97,7 +100,7 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
         rows.append(new_row)
         
 # Open the output file and write the reordered rows
-    with open('voci_2023.tsv', 'a', encoding='utf-8', newline='') as output_file:
+    with open('../visualization/assets/data/voci_2023.tsv', 'a', encoding='utf-8', newline='') as output_file:
             writer = csv.DictWriter(output_file, fieldnames=new_row.keys(), delimiter='\t')
             writer.writeheader()
             writer.writerows(rows)
