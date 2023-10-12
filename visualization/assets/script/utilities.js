@@ -1,23 +1,25 @@
 function apply_color(subject){
+	//can edit to chang colors
+	
 	let color;
-
-	//Ciencias sociales y humanidades
-	if (subject == "Historia" || subject == "Formación para la ciudadanía" || subject == "Geografía") {
+	
+	//Social sciences and humanities
+	if (subject == "Social Studies" || subject == "Training for citizenship" || subject == "Geography") {
 		color = "#ef95c4"; //"#eeb4ee";
 	}
-	//Técnico-tecnológico
-	else if (subject == "Ciencias de la computación" || subject == "Tecnologías"){
+	//Technical-technological
+	else if (subject == "Computing" || subject == "Technologies"){
 		color = "#3a34e0"; // "blue";
 	}
-	//Comunicación y Arte
-	else if (subject == "Comunicación visual" || subject == "Comunicación y sociedad" || subject == "Diseño" || subject == "Educación musical" || subject == "Lengua española" || subject == "Literatura"){
+	//Communication and Art
+	else if (subject == "Visual comunication" || subject == "Communication and society" || subject == "Design" || subject == "Musical education" || subject == "English Language" || subject == "Literature"){
 		color = "#00b2ff";
 	}
-	//Espacio de desarrollo personal y conciencia corporal y espacio de autonomía curricular
-	else if (subject == "Educación física y recreación" || subject == "Salud y sexualidad"){
+	// Space for personal development and body awareness and space for curricular autonomy
+	else if (subject == "Physical education and recreation" || subject == "Health and sexuality"){
 		color = "#f4d365";
 	}
-	//Espacio científico matemático
+	//Mathematical scientific space
 	else {
 		color = "green";
 	}
@@ -64,24 +66,11 @@ function variation_perc(now,prev,parameter){
 
 const subjects = [
 	"all",
-	"Biología",
-	"Ciencias de la computación",
-	"Ciencias físico-químicas",
-	"Comunicación visual",
-	"Comunicación y sociedad",
-	"Diseño",
-	"Educación física y recreación",
-	"Educación musical",
-	"Física",
-	"Formación para la ciudadanía",
-	"Geografía",
-	"Historia",
-	"Lengua española",
-	"Literatura",
-	"Matemática",
-	"Química",
-	"Salud y sexualidad",
-	"Tecnologías"
+	"Social Studies",
+	"English Language",
+	"Mathematics",
+	"Computing",
+	"Science"
 ]
 
 const starting_year = 2023;

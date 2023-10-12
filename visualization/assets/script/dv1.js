@@ -293,7 +293,7 @@ function dv1(year,the_subject,sort) {
 			.attr("transform","translate(7," + height + ")")
 
 		let yaxis_label = yaxis_label_box.append("text")
-			.text("visitas diarias (promedio)")
+			.text("daily visits (average)")
 			.attr("y",-6)
 			.attr("font-size",font_size)
 
@@ -321,10 +321,10 @@ function dv1(year,the_subject,sort) {
 			.html(function(d,i) {
                 let content = "<p style='font-weight: bold; margin: 0 0 10px 3px;'>" + d.article +"</p><table>";
 
-                content += "<tr><td class='label'>publicación</td><td class='value'>" + format_date(d.first_edit) + "</td><td></td></tr>"
+                content += "<tr><td class='label'>publication</td><td class='value'>" + format_date(d.first_edit) + "</td><td></td></tr>"
 
                 // avg daily visits
-                content += "<tr><td class='label'>visitas diarias</td><td class='value'>" + d.avg_pv.toLocaleString()
+                content += "<tr><td class='label'>daily visits</td><td class='value'>" + d.avg_pv.toLocaleString()
             	if (d.avg_pv_prev !== "-"){
 	            	let diff_pv = d.avg_pv - d.avg_pv_prev
 	            	if (diff_pv > 0){
@@ -337,7 +337,7 @@ function dv1(year,the_subject,sort) {
            		}
 
                 //size
-                content += "<tr><td class='label'>tamaño</td><td class='value'>" + d.size.toLocaleString()
+                content += "<tr><td class='label'>size</td><td class='value'>" + d.size.toLocaleString()
         		if(year != starting_year){
         			let diff_size = d.size - d.size_prev
 	            	if (diff_size > 0){
@@ -349,7 +349,7 @@ function dv1(year,the_subject,sort) {
 	            }
 
             	// discussion
-            	content += "<tr><td class='label'>discusión</td><td class='value'>" + d.discussion_size.toLocaleString()
+            	content += "<tr><td class='label'>discussion</td><td class='value'>" + d.discussion_size.toLocaleString()
             	if(year != starting_year){
             		let diff_discussion = d.discussion_size - d.discussion_prev
 	            	if (diff_discussion > 0){
@@ -361,7 +361,7 @@ function dv1(year,the_subject,sort) {
             	}
 
             	// incipit
-            	content += "<tr><td class='label'>introducción</td><td class='value'>" + d.incipit_size.toLocaleString()
+            	content += "<tr><td class='label'>introduction</td><td class='value'>" + d.incipit_size.toLocaleString()
             	if(year != starting_year){
             		let diff_incipit = d.incipit_size - d.incipit_prev
 	            	if (diff_incipit > 0){
@@ -373,7 +373,7 @@ function dv1(year,the_subject,sort) {
             	}
 
             	// referencias
-            	content += "<tr><td class='label'>referencias</td><td class='value'>" + d.notes.toLocaleString()
+            	content += "<tr><td class='label'>reference</td><td class='value'>" + d.notes.toLocaleString()
             	if(year != starting_year){
             		let diff_notes = d.notes - d.notes_prev
 	            	if (diff_notes > 0){
@@ -385,7 +385,7 @@ function dv1(year,the_subject,sort) {
             	}
 
 				// images
-				content += "<tr><td class='label'>imágenes</td><td class='value'>" + d.images.toLocaleString()
+				content += "<tr><td class='label'>images</td><td class='value'>" + d.images.toLocaleString()
             	if(year != starting_year){
             		let diff_images = d.images - d.images_prev
 	            	if (diff_images > 0){
