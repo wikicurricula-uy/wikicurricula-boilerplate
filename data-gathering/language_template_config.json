@@ -115,7 +115,7 @@
         ],
         "wikificare": [
             "{{wikificare|",
-            "{{wikificarw}}"
+            "{{wikificare}}"
         ],
         "stub": [
             "{{stub|",
@@ -148,14 +148,14 @@
             "{{a|"
         ],
         "correct": [
-            "correggere"
+            "correggir"
         ],
         "curiosity": [
-            "{{curiosit"
+            "{{curiosidad"
         ],
         "divide": [
-            "{{d|",
-            "{{d}}"
+            "{{dividir|",
+            "{{dividir}}"
         ],
         "sources": [
             "{{f|",
@@ -174,38 +174,38 @@
             "{{nn}}"
         ],
         "recentism": [
-            "{{recienteismo"
+            "{{reciente'"
         ],
         "manual_style": [
-            "{{stilemanualistico"
+            "{{estilomanual"
         ],
         "translation": [
-            "{{t|",
-            "{{t}}"
+            "{{traducción'|",
+            "{{traducción}}"
         ],
         "wikificare": [
-            "{{w|",
-            "{{w}}"
+            "{{wikificar|",
+            "{{wikificar}}"
         ],
         "stub": [
             "{{s|",
             "{{s}}"
         ],
         "stub_section": [
-            "{{stubsezione"
+            "{{stubseccion"
         ],
         "copy_control": [
             "{{controlcopy"
         ],
         "without_sources": [
-            "{{senzafonte",
-            "{{citazionenecessaria",
-            "{{citazionenecessaria}}",
-            "{{senzafonte}}"
+            "{{sinreferencias",
+            "{{citarequerida",
+            "{{cita requerida}}",
+            "{{sinreferencias}}"
         ],
         "clarify": [
-            "{{chiarire",
-            "{{chiarire}}"
+            "{{aclarar",
+            "{{aclarar}}"
         ]
     },
     "it": {

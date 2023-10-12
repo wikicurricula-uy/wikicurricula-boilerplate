@@ -1,6 +1,5 @@
 {
     "es": {
-        "file_to_be_analysed": "query.csv",
         "language": "es",
         "utf_required": "utf-8",
         "id_wikidata": 1,
@@ -27,7 +26,6 @@
         "display_window_template": "{{artículo bueno"
     },
     "it": {
-        "file_to_be_analysed": "query.csv",
         "language": "it",
         "utf_required": "utf-8",
         "id_wikidata": 1,
@@ -55,7 +53,6 @@
     },
     "en": {
         "language": "en",
-        "file_to_be_analysed": "default.csv",
         "utf_required": "utf-8",
         "id_wikidata": 1,
         "dimension": 1,
@@ -82,7 +79,6 @@
     },
     "tw": {
         "language": "en",
-        "file_to_be_analysed": "extracts.csv",
         "utf_required": "utf-8",
         "id_wikidata": 1,
         "dimension": 1,
