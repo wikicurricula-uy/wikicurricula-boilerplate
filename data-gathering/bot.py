@@ -42,7 +42,7 @@ discussion = "Discussion:"
 discussionURL = urllib.parse.quote(discussion)
 
 #At the moment, the notice count does not work for Wikipedia in Spanish
-configNotices = 0
+configAlerts = 0
 
 commonPages = 1
 
