@@ -1,5 +1,6 @@
 #this script translates results.txt into a file that is readable by wikicurricula or wikiscuola visualization tool
 import csv
+import os
 from datetime import datetime
 
 def get_days_between(start_date_str, end_date_str):
@@ -21,7 +22,7 @@ def create_subject_mapping(file_path):
         header = next(reader, None)
 
         for row in reader:
-            id_subject_map[row[0]] = row[1]
+            id_subject_map[row[0]] = row[1].strip()
 
     return id_subject_map
 
@@ -46,9 +47,9 @@ with open('results.txt', 'r', encoding='utf-8') as input_file:
         'avg_pv',
         'vetrina',
         'VdQ',
-        'galleria_su_Commons',
-        'pagina_su_commons',
-        'pagina_su_wikisource'
+        'common_gallery',
+        'common_pages',
+        'page_on_wikisource'
     ]
     
     reader = csv.DictReader(input_file, fieldnames=input_header, delimiter='\t')
@@ -87,16 +88,21 @@ with open('results.txt', 'r', encoding='utf-8') as input_file:
             'all_visits': row['all_visits'],
             'VdQ': row['VdQ'],
             'vetrina': row['vetrina'],
-            'galleria_su_Commons': row['galleria_su_Commons'],
-            'pagina_su_commons': row['pagina_su_commons'],
-            'pagina_su_wikisource': row['pagina_su_wikisource']
+            'common_gallery': row['common_gallery'],
+            'common_pages': row['common_pages'],
+            'page_on_wikisource': row['page_on_wikisource']
         }
         rows.append(new_row)
 
-# Open the output file and write the reordered rows
-with open('voci_2023.tsv', 'w', encoding='utf-8', newline='') as output_file:
-    pass  # This line clears the content of the file
+# Define the file path using an absolute path
+file_path = os.path.abspath('../visualization/assets/data/voci_2023.tsv')
 
+# Open the file in write mode with encoding and newline settings
+with open(file_path, 'w', encoding='utf-8', newline='') as output_file:
+    
+    output_file.truncate(0) # This line clears the content of the file
+
+     
     writer = csv.DictWriter(output_file, fieldnames=new_row.keys(), delimiter='\t')
     writer.writeheader()
     writer.writerows(rows)

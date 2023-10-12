@@ -91,8 +91,12 @@ def get_id_and_subjects(results):
 
         for result in results:
             id_wikidata = result.get("qid", {}).get("value", "")
-            material = result.get("programLabel", {}).get("value", "").split("Curriculum")
-            
+            material = result.get("programLabel", {}).get("value", "")
+            # material = result.get("programLabel", {}).get("value", "")
+            if "Curriculum" in material:
+                material = material.split("Curriculum")[0]
+
+                        
             if "Science" in material:
                 material = "Science"
             
@@ -102,3 +106,4 @@ if __name__ == "__main__":
     query_result = fetch_data(language_code)
     get_articles(query_result)
     get_id_and_subjects(query_result)
+    
