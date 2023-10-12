@@ -6,7 +6,7 @@ We want to be able to retrieve information about specific entities related to Ur
 ## Building and running the Uruguay curriculum wikidata query
 
 - When it opens up, you'll see a page as shown in the image below:
-![Ghana Curriculum Wikidata Query](Wikidata-Query.png) 
+![Uruguay Curriculum Wikidata Query](Wikidata-Query.png) 
  This wikidata curriculum provides the SPARQL to extract structured data and the Wikidata Query needed to retrieve the specific curriculum data has already been provided. Now, you'll need to execute the query.
 
 
