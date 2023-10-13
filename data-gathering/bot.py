@@ -49,8 +49,8 @@ def main():
    discussion_size = language_config.get("discussion_size")
    discussionURL = language_config.get("discussionURL")
    warnings_config = language_config.get("warnings_config")
-   common_pages = language_config.get("common_pages")
-   common_gallery = language_config.get("common_gallery")
+   commons_pages = language_config.get("commons_pages")
+   commons_gallery = language_config.get("commons_gallery")
    itwikisource = language_config.get("itwikisource")
    wikiversity = language_config.get("wikiversity")
    wikibooks = language_config.get("wikibooks")
@@ -64,7 +64,7 @@ def main():
 
 
    analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
-      incipit_size, common_gallery,common_pages, itwikisource, coordinate, featured_template)
+      incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template)
    
 
 
@@ -226,7 +226,6 @@ def warnings(t):
 
    tmp_to_check = sum(t.count(template) for template in language_config.get("to_check"))
    tmp_synoptic = sum(t.count(template) for template in language_config.get("synoptic"))
-   tmp_help = sum(t.count(template) for template in language_config.get("help"))
    tmp_correct = sum(t.count(template) for template in language_config.get("correct"))
    tmp_curiosity = sum(t.count(template) for template in language_config.get("curiosity"))
    tmp_divide = sum(t.count(template) for template in language_config.get("divide")) 
@@ -242,7 +241,7 @@ def warnings(t):
    tmp_stub_section = sum(t.count(template) for template in language_config.get("stub_section"))
    tmp_copy_control = sum(t.count(template) for template in language_config.get("copy_control"))
 
-   sum_of_warnings = tmp_to_check + tmp_synoptic + tmp_help + tmp_correct + tmp_curiosity + tmp_divide + tmp_sources + tmp_localism + tmp_pov
+   sum_of_warnings = tmp_to_check + tmp_synoptic + tmp_correct + tmp_curiosity + tmp_divide + tmp_sources + tmp_localism + tmp_pov
    sum_of_warnings += tmp_nn + tmp_recentism + tmp_manual_style + tmp_translation + tmp_wikificare + tmp_stub + tmp_stub_section + tmp_copy_control
 
 
@@ -341,7 +340,7 @@ def featured_in(text, featured_template):
     
 # Main analysis function
 def analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
-      incipit_size, common_gallery,common_pages, itwikisource, coordinate, featured_template):
+      incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template):
    
    # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
    f = open('article_name.csv', 'r', encoding= utf_required )  #change this to file to read as an option from users
@@ -484,7 +483,7 @@ def analysis(language, file_to_be_analysed, utf_required, display_window_templat
 
 
 
-         if common_gallery:
+         if commons_gallery:
             try:
                result = result + wikidata["entities"][wikidataid]["claims"]["P373"][0]["mainsnak"]["datavalue"]["value"] + "\t"
             except:
@@ -493,7 +492,7 @@ def analysis(language, file_to_be_analysed, utf_required, display_window_templat
 
 
 
-         if common_pages:
+         if commons_pages:
             try:
                result = result + wikidata["entities"][wikidataid]["claims"]["P935"][0]["mainsnak"]["datavalue"]["value"] + "\t"
 
