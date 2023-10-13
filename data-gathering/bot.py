@@ -344,7 +344,7 @@ def analysis(language, file_to_be_analysed, utf_required, display_window_templat
       incipit_size, common_gallery,common_pages, itwikisource, coordinate, featured_template):
    
    # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
-   f = open(file_to_be_analysed, 'r', encoding= utf_required )  #change this to file to read as an option from users
+   f = open('article_name.csv', 'r', encoding= utf_required )  #change this to file to read as an option from users
 
    articles = f.readlines()   
     

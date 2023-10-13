@@ -70,7 +70,8 @@ def fetch_data(language_code):
 def get_articles(results):
     # Open the file in write mode to clear its contents
     with open("article_name.csv", "w") as file:
-        pass  # This line clears the content of the file
+        file.truncate(0) # This line clears the content of the file
+        
 
     # Open the file in append mode and write data for each result
     with open("article_name.csv", "a") as file:
@@ -83,7 +84,7 @@ def get_articles(results):
 # save subject and id of articles in subjects.csv
 def get_id_and_subjects(results):
     with open("subjects.csv", "w") as file:
-        pass  # This line clears the content of the file
+        file.truncate(0) # This line clears the content of the file
         fields = ["id_wikidata", "material"]
         writer = csv.DictWriter(file, fieldnames=fields, lineterminator='\n')
 
