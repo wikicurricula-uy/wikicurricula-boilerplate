@@ -1,0 +1,37 @@
+A_la_deriva_(cuento)	Q19410896	2018-08-01	5075	1	4	0	148	416982	140	204	151	0	0						
+Abstracción_(informática)	Q224055	2004-01-07	4492	0	0	0	2939	369794	124	55	24	0	0						
+Acampada	Q455550	2005-10-26	6759	2	3	0	1868	358155	120	76	76	0	0	Camping					
+Accesibilidad	Q555097	2004-01-21	31212	6	5	0	2405	400057	134	80	81	0	0	Accessibility					
+Acento_diacrítico	Q1100446	2005-12-26	30860	0	15	0	763	2021456	677	366	305	0	0						
+Acento_léxico	Q20012900	2002-02-13	21215	2	12	0	2085	130505	44	31	39	0	0						
+Acentuación_(música)	Q424494	2004-09-22	12672	4	12	0	648	283018	95	64	61	0	0	Articulation (music)					
+Acentuación_del_idioma_español	Q15855125	2004-04-28	26560	0	11	0	1778	2275978	763	176	162	0	0						
+Ácido_fuerte	Q64214830	2006-11-01	8241	0	6	0	2332	650767	218	101	89	0	0						
+Ácido_sulfúrico	Q4118	2003-10-20	26351	6	14	0	2355	3822231	1281	833	890	0	0	Sulfuric acid					
+Acoso_escolar	Q6581577	2006-02-02	25745	1	22	0	2051	10118408	3391	2327	1534	0	0	School bullying					
+Acrobacia	Q193036	2007-02-19	25122	12	6	0	317	248326	83	59	49	0	0	Acrobatics					
+Acrobacia_aérea	Q373557	2007-11-06	9141	6	7	0	886	66174	22	14	14	0	0	Aerobatics					
+Actividad_física	Q747883	2003-11-18	11845	2	7	0	956	2775420	930	571	306	0	0	Physical activity					
+Actuador	Q423488	2007-06-25	12461	1	0	0	743	965899	324	182	118	0	0	Actuators					
+Acuífero_Guaraní	Q344888	2005-08-19	9483	1	7	0	390	1319871	442	218	250	0	0	Acuífero Guaraní					
+Aculturación	Q192989	2005-10-19	3109	1	1	0	1168	920388	308	151	132	0	0	Acculturation					
+Adaptación_biológica	Q483921	2004-10-25	34152	0	33	0	3618	3134474	1050	378	321	0	0						
+Adicción	Q12029	2004-10-06	35913	3	43	0	1554	2891174	969	450	334	0	0						
+Adición_(matemática)	Q32043	2002-10-23	19299	1	9	0	1711	1943630	651	398	322	0	0	Addition					
+Adjetivo	Q34698	2002-02-13	23655	0	1	0	1929	6876645	2305	974	681	0	0	Adjectives					
+Adolescencia	Q131774	2004-01-18	39423	5	33	0	1632	8332837	2793	1273	1019	0	0	Adolescence					
+Adverbio	Q380057	2004-05-23	9166	0	4	0	952	8300990	2782	1135	920	0	0						
+Aerogenerador	Q2875694	2002-10-27	30998	11	25	0	2302	1170756	392	237	219	0	0						
+Afectividad	Q2826051	2006-02-27	7267	3	8	0	861	648562	217	86	98	0	0						
+África	Q15	2002-01-09	112397	31	68	0	1889	8455320	2834	2613	2557	0	0	Africa	Africa				
+Agencia_de_Gobierno_electrónico_y_Sociedad_de_la_Información_y_del_Conocimiento	Q5653620	ERRORE	8264	1	15	0	1275	10608	4	1	2	0	0						
+Agricultura	Q11451	2001-09-27	58819	15	14	0	1381	7392623	2477	1379	1026	0	0	Agriculture	Agriculture				
+Agricultura_ecológica	Q165647	2002-10-01	53684	5	14	0	3132	908212	304	191	104	0	0	Organic farming	Organic farming				
+Agricultura_extensiva	Q1643366	2006-10-25	10056	3	7	0	1357	659831	221	125	83	0	0	Agriculture					
+Agricultura_familiar	Q1019285	2016-06-14	14605	3	10	0	705	69657	23	19	15	0	0	Family farming					
+Agricultura_incaica	Q2606305	2006-11-19	25935	13	31	0	2252	1359113	455	276	204	0	0						
+Agricultura_intensiva	Q1148482	2006-02-15	25458	2	32	0	2823	720623	241	ERRORE	ERRORE	0	0	Industrial agriculture					
+Agroecología	Voice inexistent
+Agroindustria	Voice inexistent
+Agroquímico	Voice inexistent
+Agrupación_musical	Q2088357	2007-02-28	5432	3	1	0	384	ERRORE	ERRORE	ERRORE	ERRORE	0	0	Musical groups					

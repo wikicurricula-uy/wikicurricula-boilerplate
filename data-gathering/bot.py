@@ -176,10 +176,10 @@ def visits(voice):
     res2 = "ERRORE"
 
   #calculate res3, average pageviews from previous year
-  res3 = get_avg_pageviews(VOCE, START_PREV_YEAR, END_PREV_YEAR)
+  res3 = get_avg_pageviews(VOICE, START_PREV_YEAR, END_PREV_YEAR)
 
   #calculate res4, average pageviews from current year
-  res4 = get_avg_pageviews(VOCE, START_CURRENT_YEAR, END_CURRENT_YEAR)
+  res4 = get_avg_pageviews(VOICE, START_CURRENT_YEAR, END_CURRENT_YEAR)
 
    
   return str(res1), str(res2), str(res3), str(res4)
@@ -432,7 +432,7 @@ def window(text):
     
 
 def analysis():
-   f = open('query.csv', "r")
+   f = open('query.csv', "r", encoding= "utf-8")
 
    vox = f.readlines()   
     
@@ -579,7 +579,7 @@ def analysis():
 
                
 
-        if dimensiondiscussion:
+        if sizeDiscussion:
 
            res = res + dimension(wikitext_discussion) + "\t"
 
