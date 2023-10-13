@@ -309,6 +309,7 @@ def calculate_introduction_length(text):
 
    n = incipit.count("<ref")
 
+   # Removing '[[' and ']]' Tags, and '|':
    for i in range(n):
 
       tmp = incipit[incipit.find("<ref"):]
