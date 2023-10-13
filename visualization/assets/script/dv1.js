@@ -1346,7 +1346,7 @@ function dv1(year, the_subject, sort) {
 				"incipit", // 5
 				"issue", // 6
 				"images", // 7
-         "refrences"	//8
+                                "references"	//8
 			];
 
 
