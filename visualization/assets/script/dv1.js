@@ -193,6 +193,7 @@ function dv1(year, the_subject, sort) {
 			return Math.sqrt(+d.size / 3.14);
 		});
 
+
 		let y = d3
 			.scaleLinear()
 			.domain([0, y_max + (y_max / 100) * 10])
@@ -206,6 +207,7 @@ function dv1(year, the_subject, sort) {
 				})
 			)
 			.range([0, width]);
+
 
 		if (sort == 1) {
 			max = total;
@@ -318,6 +320,7 @@ function dv1(year, the_subject, sort) {
 
 		//========== X axis ======
 
+
 		let xAxisGenerator = d3
 			.axisBottom(x_ScaleTime)
 			.tickFormat(d3.timeFormat("%Y-%m-%d"));
@@ -328,6 +331,7 @@ function dv1(year, the_subject, sort) {
 			.attr("transform", `translate(${0},${height})`);
 
 		//========  X axis =======
+
 
 		// let the_sort;
 		let tooltip = d3
