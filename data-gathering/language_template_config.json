@@ -7,9 +7,6 @@
             "{{tmp|",
             "{{tmp}}"
         ],
-        "help": [
-            "{{a|"
-        ],
         "correct": [
             "{{correct}}"
         ],
@@ -46,8 +43,8 @@
             "{{translation}}"
         ],
         "wikificare": [
-            "{{wikificare|",
-            "{{wikificarw}}"
+            "{{wikify|",
+            "{{wikify}}"
         ],
         "stub": [
             "{{stub|",
@@ -144,9 +141,6 @@
             "{{tmp|",
             "{{tmp}}"
         ],
-        "help": [
-            "{{a|"
-        ],
         "correct": [
             "correggir"
         ],
@@ -217,9 +211,6 @@
             "{{tmp|",
             "{{tmp}}"
         ],
-        "help": [
-            "{{a|"
-        ],
         "correct": [
             "correggere"
         ],
@@ -228,7 +219,7 @@
         ],
         "divide": [
             "{{d|",
-            "{{d}"
+            "{{d}}"
         ],
         "sources": [
             "{{f|",
@@ -236,11 +227,11 @@
         ],
         "localism": [
             "{{l|",
-            "{{f}}"
+            "{{l}}"
         ],
         "pov": [
             "{{p|",
-            "{{p}}}"
+            "{{p}}"
         ],
         "nn": [
             "{{nn|",
