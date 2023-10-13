@@ -1,4 +1,4 @@
-#this script translates resultati.txt into a file that is readable by wikicurricula or wikiscuola visualization tool
+#this script translates results.txt into a file that is readable by wikicurricula or wikiscuola visualization tool
 import csv
 from datetime import datetime
 
@@ -13,22 +13,26 @@ def get_incipit_on_size(incipit_size,size):
     if (not incipit_size or not size): return 0;
     return round((int(incipit_size) / int(size))*100,2)
 
+# maps a subject to and id
 def create_subject_mapping(file_path):
     id_subject_map = {}
 
+    # open file with id subject pairs in read mode
     with open(file_path, 'r', encoding='utf-8') as file:
         reader = csv.reader(file, delimiter=',')
+        # skip reading the header
         header = next(reader, None)
 
+        # each row is in the form Qid, subject. So create a dictionary with id keys and subject values. id_subject_map = {"Qid":English}
         for row in reader:
-            id_subject_map[row[0]] = row[1]
+            id_subject_map[row[0]] = row[1].strip()
 
     return id_subject_map
 
 subject_map = create_subject_mapping("subjects.csv");
 
 # Open the input file
-with open('resultati.txt', 'r', encoding='utf-8') as input_file:
+with open('resultati.txt', 'r', encoding='latin-1') as input_file:
 
     input_header = [
         'article',
@@ -37,6 +41,9 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
         'size',
         'images',
         'notes',
+        'issues',
+        'issue_sourceNeeded',
+        'issue_clarify',
         'discussion_size',
         'incipit_size',
         'all_visits',
@@ -45,9 +52,9 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
         'avg_pv',
         'vetrina',
         'VdQ',
-        'galleria_su_Commons',
-        'pagina_su_commons',
-        'pagina_su_wikisource'
+        'commonsGallerys',
+        'commonsPage',
+        'page_on_wikisource'
     ]
     
     reader = csv.DictReader(input_file, fieldnames=input_header, delimiter='\t')
@@ -75,10 +82,10 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
             'incipit_size': row['incipit_size'],
             'incipit_on_size': get_incipit_on_size(row['incipit_size'],row['size']),
             'incipit_prev': '-',
-            'issues': '0',
+            'issues': row['issues'],
             'issues_prev': '-',
-            'issue_sourceNeeded': '0',
-            'issue_clarify': '0',
+            'issue_sourceNeeded': row['issue_sourceNeeded'],
+            'issue_clarify': row['issue_clarify'],
             'discussion_size': row['discussion_size'],
             'discussion_prev': '-',
             'first_edit': row['first_edit'],
@@ -86,14 +93,14 @@ with open('resultati.txt', 'r', encoding='utf-8') as input_file:
             'all_visits': row['all_visits'],
             'VdQ': row['VdQ'],
             'vetrina': row['vetrina'],
-            'galleria_su_Commons': row['galleria_su_Commons'],
-            'pagina_su_commons': row['pagina_su_commons'],
-            'pagina_su_wikisource': row['pagina_su_wikisource']
+            'commonsGallerys': row['commonsGallerys'],
+            'commonsPage': row['commonsPage'],
+            'page_on_wikisource': row['page_on_wikisource']
         }
         rows.append(new_row)
-
+        
 # Open the output file and write the reordered rows
-with open('voci_2023.tsv', 'w', encoding='utf-8', newline='') as output_file:
-    writer = csv.DictWriter(output_file, fieldnames=new_row.keys(), delimiter='\t')
-    writer.writeheader()
-    writer.writerows(rows)
+    with open('../visualization/assets/data/voci_2023.tsv', 'a', encoding='utf-8', newline='') as output_file:
+            writer = csv.DictWriter(output_file, fieldnames=new_row.keys(), delimiter='\t')
+            writer.writeheader()
+            writer.writerows(rows)
