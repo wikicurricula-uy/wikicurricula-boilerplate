@@ -2,7 +2,7 @@
     "en": {
         "to_check": [
             "{{verifiability|",
-            "{{verifiability}}",
+            "{{verifiability}}"
         ],
         "synoptic": [
             "{{infobox requested|",
@@ -38,8 +38,7 @@
         "recentism": [
             "{{recentism}}"
         ],
-        "manual_style": [
-        ],
+        "manual_style": [],
         "translation": [
             "{{not English}}"
         ],
@@ -66,10 +65,8 @@
         ]
     },
     "es": {
-        "to_check": [
-        ],
-        "synoptic": [
-        ],
+        "to_check": [],
+        "synoptic": [],
         "correct": [
             "{{copyedit"
         ],
@@ -105,12 +102,9 @@
         "wikificare": [
             "{{wikificar"
         ],
-        "stub": [
-        ],
-        "stub_section": [
-        ],
-        "copy_control": [
-        ],
+        "stub": [],
+        "stub_section": [],
+        "copy_control": [],
         "without_sources": [
             "{{sinreferencias",
             "{{sin referencias",
