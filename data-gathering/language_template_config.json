@@ -1,46 +1,47 @@
 {
     "en": {
         "to_check": [
-            "{{cleanup}}"
+            "{{verifiability|",
+            "{{verifiability}}",
         ],
         "synoptic": [
-            "{{tmp|",
-            "{{tmp}}"
+            "{{infobox requested|",
+            "{{infobox requested}}"
         ],
         "correct": [
-            "{{correct}}"
+            "{{copy edit"
         ],
         "curiosity": [
-            "{{curiosity}}"
+            "{{trivia|",
+            "{{trivia}}"
         ],
         "divide": [
-            "{{divide|",
-            "{{divide}}"
+            "{{split|",
+            "{{split}}"
         ],
         "sources": [
-            "{{sources|",
-            "{{sources}}"
+            "{{unreferenced|",
+            "{{unreferenced}}"
         ],
         "localism": [
-            "{{localism|",
-            "{{localism}}"
+            "{{globalize|",
+            "{{globalize}}"
         ],
         "pov": [
-            "{{pov|",
-            "{{pov}}"
+            "{{POV|",
+            "{{POV}}"
         ],
         "nn": [
-            "{{nn|",
-            "{{nn}}"
+            "{{no footnotes|",
+            "{{no footnotes}}"
         ],
         "recentism": [
             "{{recentism}}"
         ],
         "manual_style": [
-            "{{manual style}}"
         ],
         "translation": [
-            "{{translation}}"
+            "{{not English}}"
         ],
         "wikificare": [
             "{{wikify|",
@@ -51,10 +52,10 @@
             "{{stub}}"
         ],
         "stub_section": [
-            "{{stub section}}"
+            "{{expand section"
         ],
         "copy_control": [
-            "{{control copy}}"
+            "{{cv-unsure"
         ],
         "without_sources": [
             "{{unreferenced}}",
@@ -66,59 +67,62 @@
     },
     "es": {
         "to_check": [
-            "{{c|"
         ],
         "synoptic": [
-            "{{c}}"
         ],
         "correct": [
-            "correggir"
+            "{{copyedit"
         ],
         "curiosity": [
-            "{{curiosidad"
+            "{{curiosidades}}"
         ],
         "divide": [
-            "{{dividir"
+            "{{separar"
         ],
         "sources": [
-            "{{f|"
+            "{{referencias|"
         ],
         "localism": [
-            "{{l|"
+            "{{globalizar|"
         ],
         "pov": [
-            "{{p|"
+            "{{no neutralidad|",
+            "{{no neutralidad}}"
         ],
         "nn": [
-            "{{nn|"
+            "{{notas al pie|",
+            "{{notas al pie}}"
         ],
         "recentism": [
-            "{{reciente"
+            "{{recentismo"
         ],
         "manual_style": [
-            "{{estilo"
+            "{{mejorar redacción"
         ],
         "translation": [
-            "{{traducido"
+            "{{traducción incompleta"
         ],
         "wikificare": [
             "{{wikificar"
         ],
         "stub": [
-            "{{s|"
         ],
         "stub_section": [
-            "{{stubseccion"
         ],
         "copy_control": [
-            "{{controlcopy"
         ],
         "without_sources": [
             "{{sinreferencias",
-            "{{citarequerida"
+            "{{sin referencias",
+            "{{cita requerida"
         ],
         "clarify": [
-            "{{chiarire"
+            "{{qué",
+            "{{cuál",
+            "{{cuándo",
+            "{{cuántos",
+            "{{dónde",
+            "{{quién"
         ]
     },
     "it": {
@@ -131,7 +135,7 @@
             "{{tmp}}"
         ],
         "correct": [
-            "correggere"
+            "{{correggere"
         ],
         "curiosity": [
             "{{curiosità"
@@ -175,15 +179,16 @@
             "{{s}}"
         ],
         "stub_section": [
-            "{{stubsezione"
+            "{{s sezione"
         ],
         "copy_control": [
             "{{controlcopy"
         ],
         "without_sources": [
-            "{{senzafonte",
-            "{{citazionenecessaria",
-            "{{citazionenecessaria}}"
+            "{{senza fonte",
+            "{{senza fonte}}",
+            "{{citazione necessaria",
+            "{{citazione necessaria}}"
         ],
         "clarify": [
             "{{chiarire",
