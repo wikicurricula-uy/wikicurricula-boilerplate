@@ -743,6 +743,8 @@ function dv1(year, the_subject, sort) {
 				return r(Math.sqrt(d.discussion_size / 3.14));
 			});
 
+			
+
 		// improvements
 		let improvements_box = article_circles
 			.append("g")
@@ -890,7 +892,7 @@ function dv1(year, the_subject, sort) {
 
 			filtered_data = filter_data.sort(function (a, b) {
 				return d3.ascending(a.article, b.article);
-			});
+     });
 
 			filtered_data.forEach(function (d, i) {
 				total += 1;
@@ -902,7 +904,7 @@ function dv1(year, the_subject, sort) {
 				d.images = +d.images;
 				d.issue_clarify = +d.issue_clarify;
 				d.issue_sourceNeeded = +d.issue_sourceNeeded;
-
+        d.notes = +d.notes
 				d.days = +d.days;
 				d.avg_pv = +d.avg_pv;
 
@@ -912,7 +914,7 @@ function dv1(year, the_subject, sort) {
 
 				if (d.avg_pv_prev !== "-") {
 					d.avg_pv_prev = +d.avg_pv_prev;
-				}
+        }
 
 				// improvements
 				d.improvements = 0;
@@ -1081,6 +1083,11 @@ function dv1(year, the_subject, sort) {
 							"translate(" + (x(+d.images) + 50) + "," + 0 + ")"
 						);
 					}
+					else if (the_sort == 8){ // "refrences"
+						return "translate(" + (x(+d.notes)+50) + "," + 0 + ")"
+					}
+					
+					
 				})
 				.on("mouseover", tooltip.show)
 				.on("mouseout", tooltip.hide);
@@ -1277,7 +1284,9 @@ function dv1(year, the_subject, sort) {
 			//           })
 		}
 
+
 		function update_sort(the_subject, the_sort) {
+
 			//load data
 			total = 0;
 
@@ -1326,12 +1335,14 @@ function dv1(year, the_subject, sort) {
 				d.avg_pv = +d.avg_pv;
 				d.avg_pv_prev = +d.avg_pv_prev;
 				d.issues = +d.issues;
+        d.notes = +d.notes
 				// console.log(d.article,d.issues)
 			});
 
 			let max;
 			let min;
 			let sort = [
+
 				"article", // 1
 				"publication", // 2
 				"size", // 3
@@ -1339,7 +1350,9 @@ function dv1(year, the_subject, sort) {
 				"incipit", // 5
 				"issue", // 6
 				"images", // 7
+                                "references"	//8
 			];
+
 
 			if (the_sort == 1) {
 				max = total;
