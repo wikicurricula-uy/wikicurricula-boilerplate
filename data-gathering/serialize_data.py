@@ -74,7 +74,7 @@ wikipedia_config = {
          "views": 1,
          "incipit_size": 1,
          "discussion_size": 1,
-         "discussionURL": urllib.parse.quote("discussion:"),  # Discussion Page Prefix
+         "discussionURL": urllib.parse.quote("talk:"),  # Discussion Page Prefix
          "warnings_config": 0,
          "common_pages": 1,
          "common_gallery": 1,
@@ -101,7 +101,7 @@ wikipedia_config = {
          "views": 1,
          "incipit_size": 1,
          "discussion_size": 1,
-         "discussionURL": urllib.parse.quote("discussion:"),  # Discussion Page Prefix
+         "discussionURL": urllib.parse.quote("talk:"),  # Discussion Page Prefix
          "warnings_config": 0,
          "common_pages": 1,
          "common_gallery": 1,
@@ -122,8 +122,7 @@ wikipedia_config = {
 language_template_config = {
     "en": {
     "to_check": ["{{cleanup}}"],
-     "synoptic": ["{{tmp|", "{{tmp}}"],
-    "help": ["{{a|"],
+    "synoptic": ["{{tmp|", "{{tmp}}"],
     "correct": ["{{correct}}"],
     "curiosity": ["{{curiosity}}"],
     "divide": ["{{divide|", "{{divide}}"],
@@ -144,8 +143,7 @@ language_template_config = {
 
  "tw": {
     "to_check": ["{{cleanup}}"],
-     "synoptic": ["{{tmp|", "{{tmp}}"],
-    "help": ["{{a|"],
+    "synoptic": ["{{tmp|", "{{tmp}}"],
     "correct": ["{{correct}}"],
     "curiosity": ["{{curiosity}}"],
     "divide": ["{{divide|", "{{divide}}"],
@@ -166,7 +164,6 @@ language_template_config = {
   "es": {
     "to_check": ["{{c|", "{{c}}"],
     "synoptic": ["{{tmp|", "{{tmp}}"],
-    "help": ["{{a|"],
     "correct": ["correggir"],
     "curiosity": ["{{curiosidad"],
     "divide": ["{{dividir|", "{{dividir}}"],
@@ -181,28 +178,27 @@ language_template_config = {
     "stub": ["{{s|", "{{s}}"],
     "stub_section": ["{{stubseccion"],
     "copy_control": ["{{controlcopy"],
-    "without_sources": ["{{sinreferencias", "{{citarequerida","{{cita requerida}}", "{{sinreferencias}}"],
+    "without_sources": ["{{sinreferencias", "{{citarequerida", "{{cita requerida}}", "{{sinreferencias}}"],
     "clarify": ["{{aclarar", "{{aclarar}}"]
   },
   "it":{
     "to_check": ["{{c|", "{{c}}"],
     "synoptic": ["{{tmp|", "{{tmp}}"],
-    "help": ["{{a|"],
     "correct": ["correggere"],
-    "curiosity": ["{{curiosit"],
+    "curiosity": ["{{curiosità"],
     "divide": ["{{d|", "{{d}"],
     "sources": ["{{f|", "{{f}}"],
-    "localism": ["{{l|", "{{f}}"],
+    "localism": ["{{l|", "{{l}}"],
     "pov": ["{{p|", "{{p}}}"],
     "nn": ["{{nn|", "{{nn}}"],
     "recentism": ["{{recentismo"],
     "manual_style": ["{{stilemanualistico"],
-    "translation": ["{{stilemanualistico"],
+    "translation": ["{{t|", "{{t}}"],
     "wikificare": ["{{w|", "{{w}}"],
     "stub": ["{{s|", "{{s}}"],
     "stub_section": ["{{stubsezione"],
     "copy_control": ["{{controlcopy"],
-    "without_sources": ["{{senzafonte", "{{citazionenecessaria","{{citazionenecessaria}}"],
+    "without_sources": ["{{senzafonte", "{{citazionenecessaria", "{{citazionenecessaria}}"],
     "clarify": ["{{chiarire", "{{chiarire}}"]
   },
     # Add more languages as required
