@@ -337,6 +337,8 @@ def calculate_introduction_length(text):
 
    incipit = text
 
+   #  extract the part of the text up to the first occurrence of "\n==" using incipit = incipit[:incipit.find("\n==")].
+
    incipit = incipit[:incipit.find("\n==")]
 
    template_count  =incipit.count('{{')
@@ -371,10 +373,12 @@ def calculate_introduction_length(text):
 
       incipit = incipit.replace("{{"+template,"")
 
+   # Removing '<ref>' Tags
    incipit = incipit.replace("</ref>","")
 
    n = incipit.count("<ref")
 
+   # Removing '[[' and ']]' Tags, and '|':
    for i in range(n):
 
       tmp = incipit[incipit.find("<ref"):]
@@ -417,7 +421,7 @@ def featured_in(text):
 # Main analysis function
 def analysis():
    # f = open('query.csv', "r") #Adding a character encoding will required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
-   f = open('query.csv', 'r')
+   f = open('query.csv', 'r', encoding= "utf-8")
 
    articles = f.readlines()   
     
