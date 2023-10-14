@@ -47,8 +47,8 @@ with open('results.txt', 'r', encoding='utf-8') as input_file:
         'avg_pv',
         'vetrina',
         'VdQ',
-        'common_gallery',
-        'common_pages',
+        'commons_gallery',
+        'commons_pages',
         'page_on_wikisource'
     ]
     
@@ -88,8 +88,8 @@ with open('results.txt', 'r', encoding='utf-8') as input_file:
             'all_visits': row['all_visits'],
             'VdQ': row['VdQ'],
             'vetrina': row['vetrina'],
-            'common_gallery': row['common_gallery'],
-            'common_pages': row['common_pages'],
+            'commons_gallery': row['commons_gallery'],
+            'commons_pages': row['commons_pages'],
             'page_on_wikisource': row['page_on_wikisource']
         }
         rows.append(new_row)
