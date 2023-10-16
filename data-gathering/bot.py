@@ -15,12 +15,41 @@ import urllib.parse
 import string
 
 import json
-
+import chardet
 from datetime import datetime
+from query import store_articles, fetch_wikidata_info
 
+def parse_args():
+
+   # if CLI args are more or less than 3
+   if len(sys.argv) != 3:
+      sys.exit("Usage: python bot.py ['en','es','it'] country_code")
+   try:
+      int(sys.argv[2])
+   except ValueError:
+      sys.exit("Code must be an integer")
+
+      # convert json file to a dictionary
+   with open("config.json", "r") as json_file:
+      dict_file = json.load(json_file)
+
+   if sys.argv[1] in dict_file:
+               return dict_file[sys.argv[1]]
+   else:
+      sys.exit("Usage: python bot.py ['en','es','it'] country_code")
+
+wikipedia = parse_args()
+# make an API call to wikidata
+try:
+   query_results = fetch_wikidata_info(wikipedia['language'], sys.argv[2])
+   store_articles(query_results)
+except Exception as e:
+   print(f"An error occurred: {e}")
+
+# store article names in query.csv
 
 #language subdomain, to be used for API calls
-language = "es"
+language = wikipedia["language"]
 
 id_wikidata = 1
 size = 1
@@ -37,11 +66,11 @@ incipit_size  = 1
 discussion_size = 1
 
 #discussion page prefix
-discussion = "Discusión:"
-discussionURL = urllib.parse.quote(discussion)
+talk = wikipedia["talk"]
+discussionURL = urllib.parse.quote(talk)
 
 #currently, the notice count does not work for the Spanish Wikipedia
-configAlerts = 1
+configAlerts = 0
 
 commonsPage = 1
 
@@ -56,13 +85,13 @@ wikibooks = 1
 showcase = 1
 
 #template display
-showcaseTemplate ="{{artículo destacado"
+featuredArticle = wikipedia["featuredArticle"]
 
 quality = 1
 
 #"Quality article template
 
-qualityArticleTemplate="{{artículo bueno"
+vdqTemplate=wikipedia["vdqTemplate"]
 
 visits = 1
 
@@ -117,6 +146,7 @@ def get_avg_pageviews(article, start, end):
    except:
 
       ris = "ERRORE"
+      
    return ris
 
 
@@ -182,9 +212,9 @@ def visits(voce):
 
   except:
 
-    ris1 = "ERRO"
+    ris1 = "ERRORE"
 
-    ris2 = "ERRO"
+    ris2 = "ERRORE"
 
   #calculate ris3, average pageviews from previous year
   ris3 = get_avg_pageviews(VOCE, START_PREV_YEAR, END_PREV_YEAR)
@@ -431,10 +461,10 @@ def lengthIncipit(text):
 
 
 
-#  check whether "qualityArticleTemplate" is present in the provided text
+#  check whether "vdqTemplate" is present in the provided text
 def qualityArticle(text):
 
-   if qualityArticleTemplate in text.lower():
+   if vdqTemplate in text.lower():
 
       return "1"
 
@@ -443,45 +473,38 @@ def qualityArticle(text):
       return "0"
 
 
-# check whether "showcaseTemplate" is present in the provided text
+# check whether "featuredArticlee" is present in the provided text
 def showcase(text):
 
-   if showcaseTemplate in text.lower():
+   if featuredArticle in text.lower():
 
       return "1"
 
    else:
 
       return "0"
-
-
-
-
 
 
 # analyze articles
 def analysis():
 
-   # Open the "query.csv" file in read mode
-   f = open('query.csv', "r", encoding='utf-8')
+   # Detect the encoding of the file
+   with open('query.csv', 'rb') as rawdata:
+      result = chardet.detect(rawdata.read(10000))
 
-# Read all lines from the file into a list
-   vox = f.readlines()   
-    
-   # delete the contents of the file before starting
-   
-   results = open('resultati.txt',"w")
-   
-   # Truncate the "results.txt" file to remove existing content
-   results.truncate(0)
-   
-   results.close()
+# Open the file with the detected encoding
+   with open('query.csv', 'r', encoding=result['encoding'], errors="replace") as file:
+        vox = file.readlines()
+
+    # Delete the contents of the file before starting
+   with open('resultati.txt', "w"):
+        pass
 
 # Iterate through each article in the list of articles
    for article in vox:
       
       # Open the "results.txt" file in append mode
-      results = open('resultati.txt', 'a')  # open the file in append mode
+      results = open('resultati.txt', 'a', encoding='utf-8', errors="replace")  # open the file in append mode
 
       flag = 1
 
@@ -594,7 +617,7 @@ def analysis():
 
       else:
 
-        if firstEdit:
+        if first_edit:
 
            ris = ris + firstEdit(article2) + "\t"
 
@@ -646,7 +669,7 @@ def analysis():
 
 
 
-        if qualityArticle:
+        if quality:
 
            ris = ris + qualityArticle(wikitext) + "\t"
 
@@ -707,8 +730,7 @@ def analysis():
               ris = ris + "\t" + "\t"
 
       
-      results.write(ris.encode('utf-8', 'ignore').decode('utf-8') + "\n")
-  # add a line break after each result
+      results.write(ris + "\n")  # add a line break after each result
       
       results.close()  # close the file
       print (ris)
@@ -716,7 +738,6 @@ def analysis():
      
 
 def main():
-
    analysis()
 
 

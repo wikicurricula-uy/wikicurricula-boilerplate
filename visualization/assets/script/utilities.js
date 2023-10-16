@@ -73,30 +73,6 @@ function variation_perc(now, prev, parameter) {
 	return output;
 }
 
-const subjects = [
-	"all",
-	"Biología",
-	"Ciencias de la computación",
-	"Ciencias físico-químicas",
-	"Comunicación visual",
-	"Comunicación y sociedad",
-	"Diseño",
-	"Educación física y recreación",
-	"Educación musical",
-	"Física",
-	"Formación para la ciudadanía",
-	"Geografía",
-	"Historia",
-	"Lengua española",
-	"Literatura",
-	"Matemática",
-	"Química",
-	"Salud y sexualidad",
-	"Tecnologías",
-];
-
-const starting_year = 2023;
-
 function mobile_menu() {
 	let open = false;
 	let the_path = "";
@@ -194,7 +170,7 @@ function get_statistics() {
 				the_path = "../";
 			}
 
-			d3.tsv(the_path + "assets/data/voci_" + year + ".tsv").then(loaded);
+			d3.tsv(the_path + dataFile).then(loaded);
 
 			function loaded(data) {
 				// console.log(data);

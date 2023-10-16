@@ -1,6 +1,11 @@
 #this script translates results.txt into a file that is readable by wikicurricula or wikiscuola visualization tool
 import csv
 from datetime import datetime
+import sys
+
+
+# voci file will be different for each country
+country = sys.argv[1] if len(sys.argv) == 2 else ""
 
 def get_days_between(start_date_str, end_date_str):
     if (not start_date_str or start_date_str =="ERRORE" or end_date_str =="ERRORE"): return 0
@@ -18,7 +23,7 @@ def create_subject_mapping(file_path):
     id_subject_map = {}
 
     # open file with id subject pairs in read mode
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, 'r',  encoding='utf-8', errors="replace") as file:
         reader = csv.reader(file, delimiter=',')
         # skip reading the header
         header = next(reader, None)
@@ -29,10 +34,10 @@ def create_subject_mapping(file_path):
 
     return id_subject_map
 
-subject_map = create_subject_mapping("subjects.csv");
+subject_map = create_subject_mapping(f'{country}_subjects.csv')
 
 # Open the input file
-with open('resultati.txt', 'r', encoding='latin-1') as input_file:
+with open('resultati.txt', 'r',  encoding='utf-8', errors="replace") as input_file:
 
     input_header = [
         'article',
@@ -41,9 +46,6 @@ with open('resultati.txt', 'r', encoding='latin-1') as input_file:
         'size',
         'images',
         'notes',
-        'issues',
-        'issue_sourceNeeded',
-        'issue_clarify',
         'discussion_size',
         'incipit_size',
         'all_visits',
@@ -82,10 +84,10 @@ with open('resultati.txt', 'r', encoding='latin-1') as input_file:
             'incipit_size': row['incipit_size'],
             'incipit_on_size': get_incipit_on_size(row['incipit_size'],row['size']),
             'incipit_prev': '-',
-            'issues': row['issues'],
+            'issues': '0',
             'issues_prev': '-',
-            'issue_sourceNeeded': row['issue_sourceNeeded'],
-            'issue_clarify': row['issue_clarify'],
+            'issue_sourceNeeded': '0',
+            'issue_clarify': '0',
             'discussion_size': row['discussion_size'],
             'discussion_prev': '-',
             'first_edit': row['first_edit'],
@@ -99,8 +101,17 @@ with open('resultati.txt', 'r', encoding='latin-1') as input_file:
         }
         rows.append(new_row)
         
+
+# delete the contents of the file before starting
+    results = open(f'../visualization/assets/data/{country}_voci_2023.tsv',"w")
+   
+   # Truncate the "results.txt" file to remove existing content
+    results.truncate(0)
+   
+    results.close()
+
 # Open the output file and write the reordered rows
-    with open('../visualization/assets/data/voci_2023.tsv', 'a', encoding='utf-8', newline='') as output_file:
+    with open(f'../visualization/assets/data/{country}_voci_2023.tsv', 'a',  encoding='utf-8', errors="replace", newline='') as output_file:
             writer = csv.DictWriter(output_file, fieldnames=new_row.keys(), delimiter='\t')
             writer.writeheader()
             writer.writerows(rows)
