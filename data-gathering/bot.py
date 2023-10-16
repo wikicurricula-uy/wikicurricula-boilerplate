@@ -63,7 +63,7 @@ def main():
    display_window_template = language_config.get("display_window_template")
 
 
-   analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
+   analysis(language, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
       incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template)
    
 
@@ -339,18 +339,24 @@ def featured_in(text, featured_template):
 
     
 # Main analysis function
-def analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
+def analysis(language, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
       incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template):
    
-   # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
-   f = open('article_name.csv', 'r', encoding= utf_required )  #change this to file to read as an option from users
 
-   articles = f.readlines()   
-    
-   # delete the contents of the file before starting
-   results = open('results.txt',"w")
-   results.truncate(0)
-   results.close()
+   if language == "en":
+      article_to_be_analyzed = "ghana_article_file.csv"
+      results_file = "results.txt"
+   elif language == "es":
+      article_to_be_analyzed = "uruguay_article_file.csv"
+      results_file = "resultati.txt"
+
+   f = open(article_to_be_analyzed, 'r', encoding=utf_required)  # Change this to the file to read as an option from users
+
+   articles = f.readlines()  
+
+   # Delete the contents of the results file before starting
+   with open(results_file, "w") as results:
+       results.truncate(0)
 
    for article in articles:
       results = open('results.txt', 'a')  # open the file in append mode
