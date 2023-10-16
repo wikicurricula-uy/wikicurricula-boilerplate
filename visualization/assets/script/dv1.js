@@ -8,12 +8,15 @@ function format_date(date) {
 		return "-";
 	}
 }
+let page = document.getElementsByTagName("html")[0];
+let wiki_link;
+let subjectFIle;
+let subjects = ["all"]
 
 const container = "#dv1";
 const font_size = 10;
 const filter_item = 120; // 120
 const shiftx_article = 30;
-const wiki_link = "https://es.wikipedia.org/wiki/";
 const variation_line_opacity = 0.7;
 
 const stroke_dash = "3,3";
@@ -79,16 +82,40 @@ improv_three.append("polygon").attr("points", "5 14 0 21 10 21 5 14");
 
 let improv_col = "black"; //"#1ba51b";
 let improv_delay = 1800;
-
 let random_subject = null;
 let random_subject_index = null;
 let forbidden_subjects = ["Comunicación y sociedad"];
 
+
+
+const pageSelector = document.getElementById("pageSelector");
+const selectedPage = pageSelector.value;
+    let filename;
+    if (selectedPage === "uy") {
+        filename = "uruguay_voci_";
+		subjectFIle = "../data-gathering/uruguay_subject_file.csv"
+
+    } else if (selectedPage === "ghana") {
+        filename = "ghana_voci_"
+		subjectFIle = "../data-gathering/ghana_subject_file.csv"
+    }
+
+pageSelector.addEventListener("change", function () {
+	const selectedPage = pageSelector.value;
+	
+    if (selectedPage === "uy") {
+        window.location.href = "index.html";
+
+    } else if (selectedPage === "ghana") {
+        window.location.href = "ghana.html";
+    }
+})
 function dv1(year, the_subject, sort) {
-	d3.tsv("assets/data/voci_" + year + ".tsv").then(loaded);
+	
+	d3.tsv(`assets/data/${filename}` + year + ".tsv").then(loaded);
 
 	function loaded(data) {
-		console.log("dara", data);
+		console.log("data", data);
 		// load data
 		let total = 0;
 		let subject_articles = [];
@@ -347,8 +374,9 @@ function dv1(year, the_subject, sort) {
 					"<p style='font-weight: bold; margin: 0 0 10px 3px;'>" +
 					d.article +
 					"</p><table>";
-
+					content += "<tr><td class='label'>grade</td><td class='value'>" + d.grade.toLocaleString() +"</td><td></td></tr>"
                 content += "<tr><td class='label'>publication</td><td class='value'>" + format_date(d.first_edit) + "</td><td></td></tr>"
+				
 
                 // avg daily visits
                 content += "<tr><td class='label'>daily visits</td><td class='value'>" + d.avg_pv.toLocaleString()
@@ -771,7 +799,7 @@ function dv1(year, the_subject, sort) {
 				d.images = +d.images;
 				d.issue_clarify = +d.issue_clarify;
 				d.issue_sourceNeeded = +d.issue_sourceNeeded;
-        d.notes = +d.notes
+      			d.notes = +d.notes
 				d.days = +d.days;
 				d.avg_pv = +d.avg_pv;
 
@@ -1202,7 +1230,7 @@ function dv1(year, the_subject, sort) {
 				d.avg_pv = +d.avg_pv;
 				d.avg_pv_prev = +d.avg_pv_prev;
 				d.issues = +d.issues;
-        d.notes = +d.notes
+       			d.notes = +d.notes
 				// console.log(d.article,d.issues)
 			});
 
@@ -1217,7 +1245,7 @@ function dv1(year, the_subject, sort) {
 				"incipit", // 5
 				"issue", // 6
 				"images", // 7
-                                "references"	//8
+            	"references"	//8
 			];
 
 
@@ -1338,13 +1366,11 @@ function get_year() {
 	});
 }
 
-function getRandomIntInclusive(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-$(document).ready(function () {
+// This function aims to select a random subject from a list, ensure it's not on a list of forbidden subjects, 
+// update the selected option in an HTML element with the id "subjects," and then call the "dv1" function with the selected subject. 
+function get_rand_subject(){
+	const lang = page.getAttribute("lang");
+	wiki_link = `https://${lang}.wikipedia.org/wiki/`;
 	while (
 		!random_subject ||
 		forbidden_subjects.indexOf(random_subject) !== -1
@@ -1354,6 +1380,28 @@ $(document).ready(function () {
 		console.log(random_subject);
 	}
 	document.getElementById("subjects").selectedIndex = random_subject_index;
+	
 	dv1(2023, random_subject, parseInt(1));
 	get_year();
+};
+
+function getRandomIntInclusive(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
+$(document).ready(function () {	
+	//load CSV file
+	d3.csv(subjectFIle).then((data) => {
+		data.forEach((d) => {
+			d.material = d.material.trim();
+			if (!subjects.includes(d.material)) {
+				subjects.push(d.material);
+			}
+		});
+		get_rand_subject()
+	});
 });
+

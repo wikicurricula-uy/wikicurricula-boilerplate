@@ -49,10 +49,16 @@
 			<div id="header">
 				<div class="container">
 					<h1>
-						<a href="" title="Wikicurrícula Uy" class="noselect">
-							Wikicurrícula Uy
-						</a>
+						<select id="pageSelector">
+							<option value="uy"><a href="" title="Wikicurrícula Uy" class="noselect">
+								Wikicurrícula Uy
+							</a></option>
+							<option value="ghana"><a href="" title="Wikicurrícula Uy" class="noselect">
+								Wikicurrícula Ghana
+							</a></option>
+						</select>
 					</h1>
+					
 				</div>
 			</div>
 			<!--<nav id="menu">
@@ -118,15 +124,14 @@
 						<div class="selector">
 							<p class="key noselect">Sort by</p>
 							<select name="sort" id="sort" class="select value noselect">
-								<option name="article" value="1">article name</option>
-								<option name="publication" value="2">publication date</option>
-								<option name="size" value="3">article size</option>
-								<option name="discussion" value="4">discussion page size</option>
-								<option name="incipit" value="5">introduction size</option>
+								<option name="article" value="1">Article's name</option>
+								<option name="publication" value="2">Publication date</option>
+								<option name="size" value="3">Item size</option>
+								<option name="discussion" value="4">Talk page size</option>
+								<option name="incipit" value="5">Introduction size</option>
 								<!--<option name="issue" value="6">numero di avvisi</option>-->
-								<option name="images" value="7">número de imágenes</option>
-								<option name="reference" value="8">referencia</option>
-								<option name="images" value="7">number of images</option>
+								<option name="images" value="7">Image number</option>
+								<option name="reference" value="8">Reference</option>
 							</select>
 						</div>
 					</div>
@@ -175,7 +180,7 @@
 						</ul>
 						<br/>
 						<div id="dv1_dataset" class="dataset">
-							<a href="assets/data/voci_2023.tsv" title="" style="font-size: 0.9em; margin-bottom: 30px; display: block;">
+							<a href="assets/data/uruguay_voci_2023.tsv" title="" style="font-size: 0.9em; margin-bottom: 30px; display: block;">
 								Download the data <img src="assets/img/download.svg" width="20" height="20" alt="Descarga los datos">
 							</a>
 						</div>
