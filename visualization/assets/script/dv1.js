@@ -193,6 +193,7 @@ function dv1(year, the_subject, sort) {
 			return Math.sqrt(+d.size / 3.14);
 		});
 
+
 		let y = d3
 			.scaleLinear()
 			.domain([0, y_max + (y_max / 100) * 10])
@@ -206,6 +207,7 @@ function dv1(year, the_subject, sort) {
 				})
 			)
 			.range([0, width]);
+
 
 		if (sort == 1) {
 			max = total;
@@ -318,16 +320,98 @@ function dv1(year, the_subject, sort) {
 
 		//========== X axis ======
 
-		let xAxisGenerator = d3
-			.axisBottom(x_ScaleTime)
-			.tickFormat(d3.timeFormat("%Y-%m-%d"));
 
-		let xAxis = plot
-			.append("g")
-			.call(xAxisGenerator)
-			.attr("transform", `translate(${0},${height})`);
+		function updateXScale(selectedValue){
+			
+			// console.log("sv== " + selectedValue)
+	
+			d3.select("#datexAxis").remove();
+			d3.select("#xAxis").remove();
+				
+				
+				
+			if(selectedValue == 1){
+				var values = filtered_data.map(function(d){
+					return d.article;
+				})
+			}
+			else if(selectedValue == 2){
+				dateXAxis();
+			}
+			else if(selectedValue == 3){
+				var values = filtered_data.map(function(d){
+					return +d.size;
+				})
+			}
+			else if(selectedValue == 4){
+				var values = filtered_data.map(function(d){
+					return +d.discussion_size;
+				})
+			}
+			else if(selectedValue == 5){
+				var values = filtered_data.map(function(d){
+					return +d.incipit_size;
+				})
+			}
+			else if(selectedValue == 6){
+				var values = filtered_data.map(function(d){
+					return +d.issues;
+				})
+			}
+			else if(selectedValue == 7){
+				var values = filtered_data.map(function(d){
+					return +d.images;
+				})
+			}
+			else if(selectedValue == 8){
+				var values = filtered_data.map(function(d){
+					return +d.notes;
+				})
+			}
+	
+			// console.log("val == " +values)
+				var xSacle = d3.scaleLinear()
+					.domain([0 , d3.max(values)])
+					.range([0, width +50])
+	
+			var xAxisGenerator = d3.axisBottom(xSacle);
+	
+			let xAxis = plot.append("a")
+				   .attr("id" , "xAxis")
+				   .call(xAxisGenerator)
+					.attr("transform",`translate(${0},${height})`)
+				
+		}
+			
+		function dateXAxis(){
 
-		//========  X axis =======
+			let x_ScaleTime = d3.scaleTime()
+				.domain(d3.extent(filtered_data, function(d) { 
+					return new Date(d.first_edit); 
+				  }))
+				.range([0, width+50])
+						
+			var xAxisGenerator = d3.axisBottom(x_ScaleTime);
+	
+			let xAxis = plot.append("a")
+				   .attr("id" , "datexAxis")
+				   .call(xAxisGenerator)
+				   .attr("transform",`translate(${0},${height})`)		 
+		}
+
+		var initialSelectedColumn = "1";
+		updateXScale(initialSelectedColumn); 
+
+		
+		d3.select("#sort").on("change", function() {
+			var  selectedValue = d3.select(this).property("value");
+			updateXScale(selectedValue);
+		});
+	
+		 
+ 
+		 //========  X axis =======	
+
 
 		// let the_sort;
 		let tooltip = d3
@@ -739,6 +823,8 @@ function dv1(year, the_subject, sort) {
 				return r(Math.sqrt(d.discussion_size / 3.14));
 			});
 
+			
+
 		// improvements
 		let improvements_box = article_circles
 			.append("g")
@@ -842,6 +928,17 @@ function dv1(year, the_subject, sort) {
 		function update_subject(the_subject, the_sort) {
 			d3.select("#articles").remove();
 
+			d3.select("#datexAxis").remove();
+			d3.select("#xAxis").remove();
+
+			if(the_sort == 2){
+				dateXAxis();
+			}
+			else{
+				d3.select("#datexAxis").remove();
+				updateXScale(the_sort);
+			}
+
 			d3.selectAll("circle").transition().duration(300).attr("r", 0);
 
 			// load data
@@ -886,7 +983,7 @@ function dv1(year, the_subject, sort) {
 
 			filtered_data = filter_data.sort(function (a, b) {
 				return d3.ascending(a.article, b.article);
-			});
+     });
 
 			filtered_data.forEach(function (d, i) {
 				total += 1;
@@ -898,7 +995,7 @@ function dv1(year, the_subject, sort) {
 				d.images = +d.images;
 				d.issue_clarify = +d.issue_clarify;
 				d.issue_sourceNeeded = +d.issue_sourceNeeded;
-
+        d.notes = +d.notes
 				d.days = +d.days;
 				d.avg_pv = +d.avg_pv;
 
@@ -908,7 +1005,7 @@ function dv1(year, the_subject, sort) {
 
 				if (d.avg_pv_prev !== "-") {
 					d.avg_pv_prev = +d.avg_pv_prev;
-				}
+        }
 
 				// improvements
 				d.improvements = 0;
@@ -988,6 +1085,14 @@ function dv1(year, the_subject, sort) {
 				});
 				max = d3.max(filtered_data, function (d) {
 					return d.images;
+				});
+			}
+			else if (the_sort == 8) {
+				min = d3.min(filtered_data, function (d) {
+					return d.notes;
+				});
+				max = d3.max(filtered_data, function (d) {
+					return d.notes;
 				});
 			}
 
@@ -1077,6 +1182,11 @@ function dv1(year, the_subject, sort) {
 							"translate(" + (x(+d.images) + 50) + "," + 0 + ")"
 						);
 					}
+					else if (the_sort == 8){ // "refrences"
+						return "translate(" + (x(+d.notes)+50) + "," + 0 + ")"
+					}
+					
+					
 				})
 				.on("mouseover", tooltip.show)
 				.on("mouseout", tooltip.hide);
@@ -1273,7 +1383,9 @@ function dv1(year, the_subject, sort) {
 			//           })
 		}
 
+
 		function update_sort(the_subject, the_sort) {
+
 			//load data
 			total = 0;
 
@@ -1322,12 +1434,14 @@ function dv1(year, the_subject, sort) {
 				d.avg_pv = +d.avg_pv;
 				d.avg_pv_prev = +d.avg_pv_prev;
 				d.issues = +d.issues;
+        d.notes = +d.notes
 				// console.log(d.article,d.issues)
 			});
 
 			let max;
 			let min;
 			let sort = [
+
 				"article", // 1
 				"publication", // 2
 				"size", // 3
@@ -1335,7 +1449,9 @@ function dv1(year, the_subject, sort) {
 				"incipit", // 5
 				"issue", // 6
 				"images", // 7
+                                "references"	//8
 			];
+
 
 			if (the_sort == 1) {
 				max = total;
