@@ -1,43 +1,18 @@
-
-
 function toggleDarkMode() {
-    const darkMode = document.querySelector('.dark-mode');
-    const body = document.querySelector('#dark-body'); 
-    const darkHeader = document.querySelector('#dark-header'); 
-    const darkFooter = document.querySelector('#dark-footer'); 
-    const dv1 = document.querySelector('#dv1'); 
-    const selectBox = document.querySelector('#select_box'); 
-    const subFooter = document.querySelector('#sub_footer'); 
-    const toolTip = document.querySelector('#tooltip_dv1'); 
-    const darkModeButton = document.getElementById('darkModeButton'); 
+    const body = document.body;
     
-
-    darkMode.classList.toggle('active');
-
-    if (darkMode.classList.contains('active')) {
-        body.classList.add('active');
-        darkHeader.classList.add('active');
-        darkFooter.classList.add('active'); 
-        dv1.classList.add('active'); 
-        selectBox.classList.add('active'); 
-        subFooter.classList.add('active'); 
-        toolTip.classList.add('active'); 
-
+    body.classList.toggle('dark-mode');
+    
+    const darkModeButton = document.getElementById('darkModeButton');
+    
+    if (body.classList.contains('dark-mode')) {
         darkModeButton.innerHTML = `
-        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
-            <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-        </svg>
-    `;
-       
-    } else {
-        body.classList.remove('active');
-        darkHeader.classList.remove('active'); 
-        darkFooter.classList.remove('active');
-        dv1.classList.remove('active');
-        selectBox.classList.remove('active');
-        subFooter.classList.remove('active');
-        toolTip.classList.remove('active');
 
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+            </svg>
+        `;
+    } else {
         darkModeButton.innerHTML = `
         <svg id="moonStarsIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
             <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
@@ -46,3 +21,5 @@ function toggleDarkMode() {
         `;
     }
 }
+
+toggleDarkMode();
