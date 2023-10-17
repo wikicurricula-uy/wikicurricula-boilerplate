@@ -29,3 +29,8 @@ Install the SPARQLWrapper library using this command `pip install sparqlwrapper`
 - Now in your terminal, navigate to the 'data-gathering' folder by doing a `cd gathering-folder`. To run the python script, use this command: `python main.py`. This will print to the console a list of the Uruguay's curriculum. So what this code does is that it queries the Wikidata SPARQL endpoint to retrieve information about substrands in Uruguay and associated details, including program labels and article names, program labels, and then it prints the results.
 
 - To get only the names of the articles printed out on the console, you'll need to check if the article variable name is case sensitive, then change the value of what is being printed out to the console. Refer to the 'main.py' file in the 'data-gathering' folder for the full code.
+
+
+Thank you for the reviews. I almost panicked when i saw more than 3 comments but it pushed me to make more researches. I've deleted the "serialize_data.py", thanks for that correction. 
+Also concerning parameters from "dimension" to "discussion_size" 
+I have the changes suggested, kindly review again

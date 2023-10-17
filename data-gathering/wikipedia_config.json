@@ -1,6 +1,7 @@
 {
     "es": {
-        "file_to_be_analysed": "query.csv",
+        "file_to_be_analysed": "uruguay_article_file.csv",
+        "result_file": "uruguay_results.txt",
         "language": "es",
         "utf_required": "utf-8",
         "id_wikidata": 1,
@@ -11,7 +12,7 @@
         "views": 1,
         "incipit_size": 1,
         "discussion_size": 1,
-        "discussionURL": "discusi%C3%B3n%3A",
+        "discussionURL": "discusión:",
         "warnings_config": 0,
         "common_pages": 1,
         "common_gallery": 1,
@@ -27,7 +28,8 @@
         "display_window_template": "{{artículo bueno"
     },
     "it": {
-        "file_to_be_analysed": "query.csv",
+        "file_to_be_analysed": "italian_article_file.csv",
+        "result_file": "italian_results.txt",
         "language": "it",
         "utf_required": "utf-8",
         "id_wikidata": 1,
@@ -38,7 +40,7 @@
         "views": 1,
         "incipit_size": 1,
         "discussion_size": 1,
-        "discussionURL": "discussione%3A",
+        "discussionURL": "discussione:",
         "warnings_config": 0,
         "common_pages": 1,
         "common_gallery": 1,
@@ -55,7 +57,8 @@
     },
     "en": {
         "language": "en",
-        "file_to_be_analysed": "default.csv",
+        "file_to_be_analysed": "ghana_article_file.csv",
+        "result_file": "ghana_results.txt",
         "utf_required": "utf-8",
         "id_wikidata": 1,
         "dimension": 1,
@@ -65,7 +68,7 @@
         "views": 1,
         "incipit_size": 1,
         "discussion_size": 1,
-        "discussionURL": "discussion%3A",
+        "discussionURL": "talk",
         "warnings_config": 0,
         "common_pages": 1,
         "common_gallery": 1,
