@@ -6,15 +6,15 @@ html, body {
     font-family: "Open Sans", sans-serif;
 }
 
-body.active{
+body.dark-mode{
 
     background-color: #111827;
     color: #fff;
 
 }
   
-body.active a,
-body.active a:visited {
+body.dark-mode a,
+body.dark-mode a:visited {
     color: #fff; 
 }
 
@@ -61,7 +61,7 @@ body.active a:visited {
         width: 95%; } }
   
   /* ------- header ------- */
-  header.active {
+  .dark-mode #dark-header  {
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -139,7 +139,7 @@ body.active a:visited {
     @media only screen and (max-width: 400px) {
       #select_section_1, #select_section_2, #select_section_3 {
         margin-top: 75px; } }
-        #select_section_1 .select_box.active, #select_section_2 .select_box, #select_section_3 .select_box {
+        .dark-mode #select_section_1 .select_box, #select_section_2 .select_box, #select_section_3 .select_box {
       display: flex;
       height: 140px;
       width: 98%;
@@ -188,7 +188,7 @@ body.active a:visited {
               margin: 0; } }
         #select_section_1 .select_box .selector .noselect, #select_section_2 .select_box .selector .noselect, #select_section_3 .select_box .selector .noselect {
           margin-top: 10px; }
-         #select_section_1 .select_box.active .selector .select, #select_section_2 .select_box .selector .select, #select_section_3 .select_box .selector .select  {
+          .dark-mode #select_section_1 .select_box .selector .select, #select_section_2 .select_box .selector .select, #select_section_3 .select_box .selector .select  {
           font-family: "Open Sans", sans-serif;
           left: -5px;
           border: none;
@@ -265,7 +265,7 @@ body.active a:visited {
     .legend {
       text-align: center; } }
   
-  #dv1.active .dataviz {
+      .dark-mode #dv1 .dataviz {
     overflow: hidden;
     background-color: #111827;}
   
@@ -282,7 +282,7 @@ body.active a:visited {
     cursor: pointer; }
   
   /* ------- footer ------- */
-footer.active {
+  .dark-mode #dark-footer {
     border-top: 1px solid #d6d5d5;
     background-color: #1F2937 !important;
      color: #fff !important }
@@ -294,7 +294,7 @@ footer.active {
   #colophon {
     padding: 20px 0; }
   
-  .sub_footer.active {
+    .dark-mode  .sub_footer {
     border-top: 1px solid #d6d5d5;
     padding: 10px 0 0px; }
     #sub_footer p {
@@ -318,7 +318,7 @@ footer.active {
     margin: 0 0 0 20px; }
   
   /* ------- tooltip ------- */
-  .tooltip.active {
+  .dark-mode .tooltip {
     position: absolute;
     text-align: left;
     padding: 6px;
