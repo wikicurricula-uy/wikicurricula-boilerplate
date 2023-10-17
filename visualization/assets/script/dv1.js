@@ -321,16 +321,96 @@ function dv1(year, the_subject, sort) {
 		//========== X axis ======
 
 
-		let xAxisGenerator = d3
-			.axisBottom(x_ScaleTime)
-			.tickFormat(d3.timeFormat("%Y-%m-%d"));
+		function updateXScale(selectedValue){
+			
+			// console.log("sv== " + selectedValue)
+	
+			d3.select("#datexAxis").remove();
+			d3.select("#xAxis").remove();
+				
+				
+				
+			if(selectedValue == 1){
+				var values = filtered_data.map(function(d){
+					return d.article;
+				})
+			}
+			else if(selectedValue == 2){
+				dateXAxis();
+			}
+			else if(selectedValue == 3){
+				var values = filtered_data.map(function(d){
+					return +d.size;
+				})
+			}
+			else if(selectedValue == 4){
+				var values = filtered_data.map(function(d){
+					return +d.discussion_size;
+				})
+			}
+			else if(selectedValue == 5){
+				var values = filtered_data.map(function(d){
+					return +d.incipit_size;
+				})
+			}
+			else if(selectedValue == 6){
+				var values = filtered_data.map(function(d){
+					return +d.issues;
+				})
+			}
+			else if(selectedValue == 7){
+				var values = filtered_data.map(function(d){
+					return +d.images;
+				})
+			}
+			else if(selectedValue == 8){
+				var values = filtered_data.map(function(d){
+					return +d.notes;
+				})
+			}
+	
+			// console.log("val == " +values)
+				var xSacle = d3.scaleLinear()
+					.domain([0 , d3.max(values)])
+					.range([0, width +50])
+	
+			var xAxisGenerator = d3.axisBottom(xSacle);
+	
+			let xAxis = plot.append("a")
+				   .attr("id" , "xAxis")
+				   .call(xAxisGenerator)
+					.attr("transform",`translate(${0},${height})`)
+				
+		}
+			
+		function dateXAxis(){
 
-		let xAxis = plot
-			.append("g")
-			.call(xAxisGenerator)
-			.attr("transform", `translate(${0},${height})`);
+			let x_ScaleTime = d3.scaleTime()
+				.domain(d3.extent(filtered_data, function(d) { 
+					return new Date(d.first_edit); 
+				  }))
+				.range([0, width+50])
+						
+			var xAxisGenerator = d3.axisBottom(x_ScaleTime);
+	
+			let xAxis = plot.append("a")
+				   .attr("id" , "datexAxis")
+				   .call(xAxisGenerator)
+				   .attr("transform",`translate(${0},${height})`)		 
+		}
 
-		//========  X axis =======
+		var initialSelectedColumn = "1";
+		updateXScale(initialSelectedColumn); 
+
+		
+		d3.select("#sort").on("change", function() {
+			var  selectedValue = d3.select(this).property("value");
+			updateXScale(selectedValue);
+		});
+	
+		 
+ 
+		 //========  X axis =======	
 
 
 		// let the_sort;
@@ -857,6 +937,17 @@ function dv1(year, the_subject, sort) {
 		function update_subject(the_subject, the_sort) {
 			d3.select("#articles").remove();
 
+			d3.select("#datexAxis").remove();
+			d3.select("#xAxis").remove();
+
+			if(the_sort == 2){
+				dateXAxis();
+			}
+			else{
+				d3.select("#datexAxis").remove();
+				updateXScale(the_sort);
+			}
+
 			d3.selectAll("circle").transition().duration(300).attr("r", 0);
 
 			// load data
@@ -1003,6 +1094,14 @@ function dv1(year, the_subject, sort) {
 				});
 				max = d3.max(filtered_data, function (d) {
 					return d.images;
+				});
+			}
+			else if (the_sort == 8) {
+				min = d3.min(filtered_data, function (d) {
+					return d.notes;
+				});
+				max = d3.max(filtered_data, function (d) {
+					return d.notes;
 				});
 			}
 
