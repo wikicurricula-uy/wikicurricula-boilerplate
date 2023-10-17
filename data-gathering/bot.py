@@ -350,7 +350,7 @@ def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_requ
    articles = f.readlines()   
     
    # delete the contents of the file before starting
-   results = open('results.txt',"w")
+   results = open(result_file,"w")
    results.truncate(0)
    results.close()
 
