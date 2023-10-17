@@ -291,8 +291,6 @@ Here is [Ghana's national curricula](https://tools-static.wmflabs.org/ghana-nati
 
 # 📜How to fetch the list of articles from Wikidata API
 
-<<<<<<< HEAD
-
 ### DEMO - fetching articles related to Ghana's curriculum
 
 ```
@@ -356,12 +354,12 @@ def fetch_wikidata_info():
 def store_articles(results):
 
     # delete the contents of the file before starting
-     results = open('query.csv',"w")
+     query = open('query.csv',"w")
 
    # Truncate the "results.txt" file to remove existing content
-     results.truncate(0)
+     query.truncate(0)
 
-     results.close()
+     query.close()
 
      with open("query.csv","a") as file:
         for result in results:
@@ -374,11 +372,6 @@ if __name__ == "__main__":
     store_articles(query_results)
 
 ```
-
-=======
-
-> > > > > > > 4f19468 (added documentation on how to dynamically read articles)
-> > > > > > > This guide uses python to fetch the list of articles.
 
 1. Run:
 
