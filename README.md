@@ -52,60 +52,6 @@ Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
 
     This steps works for other visualization in the project.
 
-# 💡 How to contribute to this project(make a Pull Request (PR) to this GitHub repository)
-
--   Create a GitHub Account:
-    If you don't already have a GitHub account, go to the [GitHub website](https://github.com/) and sign up for a free account.
-
--   Fork the Repository:
-    Click the "Fork" button at the top right corner of this repository's page. This will create a copy (fork) of the repository under your GitHub account.
-
--   Clone Your Fork:
-
-    -   On your forked repository's page, click the "Code" button, and then copy the repository's URL.
-
-    -   Open your terminal/command prompt and navigate to the directory where you want to clone the repository using the cd command
-    -   Use the git clone command to clone the repository to your local machine: replacing "repository_url" with your fork URL you copied:
-
-    ```
-        git clone wikicurricula-boilerplate.git
-    ```
-
--   Create a New Branch:
-
-    -   Change directory into the newly cloned repository directory using cd command. `cd wikicurricula-boilerplate`
-    -   Create a new branch for your changes and switch into the new branch with the command: `git checkout -b`.
-        For example:
-
-    ```
-        git checkout -b fixing-the-footer-branch
-    ```
-
-    It's a good practice to give it a descriptive name that indicates the purpose of your changes. Semantic branching is also a good practice
-
--   Make Changes:
-    Make the necessary code changes or additions in your branch using your preferred code editor.
-
--   Stage changes and Commit the changes with a meaningful commit message:
-    for example
-
-```
-    git add .
-    git commit -m "Added a new feature"
-
-```
-
--   Push Changes to Your Fork:
-    Push your branch to your forked repository on GitHub with the command: `git push origin <branch-name`
-
-```
-    git push origin fixing-the-footer-branch
-```
-
--   Create a Pull Request (PR):
-    -   Go to your forked repository on GitHub. You will notice a notification banner, signifying that you have recently pushed a new branch. Click on the "Compare & pull request" button.
-    -   Review the PR. Ensure to provide a title and description to explain your changes.If everything appears satisfactory, proceed to Submitting the PR by clicking the "Create pull request" button
-
 # 📜How to deploy Wikicurrícula Boilerplate in Toolforge
 
 Toolforge is simply a hosting environment for developers working on services that provide value to the Wikimedia movement. It provides web servers, data access, job management, and other features to help developers maintain tools and bots. It is a Free, reliable, and scalable cloud hosting for web services using PHP, Python, Node.js, Java, and other languages or frameworks.It also hosts continuous bots, and scheduled tasks. An example of a tool hosted on Toolforge is: `WikiTools`, a light tools for Wikipedia authors and `wordcount`, simple word counter built with Python.
