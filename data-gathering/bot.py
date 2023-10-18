@@ -35,14 +35,6 @@ def main():
       language_config = wikipedia_config[WIKIPEDIA_LANGUAGE]
    else:
       print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
-   
-   # make an API call to wikidata
-   try:
-      query_results = fetch_wikidata_info(WIKIPEDIA_LANGUAGE, sys.argv[2])
-   # store article names in query.csv
-      store_articles(query_results)
-   except Exception as e:
-      print(f"An error occurred: {e}")
 
    # Access configuration variables based on the language
    file_to_be_analysed = language_config.get("file_to_be_analysed")
@@ -398,8 +390,8 @@ def analysis(language, discussionURL, display_window_template, warnings_config, 
          pass                                     
 
       try:
-         article = article.replace(" ","_")
          article2 = urllib.parse.quote(article)
+         article = article.replace(" ","_")
          
          url = "https://"+language+".wikipedia.org/w/api.php?action=query&titles=" + article2 +"&prop=pageprops&format=json&formatversion=2"
 
@@ -425,7 +417,6 @@ def analysis(language, discussionURL, display_window_template, warnings_config, 
 
 
          try:
-
             url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + discussionURL + article2 + "&prop=wikitext&formatversion=2&format=json"
             json_url = urlopen(url)
 
@@ -441,7 +432,7 @@ def analysis(language, discussionURL, display_window_template, warnings_config, 
          result = result + wikidataid + "\t"
 
       except:
-         result = result + article +"\t" +" article non-existent"
+         result = result + article +"\t" +"non-existent article"
 
        
 
