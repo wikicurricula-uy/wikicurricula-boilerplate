@@ -320,14 +320,85 @@ function dv1(year, the_subject, sort) {
 
 		//========== X axis ======
 
-		let xAxisGenerator = d3
-			.axisBottom(x_ScaleTime)
-			.tickFormat(d3.timeFormat("%Y-%m-%d"));
+		function updateXScale(selectedValue) {
+			// console.log("sv== " + selectedValue)
 
-		let xAxis = plot
-			.append("g")
-			.call(xAxisGenerator)
-			.attr("transform", `translate(${0},${height})`);
+			d3.select("#datexAxis").remove();
+			d3.select("#xAxis").remove();
+
+			if (selectedValue == 1) {
+				var values = filtered_data.map(function (d) {
+					return d.article;
+				});
+			} else if (selectedValue == 2) {
+				dateXAxis();
+			} else if (selectedValue == 3) {
+				var values = filtered_data.map(function (d) {
+					return +d.size;
+				});
+			} else if (selectedValue == 4) {
+				var values = filtered_data.map(function (d) {
+					return +d.discussion_size;
+				});
+			} else if (selectedValue == 5) {
+				var values = filtered_data.map(function (d) {
+					return +d.incipit_size;
+				});
+			} else if (selectedValue == 6) {
+				var values = filtered_data.map(function (d) {
+					return +d.issues;
+				});
+			} else if (selectedValue == 7) {
+				var values = filtered_data.map(function (d) {
+					return +d.images;
+				});
+			} else if (selectedValue == 8) {
+				var values = filtered_data.map(function (d) {
+					return +d.notes;
+				});
+			}
+
+			// console.log("val == " +values)
+			var xSacle = d3
+				.scaleLinear()
+				.domain([0, d3.max(values)])
+				.range([0, width + 50]);
+
+			var xAxisGenerator = d3.axisBottom(xSacle);
+
+			let xAxis = plot
+				.append("a")
+				.attr("id", "xAxis")
+				.call(xAxisGenerator)
+				.attr("transform", `translate(${0},${height})`);
+		}
+
+		function dateXAxis() {
+			let x_ScaleTime = d3
+				.scaleTime()
+				.domain(
+					d3.extent(filtered_data, function (d) {
+						return new Date(d.first_edit);
+					})
+				)
+				.range([0, width + 50]);
+
+			var xAxisGenerator = d3.axisBottom(x_ScaleTime);
+
+			let xAxis = plot
+				.append("a")
+				.attr("id", "datexAxis")
+				.call(xAxisGenerator)
+				.attr("transform", `translate(${0},${height})`);
+		}
+
+		var initialSelectedColumn = "1";
+		updateXScale(initialSelectedColumn);
+
+		d3.select("#sort").on("change", function () {
+			var selectedValue = d3.select(this).property("value");
+			updateXScale(selectedValue);
+		});
 
 		//========  X axis =======
 
@@ -844,6 +915,16 @@ function dv1(year, the_subject, sort) {
 		function update_subject(the_subject, the_sort) {
 			d3.select("#articles").remove();
 
+			d3.select("#datexAxis").remove();
+			d3.select("#xAxis").remove();
+
+			if (the_sort == 2) {
+				dateXAxis();
+			} else {
+				d3.select("#datexAxis").remove();
+				updateXScale(the_sort);
+			}
+
 			d3.selectAll("circle").transition().duration(300).attr("r", 0);
 
 			// load data
@@ -896,7 +977,7 @@ function dv1(year, the_subject, sort) {
 				d.images = +d.images;
 				d.issue_clarify = +d.issue_clarify;
 				d.issue_sourceNeeded = +d.issue_sourceNeeded;
-
+				d.notes = +d.notes;
 				d.days = +d.days;
 				d.avg_pv = +d.avg_pv;
 
@@ -987,6 +1068,13 @@ function dv1(year, the_subject, sort) {
 				max = d3.max(filtered_data, function (d) {
 					return d.images;
 				});
+			} else if (the_sort == 8) {
+				min = d3.min(filtered_data, function (d) {
+					return d.notes;
+				});
+				max = d3.max(filtered_data, function (d) {
+					return d.notes;
+				});
 			}
 
 			x = d3
@@ -1073,6 +1161,11 @@ function dv1(year, the_subject, sort) {
 						// "images"
 						return (
 							"translate(" + (x(+d.images) + 50) + "," + 0 + ")"
+						);
+					} else if (the_sort == 8) {
+						// "refrences"
+						return (
+							"translate(" + (x(+d.notes) + 50) + "," + 0 + ")"
 						);
 					}
 				})
@@ -1320,6 +1413,7 @@ function dv1(year, the_subject, sort) {
 				d.avg_pv = +d.avg_pv;
 				d.avg_pv_prev = +d.avg_pv_prev;
 				d.issues = +d.issues;
+				d.notes = +d.notes;
 				// console.log(d.article,d.issues)
 			});
 
@@ -1333,6 +1427,7 @@ function dv1(year, the_subject, sort) {
 				"incipit", // 5
 				"issue", // 6
 				"images", // 7
+				"references", //8
 			];
 
 			if (the_sort == 1) {
