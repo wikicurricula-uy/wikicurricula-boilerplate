@@ -312,7 +312,7 @@ function dv1(year, the_subject, sort) {
 
 		let yaxis_label = yaxis_label_box
 			.append("text")
-			.text("visitas diarias (promedio)")
+			.text("Daily visits (average)")
 			.attr("y", -6)
 			.attr("font-size", font_size);
 
