@@ -228,7 +228,6 @@ def warnings(t):
 
    tmp_to_check = sum(t.count(template) for template in language_config.get("to_check"))
    tmp_synoptic = sum(t.count(template) for template in language_config.get("synoptic"))
-   tmp_help = sum(t.count(template) for template in language_config.get("help"))
    tmp_correct = sum(t.count(template) for template in language_config.get("correct"))
    tmp_curiosity = sum(t.count(template) for template in language_config.get("curiosity"))
    tmp_divide = sum(t.count(template) for template in language_config.get("divide")) 
@@ -244,7 +243,7 @@ def warnings(t):
    tmp_stub_section = sum(t.count(template) for template in language_config.get("stub_section"))
    tmp_copy_control = sum(t.count(template) for template in language_config.get("copy_control"))
 
-   sum_of_warnings = tmp_to_check + tmp_synoptic + tmp_help + tmp_correct + tmp_curiosity + tmp_divide + tmp_sources + tmp_localism + tmp_pov
+   sum_of_warnings = tmp_to_check + tmp_synoptic  + tmp_correct + tmp_curiosity + tmp_divide + tmp_sources + tmp_localism + tmp_pov
    sum_of_warnings += tmp_nn + tmp_recentism + tmp_manual_style + tmp_translation + tmp_wikificare + tmp_stub + tmp_stub_section + tmp_copy_control
 
 
