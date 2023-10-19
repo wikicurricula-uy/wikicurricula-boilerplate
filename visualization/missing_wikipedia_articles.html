@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Curriculum Topics without Wikipedia Articles</title>
+</head>
+<body>
+    <h1>Curriculum Topics without Wikipedia Articles</h1>
+    <div id="content"></div>
+
+    <script>
+        // Define the SPARQL queries for Uruguay and Ghana curriculum topics
+        function getParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {country: urlParams.get('country'), langCode: urlParams.get('langCode'), language: urlParams.get('language')};
+        }
+
+        // Define the SPARQL query with a placeholder for the country code
+        function buildQuery(countryCode, language) {
+            return `
+            SELECT ?item ?itemLabel
+            WHERE {
+                ?item wdt:P31 wd:Q7075.
+                ?item wdt:P495 wd:${countryCode}.
+                MINUS { ?item schema:about ?article. }
+                SERVICE wikibase:label { bd:serviceParam wikibase:language "${language}". }
+            }`;
+        }
+
+        // Function to make SPARQL queries to Wikidata and populate the HTML view
+        function fetchCurriculumTopics(query, language) {
+            const options = {
+      headers:new Headers({"Accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",}),
+      mode: 'cors'
+    };
+            fetch(`https://query.wikidata.org/sparql?query=${encodeURIComponent(query)}&format=json`, options)
+                .then(response => {
+                    console.log({res:response.data})
+                    return response.json()})
+                .then(data => {
+                    console.log({data})
+                    const contentDiv = document.getElementById('content');
+                    const topics = data.results.bindings;
+                    if (topics.length === 0) {
+                        contentDiv.innerHTML += `<p>No topics found without articles in ${language} Wikipedia.</p>`;
+                    } else {
+                        contentDiv.innerHTML += `<h2>Topics without articles in ${language} Wikipedia:</h2>`;
+                        const ul = document.createElement('ul');
+                        topics.forEach(topic => {
+                            const label = topic.itemLabel.value;
+                            const itemUrl = `https://www.wikidata.org/wiki/${topic.item.value}`;
+                            ul.innerHTML += `<li><a href="${itemUrl}" target="_blank">${label}</a></li>`;
+                        });
+                        contentDiv.appendChild(ul);
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        // Fetch and display Uruguay and Ghana curriculum topics
+        const {country, langCode, language} = getParams()
+        fetchCurriculumTopics(buildQuery(country, langCode), language);
+    </script>
+</body>
+</html>
