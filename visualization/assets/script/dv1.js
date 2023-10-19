@@ -419,6 +419,15 @@ function dv1(year, the_subject, sort) {
 					"<tr><td class='label'>publication</td><td class='value'>" +
 					format_date(d.first_edit) +
 					"</td><td></td></tr>";
+
+				content +=
+					 "<tr><td class='label'>materia</td><td class='value'>" +
+					  d.subject.toLocaleString()
+					  
+				content +=
+					 "<tr><td class='label'>grado</td><td class='value'>" +
+					  d.grade.toLocaleString()
+
 				// avg daily visits
 				content +=
 					"<tr><td class='label'>daily visits</td><td class='value'>" +
