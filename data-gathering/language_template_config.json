@@ -42,10 +42,7 @@
         "translation": [
             "{{not English}}"
         ],
-        "wikificare": [
-            "{{wikify|",
-            "{{wikify}}"
-        ],
+        "wikificare": [],
         "stub": [
             "{{stub|",
             "{{stub}}"
@@ -157,9 +154,7 @@
         "recentism": [
             "{{recentismo"
         ],
-        "manual_style": [
-            "{{stilemanualistico"
-        ],
+        "manual_style": [],
         "translation": [
             "{{t|",
             "{{t}}"
