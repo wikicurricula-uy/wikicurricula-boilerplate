@@ -11,22 +11,22 @@
 		<link rel="stylesheet" type="text/css" href="assets/style/style.css">
 		<link rel="icon" href="/assets/img/favicon-192.png" sizes="192x192">
 
-    
-          
-            
-    
 
-          
+
+
+
+
+
           Expand Down
-          
-            
-    
 
-          
+
+
+
+
           Expand Up
-    
+
     @@ -166,87 +167,76 @@ <h2>Datos</h2>
-  
+
 		<!-- social sharing - facebook -->
 		<meta property="og:type" content="article">
 		<meta property="og:title" content="Wikicurrícula Uy">
@@ -44,7 +44,7 @@
 	    <meta name="twitter:site" content="Wikicurrícula Uy" />
 	  	<meta property="og:url" content="https://wikicurricula-uy.github.io/" />
 	</head>
-	<body> 
+	<body>
 		<header>
 			<div id="header">
 				<div class="container">
@@ -88,7 +88,7 @@
 						<div id="select_year" class="selector">
 							<p class="key noselect">Year</p>
 							<select name="subjects" id="year" class="select value noselect">
-								<option value="2023">2023</option>
+								<option value="2023" aria-label="Select the year 2023">2023</option>
 							</select>
 						</div>
 						<div id="select_subject" class="selector">
@@ -118,20 +118,22 @@
 						<div class="selector">
 							<p class="key noselect">Ordenar por</p>
 							<select name="sort" id="sort" class="select value noselect">
-								<option name="article" value="1">nombre del artículo</option>
-								<option name="publication" value="2">fecha de publicación</option>
-								<option name="size" value="3">tamaño del artículo</option>
-								<option name="discussion" value="4">tamaño de la página de discusión</option>
-								<option name="incipit" value="5">tamaño de la introducción</option>
-								<option name="issue" value="6">numero di avvisi</option>
-								<option name="images" value="7">número de imágenes</option>
-								<option name="reference" value="8">referencia</option>
+								<option name="article" value="1" aria-label="article name">article name</option>
+								<option name="publication" value="2" aria-label="publication date">publication date</option>
+								<option name="size" value="3" aria-label="article size">article size</option>
+								<option name="discussion" value="4" aria-label="discussion page size">discussion page size</option>
+								<option name="incipit" value="5" aria-label="introduction size">introduction size</option>
+								<!--<option name="issue" value="6">numero di avvisi</option>-->
+								<!-- <option name="images" value="7">número de imágenes</option> -->
+								<option name="reference" value="8">number of references</option>
+								<option name="images" value="7">number of images</option>
 							</select>
 						</div>
 					</div>
 				</div>
 				<div id="dv1" class="dataviz"></div>
 			</section>
+
 			<section id="legend" class="container">
 				<div id="dv_infobox" class="row">
 					<div class="column_3">
@@ -169,9 +171,9 @@
 						<br/>
 						<p> Aquí hay algunas queries en Wikidata Query Service que pueden resultar de tu interés:</p>
 						<ul>
-							<li><a href="https://w.wiki/7QG2" target="_blank">Lista completa de temas de la currícula</a></li>
-							<li><a href="https://w.wiki/7QF$" target="_blank">Temas que aún no tienen artículo en Wikipedia</a></li>
-							<li><a class="country-link" data-country="Ghana" data-year="2023" data-lang="en" href="./ghana.html">Ghana's curriculum</a></li>
+							<li><a href="https://w.wiki/7QG2" target="_blank">Complete list of curriculum topics</a></li>
+							<li><a href="https://w.wiki/7QF$" target="_blank">Topics that do not yet have an article on Wikipedia</a></li>
+								<li><a class="country-link" data-country="Ghana" data-year="2023" data-lang="en" href="./ghana.html">Ghana's curriculum</a></li>
 						</ul>
 						<br/>
 						<div id="dv1_dataset" class="dataset">
@@ -204,16 +206,16 @@
 							</div>
 							<div class="col-4 mx-auto">
 									<h6 class="text-uppercase fw-bold">Agradecemos a las y los docentes:</h6>
-										<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/> 
+										<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
 										<div class="lh-sm">
 											<p class="mb-1">Ana Miranda</p>
 											<p class="mb-1">Annabel Castro</p>
-											<p class="mb-1">Cecilia Torres</p>	
+											<p class="mb-1">Cecilia Torres</p>
 											<p class="mb-1">Franco Salvetti</p>
 											<p class="mb-1">Iliana Trejos Cabrera</p>
 											<p class="mb-1">Marcelo Mónico</p>
-											<p class="mb-1">Paula Olagüe Schettini</p>	
-											<p class="mb-1">Romina Smith</p>	
+											<p class="mb-1">Paula Olagüe Schettini</p>
+											<p class="mb-1">Romina Smith</p>
 										</div>
 										</div>
 								</div>
@@ -238,12 +240,12 @@
                             <div class="col-4 mx-auto">
 								<!-- <div class=" col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 mt-3"> -->
 									<h6 class="text-uppercase fw-bold">Grupo de trabajo</h6>
-									<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/> 
+									<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
 									<div class="section lh-sm text-md-left">
 										<p class="mb-1">Federico Benvenuti</p>
-										<p class="mb-1">Valerio Iannucci</p>	
-										<p class="mb-1">Luca Martinelli</p>	
-										<p class="mb-1">Paolo Fichera</p>	
+										<p class="mb-1">Valerio Iannucci</p>
+										<p class="mb-1">Luca Martinelli</p>
+										<p class="mb-1">Paolo Fichera</p>
 									</div>
 									<!-- <p class=" mb-1 "><span class="fw-bolder ">Diseño web y visualización de datos</span></p> -->
 									<!-- <h6 class="text-uppercase fw-bold mt-4">Diseño web y visualización de datos</h6>
@@ -254,7 +256,7 @@
 								 <div class="col-4 mx-auto">
 						  <!-- <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 mt-3"> -->
 							<h6 class="text-uppercase fw-bold">Soporte y colaboración</h6>
-							<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/> 
+							<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
 							<div class="section lh-sm">
 								<p class="mb-1 ">
 									<a class="text-decoration-underline" href="https://www.wikimedia.it/" target="_blank">Wikimedia Italia</a>
