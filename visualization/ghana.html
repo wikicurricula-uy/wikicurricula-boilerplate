@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="en" data-lang="en" data-country="Ghana_">
 	<head>
-		<title>Wikicurricula Ghana</title>
+		<title>Wikicurrícula Ghana</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
-		<meta name="description" content="The visualization shows the entries with the most average daily visits per school subject">
+		<meta name="description" content="La visualización muestra las entradas con más visitas medias diarias por asignatura escolar">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -29,19 +29,19 @@
   
 		<!-- social sharing - facebook -->
 		<meta property="og:type" content="article">
-		<meta property="og:title" content="Wikicurricula Ghana">
-		<meta property="og:description" content="Interactive visual report that analyzes Wikipedia articles relevant to the primary education curriculum in Ghana"></meta>
+		<meta property="og:title" content="Wikicurrícula Ghana">
+		<meta property="og:description" content="Reporte visual interactivo que analiza los artículos de Wikipedia relevantes a la currícula de la educación primaria en Ghana"></meta>
 		<meta property="og:image" content="https://itwiki-scuola-italiana.toolforge.org/assets/img/wikipedia-scuola-italiana_preview-fb.png" />
 	    <meta property="og:image:width" content="1200" />
 	    <meta property="og:image:height" content="630" />
-	    <meta property="og:site_name" content="Wikicurrícula Ghana - interactive visual report">
+	    <meta property="og:site_name" content="Wikicurrícula Uy - reporte visual interactivo">
 		<meta property="og:url" content="https://wikicurricula-uy.github.io/">
 		<!-- social sharing - twitter -->
 		<meta name="twitter:card" content="summary_large_image"></meta>
-	<meta name="twitter:title" content="Wikicurrícula Ghana - interactive visual report"></meta>
-		<meta name="twitter:description" content="Reporte visual interactivo que analiza los artículos de Wikipedia relevantes a la currícula de la educación secundaria en Uruguay"></meta>
+		<meta name="twitter:title" content="Wikicurrícula Uy - reporte visual interactivo"></meta>
+		<meta name="twitter:description" content="Reporte visual interactivo que analiza los artículos de Wikipedia relevantes a la currícula de la educación primaria en Ghana"></meta>
 	    <meta property="og:image" content="https://itwiki-scuola-italiana.toolforge.org/assets/img/wikipedia-scuola-italiana_preview-twitter.png" />
-	    <meta name="twitter:site" content="Wikicurrícula Ghana" />
+	    <meta name="twitter:site" content="Wikicurrícula Uy" />
 	  	<meta property="og:url" content="https://wikicurricula-uy.github.io/" />
 	</head>
 	<body> 
@@ -49,9 +49,14 @@
 			<div id="header">
 				<div class="container">
 					<h1>
-						<a href="" title="Wikicurrícula Gh" class="noselect">
-							Wikicurricula Ghana
-						</a>
+						<select id="pageSelector">
+							<option value="ghana"><a href="" title="Wikicurrícula Uy" class="noselect">
+								Wikicurrícula Ghana
+							</a></option>
+							<option value="uy"><a href="" title="Wikicurrícula Uy" class="noselect">
+								Wikicurrícula Uy
+							</a></option>
+						</select>
 					</h1>
 				</div>
 			</div>
@@ -92,7 +97,7 @@
 							</select>
 						</div>
 						<div id="select_subject" class="selector">
-							<p class="key noselect">Subject</p>
+							<p class="key noselect">Material</p>
 							<select name="subjects" id="subjects" class="select value noselect">
 								<option value="all">All subjects</option>
 								<option value="Computing">Computing</option>
@@ -105,8 +110,8 @@
 						<div class="selector">
 							<p class="key noselect">Sort by</p>
 							<select name="sort" id="sort" class="select value noselect">
-								<option name="article" value="1">Article name</option>
-								<option name="publication" value="2">publication date</option>
+								<option name="article" value="1">Article's name</option>
+								<option name="publication" value="2">Publication date</option>
 								<option name="size" value="3">Item size</option>
 								<option name="discussion" value="4">page size</option>
 								<option name="incipit" value="5">introduction size</option>
@@ -122,7 +127,7 @@
 			<section id="legend" class="container">
 				<div id="dv_infobox" class="row">
 					<div class="column_3">
-						<h2>How to read the visualization</h2>
+						<h2><b><u>How to read the display</u></b></h2>
 						<p>
 								The visualization shows the articles that we identify as related to Ghana's national curricula for Basic 7, 8 and 9.
 							<br/><br/>
@@ -135,10 +140,10 @@
 					</div>
 					<div class="column_3">
 						<div id="dv1_legend_a" class="legend">
-							<img src="assets/img/dv1_legend_a.svg" width="326" height="262" alt="The light colored circle represents the size of the article, the dark colored circle represents the size of the introduction and the circumference represents the size of the discussion page">
+							<img src="assets/img/dv1_legend_a.svg" width="326" height="262" alt="The light-colored circle represents the size of the article, the dark-colored circle represents the introduction dimension, and the circumference represents the size of the talk page.">
 						</div>
 						<div id="dv1_legend_b" class="legend">
-							<img src="assets/img/dv1_legend_b.svg" width="326" height="155" alt="The pink color represents the Social studies, the green color represents the Mathematics and ICT, the light blue color represents English and the brown color represents the Science.">
+							<img src="assets/img/dv1_legend_b.svg" width="326" height="155" alt="The pink color represents the social sciences and humanities, the green color represents the scientific and mathematical area, the light blue color represents communication and the arts and the violet color represents the technical-technological area.">
 						</div>
 					</div>
 					<div class="column_3">
@@ -149,9 +154,9 @@
 							You can browse the curriculum on Wikidata and access the complete list of topics that make up each program:
 						</p>
 						<ul>
-							<li><a href="https://www.wikidata.org/wiki/Q119727432" target="_blank">Basic 7</a></li>
-							<li><a href="https://www.wikidata.org/wiki/Q119727312" target="_blank">Basic 8</a></li>
-							<li><a href="https://www.wikidata.org/wiki/Q121573834" target="_blank">Basic 9</a></li>
+							<li><a href="https://www.wikidata.org/wiki/Q119727432" target="_blank">Basic Seven</a></li>
+							<li><a href="https://www.wikidata.org/wiki/Q119727312" target="_blank">Basic Eight</a></li>
+							<li><a href="https://www.wikidata.org/wiki/Q121573834" target="_blank">Basic Nine</a></li>
 						</ul>
 						<br/>
 						<p> Here are some queries in Wikidata Query Service that may be of interest to you:</p>
@@ -195,12 +200,13 @@
 								</div>
 
 								<div class="lh-sm">
-									<p class=" mb-1 "><span class="fw-bolder ">Support and collaboration</span></p>
-									<a class="mt-0 fs-4 fw-bold text-decoration-underline" href="https://itwiki-scuola-italiana.toolforge.org/">Wikipedia e Scuola Italiana</a>
+									<p class=" mb-1 "><span class="fw-bolder ">Original project credits</span></p>
+									<a class="mt-0 fs-4 fw-bold text-decoration-underline" href="https://itwiki-scuola-italiana.toolforge.org/">Wikipedia and Italian School</a>
 								</div>
 						</div>
 						<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-0  mb-4 gap-3">
-							<h6 class="text-uppercase fw-bold">We thank the teachers:</h6>
+							<h6 class="text-uppercase fw-bold">
+                                We thank the teachers:</h6>
 								<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/> 
 				                <div class="lh-sm">
 									<p class="mb-1">Ana Miranda</p>

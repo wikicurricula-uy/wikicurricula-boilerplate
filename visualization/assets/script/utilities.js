@@ -1,42 +1,55 @@
 function apply_color(subject) {
+	//can edit to change colors
+
 	let color;
-	//Ciencias sociales y humanidades
-	if (
-		subject == "Historia" ||
-		subject == "Formación para la ciudadanía" ||
-		subject == "Geografía"
-	) {
-		color = "#ef95c4"; //"#eeb4ee";
-	}
-	//Técnico-tecnológico
-	else if (
-		subject == "Ciencias de la computación" ||
-		subject == "Tecnologías"
-	) {
+	const history_subjects = [
+		"Historia",
+		"Formación para la ciudadanía",
+		"Geografía",
+		"Social Studies",
+		"Training for citizenship",
+		"Geography",
+	];
+
+	const technology_subjects = [
+		"Computing",
+		"Technologies",
+		"Ciencias de la computación",
+		"Tecnologías",
+	];
+
+	const Communication_and_Art_subjects = [
+		"English Language",
+		"Visual communication",
+		"Communication and society",
+		"Design",
+		"Comunicación visual",
+		"Comunicación y sociedad",
+		"Diseño",
+		"Educación musical",
+		"Lengua española",
+		"Literatura",
+	];
+
+	const personal_development_body_awareness_subjects = [
+		"Educación física y recreación",
+		"Salud y sexualidad",
+		"Physical education and recreation",
+		"Health and sexuality",
+	];
+
+	if (history_subjects.includes(subject)) {
+		color = "#ef95c4";
+	} else if (technology_subjects.includes(subject)) {
 		color = "#3a34e0"; // "blue";
-	}
-	//Comunicación y Arte
-	else if (
-		subject == "Comunicación visual" ||
-		subject == "Comunicación y sociedad" ||
-		subject == "Diseño" ||
-		subject == "Educación musical" ||
-		subject == "Lengua española" ||
-		subject == "Literatura"
-	) {
+	} else if (Communication_and_Art_subjects.includes(subject)) {
 		color = "#00b2ff";
-	}
-	//Espacio de desarrollo personal y conciencia corporal y espacio de autonomía curricular
-	else if (
-		subject == "Educación física y recreación" ||
-		subject == "Salud y sexualidad"
-	) {
+	} else if (personal_development_body_awareness_subjects.includes(subject)) {
 		color = "#f4d365";
-	}
-	//Espacio científico matemático
-	else {
+	} else {
 		color = "green";
 	}
+
 	return color;
 }
 

@@ -88,6 +88,28 @@ let random_subject = null;
 let random_subject_index = null;
 let forbidden_subjects = ["Comunicación y sociedad"];
 
+const pageSelector = document.getElementById("pageSelector");
+const selectedPage = pageSelector.value;
+
+let filename;
+if (selectedPage === "uy") {
+	filename = "uruguay_voci_";
+	subjectFIle = "../data-gathering/uruguay_subject_file.csv";
+} else if (selectedPage === "ghana") {
+	filename = "ghana_voci_";
+	subjectFIle = "../data-gathering/ghana_subject_file.csv";
+}
+
+pageSelector.addEventListener("change", function () {
+	const selectedPage = pageSelector.value;
+
+	if (selectedPage === "uy") {
+		window.location.href = "index.html";
+	} else if (selectedPage === "ghana") {
+		window.location.href = "ghana.html";
+	}
+});
+
 function dv1(year, the_subject, sort) {
 	d3.tsv(dataFile).then(loaded);
 	function loaded(data) {
@@ -416,7 +438,14 @@ function dv1(year, the_subject, sort) {
 					"<p style='font-weight: bold; margin: 0 0 10px 3px;'>" +
 					d.article +
 					"</p><table>";
-
+				content +=
+					"<tr><td class='label'>grade</td><td class='value'>" +
+					d.grade.toLocaleString() +
+					"</td><td></td></tr>";
+				content +=
+					"<tr><td class='label'>subject</td><td class='value'>" +
+					d.subject.toLocaleString() +
+					"</td><td></td></tr>";
 				content +=
 					"<tr><td class='label'>publication</td><td class='value'>" +
 					format_date(d.first_edit) +
@@ -1564,6 +1593,7 @@ function initialize_page() {
 		console.log(random_subject_index);
 	}
 	document.getElementById("subjects").selectedIndex = random_subject_index;
+
 	dv1(2023, random_subject, parseInt(1));
 	get_year();
 }
