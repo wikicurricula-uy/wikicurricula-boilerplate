@@ -1,726 +1,523 @@
+'''
+Python script for performing various analyses on Wikipedia articles. 
+This script appears to collect data from Wikipedia and Wikidata, 
+process it, and save the results to a file named "resuls.txt". 
+'''
+
 import urllib
-
 import sys
-
 import calendar
-
 import json
-
 import datetime
-
 from urllib.request import urlopen
-
 import urllib.parse
-
 import string
-
-import json
-
 from datetime import datetime
 
 
-#language subdomain, to be used for API calls
-language = "es"
+# Open and read the JSON configuration file and access the configuration data as a dictionary
+with open("wikipedia_config.json", "r") as config_file:
+   wikipedia_config = json.load(config_file)
 
-id_wikidata = 1
-size = 1
-first_edit = 1
 
-notes  =  1
+# Accept 
+if len(sys.argv) > 1:
+    WIKIPEDIA_LANGUAGE  = sys.argv[1]
+else:
+    WIKIPEDIA_LANGUAGE = "en"  # Default to "es" if no argument is provided
 
-images  = 1
 
-display = 1
 
-incipit_size  = 1
+def main():
+   
+   if WIKIPEDIA_LANGUAGE in wikipedia_config:
+      language_config = wikipedia_config[WIKIPEDIA_LANGUAGE]
+   else:
+      print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
+      
+   # Access configuration variables based on the language
+   file_to_be_analysed = language_config.get("file_to_be_analysed")
+   result_file = language_config.get("result_file")
+   language = language_config.get("language")
+   utf_required = language_config.get("utf_required")
+   id_wikidata = language_config.get("id_wikidata")
+   dimension = language_config.get("dimension")
+   first_edit = language_config.get("first_edit") 
+   note = language_config.get("note")
+   image = language_config.get("images")
+   views = language_config.get("views")
+   incipit_size = language_config.get("incipit_size")
+   discussion_size = language_config.get("discussion_size")
+   discussionURL = language_config.get("discussionURL")
+   warnings_config = language_config.get("warnings_config")
+   commons_pages = language_config.get("commons_pages")
+   commons_gallery = language_config.get("commons_gallery")
+   itwikisource = language_config.get("itwikisource")
+   wikiversity = language_config.get("wikiversity")
+   wikibooks = language_config.get("wikibooks")
+   featured_in = language_config.get("featured")
+   quality = language_config.get("quality")
+   review = language_config.get("review")
+   bibliography = language_config.get("bibliography")
+   coordinate = language_config.get("coordinate")
+   featured_template = language_config.get("featured_template")
+   display_window_template = language_config.get("display_window_template")
 
-discussion_size = 1
 
-#discussion page prefix
-discussion = "Discusión:"
-discussionURL = urllib.parse.quote(discussion)
+   analysis(language, file_to_be_analysed, result_file, discussionURL, utf_required, display_window_template,warnings_config, discussion_size, 
+      incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template)
+   
 
-#currently, the notice count does not work for the Spanish Wikipedia
-configAlerts = 1
 
-commonsPage = 1
-
-commonsGallery = 1
-
-itwikisource = 1
-
-wikiversity = 1
-
-wikibooks = 1
-
-showcase = 1
-
-#template display
-showcaseTemplate ="{{artículo destacado"
-
-quality = 1
-
-#"Quality article template
-
-qualityArticleTemplate="{{artículo bueno"
-
-visits = 1
-
-bibliography = 1
-
-coordinates = 1
-
-# function fetches the pageviews of an article within a given date range and then calculates the average daily pageviews for that period.
-# Returns either the calculated average daily pageviews as a string or "ERROR" if an exception occurs.
-
-def get_avg_pageviews(article, start, end):
-
-   #params: article: article title, start: start date of the period, end: end date of the period
+# Function to get average page views: returns visits since the beginning of time, average dayly visits since the begininning of time, average daily visits in the specified year
+def get_avg_pageviews(article_title, start, end, language):
    SUM = 0
 
    try:
 
-      #  query the Wikimedia REST API for pageviews data.
-      url = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+article+"/daily/"+start+"/"+end
-   
+      url = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+article_title+"/daily/"+start+"/"+end
       html = urlopen(url).read()
-
-
-
       html = str(html)
-
       html = html.replace('{"items":[',"")
-
       html = html.replace(']}',"")
-
       n = html.count("}")
 
 
-      # Calculate the sum of daily pageviews
       for i in range(n):
 
          txt = html[:html.find("}")+1]
-
          SUM += int(txt[txt.find('"views":')+len('"views":'):-1])
-
          html =html.replace(txt,"",1)
-
-      # Determine the number of days in the specified date range.
+      
       d1 = datetime.strptime(start, "%Y%m%d")
       d2 = datetime.strptime(end, "%Y%m%d")
       days = (abs((d2 - d1).days)+1)
-      
-      # average daily pageviews is sum divided number of days
-      ris = str(int(round((SUM/days),0)))
+      result = str(int(round((SUM/days),0)))
 
-      # If an error occurs (e.g., network issues or problems with the API call), catch the exception and set ris to the string "ERROR
    except:
+      result = "ERROR"
+   
+   return result
 
-      ris = "ERRORE"
-   return ris
+# This function returns visits since the beginning of time, average dayly visits since the begininning of time, average daily visits in the specified year
+def visit(article, language):
 
+   #YYYYMMGG Date Format
+   START_ALL_TIME = "20150701"; 
+   START_PREV_YEAR = "20220101"; 
+   END_PREV_YEAR = "20221231"; 
+   START_CURRENT_YEAR = "20230101"; 
+   END_CURRENT_YEAR   = "20230831"; 
 
-# returns visits since the beginning of time, average daily visits since the begininning of time, average daily visits in the specified year
-def visits(voce):
-
-  #YYYYMMGG
-  START_ALL_TIME = "20150701"; 
-
-  START_PREV_YEAR = "20220101";
-  END_PREV_YEAR = "20221231";
-
-  START_CURRENT_YEAR = "20230101";
-  END_CURRENT_YEAR   = "20230831";  
-
-  DATE = []
+   DATE = []
 
 
-  #calculate ris1, total pageviews since the beginning of time, and ris2, average pageviews since de beginning of time
-  d1 = datetime.strptime(START_ALL_TIME, "%Y%m%d")
+   #calculate result1, total pageviews since the beginning of time, and result2, average pageviews since de beginning of time
+   d1 = datetime.strptime(START_ALL_TIME, "%Y%m%d")
+   d2 = datetime.strptime(END_CURRENT_YEAR, "%Y%m%d")
+   days = (abs((d2 - d1).days)+1)
+   ARTICLE = article.replace(" ","_")
 
-  d2 = datetime.strptime(END_CURRENT_YEAR, "%Y%m%d")
+   SUM = 0
 
-  day = (abs((d2 - d1).days)+1)
+   try:
 
-  VOCE = voce.replace(" ","_")
+      url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+ARTICLE+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
+      html = urlopen(url).read()
+      ecc = 0 # to change
+      if ecc == 0:
+         html = str(html)
+         html = html.replace('{"items":[',"")
+         html = html.replace(']}',"")
+         n = html.count("}")
 
-  SUM = 0
+         for i in range(n):
+            txt = html[:html.find("}")+1]
+            SUM += int(txt[txt.find('"views":')+len('"views":'):-1])
+            html =html.replace(txt,"",1)
 
-  try:
+         result1 = str(SUM)
+         result2 = str(int(round((SUM/days),0)))
 
-    url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+VOCE+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
+   except:
+      result1 = "ERROR"
+      result2 = "ERROR"
 
-    html = urlopen(url).read()
+   #calculate result3, average pageviews from previous year
+   result3 = get_avg_pageviews(article, START_PREV_YEAR, END_PREV_YEAR, language)
 
-    ecc = 0 # to change
+   #calculate result4, average pageviews from current year
+   result4 = get_avg_pageviews(article, START_CURRENT_YEAR, END_CURRENT_YEAR, language)
+   
+   return str(result1), str(result2), str(result3), str(result4)
 
-    if ecc == 0:
+
+
+
+# Function to return ID of an item
+def nome2Q(item):
+   return item.getID()
+
+
+
+
+#This function counts the number of times the substring "</ref>" appears within the input string "text" and converts the count (which is an integer) into a string
+def note(text):
+   return str(text.count('</ref>'))
+
+
+
+# Function to calculate and return the length of a given string as a string.
+def dimension(text):
+    return str(len(text))
+
+
+
+# this function counts the occurrences of specific image file extensions within a given string and returns that count as a string.
+def images(text):
+   t = text.lower()
+   img = str(t.count('.jpg')+t.count('.svg')+t.count('.jpeg')+t.count('.png')+t.count('.tiff')+t.count('.gif')+t.count('.tif')+t.count('.xcf'))
+   return img
+
+
+
+
+'''This function relies on external web scraping 
+it reads the HTML content of the page and converts it's content to a string and then extracts a specific portion of the HTML using string manipulation. 
+Specifically, it looks for the substring "created_at" and extracts the following 10 characters, which should represent the creation date of the Wikipedia article.'''
+
+def first_edit(article, language):
+   try:
+
+      url ="https://xtools.wmflabs.org/api/page/articleinfo/"+language+".wikipedia.org/"+article.replace(" ","_")
+      html = urlopen(url).read()
 
       html = str(html)
 
-      html = html.replace('{"items":[',"")
+      html = html[html.find("created_at")+len("created_at")+3:]
 
-      html = html.replace(']}',"")
+      html = html[:10]
 
-      n = html.count("}")
+   except:
 
+      html= "ERROR"
 
-
-      for i in range(n):
-
-         txt = html[:html.find("}")+1]
-
-         SUM += int(txt[txt.find('"views":')+len('"views":'):-1])
-
-         html =html.replace(txt,"",1)
-
-
-
-      ris1 = str(SUM)
-
-      ris2 = str(int(round((SUM/day),0)))
-
-  except:
-
-    ris1 = "ERRORE"
-
-    ris2 = "ERRORE"
-
-  #calculate ris3, average pageviews from previous year
-  ris3 = get_avg_pageviews(VOCE, START_PREV_YEAR, END_PREV_YEAR)
-
-  #calculate ris4, average pageviews from current year
-  ris4 = get_avg_pageviews(VOCE, START_CURRENT_YEAR, END_CURRENT_YEAR)
-
-   
-  return str(ris1), str(ris2), str(ris3), str(ris4)
+   return html
 
 
 
 
-# return the id of an item.
-def name2Q(item):
+# This function analyzes and count specific types of tags within a given text. The results are returned as strings, making them suitable for further processing.
 
-  return item.getID()
+def warnings(t): 
 
-
-
-
-# count the number of times '</ref>' appears in a given text and then return the count as a string.
-def notes(text):
-
-  return str(text.count('</ref>'))
-
-
-
-
-# determine the length of a text and then return it as a string.
-def dimension(text):
-  return str(len(text))
-
-
-
-
-# calculates the sum of occurrences of various image file extensions in the lowercase text and then returns the sum as a string.
-def images(text):
-
-  t = text.lower()
-
-  img = str(t.count('.jpg')+t.count('.svg')+t.count('.jpeg')+t.count('.png')+t.count('.tiff')+t.count('.gif')+t.count('.tif')+t.count('.xcf'))
-
-  return img
-
-
-
-
-# retrieve the date of the first edit made to a specified article.
-def firstEdit(article):
-
-  try:
-
-   # query the XTools API for information about the specified article.
-    url ="https://xtools.wmflabs.org/api/page/articleinfo/"+language+".wikipedia.org/"+article.replace(" ","_")
-    # 
-    html = urlopen(url).read()
-
-    html = str(html)
-
-   # extract the creation date of the article and extract the subsequent characters.
-
-    html = html[html.find("created_at")+len("created_at")+3:]
-
-    html = html[:10]
-
-# Incase of an error (e.g., a network issue, or the article is not found), the code within this block will execute
-  except:
-
-    html= "ERRORE"
-
-  return html
-
-
-
-
-# The function counts the occurrences of different types of tags and returns the counts.
-def alerts(t):
-
-# A temporary copy of the original text is created
-   t_tmp = t
-
+   t_tmp =t
    t = t.replace("\n","")
-
    t = t.replace(" ","")
-
    t = t.lower()
-
+   # tmp  == template
     
-   #  count the occurrences of various templates or tags related to potential issues or improvement areas
-   tmpCheck = t.count('{{c|') + t.count('{{c}}')
+   with open("language_template_config.json", "r") as config_file:
+      language_template_config = json.load(config_file)
 
-   tmpSummary = t.count('{{tmp|')  + t.count('{{tmp}}')
+   if WIKIPEDIA_LANGUAGE in language_template_config:
+      language_config = language_template_config[WIKIPEDIA_LANGUAGE]
+   else:
+      print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
 
-   tmpHelp = t.count('{{a|')
+   tmp_to_check = sum(t.count(template) for template in language_config.get("to_check"))
+   tmp_synoptic = sum(t.count(template) for template in language_config.get("synoptic"))
+   tmp_correct = sum(t.count(template) for template in language_config.get("correct"))
+   tmp_curiosity = sum(t.count(template) for template in language_config.get("curiosity"))
+   tmp_divide = sum(t.count(template) for template in language_config.get("divide")) 
+   tmp_sources = sum(t.count(template) for template in language_config.get("sources"))
+   tmp_localism = sum(t.count(template) for template in language_config.get("localism"))
+   tmp_pov = sum(t.count(template) for template in language_config.get("pov"))
+   tmp_nn = sum(t.count(template) for template in language_config.get("nn"))
+   tmp_recentism = sum(t.count(template) for template in language_config.get("recentism"))
+   tmp_manual_style = sum(t.count(template) for template in language_config.get("manual_style"))
+   tmp_translation = sum(t.count(template) for template in language_config.get("translation"))
+   tmp_wikificare = sum(t.count(template) for template in language_config.get("wikificare")) 
+   tmp_stub = sum(t.count(template) for template in language_config.get("stub"))
+   tmp_stub_section = sum(t.count(template) for template in language_config.get("stub_section"))
+   tmp_copy_control = sum(t.count(template) for template in language_config.get("copy_control"))
 
-   tmpCorrect = t.count('{{correcto')
-
-   tmpCuriosity = t.count('{{curiosidad')
-
-   tmpDivide = t.count('{{d|') + t.count('{{d}')
-
-   tmpSources = t.count('{{f|')  + t.count('{{f}}')
-
-   tmpLocalism = t.count('{{l|')  + t.count('{{l}}')
-
-   tmpPOV = t.count('{{p|')  + t.count('{{p}}')
-
-   tmpNN = t.count('{{nn|')  + t.count('{{nn}}')
-
-   tmpRecentism = t.count('{{recienteismo')
-
-   tmpManual = t.count('{{estilomanualístico')
-
-   tmpTranslation = t.count('{{t|')  + t.count('{{t}}')
-
-   tmpWikify = t.count('{{w|')  + t.count('{{w}}')
-
-   tmpStub = t.count('{{s|')  + t.count('{{s}}')
-
-   tmpsectionStub = t.count('{{seccióncorta')
-
-   tmpControlCopi = t.count('{{controlcopy')
-
-   tmpStub = t.count('{{s|')  + t.count('{{s}}')
-
-   sumAlerts = tmpCheck + tmpSummary + tmpHelp + tmpCorrect + tmpCuriosity + tmpDivide + tmpSources + tmpLocalism + tmpPOV
-
-   sumAlerts = sumAlerts + tmpNN + tmpRecentism + tmpManual + tmpTranslation + tmpWikify + tmpStub + tmpsectionStub + tmpControlCopi
+   sum_of_warnings = tmp_to_check + tmp_synoptic + tmp_correct + tmp_curiosity + tmp_divide + tmp_sources + tmp_localism + tmp_pov
+   sum_of_warnings += tmp_nn + tmp_recentism + tmp_manual_style + tmp_translation + tmp_wikificare + tmp_stub + tmp_stub_section + tmp_copy_control
 
 
+   tmp_without_sources = sum(t.count(template) for template in language_config.get("without_sources"))
+   tmp_to_clarify = sum(t.count(template) for template in language_config.get("clarify"))
 
-   tmpWithoutSources= t.count('{{sinfuente') + t.count('{{citarequerida') + t.count('{{sinfuente}}') + t.count('{{citarequerida}}')
-
-   tmpClarify = t.count('{{aclaraciónrequerida') + t.count('{{[aclaraciónrequerida}}')
-
-
-   # return the total count of alerts, the count of instances without sources, and the count of instances needing clarification
-   return str(sumAlerts), str(tmpWithoutSources), str(tmpClarify)
+   return str(sum_of_warnings), str(tmp_without_sources), str(tmp_to_clarify)
 
 
 
 
-# extract a specific template from a given text. returns either the modified text (if a template is found) or the original text
-def findtemplate(text):
+# This function is designed to iteratively find and extract templates from a text until no more templates are present
+def find_template(text):
 
-      #  copies of the input text with the first two characters removed.
-      tmp = text[2:]
+   tmp = text[2:]
+   tmp2 = text[2:]
+   tmp = tmp[:tmp.find("}}")+2]
 
-      tmp2 = text[2:]
+   if "{{" in tmp:
 
-      # include only the portion of text from the beginning to the first occurrence of "}}" plus two characters.
-      tmp = tmp[:tmp.find("}}")+2]
-
-      if "{{" in tmp:
-
-         # substring of tmp starting from the first occurrence of "{{" to the end.
-          tmp3 = tmp[tmp.find("{{"):]
-
-         # replace tmp3 with a placeholder string 
-          tmp2 = tmp2.replace(tmp3,"$$$$$$$$$$$$$$")
+      tmp3 = tmp[tmp.find("{{"):]
+      tmp2 = tmp2.replace(tmp3,"$$$$$$$$$$$$$$")
 
 
-         # include only the portion up to the first occurrence of "}}" plus two characters
+      tmp2 = tmp2[:tmp2.find("}}")+2]
+      tmp2 = tmp2.replace("$$$$$$$$$$$$$$",tmp3)
 
-          tmp2 = tmp2[:tmp2.find("}}")+2]
-         
-         # placeholder is replaced back with the original template (tmp3)
-          tmp2 = tmp2.replace("$$$$$$$$$$$$$$",tmp3)
-
-          return tmp2
-
-      return tmp
+      return tmp2
+   return tmp
 
 
 
 
-# calculate the length of an introductory part of a text while handling various text manipulations.
-def lengthIncipit(text):
-
+# Function to calculate the length of the introduction
+#Incipit means the opening of a manuscript, early printed book. Hence, incipit == introduction 
+def calculate_introduction_length(text):
    incipit = text
-
-   #  extract the part of the text up to the first occurrence of "\n==" using incipit = incipit[:incipit.find("\n==")].
-
    incipit = incipit[:incipit.find("\n==")]
+   template_count  =incipit.count('{{')
 
-   ntemplate  = incipit.count('{{')
+   # incipitclear = incipit
+   format_num = incipit.count("{{formatnum:")
 
-   incipitclear = incipit
-
-   # Handling '{{formatnum:' Templates:
-   fn = incipit.count("{{formatnum:")
-
-   for i in range(fn):
-
+   for i in range(format_num):
       tmp = incipit[incipit.find("{{formatnum:"):]
-
       tmp = tmp[:tmp.find("}}")+2]
-
       tmp2 = tmp.replace("{{formatnum:","")
 
       tmp2 = tmp2.replace("}}","")
-
       incipit = incipit.replace(tmp, tmp2)
 
+   template_count = incipit.count("{{")
 
-   # Handling Other '{{' Templates:
-   ntemplate = incipit.count("{{")
-
-   for i in range(ntemplate):
-
+   for i in range(template_count):
       text = incipit[incipit.find("{{"):]
-
-      template = findtemplate(text)
-
+      template = find_template(text)
       text = text.replace("{{"+template,"")
-
       incipit = incipit.replace("{{"+template,"")
-
-   # Removing '<ref>' Tags
    incipit = incipit.replace("</ref>","")
 
    n = incipit.count("<ref")
 
-   # Removing '[[' and ']]' Tags, and '|':
    for i in range(n):
 
       tmp = incipit[incipit.find("<ref"):]
-
       tmp = tmp[:tmp.find(">")+1]
-
       incipit = incipit.replace(tmp,"")
 
    incipit = incipit.replace("[[","")
-
    incipit = incipit.replace("]]","")
-
    incipit = incipit.replace("|","")
-
-   # Calculating Length:
-   lunincipit = len(incipit)
-   return str(lunincipit)
+   introduction_length = len(incipit)
+   return str(introduction_length)
 
 
 
 
-#  check whether "qualityArticleTemplate" is present in the provided text
-def qualityArticle(text):
-
-   if qualityArticleTemplate in text.lower():
-
+# Function to check if the article is a "good article"
+def vdq(text, display_window_template):
+   if display_window_template in text.lower():
       return "1"
 
    else:
-
       return "0"
 
 
-# check whether "showcaseTemplate" is present in the provided text
-def showcase(text):
-
-   if showcaseTemplate in text.lower():
-
+# This function checks to if a specific template (defined by the featured_template variable) is present in the provided text.
+def featured_in(text, featured_template):
+   if featured_template in text.lower():
       return "1"
 
    else:
-
       return "0"
 
+    
+# Main analysis function
+def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_required, display_window_template, warnings_config, discussion_size, 
+      incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template):
+   
+   # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
+   f = open(file_to_be_analysed, 'r', encoding= utf_required )  #change this to file to read as an option from users
 
-
-
-
-
-# analyze articles
-def analysis():
-
-   # Open the "query.csv" file in read mode
-   f = open('query.csv', "r", encoding='utf-8')
-
-# Read all lines from the file into a list
-   vox = f.readlines()   
+   articles = f.readlines()   
     
    # delete the contents of the file before starting
-   
-   results = open('resultati.txt',"w")
-   
-   # Truncate the "results.txt" file to remove existing content
+   results = open(result_file,"w")
    results.truncate(0)
-   
    results.close()
 
-# Iterate through each article in the list of articles
-   for article in vox:
-      
-      # Open the "results.txt" file in append mode
-      results = open('resultati.txt', 'a')  # open the file in append mode
+   for article in articles:
+      results = open(result_file, 'a')  # open the file in append mode
 
       flag = 1
-
+      
       # Remove the newline character at the end of the article
+
       article = article[:-1]
-
-      # Replace spaces in the article title with underscores
-      article = article.replace(" ","_")
-
-      ris = ""
-
+      article= article.replace(" ","_") # Wikipedia page titles are case-sensitive and spaces in page titles should be replaced with underscores.
+      result = ""
       wikitext = ""
 
-
-      # Replace spaces in the article title with underscores and quote the article
-      article2 = urllib.parse.quote(article)
-      article = article.replace(" ","_")
+      article2 = urllib.parse.quote(article) 
 
 
       try:
-
          # Construct the Wikipedia API URL for parsing wikitext
-        url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
-      
-      # Open the URL and load JSON data
-        json_url = urlopen(url)
 
-        data = json.loads(json_url.read())
-      
-      # Extract wikitext from the JSON response
-        wikitext = data["parse"]["wikitext"]
+         url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
+         json_url = urlopen(url)
 
-      # If the article is a redirect, update the article title
-        if "#REDIRECT"  in wikitext:
+         data = json.loads(json_url.read())
 
-     #   print (wikitext)
+         wikitext = data["parse"]["wikitext"]
 
-          article2 = wikitext[wikitext.find("[[")+2:]
+         if "#RINVIA"  in wikitext or "#REDIRECT" in wikitext:
+         #   print (wikitext)
 
-          article2 = article2[:article2.find("]]")]
-
-          article = article2
-
-          article2 = article2.replace("_"," ")
+            start = wikitext.find("[[")
+            end = wikitext.find("]]", start)
+            article2 = wikitext[start + 2:end]
+            article2 = article2.strip()
+            article2 = article2.replace("_", " ")
 
       except:
-
-        pass                                     
+         pass                                     
 
       try:
+         article = article.replace(" ","_")
+         article2 = urllib.parse.quote(article)
 
-        article2 = urllib.parse.quote(article)
+         
+         url = "https://"+language+".wikipedia.org/w/api.php?action=query&titles=" + article2 +"&prop=pageprops&format=json&formatversion=2"
 
-        article = article.replace(" ","_")
+         json_url = urlopen(url)
+         data = json.loads(json_url.read())
+         wikidataid = data["query"]["pages"][0]["pageprops"]["wikibase_item"]
 
-      # Construct the Wikipedia API URL for querying page properties
-        url = "https://"+language+".wikipedia.org/w/api.php?action=query&titles=" + article2 +"&prop=pageprops&format=json&formatversion=2"
+         url ="https://www.wikidata.org/wiki/Special:EntityData/"+wikidataid+".json"
 
-        json_url = urlopen(url)
-
-        data = json.loads(json_url.read())
-
-         # Extract Wikidata ID from the JSON response
-        wikidataid = data["query"]["pages"][0]["pageprops"]["wikibase_item"]
-
-      # Construct the Wikidata API URL for retrieving entity data
-        url ="https://www.wikidata.org/wiki/Special:EntityData/"+wikidataid+".json"
-
-        json_url = urlopen(url)
-
-        wikidata = json.loads(json_url.read())
-
-
-      # Construct the Wikipedia API URL for parsing wikitext again
-        url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
-
-        json_url = urlopen(url)
-
-        data = json.loads(json_url.read())
-
-        wikitext = data["parse"]["wikitext"]
+         json_url = urlopen(url)
+         wikidata = json.loads(json_url.read())
 
 
 
-        try:
+         url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
 
-          url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + discussionURL + article2 + "&prop=wikitext&formatversion=2&format=json"
-          json_url = urlopen(url)
+         json_url = urlopen(url)
 
-          data = json.loads(json_url.read())
+         data = json.loads(json_url.read())
 
-          wikitext_discussion = data["parse"]["wikitext"]
-
-        except:
-
-          wikitext_discussion = ""
+         wikitext = data["parse"]["wikitext"]
 
 
 
-        ris = ris + article + "\t"
-        
-      # Append article and Wikidata ID to the 'ris' string
-        ris = ris + wikidataid + "\t"
+         try:
+
+            url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + discussionURL + article2 + "&prop=wikitext&formatversion=2&format=json"
+            json_url = urlopen(url)
+
+            data = json.loads(json_url.read())
+
+            wikitext_discussion = data["parse"]["wikitext"]
+
+         except:
+            wikitext_discussion = ""
+
+         result = result + article + "\t"
+
+         result = result + wikidataid + "\t"
 
       except:
-
-        ris = ris + article +"\t" +"non-existent article"
+         result = result + article +"\t" +" article non-existent"
 
        
 
       else:
 
-        if firstEdit:
+         if first_edit:
+            result = result + first_edit(article2, language) + "\t"
 
-           ris = ris + firstEdit(article2) + "\t"
+         if dimension:
+            result = result + dimension(wikitext) + "\t"
 
+         if images:
+            result = result + images(wikitext) + "\t"
 
-
-        if size:
-
-           ris = ris + dimension(wikitext) + "\t"
-
-
-
-        if images:
-
-           ris = ris + images(wikitext) + "\t"
-
-
-
-        if notes:
-
-           ris = ris + notes(wikitext) + "\t"
+         if note:
+            result = result + note(wikitext) + "\t"
 
            
 
-        if configAlerts:
+         if warnings_config:
+            for i in warnings(wikitext):
+               print("some warnings")
+               result = result + i + "\t"   
 
-           for i in alerts(wikitext):
-              # print("some avisi")
-              ris = ris + i + "\t"
+         if discussion_size:
+            result = result + dimension(wikitext_discussion) + "\t"
 
-               
-
-        if discussion_size:
-
-           ris = ris + dimension(wikitext_discussion) + "\t"
-
+         if incipit_size:
+            result = result + calculate_introduction_length(wikitext) + "\t"
 
 
-        if incipit_size:
+         if visit:
+            for i in visit(article2, language):
+               result = result + i + "\t"
 
-           ris = ris + lengthIncipit(wikitext) + "\t"
+         if vdq:
+            result = result + vdq(wikitext, display_window_template) + "\t"
 
-           
 
-        if visits:
-
-         for i in visits(article2):
-
-              ris = ris + i + "\t"
+         if featured_in:
+            result = result + featured_in(wikitext, featured_template) + "\t"
 
 
 
-        if qualityArticle:
+         if commons_gallery:
+            try:
+               result = result + wikidata["entities"][wikidataid]["claims"]["P373"][0]["mainsnak"]["datavalue"]["value"] + "\t"
+            except:
 
-           ris = ris + qualityArticle(wikitext) + "\t"
-
-
-
-        if showcase:
-
-           ris = ris + showcase(wikitext) + "\t"
+               result = result + "" + "\t"
 
 
 
-        if commonsGallery:
+         if commons_pages:
+            try:
+               result = result + wikidata["entities"][wikidataid]["claims"]["P935"][0]["mainsnak"]["datavalue"]["value"] + "\t"
 
-           try:
-
-              ris = ris + wikidata["entities"][wikidataid]["claims"]["P373"][0]["mainsnak"]["datavalue"]["value"] + "\t"
-
-           except:
-
-              ris = ris + "" + "\t"
+            except:
+               result = result + "" + "\t"
 
 
+         if itwikisource:
+            try:
+               result = result + wikidata["entities"][wikidataid]["sitelinks"]["itwikisource"]["title"] + "\t"
+            except:
 
-        if  commonsPage:
+               result = result + "\t"
 
-           try:
+         if coordinate:
+            try:
+               result = result + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["latitude"] + "\t"
+               result = result + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["longitude"] + "\t"
 
-              ris = ris + wikidata["entities"][wikidataid]["claims"]["P935"][0]["mainsnak"]["datavalue"]["value"] + "\t"
+            except:
+               result = result + "\t" + "\t"
 
-           except:
-
-              ris = ris + "" + "\t"
-
-   
-
-        if itwikisource:
-
-           try:
-
-              ris = ris + wikidata["entities"][wikidataid]["sitelinks"]["itwikisource"]["title"] + "\t"
-
-           except:
-
-              ris = ris + "\t"
-
-
-
-        if coordinates:
-
-           try:
-
-              ris = ris + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["latitude"] + "\t"
-
-              ris = ris + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["longitude"] + "\t"
-
-           except:
-
-              ris = ris + "\t" + "\t"
-
-      
-      results.write(ris.encode('utf-8', 'ignore').decode('utf-8') + "\n")
-  # add a line break after each result
-      
+      results.write(result + "\n")  # add a line break after each result
       results.close()  # close the file
-      print (ris)
+      print (result)
 
      
-
-def main():
-
-   analysis()
 
 
 
 if __name__ == "__main__":
-
    main()
