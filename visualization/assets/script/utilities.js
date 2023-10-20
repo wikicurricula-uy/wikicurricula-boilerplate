@@ -166,7 +166,7 @@ function get_statistics() {
 				the_path = "../";
 			}
 
-			d3.tsv(the_path + "assets/data/voci_" + year + ".tsv").then(loaded);
+			d3.tsv(the_path + `assets/data/${filename}` + year + ".tsv").then(loaded);
 
 			function loaded(data) {
 				// console.log(data);

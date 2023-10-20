@@ -443,9 +443,8 @@ function dv1(year, the_subject, sort) {
 					"<p style='font-weight: bold; margin: 0 0 10px 3px;'>" +
 					d.article +
 					"</p><table>";
-				content += "<tr><td class='label'>grade</td><td class='value'>" + d.grade.toLocaleString() +"</td><td></td></tr>"
-                content += "<tr><td class='label'>publication</td><td class='value'>" + format_date(d.first_edit) + "</td><td></td></tr>"
-
+				content += "<tr><td class='label'>grade</td><td class='value'>" + d.grade.toLocaleString() + "</td><td></td></tr>"
+				content += "<tr><td class='label'>subject</td><td class='value'>" + d.subject.toLocaleString() + "</td><td></td></tr>"
 				content +=
 					"<tr><td class='label'>publication</td><td class='value'>" +
 					format_date(d.first_edit) +
@@ -1601,4 +1600,16 @@ function get_rand_subject(){
 
 	dv1(2023, random_subject, parseInt(1));
 	get_year();
-}
+};
+
+$(document).ready(function () {
+	d3.csv(subjectFIle).then((data) => {
+		data.forEach((d) => {
+			d.material = d.material.trim()
+			if(!subjects.includes(d.material)){
+				subjects.push(d.material)
+			}	
+		})
+		get_rand_subject()
+		});
+	});
