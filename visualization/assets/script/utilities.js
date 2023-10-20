@@ -1,34 +1,53 @@
-function apply_color(subject){
+function apply_color(subject) {
 	//can edit to change colors
-	
+
 	let color;
-	const history_subjects = ["Historia", "Formación para la ciudadanía", "Geografía","Social Studies", 
-	 	"Training for citizenship", "Geography" ];
+	const history_subjects = [
+		"Historia",
+		"Formación para la ciudadanía",
+		"Geografía",
+		"Social Studies",
+		"Training for citizenship",
+		"Geography",
+	];
 
-	const technology_subjects = ["Computing", "Technologies", "Ciencias de la computación", "Tecnologías"]
+	const technology_subjects = [
+		"Computing",
+		"Technologies",
+		"Ciencias de la computación",
+		"Tecnologías",
+	];
 
-	const Communication_and_Art_subjects = ["English Language","Visual communication", "Communication and society",
-		"Design", "Comunicación visual", "Comunicación y sociedad", "Diseño",
-		"Educación musical", "Lengua española", "Literatura"]
+	const Communication_and_Art_subjects = [
+		"English Language",
+		"Visual communication",
+		"Communication and society",
+		"Design",
+		"Comunicación visual",
+		"Comunicación y sociedad",
+		"Diseño",
+		"Educación musical",
+		"Lengua española",
+		"Literatura",
+	];
 
-	const personal_development_body_awareness_subjects = ["Educación física y recreación", "Salud y sexualidad",
-		"Physical education and recreation", "Health and sexuality"]
-		
-	
+	const personal_development_body_awareness_subjects = [
+		"Educación física y recreación",
+		"Salud y sexualidad",
+		"Physical education and recreation",
+		"Health and sexuality",
+	];
+
 	if (history_subjects.includes(subject)) {
 		color = "#ef95c4";
-	}
-	else if (technology_subjects.includes(subject)) {
+	} else if (technology_subjects.includes(subject)) {
 		color = "#3a34e0"; // "blue";
-	}
-	else if (Communication_and_Art_subjects.includes(subject)) {
+	} else if (Communication_and_Art_subjects.includes(subject)) {
 		color = "#00b2ff";
-	}
-	else if (personal_development_body_awareness_subjects.includes(subject)) {
+	} else if (personal_development_body_awareness_subjects.includes(subject)) {
 		color = "#f4d365";
-	}
-	else {
-		color = "green"; 
+	} else {
+		color = "green";
 	}
 
 	return color;
@@ -66,8 +85,6 @@ function variation_perc(now, prev, parameter) {
 	}
 	return output;
 }
-
-const starting_year = 2023;
 
 function mobile_menu() {
 	let open = false;
@@ -166,7 +183,7 @@ function get_statistics() {
 				the_path = "../";
 			}
 
-			d3.tsv(the_path + `assets/data/${filename}` + year + ".tsv").then(loaded);
+			d3.tsv(the_path + dataFile).then(loaded);
 
 			function loaded(data) {
 				// console.log(data);
