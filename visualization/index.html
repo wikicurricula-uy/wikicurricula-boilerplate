@@ -49,11 +49,11 @@
 			<div id="header">
 				<div class="container">
 					<h1>
-						<select id="pageSelector">
-							<option value="uy" aria-label="Wikicurrícula Uy"><a href="" title="Wikicurrícula Uy" class="noselect">
+						<select id="pageSelector" aria-label="page selector">
+							<option value="uy" aria-label="Wikicurrícula Uy"><a aria-label="Wikicurrícula" href="" title="Wikicurrícula Uy" class="noselect">
 								Wikicurrícula Uy
 							</a></option>
-							<option value="ghana" aria-label="Wikicurrícula Ghana"><a href="" title="Wikicurrícula Ghana" class="noselect">
+							<option value="ghana" aria-label="Wikicurrícula Ghana"><a aria-label="Wikicurrícula Ghana" href="" title="Wikicurrícula Ghana" class="noselect">
 								Wikicurrícula Ghana
 							</a></option>
 						</select>
@@ -92,13 +92,13 @@
 					<div class="select_box" id="select_box">
 						<div id="select_year" class="selector">
 							<p class="key noselect">Year</p>
-							<select name="subjects" id="year" class="select value noselect">
+							<select name="subjects" aria-label="Year" id="year" class="select value noselect">
 								<option value="2023" aria-label="Select the year 2023">2023</option>
 							</select>
 						</div>
-						<div id="select_subject" class="selector">
+						<div id="select_subject"  class="selector">
 							<p class="key noselect">Subject</p>
-							<select name="subjects" id="subjects" class="select value noselect">
+							<select name="subjects" id="subjects" aria-label="subjects" class="select value noselect">
 								<option value="all" aria-label="All subjects">All subjects</option>
 								<option value="Biología" aria-label="Biology">Biology</option>
 								<option value="Ciencias de la computación" aria-label="Computer science">Computer science</option>
@@ -122,7 +122,7 @@
 						</div>
 						<div class="selector">
 							<p class="key noselect">Sort by</p>
-							<select name="sort" id="sort" class="select value noselect">
+							<select name="sort" id="sort" aria-label="sort" class="select value noselect">
 								<option name="article" value="1" aria-label="article name">article name</option>
 								<option name="publication" value="2" aria-label="publication date">publication date</option>
 								<option name="size" value="3" aria-label="article size">article size</option>
