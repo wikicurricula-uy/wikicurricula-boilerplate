@@ -1,9 +1,14 @@
 function toggleDarkMode() {
-    const body = document.body;
-    
-    body.classList.toggle('dark-mode');
     
     const darkModeButton = document.getElementById('darkModeButton');
+    const body = document.body;
+    const svgElements = document.querySelectorAll('.svg-element'); 
+  
+    body.classList.toggle('dark-mode');
+
+    svgElements.forEach((element) => {
+        element.classList.toggle('invert-svg') 
+     });
     
     if (body.classList.contains('dark-mode')) {
         darkModeButton.innerHTML = `

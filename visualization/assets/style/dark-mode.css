@@ -433,3 +433,8 @@ body.dark-mode a:visited {
   background-color: #4B5563; 
 
 }
+
+.dark-mode .svg-element {
+  filter: invert(100%);
+  
+}
