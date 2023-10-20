@@ -284,7 +284,7 @@ def calculate_introduction_length(text):
    template_count  =incipit.count('{{')
 
    # incipitclear = incipit
-   format_num = incipit.count("{{format:")
+   format_num = incipit.count("{{formatnum:")
 
    for i in range(format_num):
       tmp = incipit[incipit.find("{{formatnum:"):]

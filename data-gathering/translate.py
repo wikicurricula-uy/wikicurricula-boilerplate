@@ -11,16 +11,9 @@ def get_days_between(start_date_str, end_date_str):
     return days_between
 
 def get_incipit_on_size(incipit_size,size):
-    # if (not incipit_size or not size): return 0; 
-    # return round((int(incipit_size) / int(size))*100,2)
-    if not incipit_size or not size:
-        return 0  # Return a special value to indicate an error
-    try:
-        result = round((int(incipit_size) / int(size)) * 100, 2)
-        return result
-    except ValueError:
-        return 0
-
+    if (not incipit_size or not size): return 0; 
+    return round((int(incipit_size) / int(size))*100,2)
+   
 def create_subject_mapping(file_path):
     id_subject_map = {}
 
@@ -57,9 +50,9 @@ def process_input_file(input_file, output_file, subject_file):
             'size',
             'images',
             'notes',
-            'issues',
-            'issue_sourceNeeded',
-            'issue_clarify',
+            # 'issues',
+            # 'issue_sourceNeeded',
+            # 'issue_clarify',
             'discussion_size',
             'incipit_size',
             'all_visits',
@@ -99,7 +92,7 @@ def process_input_file(input_file, output_file, subject_file):
                 'incipit_size': row['incipit_size'],
                 'incipit_on_size': get_incipit_on_size(row['incipit_size'],row['size']),
                 'incipit_prev': '-',
-                'issues': row['issues'],
+                'issues': 0,
                 'issues_prev': '-',
                 'issue_sourceNeeded': 0,
                 'issue_clarify': 0,
