@@ -34,7 +34,12 @@ def main():
       language_config = wikipedia_config[WIKIPEDIA_LANGUAGE]
    else:
       print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
-
+   
+   # fetch wikidata info
+   query_results = fetch_wikidata_info(WIKIPEDIA_LANGUAGE,sys.argv[2])
+   # store article names
+   store_articles(query_results)
+   
    # Access configuration variables based on the language
    file_to_be_analysed = language_config.get("file_to_be_analysed")
    result_file = language_config.get("result_file")
