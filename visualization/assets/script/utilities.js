@@ -1,28 +1,36 @@
 function apply_color(subject){
-	//can edit to chang colors
+	//can edit to change colors
 	
 	let color;
+	const history_subjects = ["Historia", "Formación para la ciudadanía", "Geografía","Social Studies", 
+	 	"Training for citizenship", "Geography" ];
+
+	const technology_subjects = ["Computing", "Technologies", "Ciencias de la computación", "Tecnologías"]
+
+	const Communication_and_Art_subjects = ["English Language","Visual communication", "Communication and society",
+		"Design", "Comunicación visual", "Comunicación y sociedad", "Diseño",
+		"Educación musical", "Lengua española", "Literatura"]
+
+	const personal_development_body_awareness_subjects = ["Educación física y recreación", "Salud y sexualidad",
+		"Physical education and recreation", "Health and sexuality"]
+		
 	
-	//Social sciences and humanities
-	if (subject == "Social Studies" || subject == "Training for citizenship" || subject == "Geography") {
-		color = "#ef95c4"; //"#eeb4ee";
+	if (history_subjects.includes(subject)) {
+		color = "#ef95c4";
 	}
-	//Technical-technological
-	else if (subject == "Computing" || subject == "Technologies"){
+	else if (technology_subjects.includes(subject)) {
 		color = "#3a34e0"; // "blue";
 	}
-	//Communication and Art
-	else if (subject == "Visual comunication" || subject == "Communication and society" || subject == "Design" || subject == "Musical education" || subject == "English Language" || subject == "Literature"){
+	else if (Communication_and_Art_subjects.includes(subject)) {
 		color = "#00b2ff";
 	}
-	// Space for personal development and body awareness and space for curricular autonomy
-	else if (subject == "Physical education and recreation" || subject == "Health and sexuality"){
+	else if (personal_development_body_awareness_subjects.includes(subject)) {
 		color = "#f4d365";
 	}
-	//Mathematical scientific space
 	else {
-		color = "green";
+		color = "green"; 
 	}
+
 	return color;
 }
 
@@ -58,15 +66,6 @@ function variation_perc(now, prev, parameter) {
 	}
 	return output;
 }
-
-const subjects = [
-	"all",
-	"Social Studies",
-	"English Language",
-	"Mathematics",
-	"Computing",
-	"Science"
-]
 
 const starting_year = 2023;
 

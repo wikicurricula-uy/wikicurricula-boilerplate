@@ -37,6 +37,7 @@ def main():
       
    # Access configuration variables based on the language
    file_to_be_analysed = language_config.get("file_to_be_analysed")
+   result_file = language_config.get("result_file")
    language = language_config.get("language")
    utf_required = language_config.get("utf_required")
    id_wikidata = language_config.get("id_wikidata")
@@ -63,7 +64,7 @@ def main():
    display_window_template = language_config.get("display_window_template")
 
 
-   analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
+   analysis(language, file_to_be_analysed, result_file, discussionURL, utf_required, display_window_template,warnings_config, discussion_size, 
       incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template)
    
 
@@ -283,7 +284,7 @@ def calculate_introduction_length(text):
    template_count  =incipit.count('{{')
 
    # incipitclear = incipit
-   format_num = incipit.count("{{formatnum:")
+   format_num = incipit.count("{{format:")
 
    for i in range(format_num):
       tmp = incipit[incipit.find("{{formatnum:"):]
@@ -336,26 +337,27 @@ def featured_in(text, featured_template):
    else:
       return "0"
 
-
     
 # Main analysis function
-def analysis(language, file_to_be_analysed, utf_required, display_window_template, discussionURL,warnings_config, discussion_size, 
+def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_required, display_window_template, warnings_config, discussion_size, 
       incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template):
    
    # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
-   f = open('article_name.csv', 'r', encoding= utf_required )  #change this to file to read as an option from users
+   f = open(file_to_be_analysed, 'r', encoding= utf_required )  #change this to file to read as an option from users
 
    articles = f.readlines()   
     
    # delete the contents of the file before starting
-   results = open('results.txt',"w")
+   results = open(result_file,"w")
    results.truncate(0)
    results.close()
 
    for article in articles:
-      results = open('results.txt', 'a')  # open the file in append mode
+      results = open(result_file, 'a')  # open the file in append mode
 
       flag = 1
+      
+      # Remove the newline character at the end of the article
 
       article = article[:-1]
       article= article.replace(" ","_") # Wikipedia page titles are case-sensitive and spaces in page titles should be replaced with underscores.
@@ -366,29 +368,23 @@ def analysis(language, file_to_be_analysed, utf_required, display_window_templat
 
 
       try:
+         # Construct the Wikipedia API URL for parsing wikitext
 
          url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
          json_url = urlopen(url)
 
          data = json.loads(json_url.read())
 
-         # for debuging
-         # if "error" in data:
-         #    error_message = data["error"]["info"]
-         #    print(f"Error for article '{article}': {error_message}")
-         #    result = result + article + "\t" + error_message  # Include the error message in the result
-         # else:
-         #    wikitext = data["parse"]["wikitext"]
-
          wikitext = data["parse"]["wikitext"]
 
-         if "#RINVIA"  in wikitext:
+         if "#RINVIA"  in wikitext or "#REDIRECT" in wikitext:
          #   print (wikitext)
 
-            article2 = wikitext[wikitext.find("[[")+2:]
-            article2 = article2[:article.find("]]")]
-            article = article2
-            article2 = article2.replace("_"," ")
+            start = wikitext.find("[[")
+            end = wikitext.find("]]", start)
+            article2 = wikitext[start + 2:end]
+            article2 = article2.strip()
+            article2 = article2.replace("_", " ")
 
       except:
          pass                                     

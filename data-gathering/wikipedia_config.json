@@ -1,5 +1,7 @@
 {
     "es": {
+        "file_to_be_analysed": "uruguay_article_file.csv",
+        "result_file": "uruguay_results.txt",
         "language": "es",
         "utf_required": "utf-8",
         "id_wikidata": 1,
@@ -26,6 +28,8 @@
         "display_window_template": "{{artículo bueno"
     },
     "it": {
+        "file_to_be_analysed": "italian_article_file.csv",
+        "result_file": "italian_results.txt",
         "language": "it",
         "utf_required": "utf-8",
         "id_wikidata": 1,
@@ -53,6 +57,8 @@
     },
     "en": {
         "language": "en",
+        "file_to_be_analysed": "ghana_article_file.csv",
+        "result_file": "ghana_results.txt",
         "utf_required": "utf-8",
         "id_wikidata": 1,
         "dimension": 1,
