@@ -12,8 +12,10 @@ import datetime
 from urllib.request import urlopen
 import urllib.parse
 import string
+import json
+import chardet
 from datetime import datetime
-
+from query import store_articles, fetch_wikidata_info
 
 # Open and read the JSON configuration file and access the configuration data as a dictionary
 with open("wikipedia_config.json", "r") as config_file:
@@ -26,15 +28,18 @@ if len(sys.argv) > 1:
 else:
     WIKIPEDIA_LANGUAGE = "en"  # Default to "es" if no argument is provided
 
-
-
 def main():
-   
+      
    if WIKIPEDIA_LANGUAGE in wikipedia_config:
       language_config = wikipedia_config[WIKIPEDIA_LANGUAGE]
    else:
       print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
-      
+   
+   # fetch wikidata info
+   query_results = fetch_wikidata_info(WIKIPEDIA_LANGUAGE,sys.argv[2])
+   # store article names
+   store_articles(query_results)
+   
    # Access configuration variables based on the language
    file_to_be_analysed = language_config.get("file_to_be_analysed")
    result_file = language_config.get("result_file")
@@ -63,8 +68,7 @@ def main():
    featured_template = language_config.get("featured_template")
    display_window_template = language_config.get("display_window_template")
 
-
-   analysis(language, file_to_be_analysed, result_file, discussionURL, utf_required, display_window_template,warnings_config, discussion_size, 
+   analysis(language, discussionURL, display_window_template,warnings_config, discussion_size, 
       incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template)
    
 
@@ -178,9 +182,6 @@ def images(text):
    t = text.lower()
    img = str(t.count('.jpg')+t.count('.svg')+t.count('.jpeg')+t.count('.png')+t.count('.tiff')+t.count('.gif')+t.count('.tif')+t.count('.xcf'))
    return img
-
-
-
 
 '''This function relies on external web scraping 
 it reads the HTML content of the page and converts it's content to a string and then extracts a specific portion of the HTML using string manipulation. 
@@ -339,21 +340,28 @@ def featured_in(text, featured_template):
 
     
 # Main analysis function
-def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_required, display_window_template, warnings_config, discussion_size, 
+def analysis(language, discussionURL, display_window_template, warnings_config, discussion_size, 
       incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template):
    
    # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
-   f = open(file_to_be_analysed, 'r', encoding= utf_required )  #change this to file to read as an option from users
+   #change this to file to read as an option from users
 
-   articles = f.readlines()   
-    
-   # delete the contents of the file before starting
-   results = open(result_file,"w")
-   results.truncate(0)
-   results.close()
+   # Detect the encoding of the file
+   with open('query.csv', 'rb') as rawdata:
+      result = chardet.detect(rawdata.read(10000))
 
-   for article in articles:
-      results = open(result_file, 'a')  # open the file in append mode
+# Open the file with the detected encoding
+   with open('query.csv', 'r', encoding=result['encoding'], errors="replace") as file:
+        vox = file.readlines()
+
+    # Delete the contents of the file before starting
+   with open('resultati.txt', "w"):
+        pass
+
+# Iterate through each article in the list of articles
+   for article in vox:
+      # Open the "results.txt" file in append mode
+      results = open('resultati.txt', 'a', encoding='utf-8', errors="replace")  # open the file in append mode
 
       flag = 1
       
@@ -365,8 +373,7 @@ def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_requ
       wikitext = ""
 
       article2 = urllib.parse.quote(article) 
-
-
+      article = article.replace(" ","_")
       try:
          # Construct the Wikipedia API URL for parsing wikitext
 
@@ -376,23 +383,18 @@ def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_requ
          data = json.loads(json_url.read())
 
          wikitext = data["parse"]["wikitext"]
-
          if "#RINVIA"  in wikitext or "#REDIRECT" in wikitext:
-         #   print (wikitext)
-
-            start = wikitext.find("[[")
-            end = wikitext.find("]]", start)
-            article2 = wikitext[start + 2:end]
-            article2 = article2.strip()
-            article2 = article2.replace("_", " ")
+            article2 = wikitext[wikitext.find("[[")+2:]
+            article2 = article2[:article2.find("]]")]
+            article = article2
+            article2 = article2.replace("_"," ")
 
       except:
          pass                                     
 
       try:
-         article = article.replace(" ","_")
          article2 = urllib.parse.quote(article)
-
+         article = article.replace(" ","_")
          
          url = "https://"+language+".wikipedia.org/w/api.php?action=query&titles=" + article2 +"&prop=pageprops&format=json&formatversion=2"
 
@@ -418,7 +420,6 @@ def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_requ
 
 
          try:
-
             url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + discussionURL + article2 + "&prop=wikitext&formatversion=2&format=json"
             json_url = urlopen(url)
 
@@ -434,7 +435,7 @@ def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_requ
          result = result + wikidataid + "\t"
 
       except:
-         result = result + article +"\t" +" article non-existent"
+         result = result + article +"\t" +"non-existent article"
 
        
 
@@ -514,10 +515,6 @@ def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_requ
       results.write(result + "\n")  # add a line break after each result
       results.close()  # close the file
       print (result)
-
-     
-
-
 
 if __name__ == "__main__":
    main()
