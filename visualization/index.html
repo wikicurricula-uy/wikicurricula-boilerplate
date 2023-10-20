@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="es">
+<html lang="es" data-lang="es" data-country="Uruguay_">
 	<head>
 		<title>Wikicurrícula Uy</title>
 		<meta charset="utf-8">
@@ -11,22 +11,22 @@
 		<link rel="stylesheet" type="text/css" href="assets/style/style.css">
 		<link rel="icon" href="/assets/img/favicon-192.png" sizes="192x192">
 
-    
-          
-            
-    
 
-          
+
+
+
+
+
           Expand Down
-          
-            
-    
 
-          
+
+
+
+
           Expand Up
-    
+
     @@ -166,87 +167,76 @@ <h2>Datos</h2>
-  
+
 		<!-- social sharing - facebook -->
 		<meta property="og:type" content="article">
 		<meta property="og:title" content="Wikicurrícula Uy">
@@ -44,14 +44,19 @@
 	    <meta name="twitter:site" content="Wikicurrícula Uy" />
 	  	<meta property="og:url" content="https://wikicurricula-uy.github.io/" />
 	</head>
-	<body> 
+	<body>
 		<header>
 			<div id="header">
 				<div class="container">
 					<h1>
-						<a href="" title="Wikicurrícula Uy" class="noselect">
-							Wikicurrícula Uy
-						</a>
+						<select id="pageSelector">
+							<option value="uy"><a href="" title="Wikicurrícula Uy" class="noselect">
+								Wikicurrícula Uy
+							</a></option>
+							<option value="ghana"><a href="" title="Wikicurrícula Ghana" class="noselect">
+								Wikicurrícula Ghana
+							</a></option>
+						</select>
 					</h1>
 				</div>
 			</div>
@@ -88,44 +93,44 @@
 						<div id="select_year" class="selector">
 							<p class="key noselect">Year</p>
 							<select name="subjects" id="year" class="select value noselect">
-								<option value="2023">2023</option>
+								<option value="2023" aria-label="Select the year 2023">2023</option>
 							</select>
 						</div>
 						<div id="select_subject" class="selector">
-							<p class="key noselect">Subject</p>
+							<p class="key noselect">Materia</p>
 							<select name="subjects" id="subjects" class="select value noselect">
-								<option value="all">All subjects</option>
-								<option value="Biología">Biology</option>
-								<option value="Ciencias de la computación">Computer science</option>
-								<option value="Ciencias físico-químicas">Physical chemical science</option>
-								<option value="Comunicación visual">Visual communication</option>
-								<option value="Comunicación y sociedad">Communication and society</option>
-								<option value="Diseño">Design</option>
-								<option value="Educación física y recreación">Physical education and recreation</option>
-								<option value="Educación musical">Music education</option>
-								<option value="Física">Physics</option>
-								<option value="Formación para la ciudadanía">Training for citizenship</option>
-								<option value="Geografía">Geography</option>
-								<option value="Historia">History</option>
-								<option value="Lengua española">Spanish language</option>
-								<option value="Literatura">Literature</option>
-								<option value="Matemática">Mathematics</option>
-								<option value="Química">Chemistry</option>
-								<option value="Salud y sexualidad">Health and sexuality</option>
-								<option value="Tecnologías">Technologies</option>
+								<option value="all">Todas las asignaturas</option>
+								<option value="Biología">Biología</option>
+								<option value="Ciencias de la computación">Ciencias de la computación</option>
+								<option value="Ciencias físico-químicas">Ciencias físico-químicas</option>
+								<option value="Comunicación visual">Comunicación visual</option>
+								<option value="Comunicación y sociedad">Comunicación y sociedad</option>
+								<option value="Diseño">Diseño</option>
+								<option value="Educación física y recreación">Educación física y recreación</option>
+								<option value="Educación musical">Educación musical</option>
+								<option value="Formación para la ciudadanía">Formación para la ciudadanía</option>
+								<option value="Física">Física</option>
+								<option value="Geografía">Geografía</option>
+								<option value="Historia">Historia</option>
+								<option value="Lengua española">Lengua española</option>
+								<option value="Literatura">Literatura</option>
+								<option value="Matemática">Matemática</option>
+								<option value="Química">Química</option>
+								<option value="Taller de salud y sexualidad">Taller de salud y sexualidad</option>
+								<option value="Tecnologías">Tecnologías</option>
 							</select>
 						</div>
 						<div class="selector">
-							<p class="key noselect">Sort by</p>
+							<p class="key noselect">Ordenar por</p>
 							<select name="sort" id="sort" class="select value noselect">
-								<option name="article" value="1">article name</option>
-								<option name="publication" value="2">publication date</option>
-								<option name="size" value="3">article size</option>
-								<option name="discussion" value="4">discussion page size</option>
-								<option name="incipit" value="5">introduction size</option>
+								<option name="article" value="1" aria-label="article name">article name</option>
+								<option name="publication" value="2" aria-label="publication date">publication date</option>
+								<option name="size" value="3" aria-label="article size">article size</option>
+								<option name="discussion" value="4" aria-label="discussion page size">discussion page size</option>
+								<option name="incipit" value="5" aria-label="introduction size">introduction size</option>
 								<!--<option name="issue" value="6">numero di avvisi</option>-->
-								<option name="images" value="7">número de imágenes</option>
-								<option name="reference" value="8">referencia</option>
+								<!-- <option name="images" value="7">número de imágenes</option> -->
+								<option name="reference" value="8">number of references</option>
 								<option name="images" value="7">number of images</option>
 							</select>
 						</div>
@@ -133,18 +138,19 @@
 				</div>
 				<div id="dv1" class="dataviz"></div>
 			</section>
+
 			<section id="legend" class="container">
 				<div id="dv_infobox" class="row">
 					<div class="column_3">
-						<h2>How to read the display</h2>
+						<h2>Cómo leer la visualización</h2>
 						<p>
-							The visualization shows the articles that we identify as related to the curriculum of the third cycle of integrated basic education (former basic cycle) of Uruguay.
+								La visualización muestra los artículos que identificamos como relacionados con la currícula del tercer ciclo de educación básica integrada (ex ciclo básico) de Uruguay.
 							<br/><br/>
-							The size of the article, discussion page, and introduction are expressed in bytes. The light colored circle represents the size of the article, the dark circle represents the size of the introduction, and the circumference with just the outline represents the size of the discussion page.
+								El tamaño del artículo, de la página de discusión y de la introducción se expresan en bytes. El círculo de color claro representa el tamaño del artículo, el círculo oscuro representa el tamaño de la introducción y la circunferencia con solo el contorno representa el tamaño de la página de discusión.
 							<br/><br/>
-							The vertical axis, that is, the height of the point on the graph, represents the average number of daily visits during the year analyzed. Dashed lines indicate average daily visits in the previous year.
+									El eje vertical, es decir la altura del punto en el gráfico, representa la cantidad de visitas diarias promedio durante el año analizado. Las líneas discontinuas indican las visitas diarias promedio en el año anterior.
 							<br/><br/>
-							In the menu above you can choose a subject and the order of the articles on the horizontal axis. Hover over the circle to see more information, and click to go to the Wikipedia article.
+							En el menú de arriba puedes elegir una materia y el orden de los artículos en el eje horizontal. Pasa el cursor por encima del círculo para ver más información, y cliquea para ir al artículo en Wikipedia.
 						</p>
 					</div>
 					<div class="column_3">
@@ -156,42 +162,38 @@
 						</div>
 					</div>
 					<div class="column_3">
-						<h2>Data</h2>
+						<h2>Datos</h2>
 						<p>
-							The third cycle school curriculum is <a href="https://www.wikidata.org/wiki/Wikidata:Wikidata_for_Education" target="_blank">modeled on Wikidata</a>.
+							La currícula escolar de tercer ciclo está  <a href="https://www.wikidata.org/wiki/Wikidata:Wikidata_for_Education" target="_blank">modelada en Wikidata</a>.
 							<br/><br/>
-							You can browse the curriculum on Wikidata and access the complete list of topics that make up each program:
+							Puedes navegar la currícula en Wikidata y acceder a la lista completa de temas que componen cada programa:
 						</p>
 						<ul>
-							<li><a href="https://www.wikidata.org/wiki/Q119727432" target="_blank">Seventh grade</a></li>
-							<li><a href="https://www.wikidata.org/wiki/Q119727312" target="_blank">Eighth grade</a></li>
-							<li><a href="https://www.wikidata.org/wiki/Q121573834" target="_blank">Ninth grade</a></li>
+							<li><a href="https://www.wikidata.org/wiki/Q119727432" target="_blank">Séptimo grado</a></li>
+							<li><a href="https://www.wikidata.org/wiki/Q119727312" target="_blank">Octavo grado</a></li>
+							<li><a href="https://www.wikidata.org/wiki/Q121573834" target="_blank">Noveno grado</a></li>
 						</ul>
 						<br/>
-						<p> Here are some queries in Wikidata Query Service that may be of interest to you:</p>
+						<p> Aquí hay algunas queries en Wikidata Query Service que pueden resultar de tu interés:</p>
 						<ul>
-							<li><a href="https://w.wiki/7QG2" target="_blank">Lista completa de temas de la currícula</a></li>
-							<li><a href="https://w.wiki/7QF$" target="_blank">Temas que aún no tienen artículo en Wikipedia</a></li>
+							<li><a href="https://w.wiki/7QG2" target="_blank">Complete list of curriculum topics</a></li>
+							<li><a href="https://w.wiki/7QF$" target="_blank">Topics that do not yet have an article on Wikipedia</a></li>
+								<li><a class="country-link" data-country="Ghana" data-year="2023" data-lang="en" href="./ghana.html">Ghana's curriculum</a></li>
 						</ul>
 						<br/>
 						<div id="dv1_dataset" class="dataset">
 							<a href="assets/data/voci_2023.tsv" title="" style="font-size: 0.9em; margin-bottom: 30px; display: block;">
-								Download the data <img src="assets/img/download.svg" width="20" height="20" alt="Descarga los datos">
+								Descarga los datos <img src="assets/img/download.svg" width="20" height="20" alt="Descarga los datos">
 							</a>
 						</div>
 					</div>
 				</div>
 			</section>
-
-          <footer class="text-center text-lg-start text-dark"style="background-color: #ECEFF1">
-				<div id="colophon" class="container text-center text-md-start mt-5 row">
-					<!-- <div>Créditos: Wikicurrícula Uy</div> -->
-					<div class="mx-auto">
-					<p class=" mb-1 "><span class="fw-bolder ">Créditos: Wikicurrícula Uy</span></p>
-				</div>
-				<div class="container-fluid mt-3">
-						<div class="row">
-							<div class="col-4 mx-auto">
+			<footer class="text-center text-lg-start text-dark"style="background-color: #ECEFF1">
+				<div id="colophon" class="container text-center text-md-start mt-5">
+						<h2>Créditos: Wikicurrícula Uy</h2>
+					<div class="row mt-3">
+						<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 mt-3">
 							<h6 class="text-uppercase fw-bold">Implementación</h6>
 								<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
 				                 <div class="lh-sm mb-3">
@@ -209,16 +211,16 @@
 							</div>
 							<div class="col-4 mx-auto">
 									<h6 class="text-uppercase fw-bold">Agradecemos a las y los docentes:</h6>
-										<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/> 
+										<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
 										<div class="lh-sm">
 											<p class="mb-1">Ana Miranda</p>
 											<p class="mb-1">Annabel Castro</p>
-											<p class="mb-1">Cecilia Torres</p>	
+											<p class="mb-1">Cecilia Torres</p>
 											<p class="mb-1">Franco Salvetti</p>
 											<p class="mb-1">Iliana Trejos Cabrera</p>
 											<p class="mb-1">Marcelo Mónico</p>
-											<p class="mb-1">Paula Olagüe Schettini</p>	
-											<p class="mb-1">Romina Smith</p>	
+											<p class="mb-1">Paula Olagüe Schettini</p>
+											<p class="mb-1">Romina Smith</p>
 										</div>
 										</div>
 								</div>
@@ -243,12 +245,12 @@
                             <div class="col-4 mx-auto">
 								<!-- <div class=" col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 mt-3"> -->
 									<h6 class="text-uppercase fw-bold">Grupo de trabajo</h6>
-									<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/> 
+									<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
 									<div class="section lh-sm text-md-left">
 										<p class="mb-1">Federico Benvenuti</p>
-										<p class="mb-1">Valerio Iannucci</p>	
-										<p class="mb-1">Luca Martinelli</p>	
-										<p class="mb-1">Paolo Fichera</p>	
+										<p class="mb-1">Valerio Iannucci</p>
+										<p class="mb-1">Luca Martinelli</p>
+										<p class="mb-1">Paolo Fichera</p>
 									</div>
 									<!-- <p class=" mb-1 "><span class="fw-bolder ">Diseño web y visualización de datos</span></p> -->
 									<!-- <h6 class="text-uppercase fw-bold mt-4">Diseño web y visualización de datos</h6>
@@ -259,7 +261,7 @@
 								 <div class="col-4 mx-auto">
 						  <!-- <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 mt-3"> -->
 							<h6 class="text-uppercase fw-bold">Soporte y colaboración</h6>
-							<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/> 
+							<hr class="mb-2 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
 							<div class="section lh-sm">
 								<p class="mb-1 ">
 									<a class="text-decoration-underline" href="https://www.wikimedia.it/" target="_blank">Wikimedia Italia</a>

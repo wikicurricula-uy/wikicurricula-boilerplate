@@ -1,0 +1,187 @@
+{
+    "en": {
+        "to_check": [
+            "{{verifiability|",
+            "{{verifiability}}"
+        ],
+        "synoptic": [
+            "{{infobox requested|",
+            "{{infobox requested}}"
+        ],
+        "correct": [
+            "{{copy edit"
+        ],
+        "curiosity": [
+            "{{trivia|",
+            "{{trivia}}"
+        ],
+        "divide": [
+            "{{split|",
+            "{{split}}"
+        ],
+        "sources": [
+            "{{unreferenced|",
+            "{{unreferenced}}"
+        ],
+        "localism": [
+            "{{globalize|",
+            "{{globalize}}"
+        ],
+        "pov": [
+            "{{POV|",
+            "{{POV}}"
+        ],
+        "nn": [
+            "{{no footnotes|",
+            "{{no footnotes}}"
+        ],
+        "recentism": [
+            "{{recentism}}"
+        ],
+        "manual_style": [],
+        "translation": [
+            "{{not English}}"
+        ],
+        "wikificare": [],
+        "stub": [
+            "{{stub|",
+            "{{stub}}"
+        ],
+        "stub_section": [
+            "{{expand section"
+        ],
+        "copy_control": [
+            "{{cv-unsure"
+        ],
+        "without_sources": [
+            "{{unreferenced}}",
+            "{{citation needed}}"
+        ],
+        "clarify": [
+            "{{clarify}}"
+        ]
+    },
+    "es": {
+        "to_check": [],
+        "synoptic": [],
+        "correct": [
+            "{{copyedit"
+        ],
+        "curiosity": [
+            "{{curiosidades}}"
+        ],
+        "divide": [
+            "{{separar"
+        ],
+        "sources": [
+            "{{referencias|"
+        ],
+        "localism": [
+            "{{globalizar|"
+        ],
+        "pov": [
+            "{{no neutralidad|",
+            "{{no neutralidad}}"
+        ],
+        "nn": [
+            "{{notas al pie|",
+            "{{notas al pie}}"
+        ],
+        "recentism": [
+            "{{recentismo"
+        ],
+        "manual_style": [
+            "{{mejorar redacción"
+        ],
+        "translation": [
+            "{{traducción incompleta"
+        ],
+        "wikificare": [
+            "{{wikificar"
+        ],
+        "stub": [],
+        "stub_section": [],
+        "copy_control": [],
+        "without_sources": [
+            "{{sinreferencias",
+            "{{sin referencias",
+            "{{cita requerida"
+        ],
+        "clarify": [
+            "{{qué",
+            "{{cuál",
+            "{{cuándo",
+            "{{cuántos",
+            "{{dónde",
+            "{{quién"
+        ]
+    },
+    "it": {
+        "to_check": [
+            "{{c|",
+            "{{c}}"
+        ],
+        "synoptic": [
+            "{{tmp|",
+            "{{tmp}}"
+        ],
+        "correct": [
+            "{{correggere"
+        ],
+        "curiosity": [
+            "{{curiosità"
+        ],
+        "divide": [
+            "{{d|",
+            "{{d}}"
+        ],
+        "sources": [
+            "{{f|",
+            "{{f}}"
+        ],
+        "localism": [
+            "{{l|",
+            "{{l}}"
+        ],
+        "pov": [
+            "{{p|",
+            "{{p}}"
+        ],
+        "nn": [
+            "{{nn|",
+            "{{nn}}"
+        ],
+        "recentism": [
+            "{{recentismo"
+        ],
+        "manual_style": [],
+        "translation": [
+            "{{t|",
+            "{{t}}"
+        ],
+        "wikificare": [
+            "{{w|",
+            "{{w}}"
+        ],
+        "stub": [
+            "{{s|",
+            "{{s}}"
+        ],
+        "stub_section": [
+            "{{s sezione"
+        ],
+        "copy_control": [
+            "{{controlcopy"
+        ],
+        "without_sources": [
+            "{{senza fonte",
+            "{{senza fonte}}",
+            "{{citazione necessaria",
+            "{{citazione necessaria}}"
+        ],
+        "clarify": [
+            "{{chiarire",
+            "{{chiarire}}"
+        ]
+    }
+}
