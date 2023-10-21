@@ -1,41 +1,62 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" data-lang="en" data-country="Ghana_">
 	<head>
-		<title>Wikicurricula Ghana</title>
+		<title>Wikicurrícula Ghana</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
-		<meta name="description" content="The visualization shows the entries with the most average daily visits per school subject">
+		<meta name="description" content="La visualización muestra las entradas con más visitas medias diarias por asignatura escolar">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="assets/style/style.css">
 		<link rel="icon" href="/assets/img/favicon-192.png" sizes="192x192">
 
+
+
+
+
+
+
+          Expand Down
+
+
+
+
+
+          Expand Up
+
+    @@ -166,87 +167,76 @@ <h2>Datos</h2>
+
 		<!-- social sharing - facebook -->
 		<meta property="og:type" content="article">
-		<meta property="og:title" content="Wikicurricula Ghana">
-		<meta property="og:description" content="Interactive visual report that analyzes Wikipedia articles relevant to the primary education curriculum in Ghana"></meta>
+		<meta property="og:title" content="Wikicurrícula Ghana">
+		<meta property="og:description" content="Reporte visual interactivo que analiza los artículos de Wikipedia relevantes a la currícula de la educación primaria en Ghana"></meta>
 		<meta property="og:image" content="https://itwiki-scuola-italiana.toolforge.org/assets/img/wikipedia-scuola-italiana_preview-fb.png" />
 	    <meta property="og:image:width" content="1200" />
 	    <meta property="og:image:height" content="630" />
-	    <meta property="og:site_name" content="Wikicurrícula Ghana - interactive visual report">
+	    <meta property="og:site_name" content="Wikicurrícula Uy - reporte visual interactivo">
 		<meta property="og:url" content="https://wikicurricula-uy.github.io/">
-
 		<!-- social sharing - twitter -->
 		<meta name="twitter:card" content="summary_large_image"></meta>
-		<meta name="twitter:title" content="Wikicurrícula Ghana - interactive visual report"></meta>
-		<meta name="twitter:description" content="Interactive visual report that analyzes Wikipedia articles relevant to the primary education curriculum in Ghana"></meta>
+		<meta name="twitter:title" content="Wikicurrícula Uy - reporte visual interactivo"></meta>
+		<meta name="twitter:description" content="Reporte visual interactivo que analiza los artículos de Wikipedia relevantes a la currícula de la educación primaria en Ghana"></meta>
 	    <meta property="og:image" content="https://itwiki-scuola-italiana.toolforge.org/assets/img/wikipedia-scuola-italiana_preview-twitter.png" />
-	    <meta name="twitter:site" content="Wikicurrícula Ghana" />
+	    <meta name="twitter:site" content="Wikicurrícula Uy" />
 	  	<meta property="og:url" content="https://wikicurricula-uy.github.io/" />
 	</head>
-	<body> 
+	<body>
 		<header>
 			<div id="header">
 				<div class="container">
 					<h1>
-						<a href="" title="Wikicurrícula Gh" class="noselect">
-							Wikicurricula Ghana
-						</a>
+						<select id="pageSelector" aria-label="page selector">
+							<option value="ghana"><a href="" aria-label="Wikicurrícula Ghana" title="Wikicurrícula Ghana" class="noselect">
+								Wikicurrícula Ghana
+							</a></option>
+							<option value="uy"><a href="" aria-label="Wikicurrícula Uy" title="Wikicurrícula Uy" class="noselect">
+								Wikicurrícula Uy
+							</a></option>
+						</select>
 					</h1>
 				</div>
 			</div>
@@ -71,171 +92,164 @@
 					<div class="select_box" id="select_box">
 						<div id="select_year" class="selector">
 							<p class="key noselect">Year</p>
-							<select name="subjects" id="year" class="select value noselect">
-								<option value="2023">2023</option>
+							<select name="subjects" aria-label="year" id="year" class="select value noselect">
+								<option value="2023" aria-label="Select the year 2023">2023</option>
 							</select>
 						</div>
 						<div id="select_subject" class="selector">
-							<p class="key noselect">Subject</p>
+							<p class="key noselect">Material</p>
 							<select name="subjects" id="subjects" class="select value noselect">
 								<option value="all">All subjects</option>
-								<option value="Social Studies">Social Studies </option>
 								<option value="Computing">Computing</option>
 								<option value="English Language">English Language</option>
-								<option value="Science">Science</option>
 								<option value="Mathematics">Mathematics</option>
+								<option value="Science">Science</option>
+								<option value="Social Studies">Social Studies</option>
 							</select>
 						</div>
 						<div class="selector">
 							<p class="key noselect">Sort by</p>
 							<select name="sort" id="sort" class="select value noselect">
-								<option name="article" value="1">Article name</option>
-								<option name="publication" value="2">publication date</option>
-								<option name="size" value="3">Item size</option>
-								<option name="discussion" value="4">page size</option>
-								<option name="incipit" value="5">introduction size</option>
-								<!--<option name="issue" value="6">number of alerts</option>-->
-								<option name="images" value="7">number of images</option>
-								<option name="reference" value="8">reference</option>
+								<option name="article" value="1" aria-label="Article's name">Article's name</option>
+								<option name="publication" value="2" aria-label="Publication date">Publication date</option>
+								<option name="size" value="3" aria-label="Item size">Item size</option>
+								<option name="discussion" value="4" aria-label="Talk page size">Talk page size</option>
+								<option name="incipit" value="5" aria-label="Introduction size">Introduction size</option>
+								<option name="issue" value="6" aria-label="Number of alerts">Number of alerts</option>
+								<option name="images" value="7" aria-label="Number of images">Number of images</option>
+								<option name="reference" value="8" aria-label="References">References</option>
 							</select>
 						</div>
 					</div>
 				</div>
-
 				<div id="dv1" class="dataviz"></div>
 			</section>
 			<section id="legend" class="container">
 				<div id="dv_infobox" class="row">
 					<div class="column_3">
-						<h2>How to read the visualization</h2>
+						<h2><b><u>How to read the display</u></b></h2>
 						<p>
-							The visualization shows the articles that we identify as related to Ghana's national curricula for Basic 7, 8 and 9.
+								The visualization shows the articles that we identify as related to Ghana's national curricula for Basic 7, 8 and 9.
 							<br/><br/>
-							The size of the article, discussion page, and introduction are expressed in bytes. The light colored circle represents the size of the article, the dark circle represents the size of the introduction, and the circumference with just the outline represents the size of the discussion page.
+								The size of the article, discussion page, and introduction are expressed in bytes. The light colored circle represents the size of the article, the dark circle represents the size of the introduction, and the circumference with just the outline represents the size of the discussion page.
 							<br/><br/>
-							The vertical, which indicates the height of the point in the graph, represents the frequency of daily visits during the year analyzed. The dashed lines indicate the previous daily visits in the previous year.
+									The vertical, which indicates the height of the point in the graph, represents the frequency of daily visits during the year analyzed. The dashed lines indicate the previous daily visits in the previous year.
 							<br/><br/>
 							In the menu above you can choose a subject and the order of the articles on the horizontal axis. Hover over the circle to see more information, and click to go to the Wikipedia article.
 						</p>
 					</div>
 					<div class="column_3">
 						<div id="dv1_legend_a" class="legend">
-							<img src="assets/img/dv1_legend_a.svg" width="326" height="262" alt="The light colored circle represents the size of the article, the dark colored circle represents the size of the introduction and the circumference represents the size of the discussion page">
+							<img src="assets/img/dv1_legend_a.svg" width="326" height="262" alt="The light-colored circle represents the size of the article, the dark-colored circle represents the introduction dimension, and the circumference represents the size of the talk page.">
 						</div>
 						<div id="dv1_legend_b" class="legend">
-							<img src="assets/img/dv1_legend_b.svg" width="326" height="155" alt="The pink color represents the Social studies, the green color represents the Mathematics and ICT, the light blue color represents English and the brown color represents the Science.">
+							<img src="assets/img/dv1_legend_b.svg" width="326" height="155" alt="The pink color represents the social sciences and humanities, the green color represents the scientific and mathematical area, the light blue color represents communication and the arts and the violet color represents the technical-technological area.">
 						</div>
 					</div>
 					<div class="column_3">
 						<h2>Data</h2>
 						<p>
-							The third cycle school curriculum is <a href="https://www.wikidata.org/wiki/Wikidata:Wikidata_for_Education" target="_blank">modeled on Wikidata</a>.
+						The third cycle school curriculum is <a href="https://www.wikidata.org/wiki/Wikidata:Wikidata_for_Education" target="_blank">modeled on Wikidata</a>.
 							<br/><br/>
 							You can browse the curriculum on Wikidata and access the complete list of topics that make up each program:
 						</p>
 						<ul>
-							<li><a href="https://www.wikidata.org/wiki/Q119727432" target="_blank">Basic 7</a></li>
-							<li><a href="https://www.wikidata.org/wiki/Q119727312" target="_blank">Basic 8</a></li>
-							<li><a href="https://www.wikidata.org/wiki/Q121573834" target="_blank">Basic 9</a></li>
+							<li><a href="https://www.wikidata.org/wiki/Q119727432" target="_blank">Basic Seven</a></li>
+							<li><a href="https://www.wikidata.org/wiki/Q119727312" target="_blank">Basic Eight</a></li>
+							<li><a href="https://www.wikidata.org/wiki/Q121573834" target="_blank">Basic Nine</a></li>
 						</ul>
 						<br/>
 						<p> Here are some queries in Wikidata Query Service that may be of interest to you:</p>
 						<ul>
-							<li><a href="https://w.wiki/7Zge" target="_blank">Complete list of curriculum topics</a></li>
+								<li><a href="https://w.wiki/7Zge" target="_blank">Complete list of curriculum topics</a></li>
 							<li><a href="https://w.wiki/7QF$" target="_blank">Topics that do not yet have an article on Wikipedia</a></li>
-
-							<li><a href="index.html">Uruguay's third cycle curriculum</a></li>
+								<li><a class="country-link" data-country="Uruguay" data-year="2023" data-lang="es" href="index.html">Uruguay's third cycle curriculum</a></li>
 						</ul>
 						<br/>
 						<div id="dv1_dataset" class="dataset">
-							<a href="assets/data/voci_2023.tsv" title="" style="font-size: 0.9em; margin-bottom: 30px; display: block;">
+							<a href="assets/data/Ghana_voci_2023.tsv" title="" style="font-size: 0.9em; margin-bottom: 30px; display: block;">
 								Download the data <img src="assets/img/download.svg" width="20" height="20" alt="Download the data">
 							</a>
 						</div>
 					</div>
 				</div>
 			</section>
-			<footer>
-				<div id="colophon" class="container">
-					<h2>Credits: Wikicurricular Ghana</h2>
-					<div class="row">
-						<div class="column_3">
-							<div class="section">
-								<h3>Implementación</h3>
-								<p>
-									Nat Hernández Clavijo,Fellow in Wikidata and Open Data<a href="https://wikimedistas.uy/" target="_blank">Wikimedists of Uruguay</a>
-								</p>
+			<footer class="text-center text-lg-start text-dark"style="background-color: #ECEFF1">
+				<div id="colophon" class="container text-center text-md-start mt-5">
+						<h2>Credits: Wikicurrícula Uy</h2>
+					<div class="row mt-3">
+						<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 mt-3">
+							<h6 class="text-uppercase fw-bold">Implementation</h6>
+								<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+				                 <div class="lh-sm mb-3">
+									<p class="mb-1"><span class="fw-bolder">Nat Hernández Clavijo,</span> fellow in Wikidata and Open Data </p>
+									<a class="fw-bold lh-1 text-decoration-underline" href="https://wikimedistas.uy/" target="_blank">Wikimedistas de Uruguay</a>
+								</div>
+								<div class="lh-sm">
+									<p class=" mb-1 "><span class="fw-bolder ">Curriculum analysis consulting</span></p>
+									<p class=" mt-0 ">Sofía Doccetti</p>
+								</div>
+								<div class="lh-sm">
+									<p class=" mb-1 "><span class="fw-bolder ">								<h3>Ideation and responsibility</h3>
+</span></p>
+									<p class=" mt-0 ">Iolanda Pensa</p>
+								</div>
+								<div class="lh-sm">
+									<p class=" mb-1 "><span class="fw-bolder ">Web design and data visualization</span></p>
+							    	<p class="mt-0">Giovanni Profeta</p>
+								</div>
+
+								<div class="lh-sm">
+									<p class=" mb-1 "><span class="fw-bolder ">Original project credits</span></p>
+									<a class="mt-0 fs-4 fw-bold text-decoration-underline" href="https://itwiki-scuola-italiana.toolforge.org/">Wikipedia e la scuola italiana</a>
+								</div>
+						</div>
+						<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-0  mb-4 gap-3">
+							<h6 class="text-uppercase fw-bold">
+                                We thank the teachers:</h6>
+								<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+				                <div class="lh-sm">
+									<p class="mb-1">Ana Miranda</p>
+									<p class="mb-1">Annabel Castro</p>
+									<p class="mb-1">Cecilia Torres</p>
+									<p class="mb-1">Franco Salvetti</p>
+									<p class="mb-1">Iliana Trejos Cabrera</p>
+									<p class="mb-1">Marcelo Mónico</p>
+									<p class="mb-1">Paula Olagüe Schettini</p>
+									<p class="mb-1">Romina Smith</p>
+							    </div>
+						</div>
+
+						<div class=" col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 mt-3">
+							<h6 class="text-uppercase fw-bold">Workgroup</h6>
+							<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+							<div class="section lh-sm">
+								<p class="mb-1">Federico Benvenuti</p>
+								<p class="mb-1">Valerio Iannucci</p>
+								<p class="mb-1">Luca Martinelli</p>
+								<p class="mb-1">Paolo Fichera</p>
 							</div>
-							<div class="section">
-								<h3>Curriculum analysis consulting</h3>
-								<p>
-									Sofía Doccetti
+						</div>
+
+						<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 mt-3">
+							<h6 class="text-uppercase fw-bold">Support and collaboration</h6>
+							<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+							<div class="section lh-sm">
+								<p class="mb-1 ">
+									<a class="text-decoration-underline" href="https://www.wikimedia.it/" target="_blank">Wikimedia Italia</a>
+								</p>
+								<p class="mb-1">
+									<a class="text-decoration-underline" href="https://meta.wikimedia.org/wiki/Wikipedia_e_scuola_italiana" target="_blank">Project page on Meta</a>
 								</p>
 							</div>
 						</div>
-						<div class="column_3">
-							<div class="section">
-								<h3>We thank the teachers:</h3>
-								<p>
-									Ana Miranda</br>
-									Annabel Castro</br>
-									Cecilia Torres</br>
-									Franco Salvetti</br>
-									Iliana Trejos Cabrera</br>
-									Marcelo Mónico</br>
-									Paula Olagüe Schettini</br>
-									Romina Smith</br>
-								</p>
-							</div>
-						</div>
+
 					</div>
-					<h2>Original project credits: Wikipedia e Scuola Italiana </h2>
-					<div class="row">
-						<div class="column_3">
-							<div class="section">
-								<h3>Ideation and responsibility</h3>
-								<p>
-									Iolanda Pensa
-								</p>
-							</div>
-							<div class="section">
-								<h3>Workgroup</h3>
-								<p>
-									Federico Benvenuti<br/>
-									Valerio Iannucci<br/>
-									Luca Martinelli<br/>
-									Paolo Fichera
-								</p>
-							</div>
-						</div>
-						<div class="column_3">
-							<div class="section">
-								<h3>Web design and data visualization</h3>
-								<p>
-									Giovanni Profeta
-								</p>
-							</div>
-							<div class="section">
-								<h3>Support and collaboration</h3>
-								<p>
-									<a href="https://wmgh.org/" target="_blank">Wikimedia Ghana</a>
-								</p>
-							</div>
-							<div class="section">
-								<p>
-									<a href="https://www.wikidata.org/wiki/Wikidata:Wikidata_for_Education" target="_blank">Project Meta Page</a>
-								</p>
-							</div>
-						</div>
-					</div>
+
 				</div>
-				<div id="sub_footer">
-					<div class="container">
-						<p>
-							Wikicurricula Ghana |
-							<a href="https://wikimedistas.uy" target="_blank">Wikimedists of Ghana</a>
-						</p>
-					</div>
+				<div id="sub_footer" class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+					Wikicurricula Ghana |
+					<a class="text-dark text-decoration-underline" href="https://wikimedistas.uy" target="_blank">Wikimedistas de Uruguay</a>
 				</div>
 			</footer>
 		</main>

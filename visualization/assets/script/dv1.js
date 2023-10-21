@@ -1,3 +1,7 @@
+let wiki_link, dataFile;
+let subject_file;
+let subjects = ["all"];
+const starting_year = 2023;
 function format_date(date) {
 	if (date != 0) {
 		const year = date.substring(0, 4);
@@ -9,13 +13,13 @@ function format_date(date) {
 	}
 }
 
+// detect when a user moves from one curricula to another
+page = document.getElementsByTagName("html")[0];
 const container = "#dv1";
 const font_size = 10;
 const filter_item = 120; // 120
 const shiftx_article = 30;
-const wiki_link = "https://es.wikipedia.org/wiki/";
 const variation_line_opacity = 0.7;
-
 const stroke_dash = "3,3";
 
 // let multiply = 1;
@@ -84,11 +88,31 @@ let random_subject = null;
 let random_subject_index = null;
 let forbidden_subjects = ["Comunicación y sociedad"];
 
-function dv1(year, the_subject, sort) {
-	d3.tsv("assets/data/voci_" + year + ".tsv").then(loaded);
+const pageSelector = document.getElementById("pageSelector");
+const selectedPage = pageSelector.value;
 
+let filename;
+if (selectedPage === "uy") {
+	filename = "uruguay_voci_";
+	subjectFIle = "../data-gathering/uruguay_subject_file.csv";
+} else if (selectedPage === "ghana") {
+	filename = "ghana_voci_";
+	subjectFIle = "../data-gathering/ghana_subject_file.csv";
+}
+
+pageSelector.addEventListener("change", function () {
+	const selectedPage = pageSelector.value;
+
+	if (selectedPage === "uy") {
+		window.location.href = "index.html";
+	} else if (selectedPage === "ghana") {
+		window.location.href = "ghana.html";
+	}
+});
+
+function dv1(year, the_subject, sort) {
+	d3.tsv(dataFile).then(loaded);
 	function loaded(data) {
-		console.log("dara", data);
 		// load data
 		let total = 0;
 		let subject_articles = [];
@@ -98,10 +122,10 @@ function dv1(year, the_subject, sort) {
 			.nest()
 			.key((d) => d.subject.trim())
 			.entries(data);
+		console.log(subject_group);
 		for (const [d, c] of Object.entries(subject_group)) {
-			// all subjects
 			if (the_subject == "all") {
-				if (c.key !== "-") {
+				if (c.key !== "") {
 					let values = c.values;
 					values.forEach(function (d, i) {
 						subject_articles.push(d);
@@ -113,6 +137,7 @@ function dv1(year, the_subject, sort) {
 				}
 			}
 		}
+
 		visit_sort = subject_articles.sort(function (x, y) {
 			return d3.descending(+x.avg_pv, +y.avg_pv);
 		});
@@ -127,7 +152,6 @@ function dv1(year, the_subject, sort) {
 		});
 
 		filtered_data.forEach(function (d, i) {
-			console.log("d", d);
 			total += 1;
 			d.article = d.article.replace(/_/g, " ");
 			d.size = +d.size;
@@ -193,7 +217,6 @@ function dv1(year, the_subject, sort) {
 			return Math.sqrt(+d.size / 3.14);
 		});
 
-
 		let y = d3
 			.scaleLinear()
 			.domain([0, y_max + (y_max / 100) * 10])
@@ -207,7 +230,6 @@ function dv1(year, the_subject, sort) {
 				})
 			)
 			.range([0, width]);
-
 
 		if (sort == 1) {
 			max = total;
@@ -314,104 +336,93 @@ function dv1(year, the_subject, sort) {
 
 		let yaxis_label = yaxis_label_box
 			.append("text")
-			.text("visitas diarias (promedio)")
+			.text("Daily visits (average)")
 			.attr("y", -6)
 			.attr("font-size", font_size);
 
 		//========== X axis ======
 
-
-		function updateXScale(selectedValue){
-			
+		function updateXScale(selectedValue) {
 			// console.log("sv== " + selectedValue)
-	
+
 			d3.select("#datexAxis").remove();
 			d3.select("#xAxis").remove();
-				
-				
-				
-			if(selectedValue == 1){
-				var values = filtered_data.map(function(d){
-					return d.article;
-				})
-			}
-			else if(selectedValue == 2){
-				dateXAxis();
-			}
-			else if(selectedValue == 3){
-				var values = filtered_data.map(function(d){
-					return +d.size;
-				})
-			}
-			else if(selectedValue == 4){
-				var values = filtered_data.map(function(d){
-					return +d.discussion_size;
-				})
-			}
-			else if(selectedValue == 5){
-				var values = filtered_data.map(function(d){
-					return +d.incipit_size;
-				})
-			}
-			else if(selectedValue == 6){
-				var values = filtered_data.map(function(d){
-					return +d.issues;
-				})
-			}
-			else if(selectedValue == 7){
-				var values = filtered_data.map(function(d){
-					return +d.images;
-				})
-			}
-			else if(selectedValue == 8){
-				var values = filtered_data.map(function(d){
-					return +d.notes;
-				})
-			}
-	
-			// console.log("val == " +values)
-				var xSacle = d3.scaleLinear()
-					.domain([0 , d3.max(values)])
-					.range([0, width +50])
-	
-			var xAxisGenerator = d3.axisBottom(xSacle);
-	
-			let xAxis = plot.append("a")
-				   .attr("id" , "xAxis")
-				   .call(xAxisGenerator)
-					.attr("transform",`translate(${0},${height})`)
-				
-		}
-			
-		function dateXAxis(){
 
-			let x_ScaleTime = d3.scaleTime()
-				.domain(d3.extent(filtered_data, function(d) { 
-					return new Date(d.first_edit); 
-				  }))
-				.range([0, width+50])
-						
+			if (selectedValue == 1) {
+				var values = filtered_data.map(function (d) {
+					return d.article;
+				});
+			} else if (selectedValue == 2) {
+				dateXAxis();
+			} else if (selectedValue == 3) {
+				var values = filtered_data.map(function (d) {
+					return +d.size;
+				});
+			} else if (selectedValue == 4) {
+				var values = filtered_data.map(function (d) {
+					return +d.discussion_size;
+				});
+			} else if (selectedValue == 5) {
+				var values = filtered_data.map(function (d) {
+					return +d.incipit_size;
+				});
+			} else if (selectedValue == 6) {
+				var values = filtered_data.map(function (d) {
+					return +d.issues;
+				});
+			} else if (selectedValue == 7) {
+				var values = filtered_data.map(function (d) {
+					return +d.images;
+				});
+			} else if (selectedValue == 8) {
+				var values = filtered_data.map(function (d) {
+					return +d.notes;
+				});
+			}
+
+			// console.log("val == " +values)
+			var xSacle = d3
+				.scaleLinear()
+				.domain([0, d3.max(values)])
+				.range([0, width + 50]);
+
+			var xAxisGenerator = d3.axisBottom(xSacle);
+
+			let xAxis = plot
+				.append("a")
+				.attr("id", "xAxis")
+				.call(xAxisGenerator)
+				.attr("transform", `translate(${0},${height})`);
+		}
+
+		function dateXAxis() {
+			let x_ScaleTime = d3
+				.scaleTime()
+				.domain(
+					d3.extent(filtered_data, function (d) {
+						return new Date(d.first_edit);
+					})
+				)
+				.range([0, width + 50]);
+
 			var xAxisGenerator = d3.axisBottom(x_ScaleTime);
-	
-			let xAxis = plot.append("a")
-				   .attr("id" , "datexAxis")
-				   .call(xAxisGenerator)
-				   .attr("transform",`translate(${0},${height})`)		 
+
+			let xAxis = plot
+				.append("a")
+				.attr("id", "datexAxis")
+				.call(xAxisGenerator)
+				.attr("transform", `translate(${0},${height})`);
 		}
 
 		var initialSelectedColumn = "1";
-		updateXScale(initialSelectedColumn); 
+		updateXScale(initialSelectedColumn);
 
-		
-		d3.select("#sort").on("change", function() {
-			var  selectedValue = d3.select(this).property("value");
+		d3.select("#sort").on("change", function () {
+			var selectedValue = d3.select(this).property("value");
 			updateXScale(selectedValue);
 		});
-	
-		 
- 
-		 //========  X axis =======	
 
+		//========  X axis =======
 
 		// let the_sort;
 		let tooltip = d3
@@ -427,14 +438,21 @@ function dv1(year, the_subject, sort) {
 					"<p style='font-weight: bold; margin: 0 0 10px 3px;'>" +
 					d.article +
 					"</p><table>";
-
 				content +=
-					"<tr><td class='label'>publicación</td><td class='value'>" +
+					"<tr><td class='label'>grade</td><td class='value'>" +
+					d.grade.toLocaleString() +
+					"</td><td></td></tr>";
+				content +=
+					"<tr><td class='label'>subject</td><td class='value'>" +
+					d.subject.toLocaleString() +
+					"</td><td></td></tr>";
+				content +=
+					"<tr><td class='label'>publication</td><td class='value'>" +
 					format_date(d.first_edit) +
 					"</td><td></td></tr>";
 				// avg daily visits
 				content +=
-					"<tr><td class='label'>visitas diarias</td><td class='value'>" +
+					"<tr><td class='label'>daily visits</td><td class='value'>" +
 					d.avg_pv.toLocaleString();
 				if (d.avg_pv_prev !== "-") {
 					let diff_pv = d.avg_pv - d.avg_pv_prev;
@@ -464,7 +482,7 @@ function dv1(year, the_subject, sort) {
 
 				//size
 				content +=
-					"<tr><td class='label'>tamaño</td><td class='value'>" +
+					"<tr><td class='label'>size</td><td class='value'>" +
 					d.size.toLocaleString();
 				if (year != starting_year) {
 					let diff_size = d.size - d.size_prev;
@@ -491,7 +509,7 @@ function dv1(year, the_subject, sort) {
 
 				// discussion
 				content +=
-					"<tr><td class='label'>discusión</td><td class='value'>" +
+					"<tr><td class='label'>discussion</td><td class='value'>" +
 					d.discussion_size.toLocaleString();
 				if (year != starting_year) {
 					let diff_discussion = d.discussion_size - d.discussion_prev;
@@ -516,9 +534,9 @@ function dv1(year, the_subject, sort) {
 					}
 				}
 
-				// incipit
+				// introduction
 				content +=
-					"<tr><td class='label'>introducción</td><td class='value'>" +
+					"<tr><td class='label'>introduction</td><td class='value'>" +
 					d.incipit_size.toLocaleString();
 				if (year != starting_year) {
 					let diff_incipit = d.incipit_size - d.incipit_prev;
@@ -543,9 +561,9 @@ function dv1(year, the_subject, sort) {
 					}
 				}
 
-				// referencias
+				// references
 				content +=
-					"<tr><td class='label'>referencias</td><td class='value'>" +
+					"<tr><td class='label'>references</td><td class='value'>" +
 					d.notes.toLocaleString();
 				if (year != starting_year) {
 					let diff_notes = d.notes - d.notes_prev;
@@ -572,7 +590,7 @@ function dv1(year, the_subject, sort) {
 
 				// issues
 				content +=
-					"<tr><td class='label'>asuntos</td><td class='value'>" +
+					"<tr><td class='label'>issues</td><td class='value'>" +
 					d.issues.toLocaleString();
 				if (year != starting_year) {
 					let diff_issues = d.issues - d.issues_prev;
@@ -599,19 +617,19 @@ function dv1(year, the_subject, sort) {
 
 				// source needed
 				content +=
-					"<tr><td class='label'>cita requerida</td><td class='value'>" +
+					"<tr><td class='label'>source needed</td><td class='value'>" +
 					d.issue_sourceNeeded;
 				+"</td><td></td></tr>";
 
 				// need clarification
 				content +=
-					"<tr><td class='label'>aclaración necesaria</td><td class='value'>" +
+					"<tr><td class='label'>need clarification</td><td class='value'>" +
 					d.issue_clarify;
 				+"</td><td></td></tr>";
 
 				// images
 				content +=
-					"<tr><td class='label'>imágenes</td><td class='value'>" +
+					"<tr><td class='label'>images</td><td class='value'>" +
 					d.images.toLocaleString();
 				if (year != starting_year) {
 					let diff_images = d.images - d.images_prev;
@@ -823,8 +841,6 @@ function dv1(year, the_subject, sort) {
 				return r(Math.sqrt(d.discussion_size / 3.14));
 			});
 
-			
-
 		// improvements
 		let improvements_box = article_circles
 			.append("g")
@@ -931,10 +947,9 @@ function dv1(year, the_subject, sort) {
 			d3.select("#datexAxis").remove();
 			d3.select("#xAxis").remove();
 
-			if(the_sort == 2){
+			if (the_sort == 2) {
 				dateXAxis();
-			}
-			else{
+			} else {
 				d3.select("#datexAxis").remove();
 				updateXScale(the_sort);
 			}
@@ -953,11 +968,7 @@ function dv1(year, the_subject, sort) {
 				.key((d) => d.subject)
 				.entries(data);
 
-			console.log("sort", subject_group);
 			for (const [d, c] of Object.entries(subject_group)) {
-				console.log("c", c.key);
-				console.log("su", the_subject);
-				console.log("s", c.key == the_subject);
 				if (the_subject == "all") {
 					if (c.key !== "-") {
 						let values = c.values;
@@ -983,7 +994,7 @@ function dv1(year, the_subject, sort) {
 
 			filtered_data = filter_data.sort(function (a, b) {
 				return d3.ascending(a.article, b.article);
-     });
+			});
 
 			filtered_data.forEach(function (d, i) {
 				total += 1;
@@ -995,7 +1006,7 @@ function dv1(year, the_subject, sort) {
 				d.images = +d.images;
 				d.issue_clarify = +d.issue_clarify;
 				d.issue_sourceNeeded = +d.issue_sourceNeeded;
-        d.notes = +d.notes
+				d.notes = +d.notes;
 				d.days = +d.days;
 				d.avg_pv = +d.avg_pv;
 
@@ -1005,7 +1016,7 @@ function dv1(year, the_subject, sort) {
 
 				if (d.avg_pv_prev !== "-") {
 					d.avg_pv_prev = +d.avg_pv_prev;
-        }
+				}
 
 				// improvements
 				d.improvements = 0;
@@ -1086,8 +1097,7 @@ function dv1(year, the_subject, sort) {
 				max = d3.max(filtered_data, function (d) {
 					return d.images;
 				});
-			}
-			else if (the_sort == 8) {
+			} else if (the_sort == 8) {
 				min = d3.min(filtered_data, function (d) {
 					return d.notes;
 				});
@@ -1181,12 +1191,12 @@ function dv1(year, the_subject, sort) {
 						return (
 							"translate(" + (x(+d.images) + 50) + "," + 0 + ")"
 						);
+					} else if (the_sort == 8) {
+						// "refrences"
+						return (
+							"translate(" + (x(+d.notes) + 50) + "," + 0 + ")"
+						);
 					}
-					else if (the_sort == 8){ // "refrences"
-						return "translate(" + (x(+d.notes)+50) + "," + 0 + ")"
-					}
-					
-					
 				})
 				.on("mouseover", tooltip.show)
 				.on("mouseout", tooltip.hide);
@@ -1383,9 +1393,7 @@ function dv1(year, the_subject, sort) {
 			//           })
 		}
 
-
 		function update_sort(the_subject, the_sort) {
-
 			//load data
 			total = 0;
 
@@ -1434,14 +1442,13 @@ function dv1(year, the_subject, sort) {
 				d.avg_pv = +d.avg_pv;
 				d.avg_pv_prev = +d.avg_pv_prev;
 				d.issues = +d.issues;
-        d.notes = +d.notes
+				d.notes = +d.notes;
 				// console.log(d.article,d.issues)
 			});
 
 			let max;
 			let min;
 			let sort = [
-
 				"article", // 1
 				"publication", // 2
 				"size", // 3
@@ -1449,9 +1456,8 @@ function dv1(year, the_subject, sort) {
 				"incipit", // 5
 				"issue", // 6
 				"images", // 7
-                                "references"	//8
+				"references", //8
 			];
-
 
 			if (the_sort == 1) {
 				max = total;
@@ -1576,7 +1582,7 @@ function getRandomIntInclusive(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-$(document).ready(function () {
+function initialize_page() {
 	while (
 		!random_subject ||
 		forbidden_subjects.indexOf(random_subject) !== -1
@@ -1584,8 +1590,42 @@ $(document).ready(function () {
 		random_subject_index = getRandomIntInclusive(1, subjects.length - 1);
 		random_subject = subjects[random_subject_index];
 		console.log(random_subject);
+		console.log(random_subject_index);
 	}
 	document.getElementById("subjects").selectedIndex = random_subject_index;
+
 	dv1(2023, random_subject, parseInt(1));
 	get_year();
+}
+
+$(document).ready(async function () {
+	const country = page.getAttribute("data-country");
+	const lang = page.getAttribute("data-lang");
+	dataFile = `assets/data/${country}voci_2023.tsv`;
+	wiki_link = `https://${lang}.wikipedia.org/wiki/`;
+
+	subject_file = `../data-gathering/${country}subjects.csv`;
+	// Fetch the CSV file and initialize page
+	d3.csv(subject_file).then((data) => {
+		data.forEach((d) => {
+			d.materia = d.materia.trim();
+			if (!subjects.includes(d.materia)) {
+				subjects.push(d.materia);
+			}
+		});
+		// Remove "all" from the array
+		const indexAll = subjects.indexOf("all");
+		if (indexAll !== -1) {
+			subjects.splice(indexAll, 1);
+		}
+
+		// Sort the rest of the subjects alphabetically
+		subjects.sort();
+
+		// Add "all" back at the beginning
+		subjects.unshift("all");
+
+		console.log(subjects);
+		initialize_page();
+	});
 });
