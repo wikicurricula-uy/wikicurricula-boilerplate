@@ -26,7 +26,7 @@ Follow these steps to contribute to this project:
 7. **Create a Branch**: Before you start working on an issue, create a new branch for your changes. Naming your branch in a descriptive and clear way can be helpful. You can use the following command to create a new branch:
 
 ```bash
-   git checkout -b my-feature-branch
+   git checkout -b (your branch)
 ```
 
 8. **Make Your Changes**: Write your code, documentation, or any other contribution in the branch you created. Ensure your changes follow the project's coding standards and guidelines.
@@ -40,7 +40,7 @@ git add .
 10. **Commit Your Changes**: Commit your changes with a clear and concise commit message that describes the purpose of the commit. Use the following command to commit your changes:
 
 ```bash
-git commit -m  "add feature: describe the feature or fix"
+git commit -m  " describe the feature or fix"
 
 ```
 
