@@ -73,11 +73,11 @@
 	<text
    transform="translate(-472.1701,-660.0921)"
    class="st2 st3"
-   id="text10">dimensión del </text>
+   id="text10">dimension of the</text>
 	<text
    transform="translate(-472.1701,-654.0921)"
    class="st2 st3"
-   id="text12">artículo</text>
+   id="text12">article</text>
 	<line
    class="st4"
    x1="-480.6"
@@ -95,15 +95,15 @@
 	<text
    transform="translate(-472.1701,-645.0852)"
    class="st2 st3"
-   id="text28">dimensión de </text>
+   id="text28">dimension of</text>
 	<text
    transform="translate(-472.1701,-639.0852)"
    class="st2 st3"
-   id="text30">la página de</text>
+   id="text30">discussion</text>
 	<text
    transform="translate(-472.1701,-633.0852)"
    class="st2 st3"
-   id="text32">discusión</text>
+   id="text32">page</text>
 	<line
    class="st4"
    x1="-489.2"
@@ -115,7 +115,7 @@
 	<text
    transform="translate(-557.6358,-653.2667)"
    class="st2 st3"
-   id="text38">dimensión </text>
+   id="text38">dimension</text>
 	<text
    transform="translate(-557.6358,-647.2706)"
    class="st2 st3"
@@ -123,19 +123,19 @@
      sodipodi:role="line"
      id="tspan341"
      x="0"
-     y="0">de la</tspan><tspan
+     y="0">of the</tspan><tspan
      sodipodi:role="line"
      id="tspan343"
      x="0"
-     y="6.25">introducción</tspan></text>
+     y="6.25">introduction</tspan></text>
 	<text
    transform="translate(-557.6358,-622.8849)"
    class="st2 st3"
-   id="text42">variación de las</text>
+   id="text42">variation of the</text>
 	<text
    transform="translate(-557.6358,-616.8849)"
    class="st2 st3"
-   id="text44">visitas diarias</text>
+   id="text44">daily visits</text>
 	<line
    class="st4"
    x1="-515.7"
@@ -155,11 +155,11 @@
 <text
    transform="translate(3.1669,83.3005)"
    class="st2 st3"
-   id="text56">respecto al año</text>
+   id="text56">compared to the</text>
 <text
    transform="matrix(1 0 0 1 3.596 89.348)"
    class="st2 st3"
-   id="text58">precedente</text>
+   id="text58">precedent year</text>
 
 
 
