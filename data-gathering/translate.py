@@ -1,30 +1,28 @@
 #this script translates all countries results.txt into a file that is readable by wikicurricula or wikiscuola visualization tool
 import csv
+import os
 from datetime import datetime
 import os
 
 def get_days_between(start_date_str, end_date_str):
-    if (not start_date_str or start_date_str =="ERRORE" or end_date_str =="ERRORE"): return 0
+    if (not start_date_str or start_date_str =="ERROR" or end_date_str =="ERROR"): return 0
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
     days_between = (end_date - start_date).days
     return days_between
 
 def get_incipit_on_size(incipit_size,size):
-    if (not incipit_size or not size): return 0;
+    if (not incipit_size or not size): return 0; 
     return round((int(incipit_size) / int(size))*100,2)
-
-# maps a subject to and id
+   
 def create_subject_mapping(file_path):
     id_subject_map = {}
 
     # open file with id subject pairs in read mode
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, 'r',  encoding='utf-8', errors="replace") as file:
         reader = csv.reader(file, delimiter=',')
-        # skip reading the header
         header = next(reader, None)
 
-        # each row is in the form Qid, subject. So create a dictionary with id keys and subject values. id_subject_map = {"Qid":English}
         for row in reader:
             id_subject_map[row[0]] = row[1].strip()
 
