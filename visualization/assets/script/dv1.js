@@ -440,7 +440,7 @@ function dv1(year, the_subject, sort) {
 					"</p><table>";
 				content +=
 					"<tr><td class='label'>grade</td><td class='value'>" +
-					d.grade.toLocaleString() +
+					//d.grade.toLocaleString() +
 					"</td><td></td></tr>";
 				content +=
 					"<tr><td class='label'>subject</td><td class='value'>" +
