@@ -22,7 +22,7 @@ if WIKIPEDIA_LANGUAGE== "en":
     WHERE {
       ?substrand wdt:P31 wd:Q600134.
       ?substrand wdt:P921 ?item.
-      ?substrand wdt:P17 wd:Q117. #Uruguay
+      ?substrand wdt:P17 wd:Q117. #Ghana
       OPTIONAL { ?substrand wdt:P361 ?programa. }
       OPTIONAL { ?articulo schema:about ?item;
         schema:isPartOf <https://en.wikipedia.org/>. 
