@@ -440,7 +440,7 @@ function dv1(year, the_subject, sort) {
 					"</p><table>";
 				content +=
 					"<tr><td class='label'>grade</td><td class='value'>" +
-					d.grade.toLocaleString() +
+					//d.grade.toLocaleString() +
 					"</td><td></td></tr>";
 				content +=
 					"<tr><td class='label'>subject</td><td class='value'>" +
@@ -1629,3 +1629,14 @@ $(document).ready(async function () {
 		initialize_page();
 	});
 });
+
+// top the top arrow 
+const toTop = document.querySelector(".to-top");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 700) {
+    toTop.classList.add("active");
+  } else {
+    toTop.classList.remove("active");
+  }
+})
