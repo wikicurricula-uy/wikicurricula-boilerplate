@@ -382,11 +382,11 @@ def analysis(language, file_to_be_analysed, result_file, discussionURL, utf_requ
          if "#RINVIA"  in wikitext or "#REDIRECT" in wikitext:
          #   print (wikitext)
 
-            start = wikitext.find("[[")
-            end = wikitext.find("]]", start)
-            article2 = wikitext[start + 2:end]
-            article2 = article2.strip()
-            article2 = article2.replace("_", " ")
+            article2 = wikitext[wikitext.find("[[")+2:]
+            article2 = article2[:article.find("]]")]
+            article = article2
+            article2 = article2.replace("_"," ")
+
       except:
          pass                                     
 
