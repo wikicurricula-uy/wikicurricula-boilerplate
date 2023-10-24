@@ -249,10 +249,13 @@ header a {
 /* ------- dataviz and legend ------- */
 @media only screen and (max-width: 450px) {
   .legend {
-    text-align: center; } }
+    text-align: center;
+  }
+}
 
 .dataviz {
-  overflow: hidden; }
+  overflow: hidden; 
+}
 
 @media only screen and (max-width: 768px) {
   .dataset {
@@ -377,3 +380,55 @@ footer {
   margin-top: 35px; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+/* To the top arrow */
+.to-top-light {
+  background: white;
+  position: fixed;
+  bottom: 16px;
+  right:32px;
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:32px;
+  color:#1f1f1f;
+  text-decoration: none;
+  opacity:0;
+  pointer-events: none;
+  transition: all .4s;
+}
+
+.to-top.active {
+  bottom:60px;
+  pointer-events: auto;
+  opacity:1;
+}
+
+.to-top-dark {
+  background: #4B5563;
+  position: fixed;
+  bottom: 16px;
+  right:32px;
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:32px;
+  color: white;
+  text-decoration: none;
+  opacity:0;
+  pointer-events: none;
+  transition: all .4s;
+}
+
+.to-top-dark.active {
+  bottom:60px;
+  pointer-events: auto;
+  opacity:1;
+}
