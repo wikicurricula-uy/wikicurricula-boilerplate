@@ -45,9 +45,7 @@ let margin = {
 let svg = d3
 	.select(container)
 	.append("svg")
-	// .attr("width", width + (margin.right + margin.right))
-	// .attr("height", height + (margin.top + margin.bottom))
-  .attr("viewBox", `0 0 ${window_w} ${window_h}`)
+	.attr("viewBox", `0 0 ${window_w} ${window_h}`)
 	.attr("id", "svg");
 
 // improvements
@@ -441,7 +439,7 @@ function dv1(year, the_subject, sort) {
 					"</p><table>";
 				content +=
 					"<tr><td class='label'>grade</td><td class='value'>" +
-					d.grade.toLocaleString() +
+					//d.grade.toLocaleString() +
 					"</td><td></td></tr>";
 				content +=
 					"<tr><td class='label'>subject</td><td class='value'>" +
@@ -1591,12 +1589,8 @@ function initialize_page() {
 		random_subject_index = getRandomIntInclusive(1, subjects.length - 1);
 		random_subject = subjects[random_subject_index];
 		console.log(random_subject);
-<<<<<<< HEAD
-  }
-=======
 		console.log(random_subject_index);
 	}
->>>>>>> upstream/main
 	document.getElementById("subjects").selectedIndex = random_subject_index;
 
 	dv1(2023, random_subject, parseInt(1));
@@ -1634,3 +1628,14 @@ $(document).ready(async function () {
 		initialize_page();
 	});
 });
+
+// top the top arrow 
+const toTop = document.querySelector(".to-top");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 700) {
+    toTop.classList.add("active");
+  } else {
+    toTop.classList.remove("active");
+  }
+})

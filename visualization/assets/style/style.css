@@ -289,30 +289,9 @@ footer {
     text-decoration: none; }
 
 /* ------- dataviz n. 1 ------- */
-
 #dv1 {
-  min-height: 300px;
-  max-height: 600px;
-}
-
-@media (min-width:768px){
-#dv1  {
-    min-height: 400px;
-    margin-bottom: 60px;
-  }  
-}
-
-#dv1 > svg {
-  height: 100%;
-  width: 100%;
-  min-height: 300px;
-}
-
-@media (min-width:768px){
-#dv1 > svg  {
-     min-height: 400px;
-  }  
-}
+  height: 75vh;
+  margin-bottom: 60px; }
 
 #yAxis .domain, #yAxis .tick line, #grid .domain {
   display: none; }
@@ -401,3 +380,55 @@ footer {
   margin-top: 35px; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+/* To the top arrow */
+.to-top-light {
+  background: white;
+  position: fixed;
+  bottom: 16px;
+  right:32px;
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:32px;
+  color:#1f1f1f;
+  text-decoration: none;
+  opacity:0;
+  pointer-events: none;
+  transition: all .4s;
+}
+
+.to-top.active {
+  bottom:60px;
+  pointer-events: auto;
+  opacity:1;
+}
+
+.to-top-dark {
+  background: #4B5563;
+  position: fixed;
+  bottom: 16px;
+  right:32px;
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:32px;
+  color: white;
+  text-decoration: none;
+  opacity:0;
+  pointer-events: none;
+  transition: all .4s;
+}
+
+.to-top-dark.active {
+  bottom:60px;
+  pointer-events: auto;
+  opacity:1;
+}
