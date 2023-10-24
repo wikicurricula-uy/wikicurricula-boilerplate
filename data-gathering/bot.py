@@ -97,13 +97,12 @@ def get_avg_pageviews(article_title, start, end, language):
             SUM += int(txt[txt.find('"views":')+len('"views":'):-1])
             html = html.replace(txt, "", 1)
 
-    d1 = datetime.strptime(start, "%Y%m%d")
-    d2 = datetime.strptime(end, "%Y%m%d")
-    days = (abs((d2 - d1).days)+1)
-    result = str(int(round((SUM/days), 0)))
-
+        d1 = datetime.strptime(start, "%Y%m%d")
+        d2 = datetime.strptime(end, "%Y%m%d")
+        days = (abs((d2 - d1).days)+1)
+        result = str(int(round((SUM/days), 0)))
     except:
-    result = "ERROR"
+        result = "ERROR"
 
     return result
 
@@ -113,34 +112,34 @@ def get_avg_pageviews(article_title, start, end, language):
 def visit(article, language):
 
 
-   #YYYYMMGG Date Format
-   START_ALL_TIME = "20150701";
-   START_PREV_YEAR = "20220101";
-   END_PREV_YEAR = "20221231";
-   START_CURRENT_YEAR = "20230101";
-   END_CURRENT_YEAR   = "20230831";
+    #YYYYMMGG Date Format
+    START_ALL_TIME = "20150701";
+    START_PREV_YEAR = "20220101";
+    END_PREV_YEAR = "20221231";
+    START_CURRENT_YEAR = "20230101";
+    END_CURRENT_YEAR   = "20230831";
 
-   DATE = []
+    DATE = []
 
 
-#calculate result1, total pageviews since the beginning of time, and result2, average pageviews since de beginning of time
-d1 = datetime.strptime(START_ALL_TIME, "%Y%m%d")
-d2 = datetime.strptime(END_CURRENT_YEAR, "%Y%m%d")
-days = (abs((d2 - d1).days)+1)
-ARTICLE = article.replace(" ","_")
+    #calculate result1, total pageviews since the beginning of time, and result2, average pageviews since de beginning of time
+    d1 = datetime.strptime(START_ALL_TIME, "%Y%m%d")
+    d2 = datetime.strptime(END_CURRENT_YEAR, "%Y%m%d")
+    days = (abs((d2 - d1).days)+1)
+    ARTICLE = article.replace(" ","_")
 
-SUM = 0
+    SUM = 0
 
-try:
+    try:
 
-    url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+ARTICLE+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
-    html = urlopen(url).read()
-    ecc = 0 # to change
-    if ecc == 0:
-        html = str(html)
-        html = html.replace('{"items":[',"")
-        html = html.replace(']}',"")
-        n = html.count("}")
+        url ="https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"+language+".wikipedia/all-access/user/"+ARTICLE+"/daily/"+START_ALL_TIME +"/" + END_CURRENT_YEAR
+        html = urlopen(url).read()
+        ecc = 0 # to change
+        if ecc == 0:
+            html = str(html)
+            html = html.replace('{"items":[',"")
+            html = html.replace(']}',"")
+            n = html.count("}")
 
         for i in range(n):
             txt = html[:html.find("}")+1]
@@ -150,17 +149,17 @@ try:
         result1 = str(SUM)
         result2 = str(int(round((SUM/days),0)))
 
-except:
-    result1 = "ERROR"
-    result2 = "ERROR"
+    except:
+      result1 = "ERROR"
+      result2 = "ERROR"
 
-#calculate result3, average pageviews from previous year
-result3 = get_avg_pageviews(article, START_PREV_YEAR, END_PREV_YEAR, language)
+    #calculate result3, average pageviews from previous year
+    result3 = get_avg_pageviews(article, START_PREV_YEAR, END_PREV_YEAR, language)
 
-#calculate result4, average pageviews from current year
-result4 = get_avg_pageviews(article, START_CURRENT_YEAR, END_CURRENT_YEAR, language)
+    #calculate result4, average pageviews from current year
+    result4 = get_avg_pageviews(article, START_CURRENT_YEAR, END_CURRENT_YEAR, language)
    
-return str(result1), str(result2), str(result3), str(result4)
+    return str(result1), str(result2), str(result3), str(result4)
 
 
 
