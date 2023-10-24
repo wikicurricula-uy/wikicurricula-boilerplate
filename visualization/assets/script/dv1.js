@@ -1,3 +1,7 @@
+let wiki_link, dataFile;
+let subject_file;
+let subjects = ["all"];
+const starting_year = 2023;
 function format_date(date) {
 	if (date != 0) {
 		const year = date.substring(0, 4);
@@ -9,13 +13,13 @@ function format_date(date) {
 	}
 }
 
+// detect when a user moves from one curricula to another
+page = document.getElementsByTagName("html")[0];
 const container = "#dv1";
 const font_size = 10;
 const filter_item = 120; // 120
 const shiftx_article = 30;
-const wiki_link = "https://es.wikipedia.org/wiki/";
 const variation_line_opacity = 0.7;
-
 const stroke_dash = "3,3";
 
 // let multiply = 1;
@@ -84,11 +88,31 @@ let random_subject = null;
 let random_subject_index = null;
 let forbidden_subjects = ["Comunicación y sociedad"];
 
-function dv1(year, the_subject, sort) {
-	d3.tsv("assets/data/voci_" + year + ".tsv").then(loaded);
+const pageSelector = document.getElementById("pageSelector");
+const selectedPage = pageSelector.value;
 
+let filename;
+if (selectedPage === "uy") {
+	filename = "uruguay_voci_";
+	subjectFIle = "../data-gathering/uruguay_subject_file.csv";
+} else if (selectedPage === "ghana") {
+	filename = "ghana_voci_";
+	subjectFIle = "../data-gathering/ghana_subject_file.csv";
+}
+
+pageSelector.addEventListener("change", function () {
+	const selectedPage = pageSelector.value;
+
+	if (selectedPage === "uy") {
+		window.location.href = "index.html";
+	} else if (selectedPage === "ghana") {
+		window.location.href = "ghana.html";
+	}
+});
+
+function dv1(year, the_subject, sort) {
+	d3.tsv(dataFile).then(loaded);
 	function loaded(data) {
-		console.log("dara", data);
 		// load data
 		let total = 0;
 		let subject_articles = [];
@@ -98,10 +122,10 @@ function dv1(year, the_subject, sort) {
 			.nest()
 			.key((d) => d.subject.trim())
 			.entries(data);
+		console.log(subject_group);
 		for (const [d, c] of Object.entries(subject_group)) {
-			// all subjects
 			if (the_subject == "all") {
-				if (c.key !== "-") {
+				if (c.key !== "") {
 					let values = c.values;
 					values.forEach(function (d, i) {
 						subject_articles.push(d);
@@ -113,6 +137,7 @@ function dv1(year, the_subject, sort) {
 				}
 			}
 		}
+
 		visit_sort = subject_articles.sort(function (x, y) {
 			return d3.descending(+x.avg_pv, +y.avg_pv);
 		});
@@ -127,7 +152,6 @@ function dv1(year, the_subject, sort) {
 		});
 
 		filtered_data.forEach(function (d, i) {
-			console.log("d", d);
 			total += 1;
 			d.article = d.article.replace(/_/g, " ");
 			d.size = +d.size;
@@ -414,7 +438,14 @@ function dv1(year, the_subject, sort) {
 					"<p style='font-weight: bold; margin: 0 0 10px 3px;'>" +
 					d.article +
 					"</p><table>";
-
+				content +=
+					"<tr><td class='label'>grade</td><td class='value'>" +
+					d.grade.toLocaleString() +
+					"</td><td></td></tr>";
+				content +=
+					"<tr><td class='label'>subject</td><td class='value'>" +
+					d.subject.toLocaleString() +
+					"</td><td></td></tr>";
 				content +=
 					"<tr><td class='label'>publication</td><td class='value'>" +
 					format_date(d.first_edit) +
@@ -937,11 +968,7 @@ function dv1(year, the_subject, sort) {
 				.key((d) => d.subject)
 				.entries(data);
 
-			console.log("sort", subject_group);
 			for (const [d, c] of Object.entries(subject_group)) {
-				console.log("c", c.key);
-				console.log("su", the_subject);
-				console.log("s", c.key == the_subject);
 				if (the_subject == "all") {
 					if (c.key !== "-") {
 						let values = c.values;
@@ -1555,7 +1582,7 @@ function getRandomIntInclusive(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-$(document).ready(function () {
+function initialize_page() {
 	while (
 		!random_subject ||
 		forbidden_subjects.indexOf(random_subject) !== -1
@@ -1563,8 +1590,42 @@ $(document).ready(function () {
 		random_subject_index = getRandomIntInclusive(1, subjects.length - 1);
 		random_subject = subjects[random_subject_index];
 		console.log(random_subject);
+		console.log(random_subject_index);
 	}
 	document.getElementById("subjects").selectedIndex = random_subject_index;
+
 	dv1(2023, random_subject, parseInt(1));
 	get_year();
+}
+
+$(document).ready(async function () {
+	const country = page.getAttribute("data-country");
+	const lang = page.getAttribute("data-lang");
+	dataFile = `assets/data/${country}voci_2023.tsv`;
+	wiki_link = `https://${lang}.wikipedia.org/wiki/`;
+
+	subject_file = `../data-gathering/${country}subjects.csv`;
+	// Fetch the CSV file and initialize page
+	d3.csv(subject_file).then((data) => {
+		data.forEach((d) => {
+			d.materia = d.materia.trim();
+			if (!subjects.includes(d.materia)) {
+				subjects.push(d.materia);
+			}
+		});
+		// Remove "all" from the array
+		const indexAll = subjects.indexOf("all");
+		if (indexAll !== -1) {
+			subjects.splice(indexAll, 1);
+		}
+
+		// Sort the rest of the subjects alphabetically
+		subjects.sort();
+
+		// Add "all" back at the beginning
+		subjects.unshift("all");
+
+		console.log(subjects);
+		initialize_page();
+	});
 });
