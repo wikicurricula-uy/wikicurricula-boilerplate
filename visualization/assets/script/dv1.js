@@ -1589,12 +1589,8 @@ function initialize_page() {
 		random_subject_index = getRandomIntInclusive(1, subjects.length - 1);
 		random_subject = subjects[random_subject_index];
 		console.log(random_subject);
-<<<<<<< HEAD
 		console.log(random_subject_index);
 	}
-=======
-  	}
->>>>>>> 3e4522c1c80188f7ffb23ab1e7dd0ee03235ebc0
 	document.getElementById("subjects").selectedIndex = random_subject_index;
 
 	dv1(2023, random_subject, parseInt(1));
