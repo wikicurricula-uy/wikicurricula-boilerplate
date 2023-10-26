@@ -288,7 +288,8 @@ def warnings(t):
     tmp_to_clarify = sum(t.count(template) for template in
                          language_config.get("clarify"))
 
-    return str(sum_of_warnings), str(tmp_without_sources), str(tmp_to_clarify)
+    return (str(sum_of_warnings), str(tmp_without_sources),
+            str(tmp_to_clarify))
 
 
 # This function is designed to iteratively find and extract
