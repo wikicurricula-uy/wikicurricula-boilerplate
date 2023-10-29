@@ -2,19 +2,26 @@
 import csv
 import os
 from datetime import datetime
-import os
+import sys
 
+
+# voci file will be different for each country
+country = sys.argv[1] if len(sys.argv) == 2 else ""
+#This function calculates the number of days between two given date strings.
+#It first converts the date strings into datetime objects and then calculates the difference in days between them.
 def get_days_between(start_date_str, end_date_str):
     if (not start_date_str or start_date_str =="ERROR" or end_date_str =="ERROR"): return 0
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
     days_between = (end_date - start_date).days
     return days_between
-
+#This function calculates the ratio of the size of an incipit (usually the introductory part of an article) to the total size of an article.
+#It's used to determine what percentage of the article size is occupied by the incipit.
 def get_incipit_on_size(incipit_size,size):
     if (not incipit_size or not size): return 0; 
     return round((int(incipit_size) / int(size))*100,2)
-   
+#This function creates a subject mapping dictionary based on data from a specified CSV file.
+#It reads the file and associates Wikidata IDs with their corresponding subjects, forming a mapping that can be used to categorize articles by subject.   
 def create_subject_mapping(file_path):
     id_subject_map = {}
 
