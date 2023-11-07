@@ -432,3 +432,8 @@ footer {
   pointer-events: auto;
   opacity:1;
 }
+
+.form-select {
+  width: 50%;
+  height: 35px;
+}

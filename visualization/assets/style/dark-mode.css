@@ -399,7 +399,7 @@ body.dark-mode a:visited {
   /* ------- Dark-mode-button -------*/ 
 .dark-mode-button, #moonStarsIcon,#sunIcon {
   position: absolute;
-  bottom: 2px;
+  bottom: 4px;
   right: 10px; 
   z-index: 2; 
   border: none;
@@ -437,4 +437,11 @@ body.dark-mode a:visited {
 .dark-mode .svg-element {
   filter: invert(100%);
   
+}
+
+.dark-mode .form-select {
+  width: 50%;
+  height: 35px;
+  background-color: #1F2937;
+  color: #fff;
 }
