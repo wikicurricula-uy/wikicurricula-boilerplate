@@ -944,16 +944,6 @@ function dv1(year, the_subject, sort) {
 		function update_subject(the_subject, the_sort) {
 			d3.select("#articles").remove();
 
-			d3.select("#datexAxis").remove();
-			d3.select("#xAxis").remove();
-
-			if (the_sort == 2) {
-				dateXAxis();
-			} else {
-				d3.select("#datexAxis").remove();
-				updateXScale(the_sort);
-			}
-
 			d3.selectAll("circle").transition().duration(300).attr("r", 0);
 
 			// load data
@@ -1391,6 +1381,17 @@ function dv1(year, the_subject, sort) {
 			//           		return "none"
 			//           	}
 			//           })
+
+
+			d3.select("#datexAxis").remove();
+			d3.select("#xAxis").remove();
+			if (the_sort == 2) {
+				dateXAxis();
+			} else {
+				d3.select("#datexAxis").remove();
+				updateXScale(the_sort);
+			}
+
 		}
 
 		function update_sort(the_subject, the_sort) {
