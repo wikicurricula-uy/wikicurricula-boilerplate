@@ -6,16 +6,13 @@ process it, and save the results to a file named "resuls.txt".
 
 import urllib
 import sys
-import calendar
 import json
 import datetime
 from urllib.request import urlopen
 import urllib.parse
-import string
-import json
 import chardet
 from datetime import datetime
-from query import store_articles, fetch_wikidata_info
+from query import store_articles, fetch_wikidata_info, get_id_and_subjects_and_grade
 
 # Open and read the JSON configuration file and access the configuration data as a dictionary
 with open("wikipedia_config.json", "r") as config_file:
@@ -23,34 +20,29 @@ with open("wikipedia_config.json", "r") as config_file:
 
 
 # Accept 
-if len(sys.argv) > 1:
-    WIKIPEDIA_LANGUAGE  = sys.argv[1]
+if len(sys.argv) > 2:
+   WIKIPEDIA_LANGUAGE  = sys.argv[1]
+   CODE = sys.argv[2]
 else:
-    WIKIPEDIA_LANGUAGE = "en"  # Default to "es" if no argument is provided
+   print("Please provide the wikipedia language and code as a command-line argument (e.g., 'bot.py en 117' for Ghana's curriculum in English wikipedia).")
+   sys.exit(1)
 
-def main():
-      
+def main():     
    if WIKIPEDIA_LANGUAGE in wikipedia_config:
       language_config = wikipedia_config[WIKIPEDIA_LANGUAGE]
    else:
       print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
    
    # fetch wikidata info
-   query_results = fetch_wikidata_info(WIKIPEDIA_LANGUAGE,sys.argv[2])
+   query_results = fetch_wikidata_info(WIKIPEDIA_LANGUAGE, CODE)
    # store article names
    store_articles(query_results)
+   get_id_and_subjects_and_grade(query_results)
    
    # Access configuration variables based on the language
    file_to_be_analysed = language_config.get("file_to_be_analysed")
    result_file = language_config.get("result_file")
    language = language_config.get("language")
-   utf_required = language_config.get("utf_required")
-   id_wikidata = language_config.get("id_wikidata")
-   dimension = language_config.get("dimension")
-   first_edit = language_config.get("first_edit") 
-   note = language_config.get("note")
-   image = language_config.get("images")
-   views = language_config.get("views")
    incipit_size = language_config.get("incipit_size")
    discussion_size = language_config.get("discussion_size")
    discussionURL = language_config.get("discussionURL")
@@ -58,20 +50,12 @@ def main():
    commons_pages = language_config.get("commons_pages")
    commons_gallery = language_config.get("commons_gallery")
    itwikisource = language_config.get("itwikisource")
-   wikiversity = language_config.get("wikiversity")
-   wikibooks = language_config.get("wikibooks")
-   featured_in = language_config.get("featured")
-   quality = language_config.get("quality")
-   review = language_config.get("review")
-   bibliography = language_config.get("bibliography")
    coordinate = language_config.get("coordinate")
    featured_template = language_config.get("featured_template")
    display_window_template = language_config.get("display_window_template")
 
-   analysis(language, discussionURL, display_window_template,warnings_config, discussion_size, 
-      incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template)
-   
-
+   analysis(language, file_to_be_analysed, result_file, discussionURL, display_window_template,warnings_config, discussion_size, 
+   incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template)
 
 # Function to get average page views: returns visits since the beginning of time, average dayly visits since the begininning of time, average daily visits in the specified year
 def get_avg_pageviews(article_title, start, end, language):
@@ -340,33 +324,29 @@ def featured_in(text, featured_template):
 
     
 # Main analysis function
-def analysis(language, discussionURL, display_window_template, warnings_config, discussion_size, 
+def analysis(language, file_to_be_analysed, result_file, discussionURL, display_window_template, warnings_config, discussion_size, 
       incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template):
-   
-   # f = open('query.csv', "r") #Adding a character encoding will be required for some characters in the query.csv file to avoid getting a UnicodeDecodeError
-   #change this to file to read as an option from users
 
    # Detect the encoding of the file
-   with open('query.csv', 'rb') as rawdata:
+   with open(file_to_be_analysed, 'rb') as rawdata:
       result = chardet.detect(rawdata.read(10000))
 
-# Open the file with the detected encoding
-   with open('query.csv', 'r', encoding=result['encoding'], errors="replace") as file:
-        vox = file.readlines()
+   # Open the file with the detected encoding
+   with open(file_to_be_analysed, 'r', encoding=result['encoding'], errors="replace") as file:
+      articles = file.readlines()
 
     # Delete the contents of the file before starting
-   with open('resultati.txt', "w"):
-        pass
+   with open(result_file, "w"):
+      pass
 
-# Iterate through each article in the list of articles
-   for article in vox:
+   # Iterate through each article in the list of articles
+   for article in articles:
       # Open the "results.txt" file in append mode
-      results = open('resultati.txt', 'a', encoding='utf-8', errors="replace")  # open the file in append mode
+      results = open(result_file, 'a', encoding='utf-8', errors="replace")  # open the file in append mode
 
       flag = 1
       
       # Remove the newline character at the end of the article
-
       article = article[:-1]
       article= article.replace(" ","_") # Wikipedia page titles are case-sensitive and spaces in page titles should be replaced with underscores.
       result = ""
