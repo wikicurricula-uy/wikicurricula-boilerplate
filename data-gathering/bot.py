@@ -84,7 +84,7 @@ def main():
       articles = file.readlines()
    file.close()
    # Set the maximum number of concurrent processes (adjust as needed)
-   max_workers = 10
+   max_workers = 5
 
    # Process articles in parallel
    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
