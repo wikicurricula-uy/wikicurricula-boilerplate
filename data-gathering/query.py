@@ -10,6 +10,9 @@ if len(sys.argv) < 3:
 language = sys.argv[1]
 code = sys.argv[2]
 
+# TO-DO:  language-country interactions
+
+
 if language == "en":
   article_file = "ghana_article_file.csv"
   subject_file = "ghana_subject_file.csv"
