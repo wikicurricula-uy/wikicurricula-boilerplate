@@ -18,8 +18,8 @@ from query import store_articles, fetch_wikidata_info, get_id_and_subjects_and_g
 
 # Accept 
 if len(sys.argv) > 2:
-   WIKIDATA_COUNTRY_ID  = sys.argv[1]
-   CODE = sys.argv[2]
+   WIKIPEDIA_LANGUAGE  = sys.argv[1]
+   WIKIDATA_COUNTRY_ID = sys.argv[2]
 else:
    print("Please provide the wikipedia language and code as a command-line argument (e.g., 'bot.py en 117' for Ghana's curriculum in English wikipedia).")
    sys.exit(1)
@@ -28,10 +28,10 @@ else:
 with open("wikipedia_config.json", "r") as config_file:
    wikipedia_config = json.load(config_file)
 
-if WIKIDATA_COUNTRY_ID in wikipedia_config:
-   language_config = wikipedia_config[WIKIDATA_COUNTRY_ID]
+if WIKIPEDIA_LANGUAGE in wikipedia_config:
+   language_config = wikipedia_config[WIKIPEDIA_LANGUAGE]
 else:
-   print(f"Configuration not found for language '{WIKIDATA_COUNTRY_ID}'.") # Handle this case appropriately (e.g, exit the script).
+   print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
 
 
 id_wikidata = 1,
@@ -71,7 +71,7 @@ results.close()
 def main():     
   
    # fetch wikidata info, store article names and get id, subject, grade of article.
-   query_results = fetch_wikidata_info(WIKIDATA_COUNTRY_ID, CODE)
+   query_results = fetch_wikidata_info(WIKIPEDIA_LANGUAGE, WIKIDATA_COUNTRY_ID)
    store_articles(query_results)
    get_id_and_subjects_and_grade(query_results)
    
@@ -238,10 +238,10 @@ def warnings(t):
    with open("language_template_config.json", "r") as config_file:
       language_template_config = json.load(config_file)
 
-   if WIKIDATA_COUNTRY_ID in language_template_config:
-      language_config = language_template_config[WIKIDATA_COUNTRY_ID]
+   if WIKIPEDIA_LANGUAGE in language_template_config:
+      language_config = language_template_config[WIKIPEDIA_LANGUAGE]
    else:
-      print(f"Configuration not found for language '{WIKIDATA_COUNTRY_ID}'.") # Handle this case appropriately (e.g, exit the script).
+      print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
 
    tmp_to_check = sum(t.count(template) for template in language_config.get("to_check"))
    tmp_synoptic = sum(t.count(template) for template in language_config.get("synoptic"))

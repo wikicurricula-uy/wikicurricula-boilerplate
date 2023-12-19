@@ -1,8 +1,8 @@
-_pycache_
+data-gathering/_pycache_
 .vscode
-ghana_article_file.csv
-ghana_subject_file.csv
-ghana_results.txt
-uruguay_article_file.csv
-uruguay_subject_file.csv
-uruguay_results.txt
+data-gathering/ghana_article_file.csv
+data-gathering/ghana_subject_file.csv
+data-gathering/ghana_results.txt
+data-gathering/uruguay_article_file.csv
+data-gathering/uruguay_subject_file.csv
+data-gathering/uruguay_results.txt
