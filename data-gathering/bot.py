@@ -4,6 +4,7 @@ This script appears to collect data from Wikipedia and Wikidata,
 process it, and save the results to a file named "resuls.txt". 
 '''
 
+import concurrent.futures
 import urllib
 import sys
 import json
@@ -14,48 +15,80 @@ import chardet
 from datetime import datetime
 from query import store_articles, fetch_wikidata_info, get_id_and_subjects_and_grade
 
-# Open and read the JSON configuration file and access the configuration data as a dictionary
-with open("wikipedia_config.json", "r") as config_file:
-   wikipedia_config = json.load(config_file)
-
 
 # Accept 
 if len(sys.argv) > 2:
    WIKIPEDIA_LANGUAGE  = sys.argv[1]
-   CODE = sys.argv[2]
+   WIKIDATA_COUNTRY_ID = sys.argv[2]
 else:
    print("Please provide the wikipedia language and code as a command-line argument (e.g., 'bot.py en 117' for Ghana's curriculum in English wikipedia).")
    sys.exit(1)
 
+# Open and read the JSON configuration file and access the configuration data as a dictionary
+with open("wikipedia_config.json", "r") as config_file:
+   wikipedia_config = json.load(config_file)
+
+if WIKIPEDIA_LANGUAGE in wikipedia_config:
+   language_config = wikipedia_config[WIKIPEDIA_LANGUAGE]
+else:
+   print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
+
+
+id_wikidata = 1,
+dimension = 1,
+first_edit = 1,
+note = 1,
+images = 1,
+views = 1,
+commons_pages =  1,
+commons_gallery = 1,
+itwikisource = 1,
+wikiversity = 1,
+wikibooks = 1,
+featured_in = 1,
+quality = 1,
+review = 1,
+bibliography = 1,
+coordinate = 1,
+incipit_size = 1,
+discussion_size = 1
+
+# Access configuration variables based on the language
+file_to_be_analysed = language_config.get("file_to_be_analysed")
+result_file = language_config.get("result_file")
+language = language_config.get("language")
+discussionURL = language_config.get("discussionURL")
+warnings_config = language_config.get("warnings_config")
+featured_template = language_config.get("featured_template")
+display_window_template = language_config.get("display_window_template")
+
+# delete the contents of the file before starting
+results = open(result_file,"w")
+results.truncate(0)
+results.close()
+
+
 def main():     
-   if WIKIPEDIA_LANGUAGE in wikipedia_config:
-      language_config = wikipedia_config[WIKIPEDIA_LANGUAGE]
-   else:
-      print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE}'.") # Handle this case appropriately (e.g, exit the script).
-   
-   # fetch wikidata info
-   query_results = fetch_wikidata_info(WIKIPEDIA_LANGUAGE, CODE)
-   # store article names
+  
+   # fetch wikidata info, store article names and get id, subject, grade of article.
+   query_results = fetch_wikidata_info(WIKIPEDIA_LANGUAGE, WIKIDATA_COUNTRY_ID)
    store_articles(query_results)
    get_id_and_subjects_and_grade(query_results)
    
-   # Access configuration variables based on the language
-   file_to_be_analysed = language_config.get("file_to_be_analysed")
-   result_file = language_config.get("result_file")
-   language = language_config.get("language")
-   incipit_size = language_config.get("incipit_size")
-   discussion_size = language_config.get("discussion_size")
-   discussionURL = language_config.get("discussionURL")
-   warnings_config = language_config.get("warnings_config")
-   commons_pages = language_config.get("commons_pages")
-   commons_gallery = language_config.get("commons_gallery")
-   itwikisource = language_config.get("itwikisource")
-   coordinate = language_config.get("coordinate")
-   featured_template = language_config.get("featured_template")
-   display_window_template = language_config.get("display_window_template")
+   # Detect the encoding of the file
+   with open(file_to_be_analysed, 'rb') as rawdata:
+      result = chardet.detect(rawdata.read(10000))
 
-   analysis(language, file_to_be_analysed, result_file, discussionURL, display_window_template,warnings_config, discussion_size, 
-   incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template)
+   # Open the file with the detected encoding
+   with open(file_to_be_analysed, 'r', encoding=result['encoding'], errors="replace") as file:
+      articles = file.readlines()
+   file.close()
+   # Set the maximum number of concurrent processes (adjust as needed)
+   max_workers = 5
+
+   # Process articles in parallel
+   with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+      executor.map(analysis, articles)
 
 # Function to get average page views: returns visits since the beginning of time, average dayly visits since the begininning of time, average daily visits in the specified year
 def get_avg_pageviews(article_title, start, end, language):
@@ -324,177 +357,157 @@ def featured_in(text, featured_template):
 
     
 # Main analysis function
-def analysis(language, file_to_be_analysed, result_file, discussionURL, display_window_template, warnings_config, discussion_size, 
-      incipit_size, commons_gallery,commons_pages, itwikisource, coordinate, featured_template):
+def analysis(article):
+   # Remove the newline character at the end of the article
+   article = article[:-1]
+   article= article.replace(" ","_") # Wikipedia page titles are case-sensitive and spaces in page titles should be replaced with underscores.
+   result = ""
+   wikitext = ""
 
-   # Detect the encoding of the file
-   with open(file_to_be_analysed, 'rb') as rawdata:
-      result = chardet.detect(rawdata.read(10000))
+   article2 = urllib.parse.quote(article) 
+   article = article.replace(" ","_")
 
-   # Open the file with the detected encoding
-   with open(file_to_be_analysed, 'r', encoding=result['encoding'], errors="replace") as file:
-      articles = file.readlines()
+   try:
+      # Construct the Wikipedia API URL for parsing wikitext
 
-    # Delete the contents of the file before starting
-   with open(result_file, "w"):
-      pass
+      url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
+      json_url = urlopen(url)
 
-   # Iterate through each article in the list of articles
-   for article in articles:
-      # Open the "results.txt" file in append mode
-      results = open(result_file, 'a', encoding='utf-8', errors="replace")  # open the file in append mode
+      data = json.loads(json_url.read())
 
-      flag = 1
-      
-      # Remove the newline character at the end of the article
-      article = article[:-1]
-      article= article.replace(" ","_") # Wikipedia page titles are case-sensitive and spaces in page titles should be replaced with underscores.
-      result = ""
-      wikitext = ""
+      wikitext = data["parse"]["wikitext"]
+      if "#RINVIA"  in wikitext or "#REDIRECT" in wikitext:
+         article2 = wikitext[wikitext.find("[[")+2:]
+         article2 = article2[:article2.find("]]")]
+         article = article2
+         article2 = article2.replace("_"," ")
 
-      article2 = urllib.parse.quote(article) 
+   except:
+      pass                                     
+
+   try:
+      article2 = urllib.parse.quote(article)
       article = article.replace(" ","_")
-      try:
-         # Construct the Wikipedia API URL for parsing wikitext
+      
+      url = "https://"+language+".wikipedia.org/w/api.php?action=query&titles=" + article2 +"&prop=pageprops&format=json&formatversion=2"
 
-         url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
+      json_url = urlopen(url)
+      data = json.loads(json_url.read())
+      wikidataid = data["query"]["pages"][0]["pageprops"]["wikibase_item"]
+
+      url ="https://www.wikidata.org/wiki/Special:EntityData/"+wikidataid+".json"
+
+      json_url = urlopen(url)
+      wikidata = json.loads(json_url.read())
+
+
+
+      url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
+
+      json_url = urlopen(url)
+
+      data = json.loads(json_url.read())
+
+      wikitext = data["parse"]["wikitext"]
+
+
+
+      try:
+         url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + discussionURL + article2 + "&prop=wikitext&formatversion=2&format=json"
          json_url = urlopen(url)
 
          data = json.loads(json_url.read())
 
-         wikitext = data["parse"]["wikitext"]
-         if "#RINVIA"  in wikitext or "#REDIRECT" in wikitext:
-            article2 = wikitext[wikitext.find("[[")+2:]
-            article2 = article2[:article2.find("]]")]
-            article = article2
-            article2 = article2.replace("_"," ")
+         wikitext_discussion = data["parse"]["wikitext"]
 
       except:
-         pass                                     
+         wikitext_discussion = ""
 
-      try:
-         article2 = urllib.parse.quote(article)
-         article = article.replace(" ","_")
+      result = result + article + "\t"
+
+      result = result + wikidataid + "\t"
+
+   except:
+      result = result + article +"\t" +"non-existent article"
+
+      
+
+   else:
+
+      if first_edit:
+         result = result + first_edit(article2, language) + "\t"
+
+      if dimension:
+         result = result + dimension(wikitext) + "\t"
+
+      if images:
+         result = result + images(wikitext) + "\t"
+
+      if note:
+         result = result + note(wikitext) + "\t"
+
          
-         url = "https://"+language+".wikipedia.org/w/api.php?action=query&titles=" + article2 +"&prop=pageprops&format=json&formatversion=2"
 
-         json_url = urlopen(url)
-         data = json.loads(json_url.read())
-         wikidataid = data["query"]["pages"][0]["pageprops"]["wikibase_item"]
+      if warnings_config:
+         for i in warnings(wikitext):
+            print("some warnings")
+            result = result + i + "\t"   
 
-         url ="https://www.wikidata.org/wiki/Special:EntityData/"+wikidataid+".json"
+      if discussion_size:
+         result = result + dimension(wikitext_discussion) + "\t"
 
-         json_url = urlopen(url)
-         wikidata = json.loads(json_url.read())
-
-
-
-         url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + article2 + "&prop=wikitext&formatversion=2&format=json"
-
-         json_url = urlopen(url)
-
-         data = json.loads(json_url.read())
-
-         wikitext = data["parse"]["wikitext"]
+      if incipit_size:
+         result = result + calculate_introduction_length(wikitext) + "\t"
 
 
+      if visit:
+         for i in visit(article2, language):
+            result = result + i + "\t"
 
+      if vdq:
+         result = result + vdq(wikitext, display_window_template) + "\t"
+
+
+      if featured_in:
+         result = result + featured_in(wikitext, featured_template) + "\t"
+
+
+
+      if commons_gallery:
          try:
-            url = "https://"+language+".wikipedia.org/w/api.php?action=parse&page=" + discussionURL + article2 + "&prop=wikitext&formatversion=2&format=json"
-            json_url = urlopen(url)
-
-            data = json.loads(json_url.read())
-
-            wikitext_discussion = data["parse"]["wikitext"]
-
+            result = result + wikidata["entities"][wikidataid]["claims"]["P373"][0]["mainsnak"]["datavalue"]["value"] + "\t"
          except:
-            wikitext_discussion = ""
-
-         result = result + article + "\t"
-
-         result = result + wikidataid + "\t"
-
-      except:
-         result = result + article +"\t" +"non-existent article"
-
-       
-
-      else:
-
-         if first_edit:
-            result = result + first_edit(article2, language) + "\t"
-
-         if dimension:
-            result = result + dimension(wikitext) + "\t"
-
-         if images:
-            result = result + images(wikitext) + "\t"
-
-         if note:
-            result = result + note(wikitext) + "\t"
-
-           
-
-         if warnings_config:
-            for i in warnings(wikitext):
-               print("some warnings")
-               result = result + i + "\t"   
-
-         if discussion_size:
-            result = result + dimension(wikitext_discussion) + "\t"
-
-         if incipit_size:
-            result = result + calculate_introduction_length(wikitext) + "\t"
-
-
-         if visit:
-            for i in visit(article2, language):
-               result = result + i + "\t"
-
-         if vdq:
-            result = result + vdq(wikitext, display_window_template) + "\t"
-
-
-         if featured_in:
-            result = result + featured_in(wikitext, featured_template) + "\t"
+            result = result + "" + "\t"
 
 
 
-         if commons_gallery:
-            try:
-               result = result + wikidata["entities"][wikidataid]["claims"]["P373"][0]["mainsnak"]["datavalue"]["value"] + "\t"
-            except:
-
-               result = result + "" + "\t"
-
+      if commons_pages:
+         try:
+            result = result + wikidata["entities"][wikidataid]["claims"]["P935"][0]["mainsnak"]["datavalue"]["value"] + "\t"
+         except:
+            result = result + "" + "\t"
 
 
-         if commons_pages:
-            try:
-               result = result + wikidata["entities"][wikidataid]["claims"]["P935"][0]["mainsnak"]["datavalue"]["value"] + "\t"
+      if itwikisource:
+         try:
+            result = result + wikidata["entities"][wikidataid]["sitelinks"]["itwikisource"]["title"] + "\t"
+         except:
 
-            except:
-               result = result + "" + "\t"
+            result = result + "\t"
 
+      if coordinate:
+         try:
+            result = result + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["latitude"] + "\t"
+            result = result + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["longitude"] + "\t"
+         except:
+            result = result + "\t" + "\t"
 
-         if itwikisource:
-            try:
-               result = result + wikidata["entities"][wikidataid]["sitelinks"]["itwikisource"]["title"] + "\t"
-            except:
-
-               result = result + "\t"
-
-         if coordinate:
-            try:
-               result = result + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["latitude"] + "\t"
-               result = result + wikidata["entities"][wikidataid]["claims"]["P625"][0]["mainsnak"]["datavalue"]["value"]["longitude"] + "\t"
-
-            except:
-               result = result + "\t" + "\t"
-
-      results.write(result + "\n")  # add a line break after each result
-      results.close()  # close the file
-      print (result)
+   # Open the "results.txt" file in append mode
+   results = open(result_file, 'a', encoding='utf-8', errors="replace")  # open the file in append mode
+   
+   results.write(result + "\n")  # add a line break after each result
+   results.close()  # close the file
+   print (result)
 
 if __name__ == "__main__":
    main()
