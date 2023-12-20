@@ -51,7 +51,7 @@ Many thanks to all the Outreachy applicants who have contributed during 2023 app
     sudo apt install python3-sparqlwrapper
 ```
 
--   Navigate to the `data-gathering` folder and fetch school curriculum data by running bot.py script. This script receives the Wikipedia lansguage and the Wikidata country Id as parameters.
+-   Navigate to the `data-gathering` folder and fetch school curriculum data by running `bot.py script. This script receives the Wikipedia language and the Wikidata country Id as parameters.
 
 ```
     cd data-gathering
