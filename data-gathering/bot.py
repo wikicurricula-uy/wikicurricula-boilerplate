@@ -128,7 +128,7 @@ def visit(article, language):
    START_PREV_YEAR = "20220101"; 
    END_PREV_YEAR = "20221231"; 
    START_CURRENT_YEAR = "20230101"; 
-   END_CURRENT_YEAR   = "20230831"; 
+   END_CURRENT_YEAR   = "20231231"; 
 
    DATE = []
 
