@@ -103,7 +103,8 @@ pageSelector.addEventListener("change", function () {
 });
 
 function dv1(year, the_subject, sort) {
-	d3.tsv(dataFile).then(loaded)
+	// d3.tsv(`assets/data/${filename}` + year + ".tsv").then(loaded);
+	d3.tsv(dataFile).then(loaded);
 	function loaded(data) {
 		// load data
 		let total = 0;
