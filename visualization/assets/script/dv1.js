@@ -1,7 +1,7 @@
 let wiki_link, dataFile;
 let subject_file;
 let subjects = ["all"];
-const starting_year = 2023;
+ const starting_year = 2023;
 function format_date(date) {
 	if (date != 0) {
 		const year = date.substring(0, 4);
@@ -91,14 +91,6 @@ let forbidden_subjects = ["Comunicación y sociedad"];
 const pageSelector = document.getElementById("pageSelector");
 const selectedPage = pageSelector.value;
 
-let filename;
-if (selectedPage === "uy") {
-	filename = "uruguay_voci_";
-	subjectFIle = "../data-gathering/uruguay_subject_file.csv";
-} else if (selectedPage === "ghana") {
-	filename = "ghana_voci_";
-	subjectFIle = "../data-gathering/ghana_subject_file.csv";
-}
 
 pageSelector.addEventListener("change", function () {
 	const selectedPage = pageSelector.value;
@@ -1639,15 +1631,15 @@ $(document).ready(async function () {
 	dataFile = `assets/data/${country}voci_2023.tsv`;
 	wiki_link = `https://${lang}.wikipedia.org/wiki/`;
 
-	subject_file = `../data-gathering/${country}subjects.csv`;
+	subject_file = `../data-gathering/${country.toLowerCase()}subject_file.csv`;
 	// Fetch the CSV file and initialize page
 	d3.csv(subject_file).then((data) => {
 		data.forEach((d) => {
-			d.materia = d.materia.trim();
-			if (!subjects.includes(d.materia)) {
-				subjects.push(d.materia);
+			d.material = d.material.trim()
+			if(!subjects.includes(d.material)){
+				subjects.push(d.material)
 			}
-		});
+		})
 		// Remove "all" from the array
 		const indexAll = subjects.indexOf("all");
 		if (indexAll !== -1) {
