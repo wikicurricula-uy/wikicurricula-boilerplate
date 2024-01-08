@@ -1,7 +1,7 @@
 let wiki_link, dataFile;
 let subject_file;
 let subjects = ["all"];
-// const starting_year = 2023;
+ const starting_year = 2023;
 function format_date(date) {
 	if (date != 0) {
 		const year = date.substring(0, 4);

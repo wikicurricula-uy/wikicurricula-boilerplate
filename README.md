@@ -1,13 +1,13 @@
 # wikicurricula-boilerplate
 
 Interactive tool that helps visualize national curriculum data stored in Wikidata. It also shows metrics about Wikipedia articles that are relevant to the curriculum.
-This is a boilerplate that will support the implementations in several countries and languages.
 
 Credits to Wikipedia e Scuola Italiana for the original implementation.
 Idea and leadership: Iolanda pensa
 Web design and visualisation by Giovani Profeta - [repo](https://github.com/giovannipro/giovannipro.github.io/tree/master/wikipedia-scuola-italiana)
 Work group: Federico Benvenuti, Valerio Iannucci, Luca Martinelli, Paolo Fichera
 Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
+Many thanks to all the Outreachy applicants who have contributed during 2023 application phase!
 
 # ⚙️ Make a Local Installation of the Wikicurricula Boilerplate on your Computer
 
@@ -17,7 +17,7 @@ Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
 -   Open a Terminal or Command Prompt:
     Depending on your OS(operating system), open a terminal window. This is where you'll run Git commands.
 
--   Navigate to the Directory Where You Want to Clone the Repo:
+-   Navigate to the Directory Where you want to Clone the repo:
     Use the cd command to navigate to the directory where you want to create a local copy of the repository. For example:
 
 ```
@@ -34,20 +34,45 @@ Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
     git clone https://github.com/wikicurricula-uy/wikicurricula-boilerplate.git
 ```
 
--   Wait for Cloning to Complete:
-    Git will start cloning the repository. Depending on the size of the repository and your internet connection, this may take a moment. Once the cloning process is complete, you'll see a message indicating that the repository has been cloned.
+-   Wait for cloning to Complete:
+    Git will start cloning the repository. Depending on your internet connection, this may take a moment. Once the cloning process is complete, you'll see a message indicating that the repository has been cloned.
 
--   Navigate into the Cloned Repository:
-    Use the cd command to move into the directory that was created by the git clone command: `cd repo-name` This directory will have the same name as the repository. i.e
+-   Navigate to the cloned repository:
+    Use the cd command to move into the directory that was created by the git clone command: `cd repo-name`.
 
 ```
     cd wikicurricula-boilerplate
 ```
 
+-   If not installed already, install in your computer Python3 and the SPARQLWrapper extension
+
+```
+    apt install python3
+    sudo apt install python3-sparqlwrapper
+```
+
+-   Navigate to the `data-gathering` folder and fetch school curriculum data by running `bot.py script. This script receives the Wikipedia language and the Wikidata country Id as parameters.
+
+```
+    cd data-gathering
+    python3 bot.py WIKIPEDIA_LANGUAGE WIKIDATA_COUNTRY_ID
+```
+
+For example, these are the scripts to fetch data from the Spanish Wikipedia with reference to the Uruguayan (Q77) curriculum, and to fetch data from the English Wikipedia with reference to the Ghanian curriculum (Q117)
+
+```
+    python3 bot.py es 77
+```
+
+
+```
+    python3 bot.py en 117
+```
+
 -   Check the visuals:
 
     -   You can go to your file explorer and under the directory you've just created by cloning the wikicurricula-boilerplate repository, descend into the "visualization", you will find an `index.html` file. Open this file with any browser of you choice
-
+to
     -   If you are using a code editor like Visual Studio Code install the "live server" extension. After installation, right click on the `index.html` file in the visualization folder and select "open with Live erver" option. This will start a server port : 5500 and a new browser window should automatically open, displaying your index.html file. The Live Server extension will serve your HTML file on a local development server with live reloading, allowing you to see changes in real-time as you edit the HTML, CSS, or JavaScript files associated with your project.
 
     This steps works for other visualization in the project.
