@@ -100,7 +100,7 @@ def get_id_and_subjects_and_grade(results):
           grade = "core"
         
         if "Salud y Sexualidad" in material:
-          material = "Salud y sexualidad"
+          material = "Taller de salud y sexualidad"
         
         if "Programa de " in material:
 
@@ -114,7 +114,7 @@ def get_id_and_subjects_and_grade(results):
             material = "Biología"
 
           if "Física" in material:
-            material = "física"
+            material = "Física"
 
           if "Historia" in material:
             material = "Historia"
@@ -147,7 +147,7 @@ def get_id_and_subjects_and_grade(results):
           if "Educación física y recreación" in material:
             material = "Educación física y recreación"
 
-          if "Ciencias del Ambiente" in material or "Ciencias de la computación" in material:
+          if "Ciencias del Ambiente" in material or "Ciencias del ambiente" in material:
             material = "Ciencias del ambiente"
 
           if "Ciencias de la computación" in material or "Ciencias de la Computación" in material:

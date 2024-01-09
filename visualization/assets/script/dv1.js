@@ -86,7 +86,10 @@ let improv_delay = 1800;
 
 let random_subject = null;
 let random_subject_index = null;
-let forbidden_subjects = ["Comunicación y sociedad"];
+//Some subjects should not be the first to load, since it messes up with other subjects visualization (dots become too big or too small when changinf subjects)
+let forbidden_subjects = [
+	"Comunicación y sociedad"
+];
 
 const pageSelector = document.getElementById("pageSelector");
 const selectedPage = pageSelector.value;
@@ -115,7 +118,6 @@ function dv1(year, the_subject, sort) {
 			.nest()
 			.key((d) => d.subject.trim())
 			.entries(data);
-		console.log(subject_group);
 		for (const [d, c] of Object.entries(subject_group)) {
 			if (the_subject == "all") {
 				if (c.key !== "") {
@@ -321,7 +323,7 @@ function dv1(year, the_subject, sort) {
 			.call(d3.axisLeft(y))
 			.selectAll("text")
 			.attr("y", -10);
-
+		
 		let yaxis_label_box = plot
 			.append("g")
 			.attr("class", "yaxis_label")
@@ -1228,7 +1230,7 @@ function dv1(year, the_subject, sort) {
 				})
 				.on("mouseover", tooltip.show)
 				.on("mouseout", tooltip.hide);
-
+			
 			// variation 2020-2021
 			let variation = article
 				.append("g")
@@ -1377,7 +1379,7 @@ function dv1(year, the_subject, sort) {
 				.attr("data-improvements", function (d, i) {
 					return d.improvements;
 				});
-
+			
 			let improvements = improvements_box
 				.append("g")
 				.append("use")
@@ -1471,7 +1473,6 @@ function dv1(year, the_subject, sort) {
 				d.avg_pv_prev = +d.avg_pv_prev;
 				d.issues = +d.issues;
 				d.notes = +d.notes;
-				// console.log(d.article,d.issues)
 			});
 
 			let max;
@@ -1615,6 +1616,7 @@ function initialize_page() {
 		!random_subject ||
 		forbidden_subjects.indexOf(random_subject) !== -1
 	) {
+		console.log(random_subject)
 		random_subject_index = getRandomIntInclusive(1, subjects.length - 1);
 		random_subject = subjects[random_subject_index];
 		console.log(random_subject);
@@ -1653,7 +1655,6 @@ $(document).ready(async function () {
 		// Add "all" back at the beginning
 		subjects.unshift("all");
 
-		console.log(subjects);
 		initialize_page();
 	});
 });
