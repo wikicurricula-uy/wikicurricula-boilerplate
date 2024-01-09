@@ -427,25 +427,60 @@ function dv1(year, the_subject, sort) {
 			})
 			.offset([-10, 0])
 			.html(function (d, i) {
+				let lang = 'en'; // Default language is set to English
+		
+				// Check if 'lang' parameter is present in the URL
+				let params = new URLSearchParams(window.location.search);
+				if (params.has('lang') == true) {
+					lang = params.get('lang')
+				}
+		
+				if (lang == 'es') {
+					grade = "calificación"
+					subject = "materia"
+					publication = "publicación"
+					visits = "visitas diarias"
+					size = "tamaño"
+					discussion = "discusión"
+					introduction = "introducción"
+					references = "referencias"
+					issues = "asuntos"
+					source_needed = "fuente necesaria"
+					need_clarification ="necesidad aclaración"
+					images = "imágenes"
+				} else{
+					grade = "grade"
+					subject = "subject"
+					publication = "publication"
+					visits = "visits"
+					size = "size"
+					discussion = "discussion"
+					introduction = "introduction"
+					references = "references"
+					issues = "issues"
+					source_needed = "source needed"
+					need_clarification = "need clarification"
+					images = "images"
+				}
 				let content =
 					"<p style='font-weight: bold; margin: 0 0 10px 3px;'>" +
 					d.article +
 					"</p><table>";
 				content +=
-					"<tr><td class='label'>grade</td><td class='value'>" +
-					//d.grade.toLocaleString() +
+					"<tr><td class='label'>"+grade+"</td><td class='value'>" +
+					// d.grade.toLocaleString() +
 					"</td><td></td></tr>";
 				content +=
-					"<tr><td class='label'>subject</td><td class='value'>" +
+					"<tr><td class='label'>"+subject+"</td><td class='value'>" +
 					d.subject.toLocaleString() +
 					"</td><td></td></tr>";
 				content +=
-					"<tr><td class='label'>publication</td><td class='value'>" +
+					"<tr><td class='label'>"+publication+"</td><td class='value'>" +
 					format_date(d.first_edit) +
 					"</td><td></td></tr>";
 				// avg daily visits
 				content +=
-					"<tr><td class='label'>daily visits</td><td class='value'>" +
+					"<tr><td class='label'>"+visits+"</td><td class='value'>" +
 					d.avg_pv.toLocaleString();
 				if (d.avg_pv_prev !== "-") {
 					let diff_pv = d.avg_pv - d.avg_pv_prev;
@@ -475,7 +510,7 @@ function dv1(year, the_subject, sort) {
 
 				//size
 				content +=
-					"<tr><td class='label'>size</td><td class='value'>" +
+					"<tr><td class='label'>"+size+"</td><td class='value'>" +
 					d.size.toLocaleString();
 				if (year != starting_year) {
 					let diff_size = d.size - d.size_prev;
@@ -502,7 +537,7 @@ function dv1(year, the_subject, sort) {
 
 				// discussion
 				content +=
-					"<tr><td class='label'>discussion</td><td class='value'>" +
+					"<tr><td class='label'>"+discussion+"</td><td class='value'>" +
 					d.discussion_size.toLocaleString();
 				if (year != starting_year) {
 					let diff_discussion = d.discussion_size - d.discussion_prev;
@@ -529,7 +564,7 @@ function dv1(year, the_subject, sort) {
 
 				// introduction
 				content +=
-					"<tr><td class='label'>introduction</td><td class='value'>" +
+					"<tr><td class='label'>"+introduction+"</td><td class='value'>" +
 					d.incipit_size.toLocaleString();
 				if (year != starting_year) {
 					let diff_incipit = d.incipit_size - d.incipit_prev;
@@ -556,7 +591,7 @@ function dv1(year, the_subject, sort) {
 
 				// references
 				content +=
-					"<tr><td class='label'>references</td><td class='value'>" +
+					"<tr><td class='label'>"+references+"</td><td class='value'>" +
 					d.notes.toLocaleString();
 				if (year != starting_year) {
 					let diff_notes = d.notes - d.notes_prev;
@@ -583,7 +618,7 @@ function dv1(year, the_subject, sort) {
 
 				// issues
 				content +=
-					"<tr><td class='label'>issues</td><td class='value'>" +
+					"<tr><td class='label'>"+issues+"</td><td class='value'>" +
 					d.issues.toLocaleString();
 				if (year != starting_year) {
 					let diff_issues = d.issues - d.issues_prev;
@@ -610,19 +645,19 @@ function dv1(year, the_subject, sort) {
 
 				// source needed
 				content +=
-					"<tr><td class='label'>source needed</td><td class='value'>" +
+					"<tr><td class='label'>"+source_needed+"</td><td class='value'>" +
 					d.issue_sourceNeeded;
 				+"</td><td></td></tr>";
 
 				// need clarification
 				content +=
-					"<tr><td class='label'>need clarification</td><td class='value'>" +
+					"<tr><td class='label'>"+need_clarification+"</td><td class='value'>" +
 					d.issue_clarify;
 				+"</td><td></td></tr>";
 
 				// images
 				content +=
-					"<tr><td class='label'>images</td><td class='value'>" +
+					"<tr><td class='label'>"+images+"</td><td class='value'>" +
 					d.images.toLocaleString();
 				if (year != starting_year) {
 					let diff_images = d.images - d.images_prev;

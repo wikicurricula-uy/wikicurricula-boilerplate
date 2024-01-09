@@ -432,3 +432,42 @@ footer {
   pointer-events: auto;
   opacity:1;
 }
+.language_name:hover {
+  color: brown;
+  opacity: 0.7; /* Reduce opacity on hover */
+}
+
+#language {
+	display: flex;
+	margin: 0; 
+	width: 10rem;
+	padding: 4px 10px 2px 4px; 
+	border-left: 1px solid #d6d5d5; 
+	text-align: right; 
+	background-color: #efefef; 
+	
+}
+
+.language_icon {
+	background: url(../../assets/img/language.svg) center center / 55% no-repeat;
+	width: 27px;
+}
+
+.language_name {
+	width: 8%;
+	text-align: center; 
+	font-size: .85rem;
+	padding-top: 0.6rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+@media only screen and (max-width: 768px) {
+
+	.language_name {
+		width: auto;
+		padding-top: 0rem;
+	}
+
+}
