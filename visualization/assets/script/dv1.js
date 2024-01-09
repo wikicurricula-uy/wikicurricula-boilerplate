@@ -444,9 +444,9 @@ function dv1(year, the_subject, sort) {
 					discussion = "discusión"
 					introduction = "introducción"
 					references = "referencias"
-					issues = "asuntos"
-					source_needed = "fuente necesaria"
-					need_clarification ="necesidad aclaración"
+					issues = "plantillas"
+					source_needed = "cita requerida"
+					need_clarification ="necesita aclaración"
 					images = "imágenes"
 				} else{
 					grade = "grade"
