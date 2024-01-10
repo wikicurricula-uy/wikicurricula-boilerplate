@@ -110,7 +110,7 @@ def get_id_and_subjects_and_grade(results):
           if "Literatura" in material:
             material = "Literatura"
 
-          if "Biología" in materialor or "biología" in material:
+          if "Biología" in material or "biología" in material:
             material = "Biología"
 
           if "Física" in material:

@@ -1,4 +1,5 @@
 data-gathering/_pycache_
+data-gathering/__pycache__
 .vscode
 data-gathering/ghana_article_file.csv
 data-gathering/ghana_subject_file.csv
