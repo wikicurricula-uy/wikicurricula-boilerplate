@@ -20,7 +20,7 @@ Q483921	Adaptación_biológica	Biología	321	378	34152	-	33	-	0	-	0	-	3618	10.59
 Q12029	Adicción	Biología	334	450	35925	-	43	-	3	-	0	-	1567	4.36	-	0	-	0	0	7010	-	2004-10-06	6660	2891174	0	0			
 Q32043	Adición_(matemática)	Matemática	322	398	19308	-	9	-	1	-	0	-	1711	8.86	-	0	-	0	0	10170	-	2002-10-23	7374	1943630	0	0	Addition		
 Q34698	Adjetivo	Lengua española	681	974	23645	-	1	-	0	-	0	-	1919	8.12	-	0	-	0	0	3454	-	2002-02-13	7626	6876645	0	0	Adjectives		
-Q131774	Adolescencia	Taller de salud y sexualidad	1019	1273	39416	-	33	-	5	-	0	-	1633	4.14	-	0	-	0	0	14793	-	2004-01-18	6922	8332837	0	0	Adolescence		
+Q131774	Adolescencia	Salud y sexualidad	1019	1273	39416	-	33	-	5	-	0	-	1633	4.14	-	0	-	0	0	14793	-	2004-01-18	6922	8332837	0	0	Adolescence		
 Q380057	Adverbio	Lengua española	920	1135	9138	-	4	-	0	-	0	-	940	10.29	-	0	-	0	0	5417	-	2004-05-23	6796	8300990	0	0			
 Q2875694	Aerogenerador	Física	219	237	30998	-	25	-	11	-	0	-	2302	7.43	-	0	-	0	0	12416	-	2002-10-27	7370	1170756	0	0			
 Q2826051	Afectividad	Educación física y recreación	98	86	7267	-	8	-	3	-	0	-	861	11.85	-	0	-	0	0	2781	-	2006-02-27	6151	648562	0	0			
@@ -88,7 +88,7 @@ Q729	Animalia	Biología	3072	3024	62354	-	43	-	36	-	0	-	1934	3.1	-	0	-	0	0	16634
 Q3258546	Ano_humano	Biología	272	334	25403	-	14	-	12	-	0	-	1127	4.44	-	0	-	0	0	224	-	2012-08-03	3802	2081443	0	0	Human anus		
 Q131749	Anorexia_nerviosa	Biología	242	281	101214	-	149	-	6	-	0	-	3414	3.37	-	0	-	0	0	11061	-	2004-06-13	6775	2650764	0	0	Anorexia nervosa		
 Q274083	Antiácido	Química	105	119	5611	-	2	-	1	-	0	-	3553	63.32	-	0	-	0	0	15	-	2006-05-25	6064	998699	0	0	Antacids		
-Q122224	Anticoncepción	Taller de salud y sexualidad	277	279	124562	-	184	-	19	-	0	-	4450	3.57	-	0	-	0	0	17572	-	2004-02-13	6896	1487705	0	0	Contraception		
+Q122224	Anticoncepción	Salud y sexualidad	277	279	124562	-	184	-	19	-	0	-	4450	3.57	-	0	-	0	0	17572	-	2004-02-13	6896	1487705	0	0	Contraception		
 Q11772	Antigua_Grecia	Historia	1825	1976	113732	-	85	-	31	-	0	-	1781	1.57	-	0	-	0	0	12363	-	2003-12-08	6963	8151762	0	0	Ancient Greece		
 Q1747689	Antigua_Roma	Historia	1408	1485	81774	-	27	-	15	-	0	-	3299	4.03	-	0	-	0	0	15628	-	2003-12-04	6967	4866728	0	0	Ancient Rome		
 Q11768	Antiguo_Egipto	Historia	2496	2307	73767	-	25	-	29	-	0	-	6634	8.99	-	0	-	0	0	10658	-	2003-07-18	7106	8467901	0	1	Ancient Egypt		
@@ -160,7 +160,7 @@ Q1931259	Atributo_(gramática)	Lengua española	68	85	5527	-	0	-	0	-	0	-	2607	47
 Q2722260	Atributo_(informática)	Ciencias de la computación	30	48	4812	-	2	-	0	-	0	-	603	12.53	-	0	-	0	0	383	-	2010-07-29	4538	376557	0	0			
 Q212108	Autenticación	Ciencias de la computación	75	69	22233	-	2	-	0	-	0	-	672	3.02	-	0	-	0	0	4622	-	2004-12-14	6591	349216	0	0	Authentication		
 Q4519653	Autocuidado	Educación física y recreación	33	64	3679	-	5	-	2	-	0	-	1336	36.31	-	0	-	0	0	202	-	2014-09-07	3037	319429	0	0	Self care		
-Q10981881	Autoestima	Taller de salud y sexualidad	1321	1437	36084	-	24	-	1	-	0	-	3278	9.08	-	0	-	0	0	8463	-	2005-04-23	6461	8177705	0	0			
+Q10981881	Autoestima	Salud y sexualidad	1321	1437	36084	-	24	-	1	-	0	-	3278	9.08	-	0	-	0	0	8463	-	2005-04-23	6461	8177705	0	0			
 Q1761396	Automedicación	Biología	18	27	3083	-	0	-	0	-	0	-	1456	47.23	-	0	-	0	0	341	-	2005-11-11	6259	165645	0	0	Self-medication		
 Q788590	Autorización	Ciencias de la computación	13	14	3471	-	0	-	0	-	0	-	541	15.59	-	0	-	0	0	166	-	2007-01-04	5840	92442	0	0			
 Q40461	Bachata	Educación musical	432	416	18808	-	11	-	3	-	0	-	1881	10.0	-	0	-	0	0	5737	-	2002-11-27	7339	1940666	0	0			
@@ -239,7 +239,7 @@ Q1073	Cerebro	Biología	538	701	43228	-	35	-	15	-	0	-	4847	11.21	-	0	-	0	0	19889
 Q597493	Chacarera	Educación musical	324	286	20996	-	4	-	2	-	0	-	831	3.96	-	0	-	0	0	18049	-	2005-11-28	6242	1103450	0	0			
 Q5069474	Chamarrita	Educación musical	7	10	1726	-	0	-	0	-	0	-	1118	64.77	-	0	-	0	0	4864	-	2006-07-29	5999	90078	0	0			
 Q327400	Chatarra_electrónica	Biología	103	133	26026	-	23	-	3	-	0	-	839	3.22	-	0	-	0	0	1609	-	2007-09-20	5581	871811	0	0	Electronic waste		
-Q494348	Ciberacoso	Taller de salud y sexualidad	487	602	64373	-	55	-	0	-	0	-	1000	1.55	-	0	-	0	0	11167	-	2006-12-08	5867	2661574	0	0	Cyberbullying		
+Q494348	Ciberacoso	Salud y sexualidad	487	602	64373	-	55	-	0	-	0	-	1000	1.55	-	0	-	0	0	11167	-	2006-12-08	5867	2661574	0	0	Cyberbullying		
 Q4071928	Ciberataque	Ciencias de la computación	43	66	37676	-	47	-	1	-	0	-	1244	3.3	-	0	-	0	0	3111	-	2015-09-10	2669	134661	0	0			
 Q17157079	Ciclo_de_vida_de_la_tecnología	Tecnologías	33	42	11184	-	4	-	6	-	0	-	1022	9.14	-	0	-	0	0	2493	-	2011-03-27	4297	167535	0	0			
 Q81041	Ciclo_hidrológico	Ciencias físico-químicas	1333	1412	35422	-	14	-	6	-	0	-	1666	4.7	-	0	-	0	0	7109	-	2006-01-22	6187	7583547	0	0	Water cycle		
@@ -399,11 +399,11 @@ Q1849028	Derecho_a_la_vivienda	Geografía	58	76	20541	-	16	-	4	-	0	-	859	4.18	-	
 Q38746	Derecho_de_autor	Ciencias de la computación	331	419	100617	-	57	-	4	-	0	-	1622	1.61	-	0	-	0	0	28877	-	2003-08-13	7080	2757854	0	0			
 Q162314	Derecho_romano	Historia	500	664	29736	-	5	-	4	-	0	-	7490	25.19	-	0	-	0	0	13416	-	2003-10-31	7001	2444871	0	0	Roman law		
 Q780687	Derechos	Formación para la ciudadanía	189	246	23463	-	16	-	3	-	0	-	1019	4.34	-	0	-	0	0	2473	-	2006-01-21	6188	1214665	0	0	Rights		
-Q8354948	Derechos_del_niño	Taller de salud y sexualidad	513	691	16833	-	8	-	1	-	0	-	332	1.97	-	0	-	0	0	5024	-	2005-03-22	6493	5865044	0	0	Children's rights		
+Q8354948	Derechos_del_niño	Salud y sexualidad	513	691	16833	-	8	-	1	-	0	-	332	1.97	-	0	-	0	0	5024	-	2005-03-22	6493	5865044	0	0	Children's rights		
 Q113462	Derechos_digitales	Formación para la ciudadanía	24	33	17830	-	19	-	2	-	0	-	1269	7.12	-	0	-	0	0	180	-	2010-06-06	4591	181136	0	0	Digital rights		
 Q8458	Derechos_humanos	Formación para la ciudadanía	1788	2942	112051	-	135	-	5	-	0	-	4293	3.83	-	0	-	0	0	26759	-	2004-03-04	6876	14706900	0	0	Human rights		
-Q1536343	Derechos_reproductivos	Taller de salud y sexualidad	35	45	17748	-	14	-	1	-	0	-	1138	6.41	-	0	-	0	0	1879	-	2007-10-23	5548	464340	0	0	Reproductive rights		
-Q7333703	Derechos_sexuales	Taller de salud y sexualidad	66	104	32574	-	15	-	0	-	0	-	2122	6.51	-	0	-	0	0	3704	-	2013-02-26	3595	1029154	0	0			
+Q1536343	Derechos_reproductivos	Salud y sexualidad	35	45	17748	-	14	-	1	-	0	-	1138	6.41	-	0	-	0	0	1879	-	2007-10-23	5548	464340	0	0	Reproductive rights		
+Q7333703	Derechos_sexuales	Salud y sexualidad	66	104	32574	-	15	-	0	-	0	-	2122	6.51	-	0	-	0	0	3704	-	2013-02-26	3595	1029154	0	0			
 Q1987559	Derechos_sociales	Formación para la ciudadanía	186	241	12736	-	12	-	1	-	0	-	1614	12.67	-	0	-	0	0	1534	-	2006-08-06	5991	1748139	0	0			
 Q178605	Deriva_continental	Geografía	436	536	19501	-	16	-	4	-	0	-	565	2.9	-	0	-	0	0	4295	-	2004-03-24	6856	2866183	0	0	Continental drift		
 Q728001	Derivación_(lingüística)	Lengua española	71	73	5153	-	1	-	0	-	0	-	2176	42.23	-	0	-	0	0	18	-	2006-11-20	5885	570974	0	0			
@@ -439,7 +439,7 @@ Q906356	Disolución_acuosa	Química	59	74	1419	-	2	-	0	-	0	-	949	66.88	-	0	-	0	0
 Q5082128	Dispositivo_móvil	Ciencias de la computación	205	184	12616	-	6	-	4	-	0	-	1744	13.82	-	0	-	0	0	2969	-	2007-04-23	5731	677757	0	0	Handheld devices		
 Q671617	Distribución_de_Laplace	Matemática	14	15	8890	-	4	-	3	-	0	-	618	6.95	-	0	-	0	0	0	-	2010-01-31	4717	54111	0	0	Laplace distribution		
 Q200726	Distribución_de_probabilidad	Matemática	297	390	19744	-	1	-	3	-	0	-	1054	5.34	-	0	-	0	0	1899	-	2003-10-20	7012	1755765	0	0	Probability distributions		
-Q5110203	Diversidad_sexual	Taller de salud y sexualidad	166	272	7608	-	13	-	0	-	0	-	4988	65.56	-	0	-	0	0	1101	-	2008-09-06	5229	1188944	0	0			
+Q5110203	Diversidad_sexual	Salud y sexualidad	166	272	7608	-	13	-	0	-	0	-	4988	65.56	-	0	-	0	0	1101	-	2008-09-06	5229	1188944	0	0			
 Q1226939	División_(matemática)	Matemática	382	519	20365	-	16	-	2	-	0	-	2903	14.25	-	0	-	0	0	3140	-	2003-04-25	7190	2821593	0	0	Division (mathematics)		
 Q207449	División_del_trabajo	Historia	225	225	15800	-	11	-	0	-	0	-	778	4.92	-	0	-	0	0	1351	-	2006-05-24	6065	1499136	0	0			
 Q192439	Dominio_de_una_función	Matemática	135	246	3678	-	0	-	1	-	0	-	947	25.75	-	0	-	0	0	1058	-	2003-09-13	7049	175944	0	0			
@@ -465,7 +465,7 @@ Q210443	Edad_Oscura	Historia	216	230	10504	-	2	-	0	-	0	-	1129	10.75	-	0	-	0	0	91
 Q555449	Eduardo_Acevedo_Díaz	Literatura	17	17	9308	-	0	-	2	-	0	-	408	4.38	-	0	-	0	0	200	-	2006-02-14	6164	64009	0	0	Eduardo Acevedo Díaz	Eduardo Acevedo Díaz	
 Q243253	Educación_física	Educación física y recreación	877	1423	13196	-	10	-	2	-	0	-	872	6.61	-	0	-	0	0	3282	-	2003-11-18	6983	9542698	0	0	Physical education		
 Q27908	Educación_musical	Educación musical	72	41	7499	-	0	-	1	-	0	-	976	13.02	-	0	-	0	0	5285	-	2008-09-15	5220	206844	0	0	Music education		
-Q192280	Educación_sexual	Taller de salud y sexualidad	195	368	49873	-	28	-	3	-	0	-	1185	2.38	-	0	-	0	0	5037	-	2006-05-18	6071	1774012	0	0	Sex education		
+Q192280	Educación_sexual	Salud y sexualidad	195	368	49873	-	28	-	3	-	0	-	1185	2.38	-	0	-	0	0	5037	-	2006-05-18	6071	1774012	0	0	Sex education		
 Q924713	Eficiencia_energética	Física	131	179	89942	-	81	-	11	-	0	-	5957	6.62	-	0	-	0	0	15701	-	2007-01-02	5842	1088831	0	0	Energy efficiency		
 Q188209	Eje_(mecánica)	Tecnologías	73	79	9862	-	3	-	4	-	0	-	1051	10.66	-	0	-	0	0	1435	-	2008-02-03	5445	531523	0	0	Axles		
 Q39047680	Eje_hipotalámico-hipofisario-prolactina	Biología	4	1	4233	-	7	-	3	-	0	-	862	20.36	-	0	-	0	0	25	-	2022-11-28	33	1279	0	0			
@@ -505,7 +505,7 @@ Q40015	Energía_solar	Biología	739	794	71375	-	68	-	31	-	0	-	3846	5.39	-	0	-	0	
 Q111637324	Energía_solar_en_Uruguay	Biología	0	1	2760	-	7	-	1	-	0	-	645	23.37	-	0	-	0	0	23	-	2022-04-17	258	361	0	0	Solar energy in Uruguay		
 Q12136	Enfermedad	Biología	876	874	29542	-	5	-	6	-	0	-	1344	4.55	-	0	-	0	0	2751	-	2002-05-03	7547	4255510	0	0	Diseases and disorders		
 Q10260689	Enfermedad_coronaria	Biología	79	50	22832	-	11	-	4	-	0	-	1867	8.18	-	0	-	0	0	2327	-	2007-08-06	5626	346704	0	0			
-Q1147070	Engaño_pederasta	Taller de salud y sexualidad	657	397	23638	-	27	-	3	-	0	-	1949	8.25	-	0	-	0	0	16740	-	2008-11-17	5157	1462776	0	0			
+Q1147070	Engaño_pederasta	Salud y sexualidad	657	397	23638	-	27	-	3	-	0	-	1949	8.25	-	0	-	0	0	16740	-	2008-11-17	5157	1462776	0	0			
 Q143873	Engranaje	Tecnologías	323	333	81823	-	40	-	44	-	0	-	1314	1.61	-	0	-	0	0	17537	-	2005-06-15	6408	2023060	0	0	Gears		
 Q44424	Enlace_(química)	Química	414	592	48955	-	11	-	4	-	0	-	1598	3.26	-	0	-	0	0	4478	-	2004-01-13	6927	316504	0	0	Chemical bonding		
 Q127920	Enlace_covalente	Química	895	1226	22140	-	12	-	11	-	0	-	2348	10.61	-	0	-	0	0	5184	-	2003-06-25	7129	6609967	0	0			
@@ -545,8 +545,8 @@ Q255362	Esquema_eléctrico	Tecnologías	57	58	3338	-	1	-	1	-	0	-	337	10.1	-	0	-	
 Q380344	Estadística_descriptiva	Matemática	260	271	10932	-	8	-	1	-	0	-	2770	25.34	-	0	-	0	0	598	-	2004-11-21	6614	1690333	0	0	Descriptive statistics		
 Q7275	Estado	Formación para la ciudadanía	2007	2092	44130	-	28	-	4	-	0	-	1823	4.13	-	0	-	0	0	17286	-	2002-05-12	7538	10501687	0	0	States		
 Q657326	Estamento	Historia	181	205	26189	-	17	-	3	-	0	-	2403	9.18	-	0	-	0	0	18288	-	2005-11-19	6251	1215461	0	0	Estates of the realm	Estates of the realm	
-Q167172	Estereotipo	Taller de salud y sexualidad	839	1328	53041	-	35	-	4	-	0	-	2942	5.55	-	0	-	0	0	3545	-	2004-10-28	6638	5910263	0	0	Stereotypes	Stereotypes	
-Q4135218	Estereotipo_de_género	Taller de salud y sexualidad	140	210	20489	-	17	-	0	-	0	-	1832	8.94	-	0	-	0	0	1143	-	2016-09-20	2293	819480	0	0			
+Q167172	Estereotipo	Salud y sexualidad	839	1328	53041	-	35	-	4	-	0	-	2942	5.55	-	0	-	0	0	3545	-	2004-10-28	6638	5910263	0	0	Stereotypes	Stereotypes	
+Q4135218	Estereotipo_de_género	Salud y sexualidad	140	210	20489	-	17	-	0	-	0	-	1832	8.94	-	0	-	0	0	1143	-	2016-09-20	2293	819480	0	0			
 Q8009	Estilo_APA	Ciencias de la computación	493	552	27394	-	6	-	0	-	0	-	813	2.97	-	0	-	0	0	1293	-	2010-10-13	4462	2914678	0	0			
 Q216635	Estoma	Biología	210	279	12411	-	3	-	3	-	0	-	1948	15.7	-	0	-	0	0	1405	-	2005-10-11	6290	1450946	0	0	Stoma		
 Q1029907	Estómago	Biología	614	623	33656	-	28	-	15	-	0	-	1432	4.25	-	0	-	0	0	2913	-	2003-12-05	6966	3524260	0	0	Stomachs	Stomach	
@@ -578,13 +578,13 @@ Q5853527	Expresión_escrita	Comunicación y sociedad	47	80	3872	-	2	-	0	-	0	-	34
 Q461335	Factores_abióticos	Biología	679	786	8015	-	11	-	2	-	0	-	1934	24.13	-	0	-	0	0	1925	-	2003-10-12	7020	5334050	0	0			
 Q864886	Factores_bióticos	Biología	543	643	3588	-	1	-	1	-	0	-	1394	38.85	-	0	-	0	0	148	-	2005-03-13	6502	4380251	0	0			
 Q5854436	Factores_de_la_comunicación	Lengua española	188	247	12846	-	6	-	1	-	0	-	580	4.52	-	0	-	0	0	3227	-	2006-03-16	6134	1147125	0	0			
-Q8436	Familia	Taller de salud y sexualidad	1489	1929	48907	-	43	-	3	-	0	-	2764	5.65	-	0	-	0	0	49835	-	2005-05-18	6436	12291488	0	0	Families		
+Q8436	Familia	Salud y sexualidad	1489	1929	48907	-	43	-	3	-	0	-	2764	5.65	-	0	-	0	0	49835	-	2005-05-18	6436	12291488	0	0	Families		
 Q174778	Faringe	Biología	454	468	10918	-	4	-	3	-	0	-	690	6.32	-	0	-	0	0	1059	-	2004-02-13	6896	2980264	0	0	Pharynx	Pharynx	
 Q104837	Fase_(materia)	Química	96	106	15076	-	3	-	3	-	0	-	1773	11.76	-	0	-	0	0	2154	-	2006-05-11	6078	207642	0	0	Phase (matter)		
 Q14890574	Fecundación	Biología	548	635	35187	-	8	-	7	-	0	-	1278	3.63	-	0	-	0	0	2230	-	2003-09-15	7047	4876754	0	0	Fertilisation	Fertilization	
 Q200117	Fecundación_in_vitro	Biología	121	118	97959	-	45	-	5	-	0	-	745	0.76	-	0	-	0	0	3745	-	2004-05-26	6793	1181604	0	0	In vitro fertilisation		
 Q714097	Felisberto_Hernández	Literatura	63	61	14356	-	14	-	1	-	0	-	373	2.6	-	0	-	0	0	3531	-	2006-09-04	5962	217482	0	0	Felisberto Hernández	Felisberto Hernández	
-Q866081	Feminidad	Taller de salud y sexualidad	96	92	30135	-	46	-	6	-	0	-	1144	3.8	-	0	-	0	0	3938	-	2006-12-07	5868	404098	0	0	Femininity		
+Q866081	Feminidad	Salud y sexualidad	96	92	30135	-	46	-	6	-	0	-	1144	3.8	-	0	-	0	0	3938	-	2006-12-07	5868	404098	0	0	Femininity		
 Q1277161	Fenómeno_meteorológico_extremo	Geografía	42	64	19808	-	32	-	3	-	0	-	1595	8.05	-	0	-	0	0	3039	-	2015-05-20	2782	218268	0	0			
 Q83323	Fertilizante	Química	380	439	52003	-	14	-	7	-	0	-	1932	3.72	-	0	-	0	0	9499	-	2004-06-22	6766	2193043	0	0	Fertilizers		
 Q37739	Feudalismo	Historia	1771	1875	55794	-	17	-	14	-	0	-	2911	5.22	-	0	-	0	0	17487	-	2003-08-31	7062	9463933	0	0	Feudalism		
@@ -729,7 +729,7 @@ Q1483324	Iconicidad	Comunicación visual	16	18	3592	-	0	-	0	-	0	-	279	7.77	-	0	-
 Q3076374	Ida_Vitale	Literatura	74	57	15469	-	16	-	2	-	0	-	920	5.95	-	0	-	0	0	562	-	2007-01-26	5818	217376	0	0	Ida Vitale		
 Q129533	Idea_Vilariño	Literatura	102	89	14114	-	13	-	2	-	0	-	347	2.46	-	0	-	0	0	2738	-	2007-12-31	5479	268804	0	0	Idea Vilariño		
 Q3006401	Identidad_2.0	Ciencias de la computación	3	15	9378	-	2	-	0	-	0	-	2208	23.54	-	0	-	0	0	3287	-	2007-10-18	5553	231048	0	0			
-Q2254571	Identidad_personal	Taller de salud y sexualidad	136	278	37619	-	43	-	3	-	0	-	2014	5.35	-	0	-	0	0	0	-	2018-07-09	1636	250735	0	0			
+Q2254571	Identidad_personal	Salud y sexualidad	136	278	37619	-	43	-	3	-	0	-	2014	5.35	-	0	-	0	0	0	-	2018-07-09	1636	250735	0	0			
 Q1321	Idioma_español	Comunicación y sociedad	5344	5047	251076	-	384	-	73	-	0	-	13607	5.42	-	0	-	0	0	114168	-	2002-01-15	7655	12411336	0	0	Spanish language		
 Q9592	Iglesia_católica	Historia	2181	2288	127355	-	149	-	39	-	0	-	3382	2.66	-	0	-	0	0	32053	-	2002-04-26	7554	8065802	0	0	Catholic Church		Autore:Chiesa cattolica
 Q842346	Igualdad_matemática	Comunicación visual	98	96	8140	-	4	-	1	-	0	-	586	7.2	-	0	-	0	0	1517	-	2004-03-31	6849	782728	0	0			
@@ -757,7 +757,7 @@ Q5325	Inductor	Tecnologías	358	370	45961	-	14	-	24	-	0	-	2536	5.52	-	0	-	0	0	0	
 Q8148	Industria	Biología	557	568	34939	-	8	-	3	-	0	-	2242	6.42	-	0	-	0	0	4376	-	2003-08-30	7063	4367799	0	0	Industries		
 Q202398	Industrialización	Historia	360	473	9407	-	3	-	2	-	0	-	8356	88.83	-	0	-	0	0	1594	-	2005-07-11	6382	2352303	0	0	Industries		
 Q1660379	Industrialización_por_sustitución_de_importaciones	Historia	383	500	24801	-	15	-	0	-	0	-	652	2.63	-	0	-	0	0	9525	-	2006-08-06	5991	2463881	0	0	Import substitution industrialization		
-Q12198	Infecciones_de_transmisión_sexual	Taller de salud y sexualidad	383	390	30266	-	9	-	6	-	0	-	1562	5.16	-	0	-	0	0	11469	-	2003-10-20	7012	5447959	0	0	Sexually transmitted diseases and disorders		
+Q12198	Infecciones_de_transmisión_sexual	Salud y sexualidad	383	390	30266	-	9	-	6	-	0	-	1562	5.16	-	0	-	0	0	11469	-	2003-10-20	7012	5447959	0	0	Sexually transmitted diseases and disorders		
 Q179230	Infinitivo	Lengua española	181	305	8569	-	4	-	0	-	0	-	1011	11.8	-	0	-	0	0	5389	-	2005-11-26	6244	1017061	0	0	Infinitive		
 Q3702971	Información_personal	Ciencias de la computación	55	61	8478	-	8	-	0	-	0	-	527	6.22	-	0	-	0	0	3611	-	2010-05-02	4626	395663	0	0			
 Q6631525	Ingeniería_en_alimentos	Ciencias físico-químicas	64	87	19038	-	11	-	2	-	0	-	1970	10.35	-	0	-	0	0	3300	-	2004-08-07	6720	224965	0	0			
@@ -892,7 +892,7 @@ Q16601346	María_Freire	Comunicación visual	11	14	8805	-	9	-	0	-	0	-	146	1.66	-
 Q3293353	Mario_Arregui	Literatura	4	3	9699	-	2	-	0	-	0	-	154	1.59	-	0	-	0	0	525	-	2007-01-26	5818	15010	0	0	Mario Arregui		
 Q16285	Mario_Benedetti	Literatura	844	846	32128	-	20	-	1	-	0	-	952	2.96	-	0	-	0	0	11164	-	2003-07-18	7106	4494735	0	0	Mario Benedetti		
 Q11423	Masa	Química	767	832	35474	-	17	-	3	-	0	-	1303	3.67	-	0	-	0	0	11624	-	2001-09-29	7763	6376410	0	0	Mass (physical property)		
-Q1076509	Masculinidad	Taller de salud y sexualidad	150	143	114767	-	154	-	14	-	0	-	5173	4.51	-	0	-	0	0	46759	-	2007-03-05	5780	564207	0	0	Masculinity		
+Q1076509	Masculinidad	Salud y sexualidad	150	143	114767	-	154	-	14	-	0	-	5173	4.51	-	0	-	0	0	46759	-	2007-03-05	5780	564207	0	0	Masculinity		
 Q335632	Matemática_financiera	Matemática	156	156	7884	-	1	-	0	-	0	-	2512	31.86	-	0	-	0	0	52	-	2004-11-27	6608	999656	0	0	Mathematical finance		
 Q131752	Máximo_común_divisor	Matemática	399	555	10471	-	19	-	1	-	0	-	191	1.82	-	0	-	0	0	0	-	2004-01-05	6935	3779865	0	0	Greatest common divisor		
 Q151942	Mazurca	Educación musical	85	83	6056	-	1	-	2	-	0	-	698	11.53	-	0	-	0	0	52	-	2005-10-02	6299	372374	0	0	Mazurka		
@@ -1035,8 +1035,8 @@ Q7817	Organización_Mundial_de_la_Salud	Biología	708	1094	33792	-	44	-	2	-	0	-	
 Q712378	Órgano_(biología)	Biología	1014	908	13137	-	4	-	3	-	0	-	697	5.31	-	0	-	0	0	0	-	2004-09-25	6671	3234118	0	0	Organ systems		
 Q3355930	Órgano_sensorial	Biología	351	402	16418	-	5	-	0	-	0	-	1409	8.58	-	0	-	0	0	320	-	2003-10-20	7012	1703887	0	0			
 Q29358	Orientación_(deporte)	Educación física y recreación	86	99	22810	-	11	-	5	-	0	-	1701	7.46	-	0	-	0	0	2174	-	2007-05-08	5716	513704	0	0	Orienteering		
-Q4688879	Orientación_romántica	Taller de salud y sexualidad	79	86	7932	-	8	-	1	-	0	-	1534	19.34	-	0	-	0	0	513	-	2015-05-04	2798	151567	0	0			
-Q17888	Orientación_sexual	Taller de salud y sexualidad	1039	1624	124771	-	154	-	7	-	0	-	3091	2.48	-	0	-	0	0	25883	-	2004-03-16	6864	3036529	0	0	Sexual orientation		
+Q4688879	Orientación_romántica	Salud y sexualidad	79	86	7932	-	8	-	1	-	0	-	1534	19.34	-	0	-	0	0	513	-	2015-05-04	2798	151567	0	0			
+Q17888	Orientación_sexual	Salud y sexualidad	1039	1624	124771	-	154	-	7	-	0	-	3091	2.48	-	0	-	0	0	25883	-	2004-03-16	6864	3036529	0	0	Sexual orientation		
 Q40924	Orina	Biología	334	318	10881	-	5	-	7	-	0	-	733	6.74	-	0	-	0	0	3957	-	2004-01-20	6920	2886549	0	0	Urine		
 Q215067	Ortogonalidad_(matemática)	Matemática	64	64	5783	-	0	-	3	-	0	-	511	8.84	-	0	-	0	0	0	-	2004-11-09	6626	38672	0	0			
 Q913236	Osteocito	Biología	71	84	2640	-	2	-	2	-	0	-	749	28.37	-	0	-	0	0	0	-	2006-03-31	6119	478081	0	0	Osteocytes		
@@ -1125,7 +1125,7 @@ Q10354784	Prácticas_corporales	Educación física y recreación	26	0	3624	-	5	-
 Q179080	Predicado_(gramática)	Lengua española	201	240	8890	-	1	-	1	-	0	-	1168	13.14	-	0	-	0	0	411	-	2006-06-17	6041	1205194	0	0			
 Q6084219	Predicado_verbal	Lengua española	18	27	4488	-	1	-	0	-	0	-	138	3.07	-	0	-	0	0	0	-	2006-08-24	5973	220245	0	0			
 Q134830	Prefijo	Lengua española	235	250	7054	-	6	-	0	-	0	-	1332	18.88	-	0	-	0	0	3730	-	2006-07-03	6025	1872290	0	0			
-Q179742	Prejuicio	Taller de salud y sexualidad	287	267	14836	-	4	-	2	-	0	-	284	1.91	-	0	-	0	0	8527	-	2005-05-30	6424	1889902	0	0	Prejudice		
+Q179742	Prejuicio	Salud y sexualidad	287	267	14836	-	4	-	2	-	0	-	284	1.91	-	0	-	0	0	8527	-	2005-05-30	6424	1889902	0	0	Prejudice		
 Q4833830	Preposición	Lengua española	274	414	15576	-	5	-	0	-	0	-	1089	6.99	-	0	-	0	0	2807	-	2003-11-28	6973	4026044	0	0			
 Q39552	Presión	Química	599	596	18483	-	11	-	5	-	0	-	1256	6.8	-	0	-	0	0	4040	-	2003-02-22	7252	4891727	0	0	Pressure		
 Q361	Primera_Guerra_Mundial	Historia	10668	9926	293425	-	225	-	131	-	0	-	12959	4.42	-	0	-	0	0	57245	-	2002-11-18	7348	35039266	0	0	World War I	World War I	
@@ -1157,7 +1157,7 @@ Q980329	Proyección_ortogonal	Diseño	173	181	2820	-	1	-	6	-	0	-	1176	41.7	-	0	-
 Q170584	Proyecto	Tecnologías	474	457	11382	-	8	-	1	-	0	-	2479	21.78	-	0	-	0	0	538	-	2005-04-10	6474	3962778	0	0	Projects		
 Q188522	Pruebas_de_software	Ciencias de la computación	53	110	13637	-	5	-	1	-	0	-	1058	7.76	-	0	-	0	0	29	-	2005-07-11	6382	706953	0	0	Software testing		
 Q2116083	Psicomotricidad	Educación física y recreación	141	251	22985	-	4	-	0	-	0	-	1422	6.19	-	0	-	0	0	3458	-	2007-03-29	5756	1459609	0	0	Psychomotor education		
-Q101065	Pubertad	Taller de salud y sexualidad	364	392	22837	-	25	-	3	-	0	-	2290	10.03	-	0	-	0	0	5044	-	2004-08-22	6705	3779570	0	0	Puberty		
+Q101065	Pubertad	Salud y sexualidad	364	392	22837	-	25	-	3	-	0	-	2290	10.03	-	0	-	0	0	5044	-	2004-08-22	6705	3779570	0	0	Puberty		
 Q37038	Publicidad	Comunicación visual	436	577	48691	-	18	-	9	-	0	-	1233	2.53	-	0	-	0	0	26680	-	2004-08-06	6721	4398936	0	0	Advertising	Advertising	
 Q6071606	Pueblos_indígenas_del_Uruguay	Historia	78	48	34507	-	29	-	12	-	0	-	4110	11.91	-	0	-	0	0	1308	-	2013-04-24	3538	36380	0	0	Indigenous peoples of Uruguay		
 Q1545300	Puente_H_(electrónica)	Tecnologías	83	95	3568	-	0	-	2	-	0	-	1224	34.3	-	0	-	0	0	194	-	2008-03-10	5409	396262	0	0	H-bridge circuits		
@@ -1238,7 +1238,7 @@ Q730920	Resolución_de_problemas	Tecnologías	134	146	17749	-	24	-	1	-	0	-	1564	
 Q9530	Respiración	Biología	565	674	35913	-	15	-	11	-	0	-	2093	5.83	-	0	-	0	0	3245	-	2007-02-07	5806	5357248	0	0	Respiration		
 Q472287	Respiración_(fisiología)	Biología	28	33	20323	-	13	-	2	-	0	-	3182	15.66	-	0	-	0	0	3295	-	2019-03-18	1384	78790	0	0	Respiration	Respiration (physiology)	
 Q3427759	Respiración_vegetal	Biología	157	213	8140	-	3	-	2	-	0	-	1640	20.15	-	0	-	0	0	532	-	2008-12-14	5130	916572	0	0			
-Q1361002	Respuesta_sexual_humana	Taller de salud y sexualidad	86	100	9145	-	5	-	2	-	0	-	597	6.53	-	0	-	0	0	1308	-	2004-08-02	6725	934570	0	0			
+Q1361002	Respuesta_sexual_humana	Salud y sexualidad	86	100	9145	-	5	-	2	-	0	-	597	6.53	-	0	-	0	0	1308	-	2004-08-02	6725	934570	0	0			
 Q40754	Resta	Matemática	235	312	22507	-	7	-	36	-	0	-	2287	10.16	-	0	-	0	0	3300	-	2003-08-31	7062	1405486	0	0	Subtraction		
 Q63859034	Restauración_ecológica	Biología	13	22	35736	-	23	-	5	-	0	-	1601	4.48	-	0	-	0	0	3644	-	2006-03-30	6120	195940	0	0	Ecological restoration		
 Q79927	Retículo_endoplasmático	Biología	415	436	30456	-	28	-	18	-	0	-	1711	5.62	-	0	-	0	0	1804	-	2003-07-20	7104	2474502	0	0	Endoplasmic reticulum		
@@ -1262,7 +1262,7 @@ Q3437271	Robótica_educativa	Tecnologías	78	66	83754	-	108	-	7	-	0	-	1077	1.29	
 Q7749	Rock_and_roll	Educación musical	498	537	30066	-	26	-	3	-	0	-	1248	4.15	-	0	-	0	0	79263	-	2002-11-14	7352	2231849	0	0	Rock and roll		
 Q556496	Rock_and_roll_(baile)	Educación física y recreación	22	25	1466	-	1	-	1	-	0	-	193	13.17	-	0	-	0	0	33	-	2006-05-18	6071	96356	0	0			
 Q66463453	Rodolfo_Ian_Uricchio	Comunicación visual	1	0	6049	-	5	-	0	-	0	-	169	2.79	-	0	-	0	0	1138	-	2019-08-14	1235	1054	0	0			
-Q2672163	Rol_de_género	Taller de salud y sexualidad	89	118	7472	-	16	-	1	-	0	-	1797	24.05	-	0	-	0	0	821	-	2008-03-29	5390	687024	0	0	Gender		
+Q2672163	Rol_de_género	Salud y sexualidad	89	118	7472	-	16	-	1	-	0	-	1797	24.05	-	0	-	0	0	821	-	2008-03-29	5390	687024	0	0	Gender		
 Q747008	Romanización_(aculturación)	Historia	63	83	5074	-	0	-	1	-	0	-	1050	20.69	-	0	-	0	0	6346	-	2009-03-25	5029	331922	0	0	Romanization (cultural)		
 Q13323	Rondó	Educación musical	50	51	4881	-	2	-	3	-	0	-	546	11.19	-	0	-	0	0	63	-	2006-08-08	5989	291372	0	0			
 Q173767	Rubén_Darío	Literatura	1328	1364	95368	-	62	-	20	-	0	-	1388	1.46	-	0	-	0	0	10544	-	2004-06-17	6771	6773320	1	0	Rubén Darío		
@@ -1275,8 +1275,8 @@ Q5318	Rúter	Ciencias de la computación	73	0	21421	-	3	-	6	-	0	-	986	4.6	-	0	-	
 Q179615	Salinidad	Química	117	113	11655	-	6	-	1	-	0	-	1297	11.13	-	0	-	0	0	368	-	2006-09-09	5957	783890	0	0	Salinity		
 Q12147	Salud	Biología	1005	1366	38460	-	31	-	4	-	0	-	551	1.43	-	0	-	0	0	7358	-	2002-05-03	7547	7372454	0	0	Health		
 Q317309	Salud_mental	Ciencias de la computación	269	389	43085	-	33	-	0	-	0	-	1994	4.63	-	0	-	0	0	16466	-	2007-03-29	5756	1911040	0	0	Mental health		
-Q1981388	Salud_reproductiva	Taller de salud y sexualidad	67	94	21995	-	20	-	1	-	0	-	1011	4.6	-	0	-	0	0	4399	-	2010-03-07	4682	909106	0	0	Reproductive health		
-Q3473038	Salud_sexual	Taller de salud y sexualidad	106	162	8964	-	6	-	0	-	0	-	2746	30.63	-	0	-	0	0	3361	-	2008-04-11	5377	976518	0	0	Sexual health		
+Q1981388	Salud_reproductiva	Salud y sexualidad	67	94	21995	-	20	-	1	-	0	-	1011	4.6	-	0	-	0	0	4399	-	2010-03-07	4682	909106	0	0	Reproductive health		
+Q3473038	Salud_sexual	Salud y sexualidad	106	162	8964	-	6	-	0	-	0	-	2746	30.63	-	0	-	0	0	3361	-	2008-04-11	5377	976518	0	0	Sexual health		
 Q11403	Samba_(música)	Educación musical	194	170	55997	-	12	-	7	-	0	-	6459	11.53	-	0	-	0	0	5333	-	2007-01-21	5823	796211	0	0	Samba	Samba	
 Q949149	Saneamiento_ambiental	Biología	125	142	21895	-	20	-	2	-	0	-	5877	26.84	-	0	-	0	0	296	-	2006-10-28	5908	760928	0	0	Sanitation		
 Q626738	Saneamiento_ecológico	Biología	6	9	10018	-	9	-	5	-	0	-	1119	11.17	-	0	-	0	0	3089	-	2010-05-14	4614	47729	0	0	Ecological sanitation		
@@ -1300,10 +1300,10 @@ Q7239	Ser_vivo	Biología	1049	1361	49274	-	51	-	22	-	0	-	3249	6.59	-	0	-	0	0	168
 Q3220391	Servicio_de_red_social	Educación física y recreación	2282	5754	51630	-	41	-	3	-	0	-	1467	2.84	-	0	-	0	0	21027	-	2008-03-02	5417	4635983	0	0	Social networking services		
 Q290	Sexo	Biología	3130	2115	37390	-	33	-	12	-	0	-	2194	5.87	-	0	-	0	0	6753	-	2010-09-01	4504	6759526	0	0	Sex		
 Q318529	Sexo_seguro	Biología	80	89	13592	-	6	-	2	-	0	-	1618	11.9	-	0	-	0	0	2950	-	2005-06-30	6393	669121	0	0	Safer sex		
-Q510866	Sexteo	Taller de salud y sexualidad	160	236	29584	-	42	-	0	-	0	-	580	1.96	-	0	-	0	0	6649	-	2009-03-24	5030	551922	0	0	Sexting		
+Q510866	Sexteo	Salud y sexualidad	160	236	29584	-	42	-	0	-	0	-	580	1.96	-	0	-	0	0	6649	-	2009-03-24	5030	551922	0	0	Sexting		
 Q7200896	Sextorsión	Ciencias de la computación	51	62	7935	-	4	-	1	-	0	-	1202	15.15	-	0	-	0	0	2287	-	2010-09-08	4497	204317	0	0			
 Q9076644	Sexuación	Biología	12	13	25086	-	1	-	0	-	0	-	1186	4.73	-	0	-	0	0	1893	-	2008-09-08	5227	87564	0	0	Sexual differentiation		
-Q154136	Sexualidad_humana	Taller de salud y sexualidad	357	397	82211	-	112	-	9	-	0	-	2431	2.96	-	0	-	0	0	6928	-	2003-12-08	6963	2665743	0	0	Human sexuality		
+Q154136	Sexualidad_humana	Salud y sexualidad	357	397	82211	-	112	-	9	-	0	-	2431	2.96	-	0	-	0	0	6928	-	2003-12-08	6963	2665743	0	0	Human sexuality		
 Q10617810	Signos_de_puntuación	Comunicación y sociedad	1412	1460	29276	-	4	-	0	-	0	-	1547	5.28	-	0	-	0	0	3621	-	2004-09-29	6667	1437810	0	0	Punctuation		
 Q670	Silicio	Química	522	552	25690	-	14	-	5	-	0	-	492	1.92	-	0	-	0	0	2477	-	2001-11-25	7706	2516104	0	0	Silicon	Silicon	
 Q121610	Simbiosis	Biología	487	491	49382	-	54	-	2	-	0	-	1762	3.57	-	0	-	0	0	5317	-	2003-08-24	7069	2536856	0	0	Symbiosis		
@@ -1480,9 +1480,9 @@ Q7889	Videojuego	Ciencias de la computación	799	1033	51063	-	38	-	10	-	0	-	2462
 Q246710	Vigilia_(estado_de_conciencia)	Biología	14	30	7011	-	10	-	1	-	0	-	739	10.54	-	0	-	0	0	52	-	2014-05-04	3163	33487	0	0			
 Q12199	VIH/sida	Biología	ERRORE	ERRORE	65561	-	57	-	9	-	0	-	3746	5.71	-	0	-	0	0	4820	-	2003-07-11	7113	ERRORE	0	0	AIDS	AIDS	
 Q124490	Violencia	Formación para la ciudadanía	805	874	51739	-	41	-	2	-	0	-	2102	4.06	-	0	-	0	0	41169	-	2003-12-14	6957	4799618	0	0	Violence		
-Q6163243	Violencia_de_género	Taller de salud y sexualidad	1153	1812	88028	-	130	-	2	-	0	-	3996	4.54	-	0	-	0	0	234717	-	2004-04-17	6832	4732806	0	0			
+Q6163243	Violencia_de_género	Salud y sexualidad	1153	1812	88028	-	130	-	2	-	0	-	3996	4.54	-	0	-	0	0	234717	-	2004-04-17	6832	4732806	0	0			
 Q156537	Violencia_doméstica	Biología	465	545	83078	-	70	-	6	-	0	-	1627	1.96	-	0	-	0	0	19021	-	2004-04-17	6832	2822701	0	0	Domestic violence		
-Q4386352	Violencia_en_el_noviazgo	Taller de salud y sexualidad	104	154	26737	-	15	-	1	-	0	-	3532	13.21	-	0	-	0	0	1670	-	2011-04-26	4267	1570421	0	0			
+Q4386352	Violencia_en_el_noviazgo	Salud y sexualidad	104	154	26737	-	15	-	1	-	0	-	3532	13.21	-	0	-	0	0	1670	-	2011-04-26	4267	1570421	0	0			
 Q1145436	Violencia_escolar	Biología	210	147	2929	-	2	-	1	-	0	-	2321	79.24	-	0	-	0	0	0	-	2008-03-17	5402	886691	0	0	School violence		
 Q3076725	Virginia_Brindis_de_Salas	Literatura	11	5	2559	-	3	-	0	-	0	-	164	6.41	-	0	-	0	0	1309	-	2011-05-22	4241	11635	0	0	Virginia Brindis de Salas		
 Q184627	Virus_del_papiloma_humano	Biología	853	1031	80211	-	80	-	5	-	0	-	5403	6.74	-	0	-	0	0	8127	-	2007-11-15	5525	6615896	0	0	Human Papilloma Virus		
@@ -1512,8 +1512,8 @@ Q42848	Dato	Ciencias de la computación	336	347	19247	-	11	-	1	-	0	-	4532	23.55	
 Q41560	Efecto_invernadero	Biología	979	1153	114059	-	133	-	13	-	0	-	3045	2.67	-	0	-	0	0	123095	-	2004-10-02	6664	6815834	0	0	Greenhouse effect		
 Q41796	Oración_(gramática)	Lengua española	710	862	31585	-	4	-	8	-	0	-	3290	10.42	-	0	-	0	0	6544	-	2005-04-19	6465	4201943	0	0			
 Q41796	Oración_(gramática)	Lengua española	710	862	31585	-	4	-	8	-	0	-	3290	10.42	-	0	-	0	0	6544	-	2005-04-19	6465	4201943	0	0			
-Q48277	Género_(ciencias_sociales)	Taller de salud y sexualidad	451	557	36364	-	53	-	2	-	0	-	2889	7.94	-	0	-	0	0	28327	-	2006-09-24	5942	2792392	0	0	Gender		
-Q48277	Género_(ciencias_sociales)	Taller de salud y sexualidad	451	557	36364	-	53	-	2	-	0	-	2889	7.94	-	0	-	0	0	28327	-	2006-09-24	5942	2792392	0	0	Gender		
+Q48277	Género_(ciencias_sociales)	Salud y sexualidad	451	557	36364	-	53	-	2	-	0	-	2889	7.94	-	0	-	0	0	28327	-	2006-09-24	5942	2792392	0	0	Gender		
+Q48277	Género_(ciencias_sociales)	Salud y sexualidad	451	557	36364	-	53	-	2	-	0	-	2889	7.94	-	0	-	0	0	28327	-	2006-09-24	5942	2792392	0	0	Gender		
 Q43302	Energía_eólica	Biología	1165	1150	79772	-	72	-	17	-	0	-	4434	5.56	-	0	-	0	0	31876	-	2002-10-26	7371	7034616	0	0	Wind power	Wind power	
 Q43343	Música_folclórica	Educación musical	299	306	23428	-	15	-	1	-	0	-	1962	8.37	-	0	-	0	0	6879	-	2002-09-30	7397	288834	0	0	Folk music		
 Q46261	Arquitectura_románica	Historia	343	380	108356	-	48	-	122	-	0	-	8428	7.78	-	0	-	0	0	998	-	2006-02-10	6168	1293076	0	0	Romanesque architecture	Romanesque architecture	
@@ -1555,8 +1555,8 @@ Q42998	Orquesta	Educación musical	164	161	25082	-	8	-	2	-	0	-	2751	10.97	-	0	-	
 Q47928	Circo	Educación física y recreación	260	279	24290	-	19	-	9	-	0	-	1540	6.34	-	0	-	0	0	5017	-	2002-01-15	7655	1276330	0	0	Circus	Circus	
 Q47928	Circo	Educación física y recreación	260	279	24290	-	19	-	9	-	0	-	1540	6.34	-	0	-	0	0	5017	-	2002-01-15	7655	1276330	0	0	Circus	Circus	
 Q47928	Circo	Educación física y recreación	260	279	24290	-	19	-	9	-	0	-	1540	6.34	-	0	-	0	0	5017	-	2002-01-15	7655	1276330	0	0	Circus	Circus	
-Q48264	Identidad_de_género	Taller de salud y sexualidad	418	578	69405	-	113	-	5	-	0	-	2204	3.18	-	0	-	0	0	63634	-	2007-08-24	5608	2153593	0	0			
-Q48264	Identidad_de_género	Taller de salud y sexualidad	418	578	69405	-	113	-	5	-	0	-	2204	3.18	-	0	-	0	0	63634	-	2007-08-24	5608	2153593	0	0			
+Q48264	Identidad_de_género	Salud y sexualidad	418	578	69405	-	113	-	5	-	0	-	2204	3.18	-	0	-	0	0	63634	-	2007-08-24	5608	2153593	0	0			
+Q48264	Identidad_de_género	Salud y sexualidad	418	578	69405	-	113	-	5	-	0	-	2204	3.18	-	0	-	0	0	63634	-	2007-08-24	5608	2153593	0	0			
 Q41679	Escolástica	Historia	642	680	38693	-	24	-	7	-	0	-	4749	12.27	-	0	-	0	0	1041	-	2003-10-16	7016	2992292	0	0	Scholasticism		
 Q41299	Ecuación_de_segundo_grado	Matemática	575	784	16263	-	11	-	2	-	0	-	1097	6.75	-	0	-	0	0	24529	-	2003-06-05	7149	4252724	0	0	Quadratic equation		
 Q43260	Polinomio	Matemática	550	639	20234	-	7	-	6	-	0	-	2654	13.12	-	0	-	0	0	7892	-	2003-07-03	7121	3570666	0	0	Polynomials	Polynomial	

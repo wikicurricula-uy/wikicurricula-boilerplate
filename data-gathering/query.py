@@ -110,11 +110,11 @@ def get_id_and_subjects_and_grade(results):
           if "Literatura" in material:
             material = "Literatura"
 
-          if "Biología" in material:
+          if "Biología" in materialor or "biología" in material:
             material = "Biología"
 
           if "Física" in material:
-            material = "física"
+            material = "Física"
 
           if "Historia" in material:
             material = "Historia"
@@ -131,7 +131,7 @@ def get_id_and_subjects_and_grade(results):
           if "Química" in material:
             material = "Química"
 
-          if "Geografía" in material:
+          if "Geografía" in material or "geografía" in material:
             material = "Geografía"
 
 
@@ -147,8 +147,9 @@ def get_id_and_subjects_and_grade(results):
           if "Educación física y recreación" in material:
             material = "Educación física y recreación"
 
-          if "Ciencias del Ambiente" in material or "Ciencias de la computación" in material:
-            material = "Ciencias del ambiente"
+          #Let's map the to either Biología or Geografía
+          #if "Ciencias del Ambiente" in material or "Ciencias del ambiente" in material:
+          #  material = "Ciencias del ambiente"
 
           if "Ciencias de la computación" in material or "Ciencias de la Computación" in material:
             material = "Ciencias de la computación"
