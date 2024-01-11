@@ -69,6 +69,11 @@ For example, these are the scripts to fetch data from the Spanish Wikipedia with
     python3 bot.py en 117
 ```
 
+-   Excecute the translation script
+```
+    python3 translate.py
+```
+
 -   Check the visuals:
 
     -   You can go to your file explorer and under the directory you've just created by cloning the wikicurricula-boilerplate repository, descend into the "visualization", you will find an `index.html` file. Open this file with any browser of you choice

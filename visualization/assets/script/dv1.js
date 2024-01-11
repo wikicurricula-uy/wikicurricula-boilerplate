@@ -1629,7 +1629,7 @@ function initialize_page() {
 $(document).ready(async function () {
 	const country = page.getAttribute("data-country");
 	const lang = page.getAttribute("data-lang");
-	dataFile = `assets/data/${country}voci_2023.tsv`;
+	dataFile = `assets/data/${country.toLowerCase()}voci_2023.tsv`;
 	wiki_link = `https://${lang}.wikipedia.org/wiki/`;
 
 	subject_file = `../data-gathering/${country.toLowerCase()}subject_file.csv`;
