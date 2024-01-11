@@ -25,5 +25,14 @@
         "warnings_config": 0,
         "featured_template": "{{featured article",
         "display_window_template": "{{good article"
+    },
+    "tw": {
+        "language": "tw",
+        "file_to_be_analysed": "ghana_tw_article_file.csv",
+        "result_file": "117_tw.txt",
+        "discussionURL": "talk%3A",
+        "warnings_config": 0,
+        "featured_template": "{{featured article",
+        "display_window_template": "{{good article"
     }
 }

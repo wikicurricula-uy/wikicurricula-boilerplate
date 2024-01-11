@@ -20,3 +20,14 @@ timeout /t 10 /nobreak
 rem Run the translation script again
 py translate.py Uruguay
 pause
+
+rem Fetch Ghana tw's data
+py bot.py tw 117
+
+rem Wait for the second script to finish
+echo Waiting for the second script to finish...
+timeout /t 10 /nobreak
+
+rem Run the translation script again
+py translate.py ghana
+pause

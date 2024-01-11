@@ -183,5 +183,26 @@
             "{{chiarire",
             "{{chiarire}}"
         ]
-    }
+    },
+
+    "tw": {
+        "to_check": [],
+        "synoptic": [],
+        "correct": [],
+        "curiosity": [],
+        "divide": [],
+        "sources": [],
+        "localism": [],
+        "pov": [],
+        "nn": [],
+        "recentism": [],
+        "manual_style": [],
+        "translation": [],
+        "wikificare": [],
+        "stub": [],
+        "stub_section": [],
+        "copy_control": [],
+        "without_sources": [],
+        "clarify": []
+   }
 }

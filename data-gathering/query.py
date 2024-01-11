@@ -14,11 +14,14 @@ code = sys.argv[2]
 
 
 if language == "en":
-  article_file = "ghana_article_file.csv"
-  subject_file = "ghana_subject_file.csv"
+  article_file = "ghana_en_article_file.csv"
+  subject_file = "ghana_en_subject_file.csv"
 elif language == "es":
-  article_file = "uruguay_article_file.csv"
-  subject_file = "uruguay_subject_file.csv"
+  article_file = "uruguay_es_article_file.csv"
+  subject_file = "uruguay_es_subject_file.csv"
+elif language == "tw":
+  article_file = "ghana_tw_article_file.csv"
+  subject_file = "ghana_tw_subject_file.csv"
 else:
   print("Unsupported language.")
   sys.exit(1)
