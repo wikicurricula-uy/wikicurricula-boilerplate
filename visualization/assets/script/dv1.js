@@ -86,6 +86,7 @@ let improv_delay = 1800;
 
 let random_subject = null;
 let random_subject_index = null;
+//Some subjects should not be the first to load. Subjects with too many or too few articles generate too small dots or too big dots, which mess up with the visualization when changing to another subject
 let forbidden_subjects = ["Comunicación y sociedad"];
 
 const pageSelector = document.getElementById("pageSelector");
