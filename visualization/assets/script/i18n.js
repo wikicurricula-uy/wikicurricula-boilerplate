@@ -45,7 +45,7 @@ function fetchTranslations(callback) {
             }
         }
     };
-    xhr.open('GET', 'assets/data/translations.json', true);
+    xhr.open('GET', 'assets/script/translations.json', true);
     xhr.send();
 }
 

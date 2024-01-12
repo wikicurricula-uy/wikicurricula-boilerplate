@@ -1574,22 +1574,6 @@ function dv1(year, the_subject, sort) {
 	}
 }
 
-function fetchTranslations(callback) {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                translations = JSON.parse(xhr.responseText);
-                callback(translations);
-            } else {
-                console.error('Failed to load translations.');
-            }
-        }
-    };
-    xhr.open('GET', 'assets/data/translations.json', true);
-    xhr.send();
-}
-
 function get_year() {
 	$("#year").change(function () {
 		let year = parseInt(this.value);
