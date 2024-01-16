@@ -69,6 +69,11 @@ For example, these are the scripts to fetch data from the Spanish Wikipedia with
     python3 bot.py en 117
 ```
 
+
+```
+    python3 bot.py tw 117
+```
+
 -   Excecute the translation script
 ```
     python3 translate.py

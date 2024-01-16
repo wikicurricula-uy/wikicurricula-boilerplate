@@ -1,6 +1,6 @@
 {
     "es": {
-        "file_to_be_analysed": "uruguay_article_file.csv",
+        "file_to_be_analysed": "uruguay_es_article_file.csv",
         "result_file": "uruguay_results.txt",
         "language": "es",
         "discussionURL": "discusi%C3%B3n%3A",
@@ -19,8 +19,17 @@
     },
     "en": {
         "language": "en",
-        "file_to_be_analysed": "ghana_article_file.csv",
-        "result_file": "ghana_results.txt",
+        "file_to_be_analysed": "ghana_en_article_file.csv",
+        "result_file": "117_en.txt",
+        "discussionURL": "talk%3A",
+        "warnings_config": 0,
+        "featured_template": "{{featured article",
+        "display_window_template": "{{good article"
+    },
+    "tw": {
+        "language": "tw",
+        "file_to_be_analysed": "ghana_tw_article_file.csv",
+        "result_file": "117_tw.txt",
         "discussionURL": "talk%3A",
         "warnings_config": 0,
         "featured_template": "{{featured article",

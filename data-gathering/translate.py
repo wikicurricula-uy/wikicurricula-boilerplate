@@ -136,8 +136,9 @@ def process_input_file(input_file, output_file, subject_file):
 # Define the file path using an absolute path
 # Define input, output, and subject file pairs
 file_info = [
-    ("ghana_results.txt", (os.path.abspath('../visualization/assets/data/ghana_voci_2023.tsv')), "ghana_subject_file.csv"),
-    ("uruguay_results.txt", (os.path.abspath('../visualization/assets/data/uruguay_voci_2023.tsv')), "uruguay_subject_file.csv")
+    ("117_en.txt", (os.path.abspath('../visualization/assets/data/ghana_en_voci_2023.tsv')), "ghana_en_subject_file.csv"),
+    ("117_tw.txt", (os.path.abspath('../visualization/assets/data/ghana_tw_voci_2023.tsv')), "ghana_tw_subject_file.csv"),
+    ("uruguay_results.txt", (os.path.abspath('../visualization/assets/data/uruguay_es_voci_2023.tsv')), "uruguay_es_subject_file.csv")
 ]
 
 
