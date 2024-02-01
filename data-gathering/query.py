@@ -4,19 +4,19 @@ from SPARQLWrapper import SPARQLWrapper,JSON
 
 
 if len(sys.argv) < 3:
-  print("Please provide both the language and country code as command-line arguments.")
+  print("Please provide both the wikipedia_language and country code as command-line arguments.")
   sys.exit(1)
 
-language = sys.argv[1]
-code = sys.argv[2]
+wikipedia_language_code = sys.argv[1]
+country_code = sys.argv[2]
 
-# TO-DO:  language-country interactions
+# Resulting articles of the query will be in the same language as of the wikipedia chosen
 
-
-if language == "en":
+#how can i scale this better?
+if wikipedia_language_code == "en" and country_code == "117":
   article_file = "ghana_article_file.csv"
   subject_file = "ghana_subject_file.csv"
-elif language == "es":
+elif wikipedia_language_code == "es" and country_code == "77":
   article_file = "uruguay_article_file.csv"
   subject_file = "uruguay_subject_file.csv"
 else:
@@ -31,21 +31,21 @@ SELECT DISTINCT (STRAFTER(STR(?item), "http://www.wikidata.org/entity/") AS ?qid
 WHERE {{
   ?substrand wdt:P31 wd:Q600134.
   ?substrand wdt:P921 ?item.
-  ?substrand wdt:P17 wd:Q{code}.
+  ?substrand wdt:P17 wd:Q{country_code}.
 
   OPTIONAL {{ ?substrand wdt:P361 ?programa. }}
   OPTIONAL {{ ?articulo schema:about ?item;
-    schema:isPartOf <https://{language}.wikipedia.org/>. 
+    schema:isPartOf <https://{wikipedia_language_code}.wikipedia.org/>. 
     ?articulo schema:name ?nombreDelArticulo.
   }}
 
-  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{language}". }}
+  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{wikipedia_language_code}". }}
 }}
 """
 
 
 # make a request to wikidata API to fetch Country's curriculum
-def fetch_wikidata_info(language,code):
+def fetch_wikidata_info(wikipedia_language_code,country_code):
       # Wikidata endpoint URL for the SPARQL query
     wikidata_endpoint = "https://query.wikidata.org/sparql"
     user_agent = "WDQS-example Python/%s.%s" % (sys.version_info[0],sys.version_info[1])
@@ -178,6 +178,6 @@ def get_id_and_subjects_and_grade(results):
         
 
 if __name__ == "__main__":
-  query_results = fetch_wikidata_info(language, code)
+  query_results = fetch_wikidata_info(wikipedia_language_code, country_code)
   store_articles(query_results)
   get_id_and_subjects_and_grade(query_results)
