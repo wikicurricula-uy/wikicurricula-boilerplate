@@ -1,0 +1,10 @@
+{
+    "en_117": {
+        "article_file": "ghana_article_file.csv",
+        "subject_file": "ghana_subject_file.csv"
+    },
+    "es_77": {
+        "article_file": "uruguay_article_file.csv",
+        "subject_file": "uruguay_subject_file.csv"
+    }
+}
