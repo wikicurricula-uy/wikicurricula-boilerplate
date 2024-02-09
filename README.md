@@ -50,12 +50,13 @@ Many thanks to all the Outreachy applicants who have contributed during 2023 app
     apt install python3
     sudo apt install python3-sparqlwrapper
 ```
+-   Navigate to the `data-gathering` folder and fetch school curriculum data by running `query.py script. Thhis script  
 
--   Navigate to the `data-gathering` folder and fetch school curriculum data by running `bot.py script. This script receives the Wikipedia language and the Wikidata country Id as parameters.
+-   Navigate to the `data-gathering` folder and fetch school curriculum data by running `bot.py script which receives the Wikipedia language and the Wikidata country Id as parameters. This script calls the query.py script which is designed to fetch and process information about a country's national curriculum from Wikidata and store it in CSV files for further analysis instead of manually building and running the Wikidata query.
 
 ```
     cd data-gathering
-    python3 bot.py WIKIPEDIA_LANGUAGE WIKIDATA_COUNTRY_ID
+    python3 bot.py WIKIPEDIA_LANGUAGE_CODE WIKIDATA_COUNTRY_ID
 ```
 
 For example, these are the scripts to fetch data from the Spanish Wikipedia with reference to the Uruguayan (Q77) curriculum, and to fetch data from the English Wikipedia with reference to the Ghanian curriculum (Q117)
@@ -77,10 +78,11 @@ For example, these are the scripts to fetch data from the Spanish Wikipedia with
 -   Check the visuals:
 
     -   You can go to your file explorer and under the directory you've just created by cloning the wikicurricula-boilerplate repository, descend into the "visualization", you will find an `index.html` file. Open this file with any browser of you choice
-to
     -   If you are using a code editor like Visual Studio Code install the "live server" extension. After installation, right click on the `index.html` file in the visualization folder and select "open with Live erver" option. This will start a server port : 5500 and a new browser window should automatically open, displaying your index.html file. The Live Server extension will serve your HTML file on a local development server with live reloading, allowing you to see changes in real-time as you edit the HTML, CSS, or JavaScript files associated with your project.
 
     This steps works for other visualization in the project.
+
+    
 
 # 📜How to deploy Wikicurrícula Boilerplate in Toolforge
 
@@ -106,7 +108,7 @@ A Toolforge account is required to get started. It is bascicaly creating a "Wiki
     - Once you're logged in, you'll be directed back to Toolsadmin. There, you'll be guided through the process of setting up an LDAP username, a UNIX shell username, and a password. Additionally, you'll be asked to provide your email address and consent to the terms of service and code of conduct specific to technical spaces.
     - Submit the form to complete creating your Wikimedia developer account.
 
-## 🧱 Steps to deploy a tool or application(E.g Uruguay's Wikicurricula) to Toolforge
+## ⚡️Steps to deploy a tool or application(E.g Uruguay's Wikicurricula) to Toolforge
 
 Now that you have the two(2) required accounts, follow the steps to deploy"
 
@@ -193,7 +195,7 @@ Now that you have the two(2) required accounts, follow the steps to deploy"
 
 A practice on migrating Uruguay's Wikicurricula from it's current hosting (Github Pages) to Toolforge was done and can be found at: <https://tools-static.wmflabs.org/wikicurricula-uy/wikicurricula-uy.github.io/index.html>
 
-# Documentation on how to feed the visualization with data from a new curriculum
+# 📜How to feed the visualization with data from a new curriculum
 
 This is a detailed step-by-step guide on how to feed the visualization with data from a new curriculum.
 Before going into that, you'll need to learn how to build and run the Wikidata query.
@@ -214,13 +216,12 @@ Before going into that, you'll need to learn how to build and run the Wikidata q
 
 -   Rename it if you must and then import it into the 'data-gathering' folder of wikicurricula-boilerplate project in your editor.
 
-## Feeding the Visualization with Data from the New Curriculum
 
 # 📜How to Implement - and deploy at Toolforge - Wikicurricula for Ghana's national curriculum, with reference to the English Wikipedia
 
 One of goals of Wikimedia is to enhance the educational experience of students by making sure that the information available on platforms like Wikicurricula corresponds to what students are studying in their classrooms, fostering a harmonious and supportive learning environment. To do so, Wikimedia stores schools' curricula data in a large database called Wikidata and then allows students, editors,teachers to interact with the data through an interface known as Wikicurricula.
 
-Indeed the project was successful in Ghana and replicated in Uruguay. However, Wikicurricula's user interface isn't friendly to use. Therefore, Wikimedia allows developers to create tools such as apps, websites, bots, search functionalities, etc, in order to improve user experience. This documentation details steps taken to implement and deploy Ghana's national curriculum to Toolforge. You can adjust it to any curricula but adjust according to your curricula.
+This documentation details steps taken to implement and deploy Ghana's national curriculum to Toolforge. 
 
 ### Required Skills
 
@@ -230,182 +231,27 @@ Before proceeding, understand these:
 -   [SPARQL](https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial)
 -   [Toolforge](https://github.com/wikicurricula-uy/wikicurricula-boilerplate#%EF%B8%8Faccounts-needed)
 
-1. Visit the Wikidata Query Service
-   Go to https://query.wikidata.org/
-
-2. Paste the Query
-   Copy the provided SPARQL query. for example Ghana's curriculum query: https://w.wiki/7Zge
-   Paste the query into the text area on the Wikidata Query Service page.
-   Click the "Run" button to execute the query.
-
-3. Understand the results
-   The results of the query will be displayed below the query editor. You'll see a table with columns corresponding to the variables in the SELECT clause.
-
-4. Export or Save Results (Optional)
-   You may have options to export or save the results, depending on the features provided by the query service interface and your tool.
-
-5. Adjust Query
-   Adjust the query or explore the results to suit your specific needs. You can also modify the conditions in the WHERE clause to refine the scope of your search. Now you can begin writing code for your tool.
-
-6. Code Setup
-
--   Create a new repository for your Wikicurricula project.
-
--   Run:
-
+1. Code Setup: Create a new repository for your Wikicurricula project. Run:
 ```
-         git clone https://github.com/wikicurricula-uy/wikicurricula-boilerplate.git
+    git clone https://github.com/wikicurricula-uy/wikicurricula-boilerplate.git
 ```
 
--   Open the repo in your text editor.
--   In your command line, move to the data-gathering folder and run the query.py script.
+2. Instead of manually visiting the [Wikidata Query Service](https://query.wikidata.org/) to run a query that fetches a country's national curriculum from Wikidata and store it in CSV files as demonstrated in "How to feed the visualization with data from a new curriculum" section, the query.py script makes it easier. All you have to do is navigate to the "data-gathering" directory and run the bot.py script with the following two argument; "WIKIPEDIA_LANGUAGE_CODE" and "WIKIDATA_COUNTRY_ID"
 
 ```
-    python query.py
-    python bot.py
+    python bot.py <WIKIPEDIA_LANGUAGE_CODE> <WIKIDATA_COUNTRY_ID>
+```
+3. Run the translate.py script which prepares generated data from Wikipedia articles of Ghana and Uruguay for visualization, enabling analysis and insights using our visualization tool; WikiCurricula.
+
+```
+    python translate.py <WIKIPEDIA_LANGUAGE_CODE> <WIKIDATA_COUNTRY_ID>
 ```
 
--   Change translate.py so that it can work with results.txt instead of resultati.txt
--   Change translate.py so that it can work with 'visualization/assets/data/voci_2023.tsv' instead of 'data-gathering/voci_2023.tsv'
--   Move to the visualization folder.
-    -   Move to the script folder and change dv1.js from https://es.wikipedia.org/wiki/ to "https://en.wikipedia.org/wiki/"
-    *   Change subjects variable in utilities.js to the subjects in subjects.csv
-    *   Change the legends colour and labels in utilities.js
-    *   Change the legends in img folder
+4. Create a html file for visual display.
 
-7. Test the curricula
-   Before making the curricula publicly accessible, test it thoroughly to ensure it works as expected.
-
-8. Push your code to Github
-
-9. Make the curricula public
-   Once you're confident in your tool's functionality, you can make it public on Toolforge.
 
 ### Deploy the curricula on Toolforge
 
 1. Use this guide to deploy the curricula to Toolforge. https://github.com/wikicurricula-uy/wikicurricula-boilerplate#how-to-deploy-wikicurr%C3%ADcula-boilerplate-in-toolforge
 
 Here is [Ghana's national curricula](https://tools-static.wmflabs.org/ghana-national-curriculum/GhanaWikiCurricula/visualization/) on Toolforge.
-
-# 📜How to fetch the list of articles from Wikidata API
-
-### DEMO - fetching articles related to Ghana's curriculum
-
-```
-    import csv
-import requests
-
-
-# make a request to wikidata API to fetch Ghana's curriculum
-def fetch_wikidata_info():
-    # Wikidata endpoint URL for the SPARQL query
-    wikidata_endpoint = "https://query.wikidata.org/sparql"
-
-    # SPARQL query to get information about Ghana's national curriculum
-    sparql_query = """
-    SELECT DISTINCT (STRAFTER(STR(?item), "http://www.wikidata.org/entity/") AS ?qid) ?item ?itemLabel ?nombreDelArticulo ?programaLabel
-    WHERE {
-      ?substrand wdt:P31 wd:Q600134.
-      ?substrand wdt:P921 ?item.
-      ?substrand wdt:P17 wd:Q117. #Uruguay
-
-      OPTIONAL { ?substrand wdt:P361 ?programa. }
-      OPTIONAL { ?articulo schema:about ?item;
-        schema:isPartOf <https://en.wikipedia.org/>.
-        ?articulo schema:name ?nombreDelArticulo.
-      }
-
-      SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-    }
-    """
-
-    # Set up headers for the HTTP request
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-        "Accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-    }
-
-    # Set up parameters for the HTTP request
-    params = {
-        "query": sparql_query,
-        "format": "json",
-    }
-
-    # Make the HTTP request to the Wikidata endpoint
-    response = requests.get(wikidata_endpoint, headers=headers, params=params)
-
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        # Parse the JSON response
-        data = response.json()
-
-        # Extract and print the results
-        results = data.get("results", {}).get("bindings", [])
-        return results
-
-    else:
-        print(f"Error: Unable to fetch data. Status Code: {response.status_code}")
-
-
-# store article name in query.csv
-def store_articles(results):
-     with open("query.csv","a") as file:
-        for result in results:
-            article_name = result.get("nombreDelArticulo", {}).get("value", "")
-            if article_name != "":
-              file.write(f"{article_name}\n")
-
-if __name__ == "__main__":
-    query_results = fetch_wikidata_info()
-    store_articles(query_results)
-
-```
-
-This guide uses python to fetch the list of articles.
-
-1. Run:
-
-```
-    pip install requests
-```
-
-2. Go to the curriculm topics query. for example https://w.wiki/7Zge
-
-3. Copy the query
-
-4. Move to data-gathering folder and create a query.py file.
-
-5. Import csv and requests.
-
-6. Store the query in a variable.
-
-7. Inside a function, store wikidata endpoint https://query.wikidata.org/sparql in a variable.
-
-8. Set up a header for the request.
-
-9. Set the params for the request:
-
-```
-    params = {
-        "query": sparql_query,
-        "format": "json",
-    }
-```
-
-8. Make HTTP request to Wikidata API
-
-    ```
-    response = requests.get(wikidata_endpoint, headers=headers, params=params)
-    ```
-
-9. Extract and return results if status is Ok.
-    ```
-        results = data.get("results", {}).get("bindings", [])
-    ```
-10. Define another function which receives these results.
-    - open query.csv file in append mode
-    - iterate through the results.
-    - for each result, get the nombreDelArticulo value and write it in the file
-
-Adjust the logic to whichever programming language you use.
