@@ -61,6 +61,91 @@ def get_id_and_subjects_and_grade(results, subject_file):
             material = result.get("programaLabel", {}).get("value", "")
             grade = result.get("programaLabel", {}).get("value", "")
             # Additional processing for grade and material
+            if "7" in grade:
+                grade = "7"
+                
+            if "8" in grade:
+                grade = "8"
+
+            if "9" in grade:
+                grade = "9"
+
+            if "Core" in grade:
+                grade = "core"
+                
+            if "Salud y Sexualidad" in material:
+                material = "Salud y sexualidad"
+                
+            if "Programa de " in material:
+
+                if "Lengua Española" in material:
+                    material = "Lengua española"
+
+                if "Literatura" in material:
+                    material = "Literatura"
+
+                if "Biología" in material:
+                    material = "Biología"
+
+                if "Física" in material:
+                    material = "física"
+
+                if "Historia" in material:
+                    material = "Historia"
+
+                if "Tecnologías" in material:
+                    material = "Tecnologías"
+                
+                if "Matemática" in material:
+                    material = "Matemática"
+
+                if "Ciencias Físico-Químicas" in material:
+                    material = "Ciencias físico-químicas"
+
+                if "Química" in material:
+                    material = "Química"
+
+                if "Geografía" in material:
+                    material = "Geografía"
+
+
+                if "Educación musical" in material or  "Educación Musical" in material:
+                    material = "Educación musical"
+
+                if "Comunicación Visual" in material or "Comunicación visual" in material:
+                    material = "Comunicación visual"
+
+                if "Formación para la ciudadanía" in material:
+                    material = "Formación para la ciudadanía"
+
+                if "Educación física y recreación" in material:
+                    material = "Educación física y recreación"
+
+                if "Ciencias del Ambiente" in material or "Ciencias de la computación" in material:
+                    material = "Ciencias del ambiente"
+
+                if "Ciencias de la computación" in material or "Ciencias de la Computación" in material:
+                    material = "Ciencias de la computación"
+
+                if "Comunicación y sociedad" in material:
+                    material = "Comunicación y sociedad"
+
+                if "Comunicación Visual y diseño" in material:
+                    material = "Comunicación visual y diseño"
+                
+                if "Diseño" in material:
+                    material = "Diseño"
+
+                if "Comunicación Visual" in material:
+                    material = "Comunicación Visual"
+                    
+
+            if "Curriculum" in material:
+                material = material.split("Curriculum")[0]
+
+                            
+            if "Science" in material:
+                material = "Science"
             # Write to CSV
             writer.writerow([id_wikidata, material, grade])
 
