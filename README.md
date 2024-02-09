@@ -9,73 +9,67 @@ Work group: Federico Benvenuti, Valerio Iannucci, Luca Martinelli, Paolo Fichera
 Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
 Many thanks to all the Outreachy applicants who have contributed during 2023 application phase!
 
-# ⚙️ Make a Local Installation of the Wikicurricula Boilerplate on your Computer
+# ⚙️ How to make a local installation of the Wikicurricula Boilerplate on your Computer
 
--   Install Git (if not already installed):
+1. Install Git (if not already installed):
     If you haven't already installed Git on your computer, you can download and install it from the official Git website: <https://git-scm.com/downloads>
 
--   Open a Terminal or Command Prompt:
+2. Open a Terminal or Command Prompt:
     Depending on your OS(operating system), open a terminal window. This is where you'll run Git commands.
 
--   Navigate to the Directory Where you want to Clone the repo:
+3. Navigate to the Directory Where you want to Clone the repo:
     Use the cd command to navigate to the directory where you want to create a local copy of the repository. For example:
 
-```
-    $ cd /path/to/desired/directory
-```
+    ```
+        $ cd /path/to/desired/directory
+    ```
 
--   Get the Clone URL:
+4. Get the Clone URL:
     Go to the Wikicurricula Boilerplate GitHub repository: <https://github.com/wikicurricula-uy/wikicurricula-boilerplate>. On the repository's GitHub page, click the green "Code" button. This will reveal the clone URL. Copy the URL provided there.
 
--   Clone the Repository:
+5. Clone the Repository:
     Use the git clone command followed by the URL of the Git repository you want to clone. The basic syntax is: `git clone <repository-url>.git`
 
-```
-    git clone https://github.com/wikicurricula-uy/wikicurricula-boilerplate.git
-```
+    ```
+        git clone https://github.com/wikicurricula-uy/wikicurricula-boilerplate.git
+    ```
 
--   Wait for cloning to Complete:
-    Git will start cloning the repository. Depending on your internet connection, this may take a moment. Once the cloning process is complete, you'll see a message indicating that the repository has been cloned.
-
--   Navigate to the cloned repository:
+6. After successful cloning, navigate to the cloned repository:
     Use the cd command to move into the directory that was created by the git clone command: `cd repo-name`.
 
-```
-    cd wikicurricula-boilerplate
-```
+    ```
+        cd wikicurricula-boilerplate
+    ```
 
--   If not installed already, install in your computer Python3 and the SPARQLWrapper extension
+7. If not installed already, install in your computer Python3 and the SPARQLWrapper extension
 
-```
-    apt install python3
-    sudo apt install python3-sparqlwrapper
-```
--   Navigate to the `data-gathering` folder and fetch school curriculum data by running `query.py script. Thhis script  
+    ```
+        apt install python3
+        sudo apt install python3-sparqlwrapper
+    ```
+8.  Navigate to the `data-gathering` folder and fetch school curriculum data by running `bot.py script which receives the Wikipedia language and the Wikidata country Id as parameters. This script calls the query.py script which is designed to fetch and process information about a country's national curriculum from Wikidata and store it in CSV files for further analysis instead of manually building and running the Wikidata query.
 
--   Navigate to the `data-gathering` folder and fetch school curriculum data by running `bot.py script which receives the Wikipedia language and the Wikidata country Id as parameters. This script calls the query.py script which is designed to fetch and process information about a country's national curriculum from Wikidata and store it in CSV files for further analysis instead of manually building and running the Wikidata query.
+    ```
+        cd data-gathering
+        python3 bot.py WIKIPEDIA_LANGUAGE_CODE WIKIDATA_COUNTRY_ID
+    ```
 
-```
-    cd data-gathering
-    python3 bot.py WIKIPEDIA_LANGUAGE_CODE WIKIDATA_COUNTRY_ID
-```
+    For example, these are the scripts to fetch data from the Spanish Wikipedia with reference to the Uruguayan (Q77) curriculum, and to fetch data from the English Wikipedia with reference to the Ghanian curriculum (Q117)
 
-For example, these are the scripts to fetch data from the Spanish Wikipedia with reference to the Uruguayan (Q77) curriculum, and to fetch data from the English Wikipedia with reference to the Ghanian curriculum (Q117)
+    ```
+        python3 bot.py es 77
+        # or
+        python3 bot.py en 117
+    ```
 
-```
-    python3 bot.py es 77
-```
+9. Run the translation script to generate the file that will be used for the visualizattion.
+    ```
+        python3 translate.py es 77
+        # or
+        python3 translate.py en 117
+    ```
 
-
-```
-    python3 bot.py en 117
-```
-
--   Excecute the translation script
-```
-    python3 translate.py
-```
-
--   Check the visuals:
+10. Check the visuals:
 
     -   You can go to your file explorer and under the directory you've just created by cloning the wikicurricula-boilerplate repository, descend into the "visualization", you will find an `index.html` file. Open this file with any browser of you choice
     -   If you are using a code editor like Visual Studio Code install the "live server" extension. After installation, right click on the `index.html` file in the visualization folder and select "open with Live erver" option. This will start a server port : 5500 and a new browser window should automatically open, displaying your index.html file. The Live Server extension will serve your HTML file on a local development server with live reloading, allowing you to see changes in real-time as you edit the HTML, CSS, or JavaScript files associated with your project.
