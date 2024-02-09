@@ -41,20 +41,39 @@ Many thanks to all the Outreachy applicants who have contributed during 2023 app
         cd wikicurricula-boilerplate
     ```
 
-7. If not installed already, install in your computer Python3 and the SPARQLWrapper extension
+7. If not installed already, install in your computer Python3 and the SPARQLWrapper extension.  
 
     ```
         apt install python3
         sudo apt install python3-sparqlwrapper
     ```
-8.  Navigate to the `data-gathering` folder and fetch school curriculum data by running `bot.py script which receives the Wikipedia language and the Wikidata country Id as parameters. This script calls the query.py script which is designed to fetch and process information about a country's national curriculum from Wikidata and store it in CSV files for further analysis instead of manually building and running the Wikidata query.
+
+    This wil be needed to fetch a country's national curriculum from Wikidata using a query script(query.py) instead of the manual process as shown below:
+
+    -   Obtain the wikidata query for fetching your desired country's curriculum and run it using [Wikidata Query Service](https://query.wikidata.org/). For example, the SPARQL for fetching Ghana's curriculum has already been provided [here](https://w.wiki/7Zge). A page as shown in the image below will be displayed:
+    ![Ghana Curriculum Wikidata Query](Wikidata-Query.png)
+    
+    You can change the query to obtain other countries' curriculum. For instance, changing if you change "wdt:P17 wd:117." to  "wdt:P17 wd:Q38." will fetch Italy's curriculum from your chosen wikipedia.
+
+    -   click on the 'run' button on the left-hand side of the page. This will retrieve and display the curriculum data in tabular format at the bottom of the page, like this:
+        ![Execute Ghana Curriculum Wikidata Query](Execute-Wikidata-Query.png)
+        NOTE: Tabular format is the default format for displaying the data but it can also be displayed in other formats like Graph builder, Line chart, Bar chart, Area chart, tree map, and so on. To change the display form, click on the "Table" dropdown located at the header of the terminal the data is being displayed in. Select the format you want it displayed in.
+
+    -   Edit query to fetch only article names click on the "Download" dropdown located at right hand side the table where the curriculum data is being displayed. Select the "CSV file" option and wait for it to download.
+
+    - It'll save as "query.csv", change this to the country's name underscore article underscore file dot csv. e.g `ghana_article_file.csv `
+    - Repeat the two previous steps but this time, let a query to retrieve qid, material and grade be made. And save the  generated file as country's name underscore subject underscore file dot csv. e.g `ghana_subject_file.csv `
+
+    -   Import the two files into the 'data-gathering' folder of your cloned wikicurricula-boilerplate project. But you
+    
+8.  Instead of going through the mannual steps listed in number 7 above, navigate to the `data-gathering` folder in your terminal and fetch school curriculum data by running `bot.py script which receives the Wikipedia language and the Wikidata country Id as parameters. This script calls the query.py script which is designed to fetch and process information about a country's national curriculum from Wikidata and store it in CSV files for further analysis instead of manually building and running the Wikidata query.
 
     ```
         cd data-gathering
         python3 bot.py WIKIPEDIA_LANGUAGE_CODE WIKIDATA_COUNTRY_ID
     ```
 
-    For example, these are the scripts to fetch data from the Spanish Wikipedia with reference to the Uruguayan (Q77) curriculum, and to fetch data from the English Wikipedia with reference to the Ghanian curriculum (Q117)
+    For example, these are the scripts to fetch data from the Spanish Wikipedia with reference to the Uruguayan (Q77) curriculum, and to fetch data from the English Wikipedia in English Language with reference to the Ghanian curriculum (Q117)
 
     ```
         python3 bot.py es 77
@@ -189,26 +208,7 @@ Now that you have the two(2) required accounts, follow the steps to deploy"
 
 A practice on migrating Uruguay's Wikicurricula from it's current hosting (Github Pages) to Toolforge was done and can be found at: <https://tools-static.wmflabs.org/wikicurricula-uy/wikicurricula-uy.github.io/index.html>
 
-# 📜How to feed the visualization with data from a new curriculum
 
-This is a detailed step-by-step guide on how to feed the visualization with data from a new curriculum.
-Before going into that, you'll need to learn how to build and run the Wikidata query.
-
-## Building and running the Ghana curriculum wikidata query
-
--   Obtain the wikidata query. This has already been provided [here](https://w.wiki/7Zge).
-
--   When it opens up, you'll see a page as shown in the image below:
-    ![Ghana Curriculum Wikidata Query](Wikidata-Query.png)
-    This wikidata curriculum provides the SPARQL to extract structured data and the Wikidata Query needed to retrieve the specific curriculum data has already been provided. Now, you'll need to execute the query.
-
--   To execute the query, click on the 'run' button/icon on the left-hand sidebar of the page. This will retrieve and display the curriculum data in tabular format at the bottom of the page, like so:
-    ![Execute Ghana Curriculum Wikidata Query](Execute-Wikidata-Query.png)
-    NB: Tabular format is the default format for displaying the data but it can also be displayed in other formats like Graph builder, Line chart, Bar chart, Area chart, tree map, and so on. To change the display form, click on the "Table" dropdown located at the header of the terminal the data is being displayed in. Select the format you want it displayed in.
-
--   After executing the query and retriveing the data, you can download or export the results in vaious formats like JSON, CSV, TSV, or HTML. Click on the "Download" dropdown located at the header of the table format where the curriculum data is being displayed. Select the "CSV file" option and wait for it to download.
-
--   Rename it if you must and then import it into the 'data-gathering' folder of wikicurricula-boilerplate project in your editor.
 
 
 # 📜How to Implement - and deploy at Toolforge - Wikicurricula for Ghana's national curriculum, with reference to the English Wikipedia
@@ -234,14 +234,20 @@ Before proceeding, understand these:
 
 ```
     python bot.py <WIKIPEDIA_LANGUAGE_CODE> <WIKIDATA_COUNTRY_ID>
+
+    #for Ghana
+    python bot.py en 117
 ```
 3. Run the translate.py script which prepares generated data from Wikipedia articles of Ghana and Uruguay for visualization, enabling analysis and insights using our visualization tool; WikiCurricula.
 
 ```
     python translate.py <WIKIPEDIA_LANGUAGE_CODE> <WIKIDATA_COUNTRY_ID>
+    # for Ghana
+    python translate.py en 117
+    # This will create a "ghana_voci_2023.tsv" file under the visualization/assets/data folder.
 ```
 
-4. Create a html file for visual display.
+4. Create a html file for visual display using the index.html file as template. The "data-country" in the htm file indicates a custom data attribute named data-country with the value `country's name`. It stores information about the country(country's name) as it will be used to determine the file that'll be used for the visulaization.
 
 
 ### Deploy the curricula on Toolforge
