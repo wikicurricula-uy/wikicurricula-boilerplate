@@ -4,7 +4,7 @@ import sys
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 # Load configuration from JSON file
-with open("file_config.json", "r") as config_file:
+with open("wikipedia_config.json", "r") as config_file:
     CONFIG = json.load(config_file)
 
 # SPARQL query template

@@ -28,10 +28,16 @@ else:
 with open("wikipedia_config.json", "r") as config_file:
    wikipedia_config = json.load(config_file)
 
-if WIKIPEDIA_LANGUAGE_CODE in wikipedia_config:
-   language_config = wikipedia_config[WIKIPEDIA_LANGUAGE_CODE]
-else:
-   print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE_CODE}'.") # Handle this case appropriately (e.g, exit the script).
+config_key = f"{WIKIPEDIA_LANGUAGE_CODE}_{WIKIDATA_COUNTRY_ID}"
+file_mapping = wikipedia_config.get(config_key)
+if not file_mapping:
+   print("Unsupported language or country code.")
+   sys.exit(1)
+
+# if WIKIPEDIA_LANGUAGE_CODE in wikipedia_config:
+#    language_config = wikipedia_config[WIKIPEDIA_LANGUAGE_CODE]
+# else:
+#    print(f"Configuration not found for language '{WIKIPEDIA_LANGUAGE_CODE}'.") # Handle this case appropriately (e.g, exit the script).
 
 
 id_wikidata = 1,
@@ -54,13 +60,13 @@ incipit_size = 1,
 discussion_size = 1
 
 # Access configuration variables based on the language
-file_to_be_analysed = language_config.get("file_to_be_analysed")
-result_file = language_config.get("result_file")
-language = language_config.get("language")
-discussionURL = language_config.get("discussionURL")
-warnings_config = language_config.get("warnings_config")
-featured_template = language_config.get("featured_template")
-display_window_template = language_config.get("display_window_template")
+file_to_be_analysed = file_mapping["file_to_be_analysed"]
+result_file = file_mapping["result_file"]
+language = file_mapping["language"]
+discussionURL = file_mapping["discussionURL"]
+warnings_config = file_mapping["warnings_config"]
+featured_template = file_mapping["featured_template"]
+display_window_template = file_mapping["display_window_template"]
 
 # delete the contents of the file before starting
 results = open(result_file,"w")
@@ -70,10 +76,11 @@ results.close()
 
 def main():     
   
+   article_file, subject_file = file_mapping['article_file'], file_mapping['subject_file']
    # fetch wikidata info, store article names and get id, subject, grade of article.
    query_results = fetch_wikidata_info(WIKIPEDIA_LANGUAGE_CODE, WIKIDATA_COUNTRY_ID)
-   store_articles(query_results)
-   get_id_and_subjects_and_grade(query_results)
+   store_articles(query_results, article_file )
+   get_id_and_subjects_and_grade(query_results, subject_file)
    
    # Detect the encoding of the file
    with open(file_to_be_analysed, 'rb') as rawdata:
