@@ -3,7 +3,11 @@ import csv
 import os
 from datetime import datetime
 import sys
+import json
 
+# Load configuration from JSON file
+with open("wikipedia_config.json", "r") as config_file:
+    CONFIG = json.load(config_file)
 
 #This function calculates the number of days between two given date strings.
 #It first converts the date strings into datetime objects and then calculates the difference in days between them.
@@ -50,13 +54,12 @@ def create_grade_mapping(file_path):
 
 
 def process_input_file(input_file, output_file, subject_file):
-
     grade_map = create_grade_mapping(subject_file)
     subject_map = create_subject_mapping(subject_file); 
 
 
 
-# Open the input file
+    # Open the input file
     with open(input_file, 'r',  encoding='utf-8', errors="replace") as input_file:
 
         input_header = [
@@ -133,14 +136,20 @@ def process_input_file(input_file, output_file, subject_file):
         writer.writerows(rows)
 
 
-# Define the file path using an absolute path
-# Define input, output, and subject file pairs
-file_info = [
-    ("ghana_results.txt", (os.path.abspath('../visualization/assets/data/ghana_voci_2023.tsv')), "ghana_subject_file.csv"),
-    ("uruguay_results.txt", (os.path.abspath('../visualization/assets/data/uruguay_voci_2023.tsv')), "uruguay_subject_file.csv")
-]
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Please provide both the wikipedia_language and country code as command-line arguments.")
+        sys.exit(1)
 
+    wikipedia_language_code = sys.argv[1]
+    country_code = sys.argv[2]
 
-# Process each input-output-subject file triplet
-for input_file, output_file, subject_file in file_info:
-    process_input_file(input_file, output_file, subject_file)
+    # Check if the language and country code combination is supported
+    config_key = f"{wikipedia_language_code}_{country_code}"
+    file_mapping = CONFIG.get(config_key)
+    if not file_mapping:
+        print("Unsupported language or country code.")
+        sys.exit(1)
+
+    input_file, output_file_path, subject_file = file_mapping['result_file'], os.path.abspath(file_mapping['output_file_path']), file_mapping['subject_file']
+    process_input_file(input_file, output_file_path, subject_file)
