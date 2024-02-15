@@ -1,4 +1,4 @@
-let translations; // Declare translations in the broader scope
+let translations = {}; // Declare translations in the broader scope
 
 // Function to translate elements based on the current language
 function translate(language) {
@@ -33,19 +33,19 @@ function updateLanguageParameter(language) {
 }
 
 // Function to fetch JSON data asynchronously
-function fetchTranslations(callback) {
+function fetchTranslations(language, callback) {
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                translations = JSON.parse(xhr.responseText);
-                callback(translations);
+                translations[language] = JSON.parse(xhr.responseText);
+                callback(language);
             } else {
                 console.error('Failed to load translations.');
             }
         }
     };
-    xhr.open('GET', 'assets/script/translations.json', true);
+    xhr.open('GET', 'assets/i18n/' + language + '.json', true);
     xhr.send();
 }
 
@@ -53,13 +53,12 @@ function fetchTranslations(callback) {
 const initialLanguage = document.documentElement.lang.toLowerCase();
 
 // Fetch translations and execute the main logic
-fetchTranslations(function () {
-    translate(initialLanguage);
-    updateImageSources(initialLanguage);
+fetchTranslations(initialLanguage, function (language) {
+    translate(language);
+    updateImageSources(language);
 
     // Event listener for language switch button
     document.getElementById('changeLanguageButton').addEventListener('click', function () {
-        
         var newLanguage;
         var currentTitle = document.title.trim().toLowerCase();
 
@@ -70,10 +69,18 @@ fetchTranslations(function () {
         } else {
             newLanguage = 'en';
         }
-        
+
         document.documentElement.lang = newLanguage;
-        translate(newLanguage);
-        updateImageSources(newLanguage);
-        updateLanguageParameter(newLanguage);
+        if (!translations[newLanguage]) {
+            fetchTranslations(newLanguage, function (language) {
+                translate(language);
+                updateImageSources(language);
+                updateLanguageParameter(language);
+            });
+        } else {
+            translate(newLanguage);
+            updateImageSources(newLanguage);
+            updateLanguageParameter(newLanguage);
+        }
     });
 });

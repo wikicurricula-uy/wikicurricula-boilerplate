@@ -1,35 +1,47 @@
 {
-    "es": {
-        "file_to_be_analysed": "uruguay_es_article_file.csv",
+    "es_77": {
+        "article_file": "uruguay_article_file.csv",
+        "subject_file": "uruguay_subject_file.csv",
         "result_file": "uruguay_results.txt",
+        "output_file_path":"../visualization/assets/data/uruguay_voci_2023.tsv",
+        "file_to_be_analysed": "uruguay_article_file.csv",
         "language": "es",
         "discussionURL": "discusi%C3%B3n%3A",
         "warnings_config": 0,
         "featured_template": "{{artículo destacado",
         "display_window_template": "{{artículo bueno"
     },
-    "it": {
+    "it_38": {
+        "article_file": "italy_article_file.csv",
+        "subject_file": "italy_subject_file.csv",
+        "result_file": "italy_results.txt",
+        "output_file_path":"../visualization/assets/data/italy_voci_2023.tsv",
         "file_to_be_analysed": "italian_article_file.csv",
-        "result_file": "italian_results.txt",
         "language": "it",
         "discussionURL": "discussione%3A",
         "warnings_config": 0,
         "featured_template": "{{voce in vetrina",
         "display_window_template": "{{voce buona"
     },
-    "en": {
-        "language": "en",
-        "file_to_be_analysed": "ghana_en_article_file.csv",
+    "en_117": {
+        "article_file": "ghana_en_article_file.csv",
+        "subject_file": "ghana_subject_file.csv",
         "result_file": "117_en.txt",
+        "output_file_path":"../visualization/assets/data/ghana_voci_2023.tsv",
+        "file_to_be_analysed": "ghana_en_article_file.csv",
+        "language": "en",
         "discussionURL": "talk%3A",
         "warnings_config": 0,
         "featured_template": "{{featured article",
         "display_window_template": "{{good article"
     },
-    "tw": {
-        "language": "tw",
-        "file_to_be_analysed": "ghana_tw_article_file.csv",
+    "tw_117": {
+        "article_file": "ghana_tw_article_file.csv",
+        "subject_file": "ghana_subject_file.csv",
         "result_file": "117_tw.txt",
+        "output_file_path":"../visualization/assets/data/ghana_voci_2023.tsv",
+        "file_to_be_analysed": "ghana_tw_article_file.csv",
+        "language": "tw",
         "discussionURL": "talk%3A",
         "warnings_config": 0,
         "featured_template": "{{featured article",
