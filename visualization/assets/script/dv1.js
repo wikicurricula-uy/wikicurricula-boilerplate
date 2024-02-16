@@ -86,8 +86,11 @@ let improv_delay = 1800;
 
 let random_subject = null;
 let random_subject_index = null;
-//Some subjects should not be the first to load. Subjects with too many or too few articles generate too small dots or too big dots, which mess up with the visualization when changing to another subject
+//If the visualization initializes with too many or too few articles the visualization renders too small or too big dots, which mess up with the visualization when changing to another subject
+//...for that reason, some subjects should not be the first to load
 let forbidden_subjects = ["Comunicación y sociedad"];
+//...and Wikipedias with too few articles, should initialize at "all subjects"
+let wikipedias_with_few_subjects = ["tw"]
 
 const pageSelector = document.getElementById("pageSelector");
 const selectedPage = pageSelector.value;
@@ -1596,7 +1599,11 @@ function getRandomIntInclusive(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function initialize_page() {
+function initialize_page(lang) {
+	if (wikipedias_with_few_subjects.indexOf(lang) !== -1) {
+		random_subject = "all"
+		random_subject_index = 0
+	}
 	while (
 		!random_subject ||
 		forbidden_subjects.indexOf(random_subject) !== -1
@@ -1640,7 +1647,7 @@ $(document).ready(async function () {
 		subjects.unshift("all");
 
 		console.log(subjects);
-		initialize_page();
+		initialize_page(lang);
 	});
 });
 
