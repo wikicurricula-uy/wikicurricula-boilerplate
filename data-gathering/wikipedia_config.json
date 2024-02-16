@@ -1,9 +1,9 @@
 {
     "es_77": {
         "article_file": "uruguay_article_file.csv",
-        "subject_file": "uruguay_subject_file.csv",
+        "subject_file": "uruguay_es_subject_file.csv",
         "result_file": "uruguay_results.txt",
-        "output_file_path":"../visualization/assets/data/uruguay_voci_2023.tsv",
+        "output_file_path":"../visualization/assets/data/uruguay_es_voci_2023.tsv",
         "file_to_be_analysed": "uruguay_article_file.csv",
         "language": "es",
         "discussionURL": "discusi%C3%B3n%3A",
@@ -24,12 +24,24 @@
         "display_window_template": "{{voce buona"
     },
     "en_117": {
-        "article_file": "ghana_article_file.csv",
-        "subject_file": "ghana_subject_file.csv",
-        "result_file": "ghana_results.txt",
-        "output_file_path":"../visualization/assets/data/ghana_voci_2023.tsv",
-        "file_to_be_analysed": "ghana_article_file.csv",
+        "article_file": "ghana_en_article_file.csv",
+        "subject_file": "ghana_en_subject_file.csv",
+        "result_file": "117_en.txt",
+        "output_file_path":"../visualization/assets/data/ghana_en_voci_2023.tsv",
+        "file_to_be_analysed": "ghana_en_article_file.csv",
         "language": "en",
+        "discussionURL": "talk%3A",
+        "warnings_config": 0,
+        "featured_template": "{{featured article",
+        "display_window_template": "{{good article"
+    },
+    "tw_117": {
+        "article_file": "ghana_tw_article_file.csv",
+        "subject_file": "ghana_tw_subject_file.csv",
+        "result_file": "117_tw.txt",
+        "output_file_path":"../visualization/assets/data/ghana_tw_voci_2023.tsv",
+        "file_to_be_analysed": "ghana_tw_article_file.csv",
+        "language": "tw",
         "discussionURL": "talk%3A",
         "warnings_config": 0,
         "featured_template": "{{featured article",

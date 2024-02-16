@@ -86,8 +86,11 @@ let improv_delay = 1800;
 
 let random_subject = null;
 let random_subject_index = null;
-//Some subjects should not be the first to load. Subjects with too many or too few articles generate too small dots or too big dots, which mess up with the visualization when changing to another subject
+//If the visualization initializes with too many or too few articles the visualization renders too small or too big dots, which mess up with the visualization when changing to another subject
+//...for that reason, some subjects should not be the first to load
 let forbidden_subjects = ["Comunicación y sociedad"];
+//...and Wikipedias with too few articles, should initialize at "all subjects"
+let wikipedias_with_few_subjects = ["tw"]
 
 const pageSelector = document.getElementById("pageSelector");
 const selectedPage = pageSelector.value;
@@ -98,8 +101,10 @@ pageSelector.addEventListener("change", function () {
 
 	if (selectedPage === "uy") {
 		window.location.href = "index.html";
-	} else if (selectedPage === "ghana") {
-		window.location.href = "ghana.html";
+	} else if (selectedPage === "ghana_en") {
+		window.location.href = "ghana_en.html";
+	} else if (selectedPage === "ghana_tw") {
+		window.location.href = "ghana_tw.html";
 	}
 });
 
@@ -1594,7 +1599,11 @@ function getRandomIntInclusive(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function initialize_page() {
+function initialize_page(lang) {
+	if (wikipedias_with_few_subjects.indexOf(lang) !== -1) {
+		random_subject = "all"
+		random_subject_index = 0
+	}
 	while (
 		!random_subject ||
 		forbidden_subjects.indexOf(random_subject) !== -1
@@ -1613,10 +1622,10 @@ function initialize_page() {
 $(document).ready(async function () {
 	const country = page.getAttribute("data-country");
 	const lang = page.getAttribute("data-lang");
-	dataFile = `assets/data/${country.toLowerCase()}voci_2023.tsv`;
+	dataFile = `assets/data/${country.toLowerCase()}${lang}_voci_2023.tsv`;
 	wiki_link = `https://${lang}.wikipedia.org/wiki/`;
 
-	subject_file = `../data-gathering/${country.toLowerCase()}subject_file.csv`;
+	subject_file = `../data-gathering/${country.toLowerCase()}${lang}_subject_file.csv`;
 	// Fetch the CSV file and initialize page
 	d3.csv(subject_file).then((data) => {
 		data.forEach((d) => {
@@ -1638,7 +1647,7 @@ $(document).ready(async function () {
 		subjects.unshift("all");
 
 		console.log(subjects);
-		initialize_page();
+		initialize_page(lang);
 	});
 });
 

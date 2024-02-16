@@ -21,7 +21,7 @@ WHERE {{
     ?articulo schema:name ?nombreDelArticulo.
   }}
 
-  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{wikipedia_language_code}". }}
+  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{wikipedia_language_code},en". }}
 }}
 """
 
