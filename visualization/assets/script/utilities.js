@@ -9,6 +9,8 @@ function apply_color(subject) {
 		"Social Studies",
 		"Training for citizenship",
 		"Geography",
+		"Storia",
+		"Filosofia",
 	];
 
 	const technology_subjects = [
@@ -16,6 +18,10 @@ function apply_color(subject) {
 		"Technologies",
 		"Ciencias de la computación",
 		"Tecnologías",
+		"Informatica",
+		"Tecnologia",
+		"Scienze e Tecnologia",
+		"Fisica",
 	];
 
 	const Communication_and_Art_subjects = [
@@ -29,6 +35,11 @@ function apply_color(subject) {
 		"Educación musical",
 		"Lengua española",
 		"Literatura",
+		"Musica",
+		"Storia dell'arte",
+		"Grammatica Italiana",
+		"Grammatica Latina",
+		"Literatura Italiana",
 	];
 
 	const personal_development_body_awareness_subjects = [
@@ -36,6 +47,9 @@ function apply_color(subject) {
 		"Salud y sexualidad",
 		"Physical education and recreation",
 		"Health and sexuality",
+		"Diritto e Economia",
+		"Cittadinanza e costituzione",
+		"Geografia"
 	];
 
 	if (history_subjects.includes(subject)) {

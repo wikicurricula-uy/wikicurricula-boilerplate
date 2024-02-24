@@ -44,11 +44,13 @@ def store_articles(results, article_file):
     article_names = [result.get("nombreDelArticulo", {}).get("value", "") for result in results['results']['bindings']]
     # Remove empty names
     article_names = [name for name in article_names if name]
-    # Sort article names alphabetically
-    article_names.sort()
-    # Write sorted article names to the file
+    # Use a set to store unique article names
+    unique_article_names = set(article_names)
+    # Convert the set to a sorted list
+    sorted_unique_article_names = sorted(unique_article_names)
+    # Write sorted unique article names to the file
     with open(article_file, "w", encoding="utf-8", errors="replace") as file:
-        for article_name in article_names:
+        for article_name in sorted_unique_article_names:
             file.write(f"{article_name}\n")
 
 
@@ -73,6 +75,12 @@ def get_id_and_subjects_and_grade(results, subject_file):
             if "Core" in grade:
                 grade = "core"
                 
+            if "Scuole superiori italiane" in grade:
+                grade ="Scuole superiori italiane"
+            if "scuola media italiana" or "escuela secundaria italiana" in grade:
+                grade = "scuola media italiana"
+            if "Scuola primaria italiana" in grade:
+                grade = "Scuola primaria italiana"
             if "Salud y Sexualidad" in material:
                 material = "Salud y sexualidad"
                 
@@ -139,6 +147,41 @@ def get_id_and_subjects_and_grade(results, subject_file):
                 if "Comunicación Visual" in material:
                     material = "Comunicación Visual"
                     
+            if "Programma di " or "Programa de" in material:
+
+                if "storia per" in material:
+                    material = "Storia"
+                if "grammatica italiana" in material:
+                    material = "Grammatica Italiana"
+                if "matematica e geometria" in material or "Matematica e Geometria" in material:
+                    material = "Matematica e Geometria"
+                if "musicale" in material:
+                    material = "Musica"
+                if "scienze per" in material:
+                    material = "Scienze"
+                if "Scienze e Tecnologie" in material:
+                    material = "Scienze e Tecnologia"
+                if "Educazione Civica" in material:
+                    material = "Educazione Civica"
+                if "Informatica" in material:
+                    material = "Informatica"
+                if "grammatica latina" in material:
+                    material = "Grammatica Latina"
+                if "biologia" in material:
+                    material = "Biologia"
+                if "chimica" in material:
+                    material = "Chimica"
+                if " Diritto ed Economia" in material or"diritto ed economia" in material:
+                    material = "Diritto ed Economia"
+                if "filosofia" in material:
+                    material = "Filosofia"
+                if "fisica" in material:
+                    material = "Fisica"
+                if "literatura italiana"in material:
+                    material = "Literatura Italiana"
+                
+                if "storia dell'arte" in material:
+                    material = "Storia dell'arte"
 
             if "Curriculum" in material:
                 material = material.split("Curriculum")[0]
