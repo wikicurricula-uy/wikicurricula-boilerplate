@@ -58,18 +58,31 @@ fetchTranslations(initialLanguage, function (language) {
     updateImageSources(language);
 
     // Event listener for language switch button
+    var lang = document.documentElement.lang.toLowerCase();
+
     document.getElementById('changeLanguageButton').addEventListener('click', function () {
         var newLanguage;
         var currentTitle = document.title.trim().toLowerCase();
-
-        if (document.documentElement.lang.toLowerCase() === 'en' && currentTitle === "wikicurrícula uruguay") {
-            newLanguage = 'es';
-        } else if (document.documentElement.lang.toLowerCase() === 'en' && currentTitle === "wikicurrícula ghana") {
-            newLanguage = 'es';
+        
+        
+        if (lang == 'en') {
+            if (currentTitle === "wikicurrícula uruguay" || currentTitle === "wikicurrícula ghana") {
+                document.getElementById('changeLanguageButton').innerText = "EN"; 
+                newLanguage = 'es'
+                lang = 'es';       
+            } else if (currentTitle === "wikipedia e scuola italiana") {
+                document.getElementById('changeLanguageButton').innerText = "EN";
+                newLanguage = 'it';
+                lang = 'it'; 
+            } else {
+                document.getElementById('changeLanguageButton').innerText = "EN";
+                newLanguage = 'en';
+            }
         } else {
+            document.getElementById('changeLanguageButton').innerText = lang.toUpperCase();
             newLanguage = 'en';
-        }
-
+            lang = 'en'
+        } 
         document.documentElement.lang = newLanguage;
         if (!translations[newLanguage]) {
             fetchTranslations(newLanguage, function (language) {

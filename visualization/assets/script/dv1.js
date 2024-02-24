@@ -105,7 +105,9 @@ pageSelector.addEventListener("change", function () {
 		window.location.href = "ghana_en.html";
 	} else if (selectedPage === "ghana_tw") {
 		window.location.href = "ghana_tw.html";
-	}
+	} else if (selectedPage === "italy_it") {
+		window.location.href = "italy_it.html";
+	}	
 });
 
 function dv1(year, the_subject, sort) {

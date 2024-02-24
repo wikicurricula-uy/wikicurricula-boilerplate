@@ -12,11 +12,11 @@
         "display_window_template": "{{artículo bueno"
     },
     "it_38": {
-        "article_file": "italy_article_file.csv",
-        "subject_file": "italy_subject_file.csv",
-        "result_file": "italy_results.txt",
-        "output_file_path":"../visualization/assets/data/italy_voci_2023.tsv",
-        "file_to_be_analysed": "italian_article_file.csv",
+        "article_file": "italy_it_article_file.csv",
+        "subject_file": "italy_it_subject_file.csv",
+        "result_file": "italy_it_results.txt",
+        "output_file_path":"../visualization/assets/data/italy_it_voci_2023.tsv",
+        "file_to_be_analysed": "italy_it_article_file.csv",
         "language": "it",
         "discussionURL": "discussione%3A",
         "warnings_config": 0,
