@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Adriendelucca"
+		]
+	},
+	"filters": "Sil",
+	"year": "Bloaz",
+	"english-language": "Saozneg",
+	"science": "Skiantoù",
+	"biology": "Bevoniezh",
+	"computer science": "Urzhiataerezh",
+	"physics": "Fizik",
+	"geography": "Geografiezh",
+	"history": "Istor",
+	"spanish-language": "Spagnoleg",
+	"literature": "Lennegezh",
+	"mathematics": "Matematikoù",
+	"chemistry": "Kimiezh",
+	"health-and-sexuality": "Yec'hed ha sekselezh",
+	"technology": "Teknologiezh",
+	"article": "anv ar pennad",
+	"publication_date": "deiziad embann",
+	"article_size": "ment ar pennad",
+	"num_images": "niver a skeudennoù",
+	"data": "Roadennoù",
+	"grade": "klas",
+	"visits": "gweladennoù",
+	"size": "ment",
+	"discussion": "kaozeadenn",
+	"images": "skeudennoù"
+}

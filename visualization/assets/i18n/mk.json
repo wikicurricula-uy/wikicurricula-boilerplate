@@ -4,7 +4,6 @@
 			"Bjankuloski06"
 		]
 	},
-	"changeLanguageButton": "ES",
 	"filters": "Филтер",
 	"year": "Година",
 	"subject": "Предмет",
@@ -64,6 +63,7 @@
 	"support-and-collaboration": "Поддршка и соработка",
 	"meta_page": "Страница за проектот на Мета",
 	"Wikidata_for_Education": "Проект Википодатоци за образование",
+	"project_wikimedian": "Проект Матичен википедијанец",
 	"grade": "одделение",
 	"publication": "објавување",
 	"visits": "посети",

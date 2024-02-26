@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda"
+		]
+	},
+	"filters": "Filtre",
+	"year": "Yıl",
+	"subject": "Konu",
+	"all": "Tüm Konular",
+	"english-language": "İngilizce",
+	"science": "Bilim",
+	"social-studies": "Sosyal Araştırmalar",
+	"biology": "Biyoloji",
+	"computer science": "Bilgisayar Bilimleri",
+	"computing": "Hesaplama",
+	"Physical-chemical-sciences": "Fizik-kimya bilimleri",
+	"visual-communication": "Görsel İletişim",
+	"communication-and-society": "İletişim ve Toplum",
+	"design": "Tasarım",
+	"Physical-education-and-recreation": "Beden Eğitimi ve Rekreasyon",
+	"music-education": "Müzik Eğitimi",
+	"training-for-citizenship": "Vatandaşlık Eğitimi",
+	"physics": "Fizik",
+	"geography": "Coğrafya",
+	"history": "Tarih",
+	"spanish-language": "İspanyolca",
+	"literature": "Edebiyat",
+	"mathematics": "Matematik",
+	"chemistry": "Kimya",
+	"health-and-sexuality": "Sağlık ve Cinsellik",
+	"technology": "Teknoloji",
+	"sort-by": "Sıralama ölçütü",
+	"article": "makale adı",
+	"publication_date": "yayım tarihi",
+	"article_size": "makale boyutu",
+	"talk_page": "tartışma sayfası boyutu",
+	"incipit": "giriş boyutu",
+	"issue": "uyarı sayısı",
+	"num_images": "resim sayısı",
+	"reference": "referans sayısı",
+	"how-to": "Görselleştirme nasıl okunur"
+}
