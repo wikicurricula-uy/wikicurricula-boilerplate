@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Milicevic01"
+		]
+	},
+	"filters": "Филтер",
+	"year": "Година",
+	"all": "Сви предмети",
+	"music": "Музика",
+	"philosophy": "Филозофија",
+	"english-language": "Енглески језик",
+	"science": "Наука",
+	"biology": "Биологија",
+	"computer science": "Информатика",
+	"design": "Дизајн",
+	"music-education": "Музичко",
+	"physics": "Физика",
+	"geography": "Географија",
+	"history": "Историја",
+	"spanish-language": "Шпански језик",
+	"literature": "Књижевност",
+	"mathematics": "Математика",
+	"chemistry": "Хемија",
+	"technology": "Технологија",
+	"article": "назив чланка",
+	"article_size": "величина чланка",
+	"data": "Подаци",
+	"size": "величина",
+	"discussion": "дискусија",
+	"images": "слике"
+}

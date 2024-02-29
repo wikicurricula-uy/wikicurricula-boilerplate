@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"আফতাবুজ্জামান"
+		]
+	},
+	"filters": "ছাঁকনি",
+	"year": "বছর",
+	"subject": "বিষয়",
+	"all": "সকল বিষয়",
+	"italian-grammar": "ইতালীয় ব্যাকরণ",
+	"mathematics-and-geometry": "গণিত ও জ্যামিতি",
+	"music": "সঙ্গীত",
+	"science-and-technology": "বিজ্ঞান ও প্রযুক্তি",
+	"civic-education": "নাগরিক শিক্ষা",
+	"latin-grammar": "লাতিন ব্যাকরণ",
+	"law-and-economics": "আইন ও অর্থনীতি",
+	"philosophy": "দর্শন",
+	"italian-literature": "ইতালীয় সাহিত্য",
+	"art-history": "শিল্পকলার ইতিহাস",
+	"english-language": "ইংরেজি ভাষা",
+	"science": "বিজ্ঞান",
+	"social-studies": "সামাজিক অধ্যয়ন",
+	"biology": "জীববিজ্ঞান",
+	"computer science": "কম্পিউটার বিজ্ঞান",
+	"computing": "কম্পিউটিং",
+	"Physical-chemical-sciences": "ভৌত-রাসায়নিক বিজ্ঞান",
+	"communication-and-society": "যোগাযোগ ও সমাজ",
+	"data": "উপাত্ত",
+	"size": "আকার",
+	"discussion": "আলোচনা",
+	"introduction": "ভূমিকা"
+}
