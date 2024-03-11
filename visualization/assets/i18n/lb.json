@@ -1,20 +1,26 @@
 {
 	"@metadata": {
 		"authors": [
+			"Robby",
 			"Volvox"
 		]
 	},
+	"filters": "Filter",
 	"year": "Joer",
+	"subject": "Sujet",
+	"all": "All Sujeten",
 	"italian-grammar": "Italieenesch Grammatik",
 	"mathematics-and-geometry": "Mathematik a Geometrie",
 	"music": "Musek",
 	"science-and-technology": "Wëssenschaft an Technologie",
 	"latin-grammar": "Laténgesch Grammatik",
+	"law-and-economics": "Recht an Ekonomie",
 	"philosophy": "Philosophie",
 	"italian-literature": "Italieenesch Literatur",
 	"art-history": "Konschtgeschicht",
 	"english-language": "Englesch Sprooch",
 	"science": "Wëssenschaft",
+	"social-studies": "Sozial Wëssenschaften",
 	"biology": "Biologie",
 	"computer science": "Informatik",
 	"Physical-chemical-sciences": "Physikalesch-cheemesch Wëssenschaften",
@@ -30,8 +36,21 @@
 	"health-and-sexuality": "Gesondheet a Sexualitéit",
 	"technology": "Technologie",
 	"sort-by": "Sortéieren no",
+	"article": "Numm vum Artikel",
+	"publication_date": "Datum vun der Publikatioun",
+	"article_size": "Gréisst vum Artikel",
+	"talk_page": "Gréisst vun der Diskussiounssäit",
+	"issue": "Zuel vun den Alarmen",
 	"num_images": "Zuel vun de Biller",
+	"reference": "Zuel vun de Referenzen",
+	"data": "Donnéeën",
+	"curriculum-sentenc2": "op Wikidata modelléiert",
+	"download-data": "D'Donnéeën eroflueden",
+	"implementation": "Implementéierung",
 	"workgroup": "Aarbechtsgrupp",
+	"publication": "Verëffentlechung",
+	"size": "Gréisst",
 	"discussion": "Diskussioun",
+	"references": "Referenzen",
 	"images": "Biller"
 }
