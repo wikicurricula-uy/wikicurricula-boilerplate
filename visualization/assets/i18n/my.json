@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dr Lotus Black"
+		]
+	},
+	"filters": "စိစစ်မှု",
+	"year": "ခုနှစ်",
+	"subject": "အကြောင်းအရာ",
+	"all": "အကြောင်းအရာအားလုံး",
+	"italian-grammar": "အီတလီ သဒ္ဒါ",
+	"mathematics-and-geometry": "သင်္ချာနှင့် ဂျီသြမေတြီ",
+	"music": "ဂီတ",
+	"science-and-technology": "သိပ္ပံနှင့် နည်းပညာ",
+	"civic-education": "ပြည်သူ့ပညာရေး",
+	"latin-grammar": "လက်တင်သဒ္ဒါ",
+	"law-and-economics": "ဥပဒေနှင့်စီးပွားရေး",
+	"philosophy": "ဒဿနိကဗေဒ",
+	"italian-literature": "အီတလီစာပေ",
+	"art-history": "အနုပညာသမိုင်း",
+	"english-language": "အင်္ဂလိပ်ဘာသာစကား",
+	"science": "သိပ္ပံ",
+	"social-studies": "လူမှုရေးလေ့လာမှု",
+	"biology": "ဇီဝဗေဒ",
+	"computer science": "ကွန်ပျူတာသိပ္ပံ",
+	"computing": "ကွန်ပျူတာပညာရပ်",
+	"design": "ဒီဇိုင်း",
+	"physics": "ရူပဗေဒ",
+	"geography": "ပထဝီဝင်",
+	"history": "သမိုင်း",
+	"spanish-language": "စပိန်ဘာသာစကား",
+	"literature": "စာပေ",
+	"mathematics": "သင်္ချာ",
+	"chemistry": "ဓာတုဗေဒ",
+	"health-and-sexuality": "ကျန်းမာရေးနှင့်လိင်ပိုင်းဆိုင်ရာ",
+	"technology": "နည်းပညာ",
+	"sort-by": "အစဉ်လိုက်",
+	"data": "ဒေတာ",
+	"grade-7": "သတ္တမတန်း",
+	"grade-8": "အဋ္ဌမတန်း",
+	"grade-9": "ကိုးတန်း"
+}
