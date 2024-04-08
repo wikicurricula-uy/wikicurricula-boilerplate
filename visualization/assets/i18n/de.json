@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"DraconicDark"
+			"DraconicDark",
+			"TomatoCake"
 		]
 	},
 	"filters": "Filter",
 	"year": "Jahr",
+	"subject": "Betreff",
 	"italian-grammar": "Italienische Grammatik",
 	"mathematics-and-geometry": "Mathematik und Geometrie",
 	"music": "Musik",
@@ -45,5 +47,21 @@
 	"talk_page": "Diskussionsseitengröße",
 	"incipit": "Einführungsgröße",
 	"issue": "Anzahl der Warnmeldungen",
-	"num_images": "Anzahl der Bilder"
+	"num_images": "Anzahl der Bilder",
+	"data": "Daten",
+	"grade-7": "Siebte Klasse",
+	"grade-8": "Achte Klasse",
+	"grade-9": "Neunte Klasse",
+	"no-article": "Themen, zu denen es noch keinen Artikel auf Wikipedia gibt",
+	"download-data": "Daten herunterladen",
+	"implementation": "Implementierung",
+	"thank-teachers": "Wir danken den Lehrkräften:",
+	"workgroup": "Arbeitsgruppe",
+	"support-and-collaboration": "Unterstützung und Zusammenarbeit",
+	"meta_page": "Projekt-Metaseite",
+	"grade": "Klasse",
+	"publication": "Veröffentlichung",
+	"size": "Größe",
+	"discussion": "Diskussion",
+	"introduction": "Einführung"
 }
