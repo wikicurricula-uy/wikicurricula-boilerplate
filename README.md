@@ -46,7 +46,7 @@ Interactive tool that helps visualize national curriculum data stored in Wikidat
         # fetch data from the Wikipedia in Twi with reference to Ghana's national curriculum
         python3 bot.py tw 117
         # fetch data from the Wikipedia in Italian with reference to Italy's curriculum
-        python3 bot.py it 37
+        python3 bot.py it 38
     ```
 
 9. Run the translation script to generate the file that will be used for the visualizattion.
