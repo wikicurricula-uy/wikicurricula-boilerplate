@@ -1,25 +1,15 @@
-# wikicurricula-boilerplate
+# Wikicurricula
 
 Interactive tool that helps visualize national curriculum data stored in Wikidata. It also shows metrics about Wikipedia articles that are relevant to the curriculum.
 
-Credits to Wikipedia e Scuola Italiana for the original implementation.
-Idea and leadership: Iolanda pensa
-Web design and visualisation by Giovani Profeta - [repo](https://github.com/giovannipro/giovannipro.github.io/tree/master/wikipedia-scuola-italiana)
-Work group: Federico Benvenuti, Valerio Iannucci, Luca Martinelli, Paolo Fichera
-Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
-Many thanks to all the Outreachy applicants who have contributed during 2023 application phase!
-
-# ⚙️ How to make a local installation of the Wikicurricula Boilerplate on your Computer
+# ⚙️ How to make a local installation of the Wikicurricula on your Computer
 
 1. Install Git (if not already installed):
     If you haven't already installed Git on your computer, you can download and install it from the official Git website: <https://git-scm.com/downloads>
 
-2. Open a Terminal or Command Prompt:
-    Depending on your OS(operating system), open a terminal window. This is where you'll run Git commands.
+2. Open a Terminal or Command Prompt
 
-3. Navigate to the Directory Where you want to Clone the repo:
-    Use the cd command to navigate to the directory where you want to create a local copy of the repository. For example:
-
+3. Navigate to the directory where you want to clone the repo:
     ```
         $ cd /path/to/desired/directory
     ```
@@ -249,9 +239,16 @@ Before proceeding, understand these:
 
 4. Create a html file for visual display using the index.html file as template. The "data-country" in the htm file indicates a custom data attribute named data-country with the value `country's name`. It stores information about the country(country's name) as it will be used to determine the file that'll be used for the visulaization.
 
-
 ### Deploy the curricula on Toolforge
 
 1. Use this guide to deploy the curricula to Toolforge. https://github.com/wikicurricula-uy/wikicurricula-boilerplate#how-to-deploy-wikicurr%C3%ADcula-boilerplate-in-toolforge
 
 Here is [Ghana's national curricula](https://tools-static.wmflabs.org/ghana-national-curriculum/GhanaWikiCurricula/visualization/) on Toolforge.
+
+# Credits
+## Credits to Wikipedia e Scuola Italiana for the original implementation.
+* Idea and leadership: Iolanda pensa
+* Web design and visualisation by Giovani Profeta - [repo](https://github.com/giovannipro/giovannipro.github.io/tree/master/wikipedia-scuola-italiana)
+* Work group: Federico Benvenuti, Valerio Iannucci, Luca Martinelli, Paolo Fichera
+* Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
+* Many thanks to all the Outreachy applicants who have contributed during 2023 application phase!
