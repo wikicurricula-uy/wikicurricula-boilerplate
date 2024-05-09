@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Champ0999"
+		]
 	},
 	"filters": "Filtra",
 	"year": "Anno",
@@ -32,11 +34,11 @@
 	"physics": "Fisica",
 	"geography": "Geografia",
 	"history": "Storia",
-	"spanish-language": "Spanish Language",
+	"spanish-language": "Lingua spagnola",
 	"literature": "Literature",
 	"chemistry": "Chimica",
 	"health-and-sexuality": "Health and Sexuality",
-	"technology": "Technologia",
+	"technology": "Tecnologia",
 	"sort-by": "Ordina per",
 	"article": "titolo",
 	"publication_date": "data di pubblicazione",
