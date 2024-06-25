@@ -11,17 +11,16 @@ with open("wikipedia_config.json", "r") as config_file:
 SPARQL_QUERY = """
 SELECT DISTINCT (STRAFTER(STR(?item), "http://www.wikidata.org/entity/") AS ?qid) ?item ?itemLabel ?nombreDelArticulo ?programaLabel
 WHERE {{
-  ?substrand wdt:P31 wd:Q600134.
-  ?substrand wdt:P921 ?item.
-  ?substrand wdt:P17 wd:Q{country_code}.
+  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{wikipedia_language_code},en". }}
+  
+  #terms in UdeSA's list
+  VALUES ?item {{ wd:Q22661680 wd:Q2685659 wd:Q116003889 wd:Q260607 wd:Q396338 wd:Q113330288 wd:Q2855609 wd:Q26841 wd:Q5659642 wd:Q841083 wd:Q841083 wd:Q6135446 wd:Q7942 wd:Q125928 wd:Q79995 wd:Q2982731 wd:Q212254 wd:Q20113959 wd:Q10480147 wd:Q954112 wd:Q58734 wd:Q20051297 wd:Q839399 wd:Q60933643 wd:Q169940 wd:Q1334780 wd:Q838577 wd:Q296486 wd:Q497743 wd:Q948732 wd:Q924713 wd:Q48782631 wd:Q4116742 wd:Q12705 wd:Q548599 wd:Q167336 wd:Q3104563 wd:Q180388 wd:Q983063 wd:Q310667 wd:Q2022868 wd:Q1291678 wd:Q5956792 wd:Q27999483 wd:Q43619 wd:Q111494758 wd:Q898653 wd:Q266462 wd:Q386426 wd:Q4572 wd:Q6077659 wd:Q919526 wd:Q2144359 wd:Q132580 wd:Q936791 wd:Q1138571 wd:Q815818 wd:Q283509 wd:Q17072637 wd:Q11945323 wd:Q846574 wd:Q1361172 wd:Q10372857 wd:Q7552762 wd:Q1364792 wd:Q219416 wd:Q6135446 wd:Q795757 }}  
 
-  OPTIONAL {{ ?substrand wdt:P361 ?programa. }}
   OPTIONAL {{ ?articulo schema:about ?item;
     schema:isPartOf <https://{wikipedia_language_code}.wikipedia.org/>. 
     ?articulo schema:name ?nombreDelArticulo.
   }}
-
-  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{wikipedia_language_code},en". }}
+  
 }}
 """
 
