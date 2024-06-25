@@ -1,84 +1,52 @@
-# wikicurricula-boilerplate
+# Wikicurricula
 
 Interactive tool that helps visualize national curriculum data stored in Wikidata. It also shows metrics about Wikipedia articles that are relevant to the curriculum.
 
-Credits to Wikipedia e Scuola Italiana for the original implementation.
-Idea and leadership: Iolanda pensa
-Web design and visualisation by Giovani Profeta - [repo](https://github.com/giovannipro/giovannipro.github.io/tree/master/wikipedia-scuola-italiana)
-Work group: Federico Benvenuti, Valerio Iannucci, Luca Martinelli, Paolo Fichera
-Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
-Many thanks to all the Outreachy applicants who have contributed during 2023 application phase!
-
-# ⚙️ How to make a local installation of the Wikicurricula Boilerplate on your Computer
+# ⚙️ How to make a local installation of the Wikicurricula on your Computer
 
 1. Install Git (if not already installed):
     If you haven't already installed Git on your computer, you can download and install it from the official Git website: <https://git-scm.com/downloads>
 
-2. Open a Terminal or Command Prompt:
-    Depending on your OS(operating system), open a terminal window. This is where you'll run Git commands.
+2. Open a Terminal or Command Prompt
 
-3. Navigate to the Directory Where you want to Clone the repo:
-    Use the cd command to navigate to the directory where you want to create a local copy of the repository. For example:
-
+3. Navigate to the directory where you want to clone the repo:
     ```
         $ cd /path/to/desired/directory
     ```
 
-4. Get the Clone URL:
-    Go to the Wikicurricula Boilerplate GitHub repository: <https://github.com/wikicurricula-uy/wikicurricula-boilerplate>. On the repository's GitHub page, click the green "Code" button. This will reveal the clone URL. Copy the URL provided there.
-
-5. Clone the Repository:
-    Use the git clone command followed by the URL of the Git repository you want to clone. The basic syntax is: `git clone <repository-url>.git`
-
+4. Clone the Repository:
     ```
         git clone https://github.com/wikicurricula-uy/wikicurricula-boilerplate.git
     ```
 
-6. After successful cloning, navigate to the cloned repository:
+6. Navigate to the cloned repository:
     Use the cd command to move into the directory that was created by the git clone command: `cd repo-name`.
-
     ```
         cd wikicurricula-boilerplate
     ```
 
 7. If not installed already, install in your computer Python3 and the SPARQLWrapper extension.  
-
     ```
         apt install python3
         sudo apt install python3-sparqlwrapper
     ```
-
-    This wil be needed to fetch a country's national curriculum from Wikidata using a query script(query.py) instead of the manual process as shown below:
-
-    -   Obtain the wikidata query for fetching your desired country's curriculum and run it using [Wikidata Query Service](https://query.wikidata.org/). For example, the SPARQL for fetching Ghana's curriculum has already been provided [here](https://w.wiki/7Zge). A page as shown in the image below will be displayed:
-    ![Ghana Curriculum Wikidata Query](Wikidata-Query.png)
-    
-    You can change the query to obtain other countries' curriculum. For instance, changing if you change "wdt:P17 wd:117." to  "wdt:P17 wd:Q38." will fetch Italy's curriculum from your chosen wikipedia.
-
-    -   click on the 'run' button on the left-hand side of the page. This will retrieve and display the curriculum data in tabular format at the bottom of the page, like this:
-        ![Execute Ghana Curriculum Wikidata Query](Execute-Wikidata-Query.png)
-        NOTE: Tabular format is the default format for displaying the data but it can also be displayed in other formats like Graph builder, Line chart, Bar chart, Area chart, tree map, and so on. To change the display form, click on the "Table" dropdown located at the header of the terminal the data is being displayed in. Select the format you want it displayed in.
-
-    -   Edit query to fetch only article names click on the "Download" dropdown located at right hand side the table where the curriculum data is being displayed. Select the "CSV file" option and wait for it to download.
-
-    - It'll save as "query.csv", change this to the country's name underscore article underscore file dot csv. e.g `ghana_article_file.csv `
-    - Repeat the two previous steps but this time, let a query to retrieve qid, material and grade be made. And save the  generated file as country's name underscore subject underscore file dot csv. e.g `ghana_subject_file.csv `
-
-    -   Import the two files into the 'data-gathering' folder of your cloned wikicurricula-boilerplate project. But you
-    
-8.  Instead of going through the mannual steps listed in number 7 above, navigate to the `data-gathering` folder in your terminal and fetch school curriculum data by running `bot.py script which receives the Wikipedia language and the Wikidata country Id as parameters. This script calls the query.py script which is designed to fetch and process information about a country's national curriculum from Wikidata and store it in CSV files for further analysis instead of manually building and running the Wikidata query.
-
+      
+8.  Navigate to the `data-gathering` folder in your terminal and fetch school curriculum data by running `bot.py` script which receives the Wikipedia language and the country's Wikidata QId number as parameters. This script calls the query.py script which fetches and processes information about a country's national curriculum from Wikidata and stores it in a CSV file.
     ```
         cd data-gathering
         python3 bot.py WIKIPEDIA_LANGUAGE_CODE WIKIDATA_COUNTRY_ID
     ```
 
-    For example, these are the scripts to fetch data from the Spanish Wikipedia with reference to the Uruguayan (Q77) curriculum, and to fetch data from the English Wikipedia in English Language with reference to the Ghanian curriculum (Q117)
-
+    For example:
     ```
+        # fetch data from the Wikipedia in Spanish with reference to the Uruguay's national curriculum
         python3 bot.py es 77
-        # or
+        # fetch data from the Wikipedia in English with reference to Ghana's national curriculum
         python3 bot.py en 117
+        # fetch data from the Wikipedia in Twi with reference to Ghana's national curriculum
+        python3 bot.py tw 117
+        # fetch data from the Wikipedia in Italian with reference to Italy's curriculum
+        python3 bot.py it 38
     ```
 
 9. Run the translation script to generate the file that will be used for the visualizattion.
@@ -86,6 +54,7 @@ Many thanks to all the Outreachy applicants who have contributed during 2023 app
         python3 translate.py es 77
         # or
         python3 translate.py en 117
+        # etc...
     ```
 
 10. Check the visuals:
@@ -249,9 +218,16 @@ Before proceeding, understand these:
 
 4. Create a html file for visual display using the index.html file as template. The "data-country" in the htm file indicates a custom data attribute named data-country with the value `country's name`. It stores information about the country(country's name) as it will be used to determine the file that'll be used for the visulaization.
 
-
 ### Deploy the curricula on Toolforge
 
 1. Use this guide to deploy the curricula to Toolforge. https://github.com/wikicurricula-uy/wikicurricula-boilerplate#how-to-deploy-wikicurr%C3%ADcula-boilerplate-in-toolforge
 
 Here is [Ghana's national curricula](https://tools-static.wmflabs.org/ghana-national-curriculum/GhanaWikiCurricula/visualization/) on Toolforge.
+
+# Credits
+## Credits to Wikipedia e Scuola Italiana for the original implementation.
+* Idea and leadership: Iolanda pensa
+* Web design and visualisation by Giovani Profeta - [repo](https://github.com/giovannipro/giovannipro.github.io/tree/master/wikipedia-scuola-italiana)
+* Work group: Federico Benvenuti, Valerio Iannucci, Luca Martinelli, Paolo Fichera
+* Support and collaboration: [Wikimedia Italia](https://www.wikimedia.it/)
+* Many thanks to all the Outreachy applicants who have contributed during 2023 application phase!

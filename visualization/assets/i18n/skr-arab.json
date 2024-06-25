@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Saraiki"
+		]
+	},
+	"filters": "چھاݨاں",
+	"year": "سال",
+	"subject": "موضوع",
+	"music": "موسیقی",
+	"philosophy": "فلسفہ",
+	"science": "سائنس",
+	"biology": "بیالوجی",
+	"computer science": "کمپیوٹر سائنس",
+	"computing": "حساب کرݨ",
+	"design": "ڈیزائن",
+	"physics": "فزکس",
+	"geography": "جغرافیہ",
+	"history": "تاریخ",
+	"spanish-language": "سپینی زبان",
+	"literature": "ادب",
+	"mathematics": "ریاضی",
+	"chemistry": "کیمسٹری",
+	"img_a": "assets/img/dv1_legend_a_en.svg",
+	"img_b": "assets/img/dv1_legend_b_en.svg",
+	"data": "ڈیٹا",
+	"grade-7": "ستویں جماعت",
+	"grade-8": "اٹھویں جماعت",
+	"grade-9": "نان٘ویں جماعت",
+	"size": "سائز",
+	"discussion": "بحث مباحثہ",
+	"introduction": "تعارف",
+	"references": "حوالے",
+	"issues": "مسئلے",
+	"images": "تصویراں"
+}
