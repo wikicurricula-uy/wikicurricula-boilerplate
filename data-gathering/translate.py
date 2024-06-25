@@ -12,7 +12,7 @@ with open("wikipedia_config.json", "r") as config_file:
 #This function calculates the number of days between two given date strings.
 #It first converts the date strings into datetime objects and then calculates the difference in days between them.
 def get_days_between(start_date_str, end_date_str):
-    if (not start_date_str or start_date_str =="ERROR" or end_date_str =="ERROR"): return 0
+    if (not start_date_str or start_date_str =="d modified" or start_date_str =="ERROR" or end_date_str =="ERROR"): return 0
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
     days_between = (end_date - start_date).days
