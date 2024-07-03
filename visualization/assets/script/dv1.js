@@ -1624,10 +1624,10 @@ function initialize_page(lang) {
 $(document).ready(async function () {
 	const country = page.getAttribute("data-country");
 	const lang = page.getAttribute("data-lang");
-	dataFile = `assets/data/${country.toLowerCase()}${lang}_voci_2023.tsv`;
+	dataFile = `assets/data/${country.toLowerCase()}${lang}_voci_2023.tsv?=1`;
 	wiki_link = `https://${lang}.wikipedia.org/wiki/`;
 
-	subject_file = `../data-gathering/${country.toLowerCase()}${lang}_subject_file.csv`;
+	subject_file = `../data-gathering/${country.toLowerCase()}${lang}_subject_file.csv?v=1`;
 	// Fetch the CSV file and initialize page
 	d3.csv(subject_file).then((data) => {
 		data.forEach((d) => {
@@ -1648,7 +1648,6 @@ $(document).ready(async function () {
 		// Add "all" back at the beginning
 		subjects.unshift("all");
 
-		console.log(subjects);
 		initialize_page(lang);
 	});
 });
