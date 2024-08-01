@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Huajing",
 			"沈澄心"
 		]
 	},
@@ -50,8 +51,29 @@
 	"num_images": "图像数量",
 	"reference": "参考文献数量",
 	"data": "数据",
+	"curriculum-sentenc3": "您可以在维基数据上浏览课程，并访问组成每个项目的主题的完整列表：",
+	"grade-7": "七年级",
+	"grade-8": "八年级",
+	"grade-9": "九年级",
+	"grade-7-gh": "基础七",
+	"grade-8-gh": "基础八",
+	"grade-9-gh": "基础九",
+	"query-paragraph": "以下是维基数据查询服务中，您可能感兴趣的一些查询：",
+	"curriculum-link": "课程主题的完整列表",
+	"no-article": "在维基百科上尚没有条目的主题",
+	"ghana-wikicuriculum": "加纳的课程",
+	"download-data": "下载数据",
+	"thank-teachers": "我们感谢这些老师们：",
+	"Web-design-and-data-visualization": "网页设计和数据可视化：",
 	"workgroup": "工作组",
+	"support-and-collaboration": "支持与合作：",
+	"meta_page": "项目元页面",
+	"Wikidata_for_Education": "用维基数据发展教育（Wikidata for Education）项目",
+	"Wikidata_for_Education_support": "得到了维基媒体基金会的支持，并由西非开放基金会与维基媒体加纳合作执行。",
+	"project_schema": "开发计划框架与数据模型的是",
+	"project_wikimedian": "驻地维基人计划",
 	"grade": "年级",
+	"publication": "发行",
 	"visits": "访问量",
 	"size": "大小",
 	"discussion": "讨论",
