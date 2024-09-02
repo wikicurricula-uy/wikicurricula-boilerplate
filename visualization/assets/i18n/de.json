@@ -48,6 +48,8 @@
 	"incipit": "Einführungsgröße",
 	"issue": "Anzahl der Warnmeldungen",
 	"num_images": "Anzahl der Bilder",
+	"img_a": "assets/img/dv1_legend_a_en.svg",
+	"img_b": "assets/img/dv1_legend_b_en.svg",
 	"data": "Daten",
 	"grade-7": "Siebte Klasse",
 	"grade-8": "Achte Klasse",
@@ -61,7 +63,11 @@
 	"meta_page": "Projekt-Metaseite",
 	"grade": "Klasse",
 	"publication": "Veröffentlichung",
+	"visits": "Besuche",
 	"size": "Größe",
 	"discussion": "Diskussion",
-	"introduction": "Einführung"
+	"introduction": "Einführung",
+	"references": "Einzelnachweise",
+	"issues": "Probleme",
+	"source_needed": "Quelle benötigt"
 }
