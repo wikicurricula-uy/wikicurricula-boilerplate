@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"ABPMAB",
 			"Mitsjol",
 			"Siebrand"
 		]
@@ -50,13 +51,20 @@
 	"num_images": "aantal afbeeldingen",
 	"reference": "aantal referenties",
 	"how-to": "Hoe de visualisatie te lezen",
+	"data": "Gegevens",
+	"no-article": "Onderwerpen die nog geen artikel hebben op Wikipedia.",
+	"download-data": "Gegevens downloaden",
+	"implementation": "Implementatie",
 	"workgroup": "Werkgroep",
 	"support-and-collaboration": "Ondersteuning en samenwerking",
+	"grade": "cijfer",
+	"publication": "publicatie",
 	"visits": "bezoeken",
 	"size": "grootte",
 	"discussion": "overleg",
 	"introduction": "inleiding",
 	"references": "referenties",
+	"issues": "problemen",
 	"source_needed": "bron nodig",
 	"need_clarification": "verduidelijking nodig",
 	"images": "afbeeldingen"
