@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Champ0999"
+			"Champ0999",
+			"Wheelygay"
 		]
 	},
 	"filters": "Filtra",
@@ -36,6 +37,7 @@
 	"history": "Storia",
 	"spanish-language": "Lingua spagnola",
 	"literature": "Literature",
+	"mathematics": "Matematica",
 	"chemistry": "Chimica",
 	"health-and-sexuality": "Health and Sexuality",
 	"technology": "Tecnologia",
@@ -57,12 +59,18 @@
 	"how-to-paragraph-sentence4": "Nel menù in alto puoi scegliere un argomento e l'ordine degli articoli sull'asse orizzontale. Passa il mouse sopra il cerchio per visualizzare ulteriori informazioni e fai clic per andare all'articolo di Wikipedia.",
 	"img_a": "assets/img/dv1_legend_a_it.svg",
 	"img_b": "assets/img/dv1_legend_b_it.svg",
+	"data": "Dati",
+	"ghana-wikicuriculum": "Il curriculum del Ghana",
 	"download-data": "Scarica i dati",
 	"credit": "Crediti: Wikicurrícula Uy",
+	"thank-teachers": "Ringraziamo gli insegnanti:",
+	"original-project-credits": "Crediti del progetto originale:",
 	"ideation-and-responsibility": "Ideazione e responsabilità",
 	"Web-design-and-data-visualization": "Web design e visualizzazione dati",
 	"workgroup": "Gruppo di lavoro",
 	"support-and-collaboration": "Supporto e collaborazione",
+	"Wikidata_for_Education": "Il progetto Wikidata for Education",
+	"Wikidata_for_Education_support": "è stato sostenuto dalla Wikimedia Foundation e implementato dalla Open Foundation West Africa in collaborazione con Wikimedia Ghana.",
 	"grade": "grade",
 	"publication": "publication",
 	"visits": "visits",
