@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Renessaince"
+			"Renessaince",
+			"Ucukor"
 		]
 	},
 	"filters": "Фільтар",
@@ -18,7 +19,7 @@
 	"philosophy": "Філязофія",
 	"italian-literature": "Італьянская літаратура",
 	"art-history": "Гісторыя мастацтва",
-	"english-language": "Ангельская мова",
+	"english-language": "Анґельская мова",
 	"science": "Навука",
 	"social-studies": "Грамадзкія дасьледаваньні",
 	"biology": "Біялёгія",
