@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"MathXplore",
+			"Omotecho",
+			"RhAnish"
+		]
+	},
+	"all": "全ての科目",
+	"italian-grammar": "イタリア語の文法",
+	"mathematics-and-geometry": "数学と幾何学",
+	"music": "音楽",
+	"science-and-technology": "科学と技術",
+	"latin-grammar": "ラテン語の文法",
+	"philosophy": "哲学",
+	"art-history": "美術史",
+	"english-language": "英語",
+	"science": "科学",
+	"biology": "生物学",
+	"design": "デザイン",
+	"music-education": "音楽教育",
+	"physics": "物理学",
+	"geography": "地理",
+	"history": "歴史",
+	"spanish-language": "スペイン語",
+	"literature": "文学",
+	"mathematics": "数学",
+	"chemistry": "化学",
+	"technology": "技術",
+	"article": "記事名",
+	"data": "データ",
+	"no-article": "ウィキペディアにまだ記事がない主題",
+	"meta_page": "メタウィキにあるプロジェクトのページ",
+	"Wikidata_for_Education_support": "ウィキメディア財団が支援し、同財団ガーナ協会との協働を経て、実装はオープン財団西アフリカが担当しました。",
+	"project_wikimedian": "嘱託ウィキメディアンのプロジェクト",
+	"discussion": "議論",
+	"images": "画像"
+}
