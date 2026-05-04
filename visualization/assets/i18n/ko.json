@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Suleiman the Magnificent Television",
+			"Tensama0415",
 			"Ykhwong"
 		]
 	},
@@ -53,6 +54,9 @@
 	"img_a": "assets/img/dv1_legend_a_en.svg",
 	"img_b": "assets/img/dv1_legend_b_en.svg",
 	"data": "데이터",
+	"grade-7": "7학년",
+	"grade-8": "8학년",
+	"grade-9": "9학년",
 	"ghana-wikicuriculum": "가나의 커리큘럼",
 	"download-data": "데이터 다운로드",
 	"implementation": "구현",
@@ -61,10 +65,14 @@
 	"support-and-collaboration": "지원 및 협업",
 	"meta_page": "프로젝트 메타 페이지",
 	"Wikidata_for_Education": "교육 프로젝트를 위한 위키데이터",
+	"grade": "학년",
+	"visits": "방문수",
 	"size": "크기",
 	"discussion": "토론",
+	"introduction": "개요",
 	"references": "참고",
 	"issues": "문제",
 	"source_needed": "출처 필요",
+	"need_clarification": "명료화 필요",
 	"images": "이미지"
 }
