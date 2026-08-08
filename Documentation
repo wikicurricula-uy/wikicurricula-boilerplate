@@ -1,0 +1,26 @@
+How to make a local install (in your computer) of Wikicurrícula Boilerplate.
+In order to make a local install ,the following steps can be followed:
+1.Fork github resipotory: 
+On GitHub.com move to the Wikicurrícula Boilerplate resipotory (https://github.com/wikicurricula-uy/wikicurricula-boilerplate), navigate to the octocat/Spoon-Knife repository.
+
+In the top-right corner of the page, click Fork.
+
+Under "Owner," select the dropdown menu and click an owner for the forked repository.
+
+By default, forks are named the same as their upstream repositories. Optionally, to further distinguish your fork, in the "Repository name" field, type a name.
+
+Optionally, in the "Description" field, type a description of your fork.
+
+Optionally, select Copy the DEFAULT branch only.
+
+For many forking scenarios, such as contributing to open-source projects, you only need to copy the default branch. If you do not select this option, all branches will be copied into the new fork.
+
+Click Create fork.
+2.clone resipotory to local computer 
+Open up your terminal or command prompt
+Navigate to the directory where you want to store the project.
+Run the following command to clone the repository to your computer: git clone repository-url
+Wait for it to clone the repository and when it is done, you'll see wikicurricula bolierplate folders on your system.
+3.Open wikicurricula-boilerplate folder in an IDE
+Using any IDE of your choice , open the folder within it to explore sub folders and files 
+3.With in its folder, open the visualization folder and open index.html file on browser to see Wikicurrícula Boilerplate page.

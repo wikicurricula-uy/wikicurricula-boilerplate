@@ -132,13 +132,13 @@ header a {
     display: flex;
     height: 140px;
     width: 98%;
-    justify-content: space-between;
+    justify-content: space-between; 
     margin: 0 auto; }
     @media only screen and (max-width: 768px) {
       #select_section_1 .select_box, #select_section_2 .select_box, #select_section_3 .select_box {
         width: 100%;
         display: none;
-        height: auto;
+        height: auto; 
         flex-wrap: wrap; } }
     #select_section_1 .select_box .selector, #select_section_2 .select_box .selector, #select_section_3 .select_box .selector {
       padding-top: 50px;
@@ -160,15 +160,19 @@ header a {
         width: 40%;
         margin: 15px 0 0 0;
         top: 5px;
-        position: relative; }
+        padding-bottom: 4px;
+        position: relative; } 
         @media only screen and (max-width: 768px) {
           #select_section_1 .select_box .selector .key, #select_section_2 .select_box .selector .key, #select_section_3 .select_box .selector .key {
             margin: 15px 0 0 0;
             width: 40%; } }
+      
       #select_section_1 .select_box .selector .value, #select_section_2 .select_box .selector .value, #select_section_3 .select_box .selector .value {
         font-size: 1.1em;
         margin: 5px 0 0 0;
-        width: 90%;
+        width: 90%; 
+        border: 2px solid transparent;
+         border-color: #d6d5d5;
         background-color: white; }
         @media only screen and (max-width: 768px) {
           #select_section_1 .select_box .selector .value, #select_section_2 .select_box .selector .value, #select_section_3 .select_box .selector .value {
@@ -178,13 +182,13 @@ header a {
       #select_section_1 .select_box .selector .select, #select_section_2 .select_box .selector .select, #select_section_3 .select_box .selector .select {
         font-family: "Open Sans", sans-serif;
         left: -5px;
-        border: none;
+        border-radius: 5%;
         position: relative;
         display: inline-block;
         width: 90%;
         top: -5px;
-        border-bottom: 1px solid #d6d5d5;
-        background-color: white; }
+        padding: 8px 16px;
+        background-color: #f8f9fa; }
         @media only screen and (max-width: 768px) {
           #select_section_1 .select_box .selector .select, #select_section_2 .select_box .selector .select, #select_section_3 .select_box .selector .select {
             border-bottom: none;
@@ -192,6 +196,8 @@ header a {
     #select_section_1 .select_box .selector:last-child, #select_section_2 .select_box .selector:last-child, #select_section_3 .select_box .selector:last-child {
       border: none; }
 
+        
+      
 /* ------- column ------- */
 .row {
   display: flex;
